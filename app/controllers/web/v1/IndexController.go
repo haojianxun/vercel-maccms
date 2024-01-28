@@ -2,7 +2,11 @@ package v1
 
 import (
 	"github.com/gin-gonic/gin"
+	cmap "github.com/orcaman/concurrent-map"
+	"goapi/app/models"
+	"goapi/pkg/mysql"
 	"net/http"
+	"time"
 )
 
 type IndexController struct {
@@ -16,7 +20,126 @@ func (h *IndexController) Index(c *gin.Context) {
 	}
 	data := value.(gin.H)
 	data["title"] = "index"
-	data["list"] = gin.H{"asas": "asas"}
+	// 获取当前时间
+	now := time.Now()
+	// 获取当天凌晨00:00的时间
+	midnight := time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
+	// 获取当天凌晨00:00的时间戳
+	midnightUnix := midnight.Unix()
+	// 正在热播
+	var CurrentlyTrending []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().Where("vod_status", 1).Order("vod_hits desc").Limit(16).Find(&CurrentlyTrending)
+	data["CurrentlyTrending"] = CurrentlyTrending
+	// 今日更新
+	var TodayCount int64
+	models.MacVodMgr(mysql.DB).Debug().Where("vod_time >= ?", midnightUnix).Count(&TodayCount)
+	data["TodayCount"] = TodayCount
+
+	// 首页电影
+	var listDianYing []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id_1", 1).
+		Order("vod_hits desc").
+		Limit(14).
+		Find(&listDianYing)
+	data["listDianYing"] = listDianYing
+	// 电影月榜
+	var MonthDianYing []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id_1", 1).
+		Order("vod_hits_month desc").
+		Limit(10).
+		Find(&MonthDianYing)
+	data["MonthDianYing"] = MonthDianYing
+
+	// 首页电视剧
+	var listDianShiJu []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id_1", 2).
+		Order("vod_hits desc").
+		Limit(14).
+		Find(&listDianShiJu)
+	data["listDianShiJu"] = listDianShiJu
+	// 电视剧月榜
+	var MonthDianShiJu []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id_1", 2).
+		Order("vod_hits_month desc").
+		Limit(10).
+		Find(&MonthDianShiJu)
+	data["MonthDianShiJu"] = MonthDianShiJu
+
+	// 首页动漫
+	var listDongMan []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id", 4).
+		Order("vod_hits desc").
+		Limit(14).
+		Find(&listDongMan)
+	data["listDongMan"] = listDongMan
+	// 动漫月榜
+	var MonthDongMan []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id", 4).
+		Order("vod_hits_month desc").
+		Limit(10).
+		Find(&MonthDongMan)
+	data["MonthDongMan"] = MonthDongMan
+
+	// 首页综艺
+	var listZongYi []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id", 3).
+		Order("vod_hits desc").
+		Limit(14).
+		Find(&listZongYi)
+	data["listZongYi"] = listZongYi
+	// 动漫月榜
+	var MonthZongYi []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id", 3).
+		Order("vod_hits_month desc").
+		Limit(10).
+		Find(&MonthZongYi)
+	data["MonthZongYi"] = MonthZongYi
+
+	// 最新影片
+	listNewVideos := cmap.New().Items()
+	var NewsAll []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Order("vod_time desc").
+		Limit(8).
+		Find(&NewsAll)
+	listNewVideos["NewsAll"] = NewsAll
+	var NewsVideos []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id_1", 1).
+		Order("vod_time desc").
+		Limit(8).
+		Find(&NewsVideos)
+	listNewVideos["NewsVideos"] = NewsVideos
+	var NewsDianShiJu []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id_1", 2).
+		Order("vod_time desc").
+		Limit(8).
+		Find(&NewsDianShiJu)
+	listNewVideos["NewsDianShiJu"] = NewsDianShiJu
+	var NewsDongMan []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id", 4).
+		Order("vod_time desc").
+		Limit(8).
+		Find(&NewsDongMan)
+	listNewVideos["NewsDongMan"] = NewsDongMan
+	var NewsZongYi []models.MacVod
+	models.MacVodMgr(mysql.DB).Debug().
+		Where("type_id", 3).
+		Order("vod_time desc").
+		Limit(8).
+		Find(&NewsZongYi)
+	listNewVideos["NewsZongYi"] = NewsZongYi
+	data["listNewVideos"] = listNewVideos
 	c.HTML(http.StatusOK, "index.html", data)
 }
 
