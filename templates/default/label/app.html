@@ -1,25 +1,22 @@
-{{ define "arttype/zixun.html" }}
+{{ define "label/app.html" }}
 {{template "html" .}}
 <html lang="zh-cn">
 <head>
-    <title>最新资讯-推荐资讯 - 电影先生</title>
-    <meta name="keywords" content="最新影视资讯,电影资讯,娱乐资讯">
-    <meta name="description" content="本站提供最新电影,电视剧,综艺,动漫的资讯信息,一览无遗">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>APP下载 - 电影先生</title>
+    <meta name="keywords" content="电影先生,dianyi.ng,最新电影,电影大全,影视大全,在线电影,免费电影,电影在线观看,最新电视剧">
+    <meta name="description" content="聚合全网影片，你想看的全都有！每天搜集互联网最新电影和电视剧，为广大用户免费提供无广告在线观看电影和电视剧服务，及时收录最新、最热、最全的电影大片,高清正版免费看。">
     <meta name="referrer" content="always">
     <meta name="referrer" content="no-referrer">
     {{template "common/head.html" .}}
-    <link href="{{.__CSS__}}/mxone.css" rel="stylesheet" type="text/css">
 </head>
-<body class="page">
+<body class="article page">
 <header id="header" class="wrapper">
     <div class="header-content  ">
         <div class="content">
             <div class="brand">
-                <a href="../index.html" class="logo" title="电影先生">
-                    <img src="{{.__STATIC__}}/picture/logo-s.png" alt="电影先生">
-                </a>
+                <a href="../index.html" class="logo" title="电影先生"><img src="../statics/picture/logo-s.png" alt="电影先生"></a>
             </div>
 
             <div class="nav-search">
@@ -75,8 +72,8 @@
 
                             <span class="nav-menu-item-name">综艺</span></a>
                     </li>
-                    <li class="nav-menu-item  selected">
-                        <a href="" title="资讯">
+                    <li class="nav-menu-item  ">
+                        <a href="../arttype/zixun.html" title="资讯">
 
                             <span class="nav-menu-item-name">资讯</span></a>
                     </li>
@@ -87,8 +84,8 @@
                             <span class="nav-menu-item-name">网址</span><em>+</em></a>
                     </li>
 
-                    <li class="nav-menu-item  ">
-                        <a href="../label/app.html" title="下载电影先生APP"><i class="icon-app pc"></i><span class="nav-menu-item-name">APP</span></a>
+                    <li class="nav-menu-item  selected">
+                        <a href="" title="下载电影先生APP"><i class="icon-app pc"></i><span class="nav-menu-item-name">APP</span></a>
                     </li>
 
                 </ul>
@@ -125,7 +122,7 @@
                                         </a>
                                     </li>
                                     <li class="grid-item">
-                                        <a href="" title="资讯">
+                                        <a href="../arttype/zixun.html" title="资讯">
                                             <i class="iconfont icon-zixun2"></i> 											<div class="grid-item-name">资讯</div>
                                         </a>
                                     </li>
@@ -135,12 +132,12 @@
                                         </a>
                                     </li>
                                     <li class="grid-item grid-more">
-                                        <a class="grid-more-link" href="/artshow.html" title="查看全部影片">
+                                        <a class="grid-more-link" href="../pianku.html" title="查看全部影片">
                                             <div class="grid-item-name">全部影片</div>
                                         </a>
                                     </li>
                                     <li class="grid-item grid-more android">
-                                        <a href="../label/app.html" class="grid-more-link" title="下载电影先生APP">
+                                        <a href="" class="grid-more-link" title="下载电影先生APP">
                                             <div class="grid-item-name">下载客户端</div>
                                         </a>
                                     </li>
@@ -198,105 +195,58 @@
 
 <main id="main" class="wrapper">
     <div class="content">
-        <div class="col-lg-wide-15 col-md-wide-2 col-xs-1 padding-0">
-            <div class="mxone-pannel mxone-pannel-bg clearfix">
-                <div class="mxone-pannel-box clearfix">
-                    <div class="mxone-pannel-bd col-pd newsbg">
-                        <h3 class="news-nav-head text-muted text-center hidden-sm hidden-xs">资讯分类</h3>
-                        <ul class="news-nav type-slide clearfix">
-                            <li class="newsactive"><a href="">资讯</a></li>
-                        </ul>
-                    </div>
+        <div>
+            <h1 class="page-title">电影先生APP</h1>
+            <div class="box">
+                <div class="article-content">
+                    <h2 id="url">APP介绍</h2>
+                    <p>聚合全网影片，你想看的全都有！每天搜集互联网上最新、最热、最全的影视大片，高清正版免费在线观看！</p>
+                    <ul>
+                        <li><em><b>防封</b></em>：如果域名被封无法访问，可通过App打开、查看
+                            <a href="../web.html">最新网址</a>；</li>
+                        <li><em><b>最新</b></em>：最新热门VIP在线看与下载资源同步更新；</li>
+                        <li><em><b>多源</b></em>：持续添加优质线路、视频源供您切换，画质清晰、播放流畅；</li>
+                        <li><em><b>海量</b></em>：聚合全网资源，想看啥就看啥</li>
+                        <li><em><b>下载</b></em>：聚合全网下载，持续完善资源库</li>
+                    </ul>
+                    <h2 id="url">APP下载</h2>
+                    <p>下载提示：请收藏电影先生域名到浏览器，或添加至桌面图标。</p>
+                    <p>
+                        <a href="https://dianyi.ng/dianying.apk" class="btn-important btn-large shadow-drop article-btn"><i class="icon-android"></i>安卓APP下载</a>
+                        <a href="https://www.dianyi.ng/dianying.apk" class="btn-important btn-large shadow-drop article-btn"><i class="icon-apple"></i>苹果APP下载</a>
+                    </p>
+                    <img src="../statics/images/app-download-android.png"><br> &nbsp; 安卓手机扫码下载
+                    <hr>
+                    <p class="article-imglist"><img src="../statics/images/screenshot/1.png" width="280">
+                        <img src="../statics/images/screenshot/2.png" width="280">
+                        <img src="../statics/images/screenshot/6.png" width="280">
+                        <img src="../statics/images/screenshot/7.png" width="280">
+                    </p>
+                    <hr>
+                    <h2>电影先生</h2>
+                    <ul>
+                        <li>
+                            <a href="/about.html" target="_blank">关于我们</a>
+                        </li>
+                        <li>
+                            <a href="" target="_blank">手机APP</a>
+                        </li>
+                        <li>
+                            <a href="../web.html" target="_blank">最新网址</a>
+                        </li>
+                        <li>
+                            <a href="/help.html" target="_blank">如何投屏到电视?</a>
+                        </li>
+                    </ul>
                 </div>
+                <div class="article-bg"></div>
+                <div class="article-bg01"></div>
             </div>
-        </div>
-        <div class="col-lg-wide-6 col-md-wide-8 col-xs-1 mxone-pannel-side">
-            <div class="mxone-pannel mxone-pannel-bg clearfix">
-                <div class="mxone-pannel-box clearfix">
-                    <div class="mxone-pannel_hd">
-                        <div class="mxone-pannel__head active bottom-line clearfix">
-                            <span class="more text-muted pull-right hidden-xs"></span>
-                            <h3 class="title">
-                                资讯									</h3>
-                        </div>
-                    </div>
-                    <div class="mxone-pannel_bd clearfix">
-                        <ul class="mxone-vodlist__media active col-pd clearfix">
-                            <li>
-                                <div class="thumb">
-                                    <a class="w-thumb mxone-vodlist__thumb active lazy lazyload"
-                                       href="/artdetail.html"
-                                       title="【赠礼】六一是上海解封的日子，这是一个永远的儿童节！"
-                                       data-src="https://picsum.photos/190/114?t=0">
-                                    </a>
-                                </div>
-                                <div class="detail">
-                                    <h4 class="title"><a href="/artdetail.html">【赠礼】六一是上海解封的日子，这是一个永远的儿童节！</a></h4>
-                                    <p class="hidden-sm hidden-xs">今天是2022年6月1日，第72个国际儿童节，同时也是上海同胞历经两个多月的新冠疫情封城后解封的日子。从三月底上海开始酝</p>
-                                    <p class="margin-0 font-12"><span class="hidden-xs"><span class="text-muted">分类：</span>资讯<span class="split-line"></span></span><span class="text-muted">时间：</span>2022-06-02</p>
-                                </div>
-                            </li>
-                            <li class="top-line-dot">
-                                <div class="thumb">
-                                    <a class="w-thumb mxone-vodlist__thumb active lazy lazyload" href="/artdetail.html" title="看书先生APP即将上线！"
-                                       data-src="https://picsum.photos/190/114?t=1">
-                                    </a>
-                                </div>
-                                <div class="detail">
-                                    <h4 class="title"><a href="/artdetail.html">看书先生APP即将上线！</a></h4>
-                                    <p class="hidden-sm hidden-xs">防封：如果域名被封无法访问，可通过App打开、查看&nbsp;最新网址；最新：最新热门VIP在线看与下载资源同步更新；多</p>
-                                    <p class="margin-0 font-12"><span class="hidden-xs"><span class="text-muted">分类：</span>资讯<span class="split-line"></span></span><span class="text-muted">时间：</span>2022-06-01</p>
-                                </div>
-                            </li>
-                            <li class="top-line-dot">
-                                <div class="thumb">
-                                    <a class="w-thumb mxone-vodlist__thumb active lazy lazyload" href="/artdetail.html" title="看书先生即将上线！"
-                                       data-src="https://picsum.photos/190/114?t=2">
-                                    </a>
-                                </div>
-                                <div class="detail">
-                                    <h4 class="title"><a href="/artdetail.html">看书先生即将上线！</a></h4>
-                                    <p class="hidden-sm hidden-xs">聚合全网小说，你想看的全都有！每天搜集互联网最新小说，为广大用户免费提供无广告在线观看小说服务，及时收录最新、最热、最全</p>
-                                    <p class="margin-0 font-12"><span class="hidden-xs"><span class="text-muted">分类：</span>资讯<span class="split-line"></span></span><span class="text-muted">时间：</span>2022-06-01</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-wide-25 mxone-pannel-side hidden-md hidden-sm hidden-xs">
-            <div class="mxone-pannel mxone-pannel-bg clearfix">
-                <div class="mxone-pannel-box clearfix">
-                    <div class="mxone-pannel_hd">
-                        <div class="mxone-pannel__head clearfix">
-                            <h3 class="title">
-                                热门资讯
-                            </h3>
-                        </div>
-                    </div>
-                    <div class="mxone-pannel_bd col-pd">
-                        <ul class="mxone-vodlist__text clearfix">
-                            <li>
-                                <a class="text-overflow" href="/artdetail.html" title="【赠礼】六一是上海解封的日子，这是一个永远的儿童节！"><span class="badge badge-radius badge-first">1</span>【赠礼】六一是上海解封的日子，这是一个永远的儿童节！</a>
-                            </li>
-                            <li>
-                                <a class="text-overflow" href="/artdetail.html" title="看书先生APP即将上线！"><span class="badge badge-radius badge-second">2</span>看书先生APP即将上线！</a>
-                            </li>
-                            <li>
-                                <a class="text-overflow" href="/artdetail.html" title="看书先生即将上线！"><span class="badge badge-radius badge-third">3</span>看书先生即将上线！</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div><!-- 热门资讯 -->
         </div>
     </div>
 </main>
-<div style="clear:both;"></div>
 <footer id="footer" class="wrapper pd60">
-    <p class="sitemap"><img src="{{.__STATIC__}}/picture/logo.png" height="10">
+    <p class="sitemap"><img src="../statics/picture/logo.png" height="10">
         <a target="_blank" href="/about.html">关于</a><span class="space-line-bold"></span>
         <a target="_blank" href="../top.html">排行榜</a><span class="space-line-bold"></span>
         <a target="_blank" href="/map.html">MAP</a><span class="space-line-bold"></span>
@@ -319,7 +269,7 @@
         </div>
         <div class="dbicon">
             <a id="numerous" href="#" style="color: #ffffff; font-weight: bold;" title="切換到繁體中文">繁</a>
-            <script src="{{.__JS__}}/font.js"></script>
+            <script src="../statics/js/font.js"></script>
         </div>
         <div class="dbicon" id="clothes" onclick="clothesChange();">
 
@@ -362,7 +312,7 @@
         <div class="grid-item-name">综艺</div>
     </a>
 
-    <a class="item" href="">
+    <a class="item" href="../arttype/zixun.html">
         <i class="size20 iconfont icon-zixun2"></i>
         <div class="grid-item-name">资讯</div>
     </a>
@@ -386,7 +336,7 @@
             <div class="article-bg"></div><div class="article-bg01"></div></div> <!-- 弹窗公告-->
 
         <div class="popup popup-notice none">
-            <div class="popup-icon"><img src="{{.__STATIC__}}/picture/backhome.svg"></div>
+            <div class="popup-icon"><img src="../statics/picture/backhome.svg"></div>
             <div class="popup-header">
                 <h3 class="popup-title">官方域名列表</h3></div>
             <div class="popup-main">
@@ -431,11 +381,11 @@
             }, 1e3);
         </script>
         <div class="shortcuts-mobile-overlay"></div>
-        <script src="{{.__JS__}}/mxhtml.js"></script>
-        <!-- 底部广告位 -->
+        <script src="../statics/js/mxhtml.js"></script>
+        <!-- 底部广告位 --> <!-- 底部-->
+
     </div>
 </div>
 </body>
 </html>
-
 {{end}}

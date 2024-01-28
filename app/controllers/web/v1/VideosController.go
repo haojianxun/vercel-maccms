@@ -26,7 +26,7 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 	}
 	data := value.(gin.H)
 	data["title"] = "电视剧"
-	c.HTML(http.StatusOK, "v/dongman.html", data)
+	c.HTML(http.StatusOK, "v/dianshiju.html", data)
 }
 
 func (h *VideosController) Dongman(c *gin.Context) {
@@ -58,5 +58,38 @@ func (h *VideosController) Play(c *gin.Context) {
 	data := value.(gin.H)
 	data["title"] = "Play"
 	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "v/play.html", data)
+	c.HTML(http.StatusOK, "play.html", data)
+}
+
+func (h *VideosController) Show(c *gin.Context) {
+	value, exists := c.Get("data")
+	if !exists {
+		value = gin.H{}
+	}
+	data := value.(gin.H)
+	data["title"] = "show"
+	data["list"] = gin.H{"asas": "asas"}
+	c.HTML(http.StatusOK, "show.html", data)
+}
+
+func (h *VideosController) PianKu(c *gin.Context) {
+	value, exists := c.Get("data")
+	if !exists {
+		value = gin.H{}
+	}
+	data := value.(gin.H)
+	data["title"] = "PianKu"
+	data["list"] = gin.H{"asas": "asas"}
+	c.HTML(http.StatusOK, "pianku.html", data)
+}
+
+func (h *VideosController) Top(c *gin.Context) {
+	value, exists := c.Get("data")
+	if !exists {
+		value = gin.H{}
+	}
+	data := value.(gin.H)
+	data["title"] = "PianKu"
+	data["list"] = gin.H{"asas": "asas"}
+	c.HTML(http.StatusOK, "top.html", data)
 }

@@ -9,7 +9,7 @@ import (
 func Web() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		data := gin.H{}
-		HTTP := "https://"
+		HTTP := "http://"
 		data["__URL__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, c.Request.URL.String())
 		data["__STATIC__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics")
 		data["__CSS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/css")
