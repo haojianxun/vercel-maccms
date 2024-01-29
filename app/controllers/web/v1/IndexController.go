@@ -67,7 +67,30 @@ func (h *IndexController) Index(c *gin.Context) {
 	data["TodayCount"] = TodayCount
 
 	// 首页电影
-	DB.Debug().Where("type_id_1", 1).Order("vod_hits desc").Limit(14).Find(&listDianYing)
+
+	listDianYingStr, err := redis.Client.Get(fmt.Sprintf("%s:%s", key, "listDianYing"))
+	if err != nil && err.Error() != "redis: nil" {
+		logger.Error(err)
+		return
+	}
+	if len(listDianYingStr) > 0 {
+		err = json.Unmarshal([]byte(listDianYingStr), &listDianYing)
+		if err != nil {
+			return
+		}
+	} else {
+		DB.Debug().Where("type_id_1", 1).Order("vod_hits desc").Limit(14).Find(&listDianYing)
+		marshalStr, err := json.Marshal(listDianYing)
+		if err != nil {
+			logger.Error(err)
+			return
+		}
+		_, err = redis.Client.Add(fmt.Sprintf("%s:%s", key, "listDianYing"), string(marshalStr), 0)
+		if err != nil {
+			logger.Error(err)
+			return
+		}
+	}
 	data["listDianYing"] = listDianYing
 
 	// 电影月榜
