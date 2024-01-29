@@ -1,9 +1,13 @@
 package v1
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"goapi/app/models"
+	"goapi/pkg/logger"
 	"goapi/pkg/mysql"
+	"goapi/pkg/redis"
 	"net/http"
 	"time"
 )
@@ -13,13 +17,12 @@ type IndexController struct {
 }
 
 func (h *IndexController) Index(c *gin.Context) {
+	key := "index.html"
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
 	}
 	data := value.(gin.H)
-	data["title"] = "index"
-
 	// 获取当前时间
 	now := time.Now()
 	// 获取当天凌晨00:00的时间戳
@@ -35,9 +38,30 @@ func (h *IndexController) Index(c *gin.Context) {
 	DB := models.MacVodMgr(mysql.DB)
 
 	// 正在热播
-	DB.Debug().Where("vod_status", 1).Order("vod_hits desc").Limit(16).Find(&CurrentlyTrending)
+	CurrentlyTrendingStr, err := redis.Client.Get(fmt.Sprintf("%s:%s", key, "CurrentlyTrending"))
+	if err != nil && err.Error() != "redis: nil" {
+		logger.Error(err)
+		return
+	}
+	if len(CurrentlyTrendingStr) > 0 {
+		err = json.Unmarshal([]byte(CurrentlyTrendingStr), &CurrentlyTrending)
+		if err != nil {
+			return
+		}
+	} else {
+		DB.Debug().Where("vod_status", 1).Order("vod_hits desc").Limit(16).Find(&CurrentlyTrending)
+		marshalStr, err := json.Marshal(CurrentlyTrending)
+		if err != nil {
+			logger.Error(err)
+			return
+		}
+		_, err = redis.Client.Add(fmt.Sprintf("%s:%s", key, "CurrentlyTrending"), string(marshalStr), 0)
+		if err != nil {
+			logger.Error(err)
+			return
+		}
+	}
 	data["CurrentlyTrending"] = CurrentlyTrending
-
 	// 今日更新
 	DB.Debug().Where("vod_time >= ?", midnightUnix).Count(&TodayCount)
 	data["TodayCount"] = TodayCount
