@@ -178,10 +178,10 @@
                 <div class="module-sub-title">
                     <!---{maccms:vod num="5"  type="current" order="desc" by="hits_week" levels="1"}  -->
                 </div>
-                <span class="more nonemore">今日更新：<font color="#FF0000">“{{.TodayCount}}”</font> 部</span>	</div>
+                <span class="more nonemore">今日更新：<font color="#FF0000">“{{.INDEX_DATA.TodayCount}}”</font> 部</span>	</div>
             <div class="module-list module-lines-list">
                 <div class="module-items">
-                    {{ range .CurrentlyTrending }}
+                    {{ range .INDEX_DATA.CurrentlyTrending }}
                         <div class="module-item">
                         <div class="module-item-cover">
                             <div class="module-item-pic">
@@ -241,7 +241,7 @@
                 </div>
                 <div class="module-list module-lines-list">
                     <div class="module-items">
-                        {{ range .listDianYing }}
+                        {{ range .INDEX_DATA.listDianYing }}
                         <div class="module-item">
                             <div class="module-item-cover">
                                 <div class="module-item-pic">
@@ -290,7 +290,7 @@
                 <div class="module-side-list module-bg">
                     <div class="scroll-box">
                         <div class="module-textlist scroll-content">
-                            {{ range $index,$value := .MonthDianYing}}
+                            {{ range $index,$value := .INDEX_DATA.MonthDianYing}}
                             <a href="show.html" class="text-list-item">
                                 <div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
                                 <div class="text-list-title">
@@ -321,7 +321,7 @@
                 </div>
                 <div class="module-list module-lines-list">
                     <div class="module-items">
-                        {{ range .listDianShiJu }}
+                        {{ range .INDEX_DATA.listDianShiJu }}
                         <div class="module-item">
                             <div class="module-item-cover">
                                 <div class="module-item-pic">
@@ -370,7 +370,7 @@
                 <div class="module-side-list module-bg">
                     <div class="scroll-box">
                         <div class="module-textlist scroll-content">
-                            {{ range $index,$value := .MonthDianShiJu}}
+                            {{ range $index,$value := .INDEX_DATA.MonthDianShiJu}}
                             <a href="show.html" class="text-list-item">
                                 <div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
                                 <div class="text-list-title">
@@ -401,7 +401,7 @@
                 </div>
                 <div class="module-list module-lines-list">
                     <div class="module-items">
-                        {{ range .listDongMan }}
+                        {{ range .INDEX_DATA.listDongMan }}
                         <div class="module-item">
                             <div class="module-item-cover">
                                 <div class="module-item-pic">
@@ -450,7 +450,7 @@
                 <div class="module-side-list module-bg">
                     <div class="scroll-box">
                         <div class="module-textlist scroll-content">
-                            {{ range $index,$value := .MonthDongMan}}
+                            {{ range $index,$value := .INDEX_DATA.MonthDongMan}}
                             <a href="show.html" class="text-list-item">
                                 <div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
                                 <div class="text-list-title">
@@ -479,7 +479,7 @@
                 </div>
                 <div class="module-list module-lines-list">
                     <div class="module-items">
-                        {{ range .listZongYi }}
+                        {{ range .INDEX_DATA.listZongYi }}
                         <div class="module-item">
                             <div class="module-item-cover">
                                 <div class="module-item-pic">
@@ -528,7 +528,7 @@
                 <div class="module-side-list module-bg">
                     <div class="scroll-box">
                         <div class="module-textlist scroll-content">
-                            {{ range $index,$value := .MonthZongYi}}
+                            {{ range $index,$value := .INDEX_DATA.MonthZongYi}}
                             <a href="show.html" class="text-list-item">
                                 <div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
                                 <div class="text-list-title">
@@ -575,7 +575,7 @@
                 <div class="module-list module-line-list tab-list selected">
                     <div class="module-items scroll-box">
                         <div class="scroll-content">
-                            {{range .listNewVideos.NewsAll}}
+                            {{range .INDEX_DATA.listNewVideos.NewsAll}}
                             <div class="module-item">
                                 <div class="module-item-cover">
                                     <div class="module-item-pic">
@@ -624,7 +624,7 @@
                 <div class="module-list module-line-list tab-list">
                     <div class="module-items scroll-box">
                         <div class="scroll-content">
-                            {{range .listNewVideos.NewsVideos}}
+                            {{range .INDEX_DATA.listNewVideos.NewsVideos}}
                             <div class="module-item">
                                 <div class="module-item-cover">
                                     <div class="module-item-pic">
@@ -673,7 +673,7 @@
                 <div class="module-list module-line-list tab-list">
                     <div class="module-items scroll-box">
                         <div class="scroll-content">
-                            {{range .listNewVideos.NewsDianShiJu}}
+                            {{range .INDEX_DATA.listNewVideos.NewsDianShiJu}}
                             <div class="module-item">
                                 <div class="module-item-cover">
                                     <div class="module-item-pic">
@@ -722,7 +722,7 @@
                 <div class="module-list module-line-list tab-list">
                     <div class="module-items scroll-box">
                         <div class="scroll-content">
-                            {{range .listNewVideos.NewsDongMan}}
+                            {{range .INDEX_DATA.listNewVideos.NewsDongMan}}
                             <div class="module-item">
                                 <div class="module-item-cover">
                                     <div class="module-item-pic">
@@ -771,7 +771,7 @@
                 <div class="module-list module-line-list tab-list">
                     <div class="module-items scroll-box">
                         <div class="scroll-content">
-                            {{range .listNewVideos.NewsZongYi}}
+                            {{range .INDEX_DATA.listNewVideos.NewsZongYi}}
                             <div class="module-item">
                                 <div class="module-item-cover">
                                     <div class="module-item-pic">

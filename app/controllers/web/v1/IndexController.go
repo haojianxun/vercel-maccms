@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
 	"goapi/pkg/logger"
 	"goapi/pkg/mysql"
@@ -18,11 +19,9 @@ type IndexController struct {
 
 func (h *IndexController) Index(c *gin.Context) {
 	key := "index.html"
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
+	IndexData := cmap.New().Items()
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
 	// 获取当前时间
 	now := time.Now()
 	// 获取当天凌晨00:00的时间戳
@@ -61,10 +60,10 @@ func (h *IndexController) Index(c *gin.Context) {
 			return
 		}
 	}
-	data["CurrentlyTrending"] = CurrentlyTrending
+	IndexData["CurrentlyTrending"] = CurrentlyTrending
 	// 今日更新
 	DB.Debug().Where("vod_time >= ?", midnightUnix).Count(&TodayCount)
-	data["TodayCount"] = TodayCount
+	IndexData["TodayCount"] = TodayCount
 
 	// 首页电影
 
@@ -91,35 +90,35 @@ func (h *IndexController) Index(c *gin.Context) {
 			return
 		}
 	}
-	data["listDianYing"] = listDianYing
+	IndexData["listDianYing"] = listDianYing
 
 	// 电影月榜
 	DB.Debug().Where("type_id_1", 1).Order("vod_hits_month desc").Limit(10).Find(&MonthDianYing)
-	data["MonthDianYing"] = MonthDianYing
+	IndexData["MonthDianYing"] = MonthDianYing
 
 	// 首页电视剧
 	DB.Debug().Where("type_id_1", 2).Order("vod_hits desc").Limit(14).Find(&listDianShiJu)
-	data["listDianShiJu"] = listDianShiJu
+	IndexData["listDianShiJu"] = listDianShiJu
 
 	// 电视剧月榜
 	DB.Debug().Where("type_id_1", 2).Order("vod_hits_month desc").Limit(10).Find(&MonthDianShiJu)
-	data["MonthDianShiJu"] = MonthDianShiJu
+	IndexData["MonthDianShiJu"] = MonthDianShiJu
 
 	// 首页动漫
 	DB.Debug().Where("type_id", 4).Order("vod_hits desc").Limit(14).Find(&listDongMan)
-	data["listDongMan"] = listDongMan
+	IndexData["listDongMan"] = listDongMan
 
 	// 动漫月榜
 	DB.Debug().Where("type_id", 4).Order("vod_hits_month desc").Limit(10).Find(&MonthDongMan)
-	data["MonthDongMan"] = MonthDongMan
+	IndexData["MonthDongMan"] = MonthDongMan
 
 	// 首页综艺
 	DB.Debug().Where("type_id", 3).Order("vod_hits desc").Limit(14).Find(&listZongYi)
-	data["listZongYi"] = listZongYi
+	IndexData["listZongYi"] = listZongYi
 
 	// 综艺月榜
 	DB.Debug().Where("type_id", 3).Order("vod_hits_month desc").Limit(10).Find(&MonthZongYi)
-	data["MonthZongYi"] = MonthZongYi
+	IndexData["MonthZongYi"] = MonthZongYi
 
 	// 最新影片
 	DB.Debug().Order("vod_time desc").Limit(8).Find(&NewsAll)
@@ -128,15 +127,20 @@ func (h *IndexController) Index(c *gin.Context) {
 	DB.Debug().Where("type_id", 4).Order("vod_time desc").Limit(8).Find(&NewsDongMan)
 	DB.Debug().Where("type_id", 3).Order("vod_time desc").Limit(8).Find(&NewsZongYi)
 
-	data["listNewVideos"] = map[string][]models.MacVod{
+	IndexData["listNewVideos"] = map[string][]models.MacVod{
 		"NewsAll":       NewsAll,
 		"NewsVideos":    NewsVideos,
 		"NewsDianShiJu": NewsDianShiJu,
 		"NewsDongMan":   NewsDongMan,
 		"NewsZongYi":    NewsZongYi,
 	}
-
-	c.HTML(http.StatusOK, "index.html", data)
+	DATA["INDEX_DATA"] = IndexData
+	// 使用 Hash 数据结构将用户存储在 Redis 中
+	err = redis.Client.HSet("user:1", "asas", NewsAll).Err()
+	if err != nil {
+		panic(err)
+	}
+	c.HTML(http.StatusOK, "index.html", DATA)
 }
 
 func (h *IndexController) Web(c *gin.Context) {

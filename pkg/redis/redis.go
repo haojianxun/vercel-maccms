@@ -185,6 +185,13 @@ func (rdb *Redis) WebGet(key string) (string, error) {
 	return value, err
 }
 
+func (rdb *Redis) HSet(key, field string, value interface{}) *redis.BoolCmd {
+	defer rdb.mutex.Unlock()
+	rdb.mutex.Lock()
+	res := rdb.Client.HSet(key, field, value)
+	return res
+}
+
 func (rdb *Redis) SelectDbGet(db int, key string) (string, error) {
 	defer rdb.mutex.Unlock()
 	rdb.mutex.Lock()
