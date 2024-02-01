@@ -168,6 +168,9 @@ func (rdb *Redis) Get(key string) (string, error) {
 	defer rdb.mutex.Unlock()
 	rdb.mutex.Lock()
 	value, err := rdb.Client.Get(Set(key)).Result()
+	if err != nil && err.Error() == "redis: nil" {
+		err = nil
+	}
 	return value, err
 }
 
@@ -250,6 +253,19 @@ func (rdb *Redis) GetKeys(db int, key string) (keys []string, cursor uint64, err
 	keys, cursor, err = newRdb.Scan(0, Set(key), 10000).Result()
 	newRdb.Do("select", rdb.DefaultDB)
 	return
+}
+
+func (rdb *Redis) HMGet(key string, fields ...string) *redis.SliceCmd {
+	cmd := rdb.Client.HMGet(key, fields...)
+	return cmd
+}
+
+func (rdb *Redis) HMSet(key string, fields map[string]interface{}) (string, error) {
+	result, err := rdb.Client.HMSet(key, fields).Result()
+	if err != nil {
+		return "", err
+	}
+	return result, err
 }
 
 // Redis Keys 命令 - 查找所有符合给定模式( pattern)的 key

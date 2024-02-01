@@ -1460,7 +1460,7 @@ var MacVisitColumns = struct {
 
 // MacVod [...]
 type MacVod struct {
-	VodID            int     `gorm:"primaryKey;column:vod_id" json:"-"`                 // 视频ID
+	VodID            int     `gorm:"primaryKey;column:vod_id" json:"vodID"`             // 视频ID
 	TypeID           int16   `gorm:"column:type_id" json:"typeId"`                      // 栏目ID
 	TypeID1          uint16  `gorm:"column:type_id_1" json:"typeId1"`                   // 子栏目ID
 	GroupID          uint16  `gorm:"column:group_id" json:"groupId"`                    // 分组ID
