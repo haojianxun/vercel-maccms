@@ -119,11 +119,24 @@ func (h *IndexController) Index(c *gin.Context) {
 	}
 
 	// 最新影片
-	DB.Debug().Order("vod_time desc").Limit(8).Find(&NewsAll)
-	DB.Debug().Where("type_id_1", 1).Order("vod_time desc").Limit(8).Find(&NewsVideos)
-	DB.Debug().Where("type_id_1", 2).Order("vod_time desc").Limit(8).Find(&NewsDianShiJu)
-	DB.Debug().Where("type_id", 4).Order("vod_time desc").Limit(8).Find(&NewsDongMan)
-	DB.Debug().Where("type_id", 3).Order("vod_time desc").Limit(8).Find(&NewsZongYi)
+	listNewVideos := make(map[string][]models.MacVod)
+	CachelistNewVideos, _ := service.GetTable(key, "listNewVideos", map[string][]models.MacVod{})
+	if CachelistNewVideos == nil {
+		DB.Debug().Order("vod_time desc").Limit(8).Find(&NewsAll)
+		DB.Debug().Where("type_id_1", 1).Order("vod_time desc").Limit(8).Find(&NewsVideos)
+		DB.Debug().Where("type_id_1", 2).Order("vod_time desc").Limit(8).Find(&NewsDianShiJu)
+		DB.Debug().Where("type_id", 4).Order("vod_time desc").Limit(8).Find(&NewsDongMan)
+		DB.Debug().Where("type_id", 3).Order("vod_time desc").Limit(8).Find(&NewsZongYi)
+		listNewVideos = map[string][]models.MacVod{
+			"NewsAll":       NewsAll,
+			"NewsVideos":    NewsVideos,
+			"NewsDianShiJu": NewsDianShiJu,
+			"NewsDongMan":   NewsDongMan,
+			"NewsZongYi":    NewsZongYi,
+		}
+	} else {
+		listNewVideos = *CachelistNewVideos.(*map[string][]models.MacVod)
+	}
 
 	IndexData["CurrentlyTrending"] = CurrentlyTrending
 	IndexData["listDianYing"] = listDianYing
@@ -134,13 +147,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	IndexData["MonthDongMan"] = MonthDongMan
 	IndexData["listZongYi"] = listZongYi
 	IndexData["MonthZongYi"] = MonthZongYi
-	IndexData["listNewVideos"] = map[string][]models.MacVod{
-		"NewsAll":       NewsAll,
-		"NewsVideos":    NewsVideos,
-		"NewsDianShiJu": NewsDianShiJu,
-		"NewsDongMan":   NewsDongMan,
-		"NewsZongYi":    NewsZongYi,
-	}
+	IndexData["listNewVideos"] = listNewVideos
 	DATA["INDEX_DATA"] = IndexData
 	c.HTML(http.StatusOK, "index.html", DATA)
 }
