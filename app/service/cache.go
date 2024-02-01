@@ -9,19 +9,19 @@ import (
 	"reflect"
 )
 
-func SaveTable(key, name string, value interface{}) {
+func SaveTable(tableName, name string, value interface{}) {
 	bytes, err := json.Marshal(value)
 	if err != nil {
 		panic(err)
 	}
 	data := cmap.New().Items()
 	data[name] = string(bytes)
-	_, _ = redis.Client.HMSet(key, data)
+	_, _ = redis.Client.HMSet(tableName, data)
 }
 
-func GetTable(key, name string, structName interface{}) (interface{}, error) {
+func GetTable(tableName, name string, structName interface{}) (interface{}, error) {
 	// 从 Redis 获取数据
-	data, err := redis.Client.HMGet(key, name).Result()
+	data, err := redis.Client.HMGet(tableName, name).Result()
 	if err != nil {
 		logger.Error(err)
 		return nil, err
@@ -29,7 +29,7 @@ func GetTable(key, name string, structName interface{}) (interface{}, error) {
 
 	// 检查返回的数据是否为空
 	if len(data) == 0 || data[0] == nil {
-		return nil, fmt.Errorf("未找到键：%s，字段：%s 的数据", key, name)
+		return nil, fmt.Errorf("未找到键：%s，字段：%s 的数据", tableName, name)
 	}
 
 	// 将数据转换为字符串类型
