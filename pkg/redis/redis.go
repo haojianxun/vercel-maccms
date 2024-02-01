@@ -256,12 +256,12 @@ func (rdb *Redis) GetKeys(db int, key string) (keys []string, cursor uint64, err
 }
 
 func (rdb *Redis) HMGet(key string, fields ...string) *redis.SliceCmd {
-	cmd := rdb.Client.HMGet(key, fields...)
+	cmd := rdb.Client.HMGet(Set(key), fields...)
 	return cmd
 }
 
 func (rdb *Redis) HMSet(key string, fields map[string]interface{}) (string, error) {
-	result, err := rdb.Client.HMSet(key, fields).Result()
+	result, err := rdb.Client.HMSet(Set(key), fields).Result()
 	if err != nil {
 		return "", err
 	}
