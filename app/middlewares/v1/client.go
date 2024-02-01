@@ -22,14 +22,10 @@ func Client() gin.HandlerFunc {
 			_, _ = redis.Client.Add(HeartBeatingKey, time.Now().Format("2006-01-02 15:04:05"), 300) // 5分钟过期
 		}
 		// 设置语言，默认英文
-		SetLang(c, "en")
+		SetLang(c, "zh")
 		path := c.FullPath()
 		switch path {
-		case "/app/v1/wechat/userSynchronize.json":
-		case "/app/v1/config/setKlineToken.json":
-		case "/app/v1/wechat/Send.json":
-		case "/app/v1/wechat/init.json":
-		case "/app/v1/seo/getGoogleIndex":
+		case "/app/v1/auth/login.json":
 			// 继续往下面执行
 			c.Next()
 			break
@@ -80,7 +76,7 @@ func CheckLogin(c *gin.Context) {
 		}
 	}
 	// 再次确认设置语言
-	SetLang(c, "en")
+	SetLang(c, "zh")
 	// 继续往下面执行
 	c.Next()
 }

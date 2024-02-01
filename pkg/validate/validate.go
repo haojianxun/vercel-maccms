@@ -9,7 +9,7 @@ import (
 // 校验参数
 
 func ParamsError(c *gin.Context, params interface{}) bool {
-	var locale = "en"
+	var locale = "zh"
 	ValidateLang := new(echo.ValidateLang)
 	ValidateLang.Validate = validator.New()
 	c.Request.Header.Set("Language", locale)

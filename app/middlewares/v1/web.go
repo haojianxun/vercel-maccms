@@ -15,7 +15,7 @@ func Web() gin.HandlerFunc {
 		data["__CSS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/css")
 		data["__JS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/js")
 		// 设置语言，默认英文
-		SetLang(c, "en")
+		SetLang(c, "zh")
 		path := c.FullPath()
 		switch path {
 		case "/app/v1/wechat/userSynchronize.json":

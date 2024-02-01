@@ -3,9 +3,7 @@ package helpers
 import (
 	"crypto/md5"
 	"encoding/base64"
-	"fmt"
-	"goapi/pkg/config"
-	"io"
+	"encoding/hex"
 )
 
 const (
@@ -13,15 +11,11 @@ const (
 )
 
 func Md5(password string) string {
-	year := "2023"
-	w := md5.New()
-	// 拼接密码
-	str := password + config.GetString("PW_SALT", "iszmxw")
-	_, _ = io.WriteString(w, str) // 将str写入到w中
-	str1 := fmt.Sprintf("%x", w.Sum(nil)) + year
-	w1 := md5.New()
-	_, _ = io.WriteString(w1, str1)       // 将str写入到w中
-	return fmt.Sprintf("%x", w1.Sum(nil)) // w.Sum(nil)将w的hash转成[]byte格式
+	str := password
+	// 计算MD5哈希值
+	hash := md5.Sum([]byte(str))
+	// 将哈希值转换为十六进制字符串
+	return hex.EncodeToString(hash[:])
 }
 
 func Base64Encode(src []byte) []byte { //编码

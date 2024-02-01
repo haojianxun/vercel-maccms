@@ -18,6 +18,15 @@ func RegisterClientRoutes(router *gin.RouterGroup) {
 			clientV1Group := new(clientV1.Group)
 			V1Route := AppRoute.Group("/v1")
 
+			// 登录模块
+			login := V1Route.Group("/auth")
+			{
+				// 登录
+				login.POST("/login.json", clientV1Group.LoginController.Login)
+				// 退出
+				login.POST("/logout.json", clientV1Group.LoginController.Logout)
+			}
+
 			// 设置token接口
 			config := V1Route.Group("/config")
 			{
