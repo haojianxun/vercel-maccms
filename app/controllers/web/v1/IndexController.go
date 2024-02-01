@@ -134,6 +134,7 @@ func (h *IndexController) Index(c *gin.Context) {
 			"NewsDongMan":   NewsDongMan,
 			"NewsZongYi":    NewsZongYi,
 		}
+		service.SaveTable(key, "listNewVideos", listNewVideos)
 	} else {
 		listNewVideos = *CachelistNewVideos.(*map[string][]models.MacVod)
 	}
