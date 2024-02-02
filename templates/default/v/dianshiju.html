@@ -167,31 +167,6 @@
     </div>
 </header>
 
-<script>
-    $(".nav-menu-search").click(function () {
-        $(".nav-search").addClass("block");
-    });
-    $(document).scroll(function() {
-        var H = $(document).scrollTop();
-        if(H > 20) {
-            $(".header-content").addClass("header-bg");
-        } else {
-            $(".header-content").removeClass("header-bg");
-        }
-        if(H > 140) {
-            $(".header-content").addClass("header-bg");
-            $(".search-dh").append($(".search-box"));
-            $(".nav-menu-search").click(function () {
-                $(".nav-search").addClass("block");
-            });
-        } else {
-            $(".header-content").removeClass("header-bg");
-            $(".search-main").append($(".search-box"));
-
-        }
-    });
-</script>
-
 <!-- 头部 -->
 <main id="main" class="wrapper">
     <div class="content">
@@ -7322,7 +7297,6 @@
         </div>
         <div class="dbicon">
             <a id="numerous" href="#" style="color: #ffffff; font-weight: bold;" title="切換到繁體中文">繁</a>
-            <script src="{{.__JS__}}/font.js"></script>
         </div>
         <div class="dbicon" id="clothes" onclick="clothesChange();">
 
@@ -7371,13 +7345,6 @@
     </a>
 </div>
 
-<script type="text/javascript">
-    $("#clothes").on('click',function () {
-        $(this).children(".iconfont").toggleClass("icon-rijianmoshi");
-        $(this).children(".iconfont").toggleClass("icon-a-yejian2")
-    });
-</script>
-
 <div class="popup" id="note" style="display:none;">
     <div class="popup popup-ts open">
         <div class="popup-header">
@@ -7405,39 +7372,15 @@
                 <a href="../web.html" class="popup-btn-o">查看全部域名</a>
             </div>
             <div class="close-popup" id="close-popup"><i class="icon-close-o"></i></div>
-        </div> <!-- 网址-->
+        </div>
+        <!-- 网址-->
 
-
-        <script type="text/javascript">
-            document.onkeydown=function(){
-
-                var e = window.event||arguments[0];
-
-
-                if(e.keyCode==123){
-                    alert('禁止调试');
-                    return false;
-                }
-            }
-
-            var threshold = 160;
-            window.setInterval(function() {
-                if (window.outerWidth - window.innerWidth > threshold ||
-                    window.outerHeight - window.innerHeight > threshold) {
-                    function disableDebugger() {
-                        debugger;
-                    }
-                    $(document).ready(function () {
-                        disableDebugger();
-                    });
-                }
-            }, 1e3);
-        </script>
         <div class="shortcuts-mobile-overlay"></div>
-        <script src="{{.__JS__}}/mxhtml.js"></script>
-        <!-- 底部广告位 --> <!-- 底部-->
+        <!-- 底部广告位 -->
+        <!-- 底部-->
     </div>
 </div>
+{{template "javascript" .}}
 </body>
 </html>
 {{end}}

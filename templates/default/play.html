@@ -10,14 +10,6 @@
     <meta name="referrer" content="always">
     <meta name="referrer" content="no-referrer">
     {{template "header" .}}
-    <script type="text/javascript">
-        var vod_name='射雕英雄传之九阴白骨爪',
-            vod_url=window.location.href,
-            vod_part='HD';
-    </script>
-    <script type="text/javascript" src="{{.__JS__}}/history.js"></script>
-    <script type="text/javascript" src="{{.__JS__}}/jquery.qrcode.min.js"></script>
-    <script type="text/javascript" src="{{.__JS__}}/swiper-bundle.min.js"></script>
     <link rel="stylesheet" href="{{.__CSS__}}/swiper-bundle.min.css" type="text/css">
 </head>
 <!--新的-->
@@ -191,31 +183,6 @@
     </div>
 </header>
 
-<script>
-    $(".nav-menu-search").click(function () {
-        $(".nav-search").addClass("block");
-    });
-    $(document).scroll(function() {
-        var H = $(document).scrollTop();
-        if(H > 20) {
-            $(".header-content").addClass("header-bg");
-        } else {
-            $(".header-content").removeClass("header-bg");
-        }
-        if(H > 140) {
-            $(".header-content").addClass("header-bg");
-            $(".search-dh").append($(".search-box"));
-            $(".nav-menu-search").click(function () {
-                $(".nav-search").addClass("block");
-            });
-        } else {
-            $(".header-content").removeClass("header-bg");
-            $(".search-main").append($(".search-box"));
-
-        }
-    });
-</script>
-
 <!-- 头部 -->
 <main id="main" class="wrapper">
     <div class="player-block">
@@ -237,7 +204,7 @@
                     </div>
 
                     <div class="player-wrapper">
-                        <script type="text/javascript">var player_aaaa={"flag":"play","encrypt":2,"trysee":0,"points":0,"link":"\/play.html","link_next":"","link_pre":"","vod_data":{"vod_name":"\u5c04\u96d5\u82f1\u96c4\u4f20\u4e4b\u4e5d\u9634\u767d\u9aa8\u722a","vod_actor":"\u4e25\u5c79\u5bbd,\u962e\u5de8,\u9ec4\u66e6\u5f66,\u4f55\u6636\u5e0c,\u66f4\u767b\u5f6d\u63aa,\u6c6a\u5c0f\u654f,\u6797\u67cf\u53e1,\u6768\u79c0\u63aa,\u5ed6\u94f6\u73a5,\u5218\u6db5","vod_director":"\u5085\u9e2b","vod_class":"\u52a8\u4f5c"},"url":"JTY4JTc0JTc0JTcwJTczJTNBJTJGJTJGJTc2JTMxJTJFJTMxJTMwJTM4JTMwJTc0JTY3JTJFJTYzJTZGJTZEJTJGJTMyJTMwJTMyJTMzJTMwJTM5JTJGJTMyJTMxJTJGJTYxJTQyJTQzJTQzJTUyJTRFJTcyJTQxJTMwJTM4JTMyJTJGJTc2JTY5JTY0JTY1JTZGJTJGJTY5JTZFJTY0JTY1JTc4JTJFJTZEJTMzJTc1JTM4","url_next":"","from":"sdm3u8","server":"no","note":"","id":"3fkSCS","sid":1,"nid":1}</script><script type="text/javascript" src="{{.__JS__}}/playerconfig.js"></script><script type="text/javascript" src="{{.__JS__}}/player.js"></script>        </div>
+                    </div>
 
                 </div>
             </div>
@@ -1496,14 +1463,6 @@
                     <div class="mxone-pannel_bd clearfix">
                         <div class="mxone-pannel_bd">
                             <div class="mac_comment" data-id="433129" data-mid="1"></div>
-                            <script>
-                                $(function(){
-                                    MAC.Comment.Login = 0;
-                                    MAC.Comment.Verify = 1;
-                                    MAC.Comment.Init();
-                                    MAC.Comment.Show(1);
-                                });
-                            </script>
                         </div>
                     </div>
                 </div>
@@ -1514,16 +1473,6 @@
     </div>
 </main>
 <span id="blibliId" style="display:none" data-id="4331291" data-user="游客" data-name="射雕英雄传之九阴白骨爪" data-url=""></span>
-<script>
-    function api_jump(url){
-        location.href = url;
-    }
-    function api_jump2(url){
-        if(MacPlayer.Link !== url){
-            location.href = url;
-        }
-    }
-</script>
 <footer id="footer" class="wrapper pd60">
     <p class="sitemap"><img src="{{.__STATIC__}}/picture/logo.png" height="10">
         <a target="_blank" href="/about.html">关于</a><span class="space-line-bold"></span>
@@ -1548,7 +1497,6 @@
         </div>
         <div class="dbicon">
             <a id="numerous" href="#" style="color: #ffffff; font-weight: bold;" title="切換到繁體中文">繁</a>
-            <script src="{{.__JS__}}/font.js"></script>
         </div>
         <div class="dbicon" id="clothes" onclick="clothesChange();">
 
@@ -1597,13 +1545,6 @@
     </a>
 </div>
 
-<script type="text/javascript">
-    $("#clothes").on('click',function () {
-        $(this).children(".iconfont").toggleClass("icon-rijianmoshi");
-        $(this).children(".iconfont").toggleClass("icon-a-yejian2")
-    });
-</script>
-
 <div class="popup" id="note" style="display:none;">
     <div class="popup popup-ts open">
         <div class="popup-header">
@@ -1634,34 +1575,10 @@
         </div> <!-- 网址-->
 
 
-        <script type="text/javascript">
-            document.onkeydown=function(){
 
-                var e = window.event||arguments[0];
-
-
-                if(e.keyCode==123){
-                    alert('禁止调试');
-                    return false;
-                }
-            }
-
-            var threshold = 160;
-            window.setInterval(function() {
-                if (window.outerWidth - window.innerWidth > threshold ||
-                    window.outerHeight - window.innerHeight > threshold) {
-                    function disableDebugger() {
-                        debugger;
-                    }
-                    $(document).ready(function () {
-                        disableDebugger();
-                    });
-                }
-            }, 1e3);
-        </script>
         <div class="shortcuts-mobile-overlay"></div>
-        <script src="{{.__JS__}}/mxhtml.js"></script>
-        <!-- 底部广告位 --> <!-- 底部-->
+        <!-- 底部广告位 -->
+        <!-- 底部-->
 
         <div class="shortcuts-box"><div id="shortcuts-info"></div></div>
 
@@ -1680,80 +1597,16 @@
                     请点击下方按钮，查看不同手机和浏览器的投屏教程。</p>
             </div>
             <div class="popup-footer"><a href="/help.html" target="_blank" class="popup-btn-o">查看详细教程</a></div>
-            <div class="close-popup" id="close-popup"><i class="icon-close-o"></i></div>
         </div>
         <!-- 投屏教程 -->
-
         <div class="shortcuts-mobile-overlay"></div>
-
-
-
-
-
-
-
-
         <div class="shortcuts-mobile-overlay"></div>
         <span class="mac_ulog_set none" alt="设置播放页浏览记录" data-type="4" data-mid="1" data-id="433129" data-sid="1" data-nid="1"></span>
         <span class="mac_hits none" data-mid="1" data-id="433129" data-type="hits"></span>
-        <script>
-            $(".sq_jj").click(function(){
-                $(".sqjj_a").toggle();
-                $(".zkjj_a").toggle();
-            });
-            $(".zk_jj").click(function(){
-                $(".sqjj_a").toggle();
-                $(".zkjj_a").toggle();
-            });
-            $(function () {
-                if ($('.swiper-container').length > 0) {
-                    var mySwiper = new Swiper('.swiper-container', {
-                        direction: 'vertical',
-                        speed: 500,
-                        autoplay: {
-                            delay: 5000,
-                            stopOnLastSlide: false,
-                            disableOnInteraction: false,
-                        },
-                        loop: true
-                    });
-                }
-            });
-
-        </script>
-        <script>
-            window.onload = function() {
-                var iframe = document.getElementsByTagName('iframe')[0];
-                var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-
-                if (/mobile/i.test(userAgent)) {
-                    iframe.style.display = 'none';
-
-                    if (typeof JDApp !== 'undefined') {
-                        JDApp.init();
-                        JDApp.remove();
-                    }
-                }
-            };
-        </script>
-
-        <script>
-            window.onload=function(){
-                var ha = ($('.MacPlayer').find('table').offset().top + $('.MacPlayer').find('table').height());
-                $(window).scroll(function(){
-                    if ( $(window).scrollTop() > ha ) {
-                        $('.MacPlayer').find('table').removeClass('in').addClass('out');
-                        $('.MacPlayer').find('table').css('height','250px');
-                        $('.MacPlayer').find('table').css('width','450px');
-                    } else if ( $(window).scrollTop() < ha) {
-                        $('.MacPlayer').find('table').removeClass('out').addClass('in');
-                        $('.MacPlayer').find('table').css('height','100%');
-                    }
-                });
-            }
-        </script>
     </div>
 </div>
+
+{{template "javascript" .}}
 </body>
 
 </html>

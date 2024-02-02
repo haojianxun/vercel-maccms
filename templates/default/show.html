@@ -164,30 +164,6 @@
     </div>
 </header>
 
-<script>
-    $(".nav-menu-search").click(function () {
-        $(".nav-search").addClass("block");
-    });
-    $(document).scroll(function () {
-        var H = $(document).scrollTop();
-        if (H > 20) {
-            $(".header-content").addClass("header-bg");
-        } else {
-            $(".header-content").removeClass("header-bg");
-        }
-        if (H > 140) {
-            $(".header-content").addClass("header-bg");
-            $(".search-dh").append($(".search-box"));
-            $(".nav-menu-search").click(function () {
-                $(".nav-search").addClass("block");
-            });
-        } else {
-            $(".header-content").removeClass("header-bg");
-            $(".search-main").append($(".search-box"));
-        }
-    });
-</script>
-
 <!-- 头部 -->
 <main id="main" class="wrapper">
     <div class="content">
@@ -908,9 +884,6 @@
                 </div>
             </div>
         </div>
-        <script type="text/javascript">
-            $(".tab-item:first,.module-list:first").addClass("selected");
-        </script>
         <!-- 播放列表 -->
 
         <!-- 相关话题 -->
@@ -1626,7 +1599,6 @@
         </div>
         <div class="dbicon">
             <a id="numerous" href="#" style="color: #ffffff; font-weight: bold" title="切換到繁體中文">繁</a>
-            <script src="statics/js/font.js"></script>
         </div>
         <div class="dbicon" id="clothes" onclick="clothesChange();">
             <i class="iconfont icon-a-yejian2"></i>
@@ -1673,13 +1645,6 @@
         <div class="grid-item-name">资讯</div>
     </a>
 </div>
-
-<script type="text/javascript">
-    $("#clothes").on("click", function () {
-        $(this).children(".iconfont").toggleClass("icon-rijianmoshi");
-        $(this).children(".iconfont").toggleClass("icon-a-yejian2");
-    });
-</script>
 
 <div class="popup" id="note" style="display: none">
     <div class="popup popup-ts open">
@@ -1743,39 +1708,15 @@
             <div class="close-popup" id="close-popup"><i class="icon-close-o"></i></div>
         </div>
         <!-- 网址-->
-
-        <script type="text/javascript">
-            document.onkeydown = function () {
-                var e = window.event || arguments[0];
-
-                if (e.keyCode == 123) {
-                    alert("禁止调试");
-                    return false;
-                }
-            };
-
-            var threshold = 160;
-            window.setInterval(function () {
-                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
-                    function disableDebugger() {
-                        debugger;
-                    }
-                    $(document).ready(function () {
-                        disableDebugger();
-                    });
-                }
-            }, 1e3);
-        </script>
         <div class="shortcuts-mobile-overlay"></div>
-        <script src="statics/js/mxhtml.js"></script>
         <!-- 底部广告位 -->
         <!-- 底部-->
-        <script type="text/javascript" src="statics/js/desc.js"></script>
         <div class="shortcuts-box"><div id="shortcuts-info"></div></div>
         <span style="display: none" class="mac_ulog_set" alt="设置内容页浏览记录" data-type="1" data-mid="1" data-id="577200" data-sid="0" data-nid="0"></span>
         <span style="display: none" class="mac_history_set" alt="设置History历史记录" data-name="[动画片]哆啦A梦：大雄与天空的理想乡" data-pic="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2891257290.jpg"></span>
     </div>
 </div>
+{{template "javascript" .}}
 </body>
 </html>
 {{end}}

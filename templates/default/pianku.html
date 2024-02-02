@@ -167,31 +167,6 @@
     </div>
 </header>
 
-<script>
-    $(".nav-menu-search").click(function () {
-        $(".nav-search").addClass("block");
-    });
-    $(document).scroll(function() {
-        var H = $(document).scrollTop();
-        if(H > 20) {
-            $(".header-content").addClass("header-bg");
-        } else {
-            $(".header-content").removeClass("header-bg");
-        }
-        if(H > 140) {
-            $(".header-content").addClass("header-bg");
-            $(".search-dh").append($(".search-box"));
-            $(".nav-menu-search").click(function () {
-                $(".nav-search").addClass("block");
-            });
-        } else {
-            $(".header-content").removeClass("header-bg");
-            $(".search-main").append($(".search-box"));
-
-        }
-    });
-</script>
-
 <!-- 头部 -->
 <main id="main" class="wrapper">
     <div class="content">
@@ -403,8 +378,6 @@
                         </div>
                     </div>
                 </div>
-
-
 
 
                 <div class="library-box scroll-box">
@@ -2559,7 +2532,6 @@
         </div>
         <div class="dbicon">
             <a id="numerous" href="#" style="color: #ffffff; font-weight: bold;" title="切換到繁體中文">繁</a>
-            <script src="statics/js/font.js"></script>
         </div>
         <div class="dbicon" id="clothes" onclick="clothesChange();">
 
@@ -2608,13 +2580,6 @@
     </a>
 </div>
 
-<script type="text/javascript">
-    $("#clothes").on('click',function () {
-        $(this).children(".iconfont").toggleClass("icon-rijianmoshi");
-        $(this).children(".iconfont").toggleClass("icon-a-yejian2")
-    });
-</script>
-
 <div class="popup" id="note" style="display:none;">
     <div class="popup popup-ts open">
         <div class="popup-header">
@@ -2622,8 +2587,16 @@
         </div>
         <div class="popup-main">
             <p>哇！电影先生终于等到您啦！恭喜您开启了一个影视宝库！打今儿起，咱想看啥就看啥！让您不再错过任何一部优秀影片！</p><p class="popup-domain"><span>.NG 域名</span><strong><a href="index.html" target="_blank">DianYi<em>.ng</em></a></strong></p><p class="popup-domain"><span>.NG 域名</span><strong><a href="https://dianying.xianshe.ng" target="_blank">DY.XianShe<em>.ng</em></a></strong></p><p class="popup-domain"><span>.COM 域名</span><strong><a href="https://xn--44qz85a01qpc.com" target="_blank">电影先生<em>.com</em></a></strong></p><p>将以上域名加入浏览器收藏夹，回家更方便。点此 <a href="web.html" target="_blank" class="close-pop"><strong>获取电影先生最新域名</strong></a>。</p>	</div>
-        <div class="popup-footer"><span class="popup-btn-o" onclick="closeclick()">我记住啦</span>
-            <div class="article-bg"></div><div class="article-bg01"></div></div> <!-- 弹窗公告-->
+        <div class="popup-footer">
+            <span class="popup-btn-o" onclick="closeclick()">我记住啦</span>
+            <div class="article-bg">
+
+            </div>
+            <div class="article-bg01">
+
+            </div>
+        </div>
+        <!-- 弹窗公告-->
 
         <div class="popup popup-notice none">
             <div class="popup-icon"><img src="statics/picture/backhome.svg"></div>
@@ -2642,39 +2615,16 @@
                 <a href="web.html" class="popup-btn-o">查看全部域名</a>
             </div>
             <div class="close-popup" id="close-popup"><i class="icon-close-o"></i></div>
-        </div> <!-- 网址-->
-
-
-        <script type="text/javascript">
-            document.onkeydown=function(){
-
-                var e = window.event||arguments[0];
-
-
-                if(e.keyCode==123){
-                    alert('禁止调试');
-                    return false;
-                }
-            }
-
-            var threshold = 160;
-            window.setInterval(function() {
-                if (window.outerWidth - window.innerWidth > threshold ||
-                    window.outerHeight - window.innerHeight > threshold) {
-                    function disableDebugger() {
-                        debugger;
-                    }
-                    $(document).ready(function () {
-                        disableDebugger();
-                    });
-                }
-            }, 1e3);
-        </script>
+        </div>
+        <!-- 网址-->
         <div class="shortcuts-mobile-overlay"></div>
-        <script src="statics/js/mxhtml.js"></script>
-        <!-- 底部广告位 --> <!-- 底部-->
-        <script>
-            $(".mac_total").text('119997');
-        </script>
-    </div></div></body></html>
+        <!-- 底部广告位 -->
+        <!-- 底部-->
+    </div>
+</div>
+
+{{template "javascript" .}}
+</body>
+
+</html>
 {{end}}

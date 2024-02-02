@@ -164,30 +164,6 @@
     </div>
 </header>
 
-<script>
-    $(".nav-menu-search").click(function () {
-        $(".nav-search").addClass("block");
-    });
-    $(document).scroll(function () {
-        var H = $(document).scrollTop();
-        if (H > 20) {
-            $(".header-content").addClass("header-bg");
-        } else {
-            $(".header-content").removeClass("header-bg");
-        }
-        if (H > 140) {
-            $(".header-content").addClass("header-bg");
-            $(".search-dh").append($(".search-box"));
-            $(".nav-menu-search").click(function () {
-                $(".nav-search").addClass("block");
-            });
-        } else {
-            $(".header-content").removeClass("header-bg");
-            $(".search-main").append($(".search-box"));
-        }
-    });
-</script>
-
 <main id="main" class="wrapper">
     <div class="content">
         <div>
@@ -237,37 +213,7 @@
         </div>
     </div>
 </main>
-<script>
-    var ping = 1;
-    setInterval("ping++", 1);
 
-    function test(i) {
-        $("span[speed]").each(function (x) {
-            if (i === x) {
-                var str = "较慢";
-                if (ping < 300) {
-                    $(this).css("color", "green");
-                    str = "极快";
-                }
-                if (ping > 300 && ping < 500) {
-                    $(this).css("color", "#00FF00");
-                    str = "较快";
-                }
-                if (ping > 500) {
-                    $(this).css("color", "#666666");
-                }
-                $(this).text("" + str + "" + "(" + ping * 1 + "ms)");
-            }
-        });
-    }
-    $(function () {
-        $("span[speed]").each(function (i) {
-            var sortid = $(this).attr("speed");
-            var self = $(this);
-            self.append('<img src="' + sortid + "?" + Math.random() + '" width="1" height="1" style="display:none" onerror=test(' + i + ") >");
-        });
-    });
-</script>
 
 <footer id="footer" class="wrapper pd60">
     <p class="sitemap">
@@ -284,7 +230,6 @@
         </div>
         <div class="dbicon">
             <a id="numerous" href="#" style="color: #ffffff; font-weight: bold" title="切換到繁體中文">繁</a>
-            <script src="statics/js/font.js"></script>
         </div>
         <div class="dbicon" id="clothes" onclick="clothesChange();">
             <i class="iconfont icon-a-yejian2"></i>
@@ -331,13 +276,6 @@
         <div class="grid-item-name">资讯</div>
     </a>
 </div>
-
-<script type="text/javascript">
-    $("#clothes").on("click", function () {
-        $(this).children(".iconfont").toggleClass("icon-rijianmoshi");
-        $(this).children(".iconfont").toggleClass("icon-a-yejian2");
-    });
-</script>
 
 <div class="popup" id="note" style="display: none">
     <div class="popup popup-ts open">
@@ -402,34 +340,13 @@
         </div>
         <!-- 网址-->
 
-        <script type="text/javascript">
-            document.onkeydown = function () {
-                var e = window.event || arguments[0];
 
-                if (e.keyCode == 123) {
-                    alert("禁止调试");
-                    return false;
-                }
-            };
-
-            var threshold = 160;
-            window.setInterval(function () {
-                if (window.outerWidth - window.innerWidth > threshold || window.outerHeight - window.innerHeight > threshold) {
-                    function disableDebugger() {
-                        debugger;
-                    }
-                    $(document).ready(function () {
-                        disableDebugger();
-                    });
-                }
-            }, 1e3);
-        </script>
         <div class="shortcuts-mobile-overlay"></div>
-        <script src="statics/js/mxhtml.js"></script>
         <!-- 底部广告位 -->
         <!-- 底部-->
     </div>
 </div>
+{{template "javascript" .}}
 </body>
 </html>
 {{end}}
