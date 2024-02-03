@@ -15,6 +15,7 @@ func (h *ArttypeController) Zixun(c *gin.Context) {
 		value = gin.H{}
 	}
 	data := value.(gin.H)
+	data["page"] = "zixun"
 	data["title"] = "资讯"
 	data["list"] = gin.H{"asas": "asas"}
 	c.HTML(http.StatusOK, "arttype/zixun.html", data)

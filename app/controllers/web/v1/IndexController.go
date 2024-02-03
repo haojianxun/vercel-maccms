@@ -150,6 +150,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	IndexData["MonthZongYi"] = MonthZongYi
 	IndexData["listNewVideos"] = listNewVideos
 	DATA["INDEX_DATA"] = IndexData
+	DATA["page"] = "index"
 	c.HTML(http.StatusOK, "index.html", DATA)
 }
 
@@ -159,6 +160,7 @@ func (h *IndexController) Web(c *gin.Context) {
 		value = gin.H{}
 	}
 	data := value.(gin.H)
+	data["page"] = "web"
 	data["title"] = "Web"
 	data["list"] = gin.H{"asas": "asas"}
 	c.HTML(http.StatusOK, "web.html", data)
@@ -170,6 +172,7 @@ func (h *IndexController) App(c *gin.Context) {
 		value = gin.H{}
 	}
 	data := value.(gin.H)
+	data["page"] = "app"
 	data["title"] = "App"
 	data["list"] = gin.H{"asas": "asas"}
 	c.HTML(http.StatusOK, "label/app.html", data)
@@ -181,6 +184,7 @@ func (h *IndexController) Search(c *gin.Context) {
 		value = gin.H{}
 	}
 	data := value.(gin.H)
+	data["page"] = "search"
 	data["title"] = "Search"
 	data["list"] = gin.H{"asas": "asas"}
 	c.HTML(http.StatusOK, "search.html", data)

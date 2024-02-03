@@ -1,13 +1,4 @@
 {{ define "header" }}
-<script>
-    var maccms = {
-        "path": "",
-        "mid": "1",
-        "url": "dianyi.ng",
-        "wapurl": "dianyi.ng",
-        "mob_status": "0"
-    };
-</script>
 <link href="{{.__STATIC__}}/picture/logo.png" rel="icon" type="image/png">
 <link href="{{.__CSS__}}/style.css" rel="stylesheet" type="text/css">
 <link href="{{.__CSS__}}/aliicon.css" rel="stylesheet" type="text/css">
@@ -20,34 +11,5 @@
 <script src="{{.__STATIC__}}/cdn/expire-1-M/clipboard.js/2.0.0/clipboard.min.js" type="text/javascript"></script>
 <script src="{{.__STATIC__}}/cdn/expire-1-M/layer/3.1.1/layer.js"></script>
 <script src="{{.__JS__}}/script.js"></script>
-<script>
-    var clothes = $.cookie('clothes');
-    if (clothes) {
-        if (clothes == 'white') {
-            $('.theme_black').removeAttr('disabled');
-        } else {
-            $('.theme_black').attr('disabled', '');
-        }
-    } else {
-        $.cookie('clothes', 'black', { expires: 365, path: '/' })
-    }
-</script>
-<script>
-    function clothesChange(){
-        var clothes = $.cookie('clothes');
-        if (clothes == 'black') {
-            $.cookie('clothes','white', {expires: 365, path: '/'});
-            $('.theme_black').each(function(){
-                $(this).removeAttr('disabled');
-            });
-        } else {
-            $.cookie('clothes','black', {expires: 365, path: '/'});
-            $('.theme_black').each(function(){
-                $(this).attr('disabled', '');
-            });
-        }
-        clothes = $.cookie('clothes');
-    }
-</script>
 <!-- 全局广告位 -->
 {{end}}

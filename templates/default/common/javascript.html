@@ -1,6 +1,43 @@
 {{ define "javascript" }}
 <!--所有页面依赖的js-->
-<!--所有页面禁止调试-->
+<script>
+    var maccms = {
+        "path": "",
+        "mid": "1",
+        "url": "dianyi.ng",
+        "wapurl": "dianyi.ng",
+        "mob_status": "0"
+    };
+</script>
+<script>
+    var clothes = $.cookie('clothes');
+    if (clothes) {
+        if (clothes == 'white') {
+            $('.theme_black').removeAttr('disabled');
+        } else {
+            $('.theme_black').attr('disabled', '');
+        }
+    } else {
+        $.cookie('clothes', 'black', { expires: 365, path: '/' })
+    }
+</script>
+<script>
+    function clothesChange(){
+        var clothes = $.cookie('clothes');
+        if (clothes == 'black') {
+            $.cookie('clothes','white', {expires: 365, path: '/'});
+            $('.theme_black').each(function(){
+                $(this).removeAttr('disabled');
+            });
+        } else {
+            $.cookie('clothes','black', {expires: 365, path: '/'});
+            $('.theme_black').each(function(){
+                $(this).attr('disabled', '');
+            });
+        }
+        clothes = $.cookie('clothes');
+    }
+</script>
 <script type="text/javascript">
     document.onkeydown=function(){
         var e = window.event||arguments[0];
@@ -23,7 +60,7 @@
     }, 1e3);
 </script>
 <!--中文繁体切换-->
-<script src="statics/js/font.js"></script>
+<script src="{{.__JS__}}/font.js"></script>
 <script src="{{.__JS__}}/mxhtml.js"></script>
 <script>
     $(".nav-menu-search").click(function () {
@@ -60,9 +97,9 @@
 
 
 
+{{ if eq .page "play"}}
 <!--play.html-->
 <script type="text/javascript">
-    // play.html
     var vod_name='射雕英雄传之九阴白骨爪',
         vod_url=window.location.href,
         vod_part='HD';
@@ -172,16 +209,19 @@
 <script type="text/javascript" src="{{.__JS__}}/jquery.qrcode.min.js"></script>
 <script type="text/javascript" src="{{.__JS__}}/swiper-bundle.min.js"></script>
 <!--play.html-->
+{{end}}
 
-
+{{ if eq .page "show"}}
 <!--show.html-->
 <script type="text/javascript">
     $(".tab-item:first,.module-list:first").addClass("selected");
 </script>
 <script type="text/javascript" src="{{.__JS__}}/js/desc.js"></script>
 <!--show.html-->
+{{end}}
 
 
+{{ if eq .page "web"}}
 <!--web.html-->
 <script>
     var ping = 1;
@@ -215,11 +255,14 @@
     });
 </script>
 <!--web.html-->
+{{end}}
 
 
-
+{{ if or (eq .page "pianku") (eq .page "search") }}
 <script>
     // pianku.html 、search.html
     $(".mac_total").text('119997');
 </script>
+{{end}}
+
 {{ end }}
