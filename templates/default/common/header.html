@@ -22,24 +22,52 @@
 				</a>
 			</div>
 			{{end}}
-			
+
+
+			{{if eq .page "index"}}
 			<div class="nav-search">
 				<form action="/search.html" class="search-dh"></form>
 			</div>
-			
+			{{else}}
+			<div class="nav-search">
+				<form action="/search.html" class="search-dh">
+					<div class="search-box"><input class="search-input ac_wd txtKeywords" type="text" name="wd" autocomplete="off" placeholder="搜索电影、电视剧、综艺、动漫、演员">
+						<div class="search-drop">
+							<div class="drop-content-items ac_hot none">
+								<div class="list-item list-item-title"><strong>大家都在搜这些影片</strong></div>
+								<div class="search-tag">
+									<a href="/search.html" class="hot "><i class="icon-hot"></i>你也有今天</a>
+									<a href="/search.html" class="hot "><i class="icon-hot"></i>潜行</a>
+									<a href="/search.html" class="hot "><i class="icon-hot"></i>请和我的老公结婚</a>
+									<a href="/search.html" class="hot "><i class="icon-hot"></i>低谷医生</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>我们的翻译官</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>金手指</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>年会不能停！</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>怒潮</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>临时劫案</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>热辣滚烫</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>飞驰人生2</a>
+									<a href="/search.html" class=""><i class="icon-hot"></i>熊出没·逆转时空</a>
+								</div>
+							</div>
+						</div>
+						<a href="/top.html" class="search-btn search-cupfox" id="search-cupfox" title="电影先生排行榜"><i class="icon-cupfox phb"></i><span>搜全网</span></a>						<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+						<button class="cancel-btn" type="button">取消</button>
+					</div>
+				</form>
+			</div>
+			{{end}}
+
 			<div class="nav">
 				<ul class="nav-menu-items">
-					<li class="nav-menu-item selected"><a href="" title="电影先生首页"><span>首页</span></a></li>
-					<li class="nav-menu-item"><a href="v/dianying.html" title="电影"><span>电影</span></a></li>
-					<li class="nav-menu-item"><a href="v/dianshiju.html" title="电视剧"><span>电视剧</span></a></li>
-					<li class="nav-menu-item"><a href="v/dongman.html" title="动漫"><span>动漫</span></a></li>
-					<li class="nav-menu-item"><a href="v/zongyi.html" title="综艺"><span>综艺</span></a></li>
-					<li class="nav-menu-item"><a href="arttype/zixun.html" title="资讯"><span>资讯</span></a></li>
-					<li class="nav-menu-item domain plus">
-						<a href="web.html" title="电影先生最新域名"><span>网址</span><em>+</em></a></li>
-					<li class="nav-menu-item">
-						<a href="label/app.html" title="下载电影先生APP"><i class="icon-app pc"></i><span>APP</span></a>
-					</li>
+					<li class="nav-menu-item {{if eq .page "index"}}selected{{end}}"><a href="/" title="电影先生首页"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>首页</span></a></li>
+					<li class="nav-menu-item {{if eq .page "dianying"}}selected{{end}}"><a href="/v/dianying.html" title="电影"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>电影</span></a></li>
+					<li class="nav-menu-item {{if eq .page "dianshiju"}}selected{{end}}" ><a href="/v/dianshiju.html" title="电视剧"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>电视剧</span></a></li>
+					<li class="nav-menu-item {{if eq .page "dongman"}}selected{{end}}"><a href="/v/dongman.html" title="动漫"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>动漫</span></a></li>
+					<li class="nav-menu-item {{if eq .page "zongyi"}}selected{{end}}"><a href="/v/zongyi.html" title="综艺"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>综艺</span></a></li>
+					<li class="nav-menu-item {{if eq .page "zixun"}}selected{{end}}"><a href="/arttype/zixun.html" title="资讯"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>资讯</span></a></li>
+					<li class="nav-menu-item domain plus {{if eq .page "web"}}selected{{end}}"><a href="/web.html" title="电影先生最新域名"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>网址</span><em>+</em></a></li>
+					<li class="nav-menu-item {{if eq .page "app"}}selected{{end}}"><a href="/label/app.html" title="下载电影先生APP"><i class="icon-app pc"></i><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>APP</span></a></li>
 				</ul>
 			</div>
 			
