@@ -1,0 +1,166 @@
+{{ define "header" }}
+<header class="wrapper" id="header">
+	<div class="header-content ">
+		{{if ne .page "index"}}
+		<div class="content">
+		{{end}}
+			{{if eq .page "index"}}
+			<div class="dianyi-ng">
+				<div class="header-logo">
+					<h1 class="slogan">电影先生 DianYi.ng</h1>
+					<div class="fixed-logo">
+						<a class="logo" href="" title="电影先生">
+							<img alt="电影先生" src="{{.__STATIC__}}/image/index-logo-s.png">
+						</a>
+					</div>
+				</div>
+			</div>
+			{{else}}
+			<div class="brand">
+				<a class="logo" href="../index.html" title="电影先生">
+					<img alt="电影先生" src="{{.__STATIC__}}/picture/logo-s.png">
+				</a>
+			</div>
+			{{end}}
+			
+			<div class="nav-search">
+				<form action="/search.html" class="search-dh"></form>
+			</div>
+			
+			<div class="nav">
+				<ul class="nav-menu-items">
+					<li class="nav-menu-item selected"><a href="" title="电影先生首页"><span>首页</span></a></li>
+					<li class="nav-menu-item"><a href="v/dianying.html" title="电影"><span>电影</span></a></li>
+					<li class="nav-menu-item"><a href="v/dianshiju.html" title="电视剧"><span>电视剧</span></a></li>
+					<li class="nav-menu-item"><a href="v/dongman.html" title="动漫"><span>动漫</span></a></li>
+					<li class="nav-menu-item"><a href="v/zongyi.html" title="综艺"><span>综艺</span></a></li>
+					<li class="nav-menu-item"><a href="arttype/zixun.html" title="资讯"><span>资讯</span></a></li>
+					<li class="nav-menu-item domain plus">
+						<a href="web.html" title="电影先生最新域名"><span>网址</span><em>+</em></a></li>
+					<li class="nav-menu-item">
+						<a href="label/app.html" title="下载电影先生APP"><i class="icon-app pc"></i><span>APP</span></a>
+					</li>
+				</ul>
+			</div>
+			
+			<div class="header-module">
+				<ul class="nav-menu-items">
+					<li class="nav-menu-item drop"><span class="nav-menu-icon"><i class="icon-all"></i></span>
+						<div class="drop-content sub-block">
+							<div class="drop-content-box grid-box">
+								<ul class="drop-content-items grid-items">
+									<li class="grid-item">
+										<a href="">
+											<i class="icon-home"></i>
+											<div class="grid-item-name" title="电影先生首页">首页</div>
+										</a>
+									</li>
+									<li class="grid-item">
+										<a href="v/dianying.html" title="电影">
+											<i class="icon-cate-dy"></i>
+											<div class="grid-item-name">电影</div>
+										</a>
+									</li>
+									<li class="grid-item">
+										<a href="v/dianshiju.html" title="电视剧">
+											<i class="icon-cate-ds"></i>
+											<div class="grid-item-name">电视剧</div>
+										</a>
+									</li>
+									<li class="grid-item">
+										<a href="v/dongman.html" title="动漫">
+											<i class="icon-cate-dm"></i>
+											<div class="grid-item-name">动漫</div>
+										</a>
+									</li>
+									<li class="grid-item">
+										<a href="v/zongyi.html" title="综艺">
+											<i class="icon-cate-zy"></i>
+											<div class="grid-item-name">综艺</div>
+										</a>
+									</li>
+									<li class="grid-item">
+										<a href="arttype/zixun.html" title="资讯">
+											<i class="iconfont icon-zixun2"></i>
+											<div class="grid-item-name">资讯</div>
+										</a>
+									</li>
+									<li class="grid-item">
+										<a href="web.html"><i class="icon-domain"></i>
+											<div class="grid-item-name" title="网址">网址</div>
+										</a>
+									</li>
+									<li class="grid-item grid-more">
+										<a class="grid-more-link" href="pianku.html" title="查看全部影片">
+											<div class="grid-item-name">全部影片</div>
+										</a>
+									</li>
+									<li class="grid-item grid-more android">
+										<a class="grid-more-link" href="label/app.html" title="下载电影先生APP">
+											<div class="grid-item-name">下载客户端</div>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div class="shortcuts-mobile-overlay"></div>
+					</li>
+					<li class="nav-menu-item nav-menu-search"><i class="icon-search"></i></li>
+					<li class="space-line-bold"></li>
+					<li class="nav-menu-item drop"><span class="nav-menu-icon"><i class="icon-watch-history"></i></span>
+						<div class="drop-content drop-history">
+							<div class="drop-content-box">
+								<ul class="drop-content-items" id="history">
+									<li class="list-item list-item-title">
+										<a class="playlist historyclean" href=""><i class="icon-clear"></i></a>
+										<strong>我的观影记录</strong></li>
+								</ul>
+							</div>
+						</div>
+						<div class="shortcuts-mobile-overlay"></div>
+					</li>
+				</ul>
+			</div>
+		{{if ne .page "index"}}
+		</div>
+		{{end}}
+		
+	</div>
+	{{if eq .page "index"}}
+	<div id="search-content">
+		<div class="index-logo"><span class="logo-s"><img src="{{.__STATIC__}}/image/logo.png" title="电影先生"></span>
+		</div>
+		<form action="/search.html">
+			<div class="search-main">
+				<div class="search-box">
+					<input autocomplete="off" class="search-input ac_wd" id="txtKeywords" name="wd" placeholder="搜索电影、电视剧、综艺、动漫、演员"
+						   type="text">
+					<div class="search-drop">
+						<div class="drop-content-items ac_hot none">
+							<div class="list-item list-item-title"><strong>大家都在搜这些影片</strong></div>
+							<div class="search-tag">
+								<a class="hot " href="search.html"><i class="icon-hot"></i>一念关山</a>
+								<a class="hot " href="search.html"><i class="icon-hot"></i>神隐</a>
+								<a class="hot " href="search.html"><i class="icon-hot"></i>鸣龙少年</a>
+								<a class="hot " href="search.html"><i class="icon-hot"></i>南海归墟</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>坚如磐石</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>脱轨</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>斗破苍穹之少年归来</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>热烈</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>涉过愤怒的海</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>93国际列车大劫案：莫斯科行动</a>
+								<a class="" href="search.html"><i class="icon-hot"></i>志愿军：雄兵出击</a>
+							</div>
+						</div>
+					</div>
+					<a class="search-btn search-cupfox" href="top.html" id="search-cupfox" title="电影先生排行榜"><i
+							class="icon-cupfox phb"></i><span>搜全网</span></a>
+					<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+					<button class="cancel-btn" type="button">取消</button>
+				</div>
+			</div>
+		</form>
+	</div>
+	{{end}}
+</header>
+{{end}}

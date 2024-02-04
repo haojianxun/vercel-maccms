@@ -1,15 +1,110 @@
-{{ define "header" }}
-<link href="{{.__STATIC__}}/picture/logo.png" rel="icon" type="image/png">
-<link href="{{.__CSS__}}/style.css" rel="stylesheet" type="text/css">
-<link href="{{.__CSS__}}/aliicon.css" rel="stylesheet" type="text/css">
-<link href="{{.__CSS__}}/mxhtmlblack.css" disabled="" class="theme_black" type="text/css" rel="stylesheet">
-<script src="{{.__STATIC__}}/cdn/expire-1-M/jquery/1.9.1/jquery.min.js"></script>
-<script src="{{.__JS__}}/jquery.lazyload.js" type="text/javascript"></script>
-<script src="{{.__STATIC__}}/cdn/expire-10-y/jquery-autocomplete/1.0.7/jquery.auto-complete.js"></script>
-<script src="{{.__JS__}}/jquery.cookie.js"></script>
-<script src="{{.__JS__}}/home.js"></script>
-<script src="{{.__STATIC__}}/cdn/expire-1-M/clipboard.js/2.0.0/clipboard.min.js" type="text/javascript"></script>
-<script src="{{.__STATIC__}}/cdn/expire-1-M/layer/3.1.1/layer.js"></script>
-<script src="{{.__JS__}}/script.js"></script>
-<!-- 全局广告位 -->
+{{ define "head" }}
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<title>电影先生</title>
+	<meta content="电影先生,dianyi.ng,最新电影,电影大全,影视大全,在线电影,免费电影,电影在线观看,最新电视剧" name="keywords">
+	<meta content="聚合全网影片，你想看的全都有！每天搜集互联网最新电影和电视剧，为广大用户免费提供无广告在线观看电影和电视剧服务，及时收录最新、最热、最全的电影大片,高清正版免费看。" name="description">
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<meta content="always" name="referrer">
+	<meta content="no-referrer" name="referrer">
+	<link href="{{.__STATIC__}}/picture/logo.png" rel="icon" type="image/png">
+	<link href="{{.__CSS__}}/style.css" rel="stylesheet" type="text/css">
+	<link href="{{.__CSS__}}/aliicon.css" rel="stylesheet" type="text/css">
+	<link class="theme_black" disabled="" href="{{.__CSS__}}/mxhtmlblack.css" rel="stylesheet" type="text/css">
+	{{if eq .page "play"}}
+	<link href="{{.__CSS__}}/swiper-bundle.min.css" rel="stylesheet" type="text/css">
+	{{end}}
+	{{if eq .page "zixun"}}
+	<link href="{{.__CSS__}}/mxone.css" rel="stylesheet" type="text/css">
+	{{end}}
+	<script src="{{.__STATIC__}}/cdn/expire-1-M/jquery/1.9.1/jquery.min.js"></script>
+	<script src="{{.__JS__}}/jquery.lazyload.js" type="text/javascript"></script>
+	<script src="{{.__STATIC__}}/cdn/expire-10-y/jquery-autocomplete/1.0.7/jquery.auto-complete.js"></script>
+	<script src="{{.__JS__}}/jquery.cookie.js"></script>
+	<script src="{{.__JS__}}/home.js"></script>
+	<script src="{{.__STATIC__}}/cdn/expire-1-M/clipboard.js/2.0.0/clipboard.min.js" type="text/javascript"></script>
+	<script src="{{.__STATIC__}}/cdn/expire-1-M/layer/3.1.1/layer.js"></script>
+	<script src="{{.__JS__}}/script.js"></script>
+	<!-- 全局广告位 -->
+	
+	{{if eq .page "play"}}
+	<!--新的-->
+	<style>
+		@media (min-width: 899px) {
+			.player-info .page-title a::after {
+				height: 12px !important;
+			}
+		}
+		
+		b {
+			width: 16px;
+			height: 16px;
+			font-weight: 400;
+			background: #c209ff;
+			color: #fff;
+			padding: 2px 4px;
+			margin-left: 4px;
+			font-size: 13px;
+			border-radius: 5px;
+		}
+		
+		.col-xs-1 {
+			min-height: 1px;
+			padding: 10px;
+			color: #fff;
+		}
+		
+		.col-xs-1 a {
+			color: #fff;
+		}
+		
+		/*新和VIP图标css*/
+		.module-blocklist a em {
+			color: rgb(0 0 0 / 92%);
+			position: absolute;
+			top: -1px;
+			right: 2px;
+			z-index: 3;
+			transform: scale(0.78);
+			transform-origin: top right;
+			border-radius: 1px 5px 0 5px;
+			background: linear-gradient(90deg, #FFEB3B, #f9e326);
+			padding: 0 3px;
+			line-height: 16px;
+			font-size: 12px;
+			border-radius: 5px;
+			display: inline-block !important;
+		}
+		
+		@media (min-width: 659px) {
+			.module-blocklist a {
+				overflow: initial;
+			}
+			
+			.module-blocklist a em {
+				top: -5px;
+				right: -5px;
+			}
+		}
+		
+		@media (min-width: 1239px) {
+			.player-side-playlist .module-blocklist a {
+				overflow: hidden;
+			}
+			
+			.player-side-playlist .module-blocklist a em {
+				top: 5px;
+				right: 5px;
+			}
+		}
+		
+		/*新和VIP图标css*/
+	</style>
+	<!--新的-->
+	{{end}}
+
+</head>
+
 {{end}}
