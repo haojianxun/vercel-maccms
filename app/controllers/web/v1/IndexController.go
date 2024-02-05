@@ -16,7 +16,7 @@ type IndexController struct {
 
 func (h *IndexController) Index(c *gin.Context) {
 	table := "index.html"
-	IndexData := cmap.New().Items()
+	PageData := cmap.New().Items()
 	value, _ := c.Get("data")
 	DATA := value.(gin.H)
 	// 获取当前时间
@@ -44,7 +44,7 @@ func (h *IndexController) Index(c *gin.Context) {
 
 	// 今日更新
 	DB.Debug().Where("vod_time >= ?", midnightUnix).Count(&TodayCount)
-	IndexData["TodayCount"] = TodayCount
+	PageData["TodayCount"] = TodayCount
 
 	// 首页电影
 	CachelistDianYing, _ := service.GetTable(table, "listDianYing", []models.MacVod{})
@@ -139,17 +139,17 @@ func (h *IndexController) Index(c *gin.Context) {
 		listNewVideos = *CachelistNewVideos.(*map[string][]models.MacVod)
 	}
 
-	IndexData["CurrentlyTrending"] = CurrentlyTrending
-	IndexData["listDianYing"] = listDianYing
-	IndexData["MonthDianYing"] = MonthDianYing
-	IndexData["listDianShiJu"] = listDianShiJu
-	IndexData["MonthDianShiJu"] = MonthDianShiJu
-	IndexData["listDongMan"] = listDongMan
-	IndexData["MonthDongMan"] = MonthDongMan
-	IndexData["listZongYi"] = listZongYi
-	IndexData["MonthZongYi"] = MonthZongYi
-	IndexData["listNewVideos"] = listNewVideos
-	DATA["INDEX_DATA"] = IndexData
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+	PageData["listDianYing"] = listDianYing
+	PageData["MonthDianYing"] = MonthDianYing
+	PageData["listDianShiJu"] = listDianShiJu
+	PageData["MonthDianShiJu"] = MonthDianShiJu
+	PageData["listDongMan"] = listDongMan
+	PageData["MonthDongMan"] = MonthDongMan
+	PageData["listZongYi"] = listZongYi
+	PageData["MonthZongYi"] = MonthZongYi
+	PageData["listNewVideos"] = listNewVideos
+	DATA["PageData"] = PageData
 	DATA["page"] = "index"
 	c.HTML(http.StatusOK, "index.html", DATA)
 }

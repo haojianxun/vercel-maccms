@@ -15,7 +15,7 @@ type VideosController struct {
 
 func (h *VideosController) Dianying(c *gin.Context) {
 	table := "dianying.html"
-	DianYingData := cmap.New().Items()
+	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
@@ -143,19 +143,19 @@ func (h *VideosController) Dianying(c *gin.Context) {
 		listJiLuPian = *CacheJiLuPian.(*[]models.MacVod)
 	}
 
-	DianYingData["listMacType"] = listMacType
-	DianYingData["CurrentlyTrending"] = CurrentlyTrending
-	DianYingData["listDongZuoPian"] = listDongZuoPian
-	DianYingData["listXiJuPian"] = listXiJuPian
-	DianYingData["listAiQingPian"] = listAiQingPian
-	DianYingData["listKeHuanPian"] = listKeHuanPian
-	DianYingData["listKongBuPian"] = listKongBuPian
-	DianYingData["listJuQingPian"] = listJuQingPian
-	DianYingData["listZhanZhengPian"] = listZhanZhengPian
-	DianYingData["listDongHuaPian"] = listDongHuaPian
-	DianYingData["listQiHuanPian"] = listQiHuanPian
-	DianYingData["listJiLuPian"] = listJiLuPian
-	DATA["DianYingData"] = DianYingData
+	PageData["listMacType"] = listMacType
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+	PageData["listDongZuoPian"] = listDongZuoPian
+	PageData["listXiJuPian"] = listXiJuPian
+	PageData["listAiQingPian"] = listAiQingPian
+	PageData["listKeHuanPian"] = listKeHuanPian
+	PageData["listKongBuPian"] = listKongBuPian
+	PageData["listJuQingPian"] = listJuQingPian
+	PageData["listZhanZhengPian"] = listZhanZhengPian
+	PageData["listDongHuaPian"] = listDongHuaPian
+	PageData["listQiHuanPian"] = listQiHuanPian
+	PageData["listJiLuPian"] = listJiLuPian
+	DATA["PageData"] = PageData
 	DATA["page"] = "dianying"
 	c.HTML(http.StatusOK, "v/dianying.html", DATA)
 }
