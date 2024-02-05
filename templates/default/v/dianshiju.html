@@ -10,518 +10,76 @@
             <h1 class="page-title">电视剧</h1>
             <div class="list-header scroll-box">
                 <div class="block-box-items scroll-content">
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/guochan.html" title="国产剧"><strong class="title">国产剧</strong></a>
-                        <div class="block-box-bg">国产剧</div>
-                    </div>
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/gangju.html" title="香港剧"><strong class="title">香港剧</strong></a>
-                        <div class="block-box-bg">香港剧</div>
-                    </div>
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/taiju.html" title="台湾剧"><strong class="title">台湾剧</strong></a>
-                        <div class="block-box-bg">台湾剧</div>
-                    </div>
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/hanju.html" title="韩国剧"><strong class="title">韩国剧</strong></a>
-                        <div class="block-box-bg">韩国剧</div>
-                    </div>
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/riju.html" title="日本剧"><strong class="title">日本剧</strong></a>
-                        <div class="block-box-bg">日本剧</div>
-                    </div>
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/oumei.html" title="欧美剧"><strong class="title">欧美剧</strong></a>
-                        <div class="block-box-bg">欧美剧</div>
-                    </div>
-                    <div class="block-box-item ">
-                        <a class="block-box-content" href="/v/haiwai.html" title="海外剧"><strong class="title">海外剧</strong></a>
-                        <div class="block-box-bg">海外剧</div>
-                    </div>
-                    <div class="space-line-bold"></div>
-                    <div class="block-box-item"><a class="block-box-content" href="/pianku.html" title="查看全部影片"><strong class="title">影片库</strong></a>
-                        <div class="block-box-bg"><i class="icon-cate-dy"></i></div>
-                    </div>
+					{{ range .PageData.listMacType }}
+					<div class="block-box-item ">
+						<a class="block-box-content" href="/v/{{.TypeEn}}.html" title="{{.TypeName}}"> <strong class="title">{{.TypeName}}</strong> </a>
+						<div class="block-box-bg">
+							{{.TypeName}}
+						</div>
+					</div>
+					{{end}}
+					<div class="space-line-bold"></div>
+					<div class="block-box-item"><a class="block-box-content" href="/pianku.html" title="查看全部影片"><strong class="title">影片库</strong></a>
+						<div class="block-box-bg"><i class="icon-cate-dy"></i></div>
+					</div>
                 </div>
             </div>
         </div>
         <!-- 分类页分类 -->
-
+		
+		<!-- 分类页热播 -->
         <div class="module module-bg">
             <div class="module-heading">
                 <h2 class="module-title">热播电视剧<span class="module-title-en">TRENDING</span></h2>
             </div>
             <div class="module-list module-lines-list">
-                <div class="module-items">
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="../show.html" title="鸣龙少年">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://m.ykimg.com/05260000656D25B013EBC61B5FEA523D" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="鸣龙少年">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="../show.html" title="鸣龙少年">鸣龙少年</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="../search.html" target="_blank">张若昀</a>&nbsp;<a href="../search.html" target="_blank">黄尧</a>&nbsp;<a href="../search.html" target="_blank">王锵</a>&nbsp;<a href="../search.html" target="_blank">徐若晗</a>&nbsp;<a href="../search.html" target="_blank">李明德</a>&nbsp;<a href="../search.html" target="_blank">张琛</a>&nbsp;<a href="../search.html" target="_blank">曾宥臻</a>&nbsp;<a href="../search.html" target="_blank">许淇杰</a>&nbsp;<a href="../search.html" target="_blank">成泰燊</a>&nbsp;<a href="../search.html" target="_blank">张芝华</a>&nbsp;<a href="../search.html" target="_blank">刘丹</a>&nbsp;<a href="../search.html" target="_blank">王鑫</a>&nbsp;<a href="../search.html" target="_blank">王劲松</a>&nbsp;<a href="../search.html" target="_blank">孔连顺</a>&nbsp;<a href="../search.html" target="_blank">王澜</a>&nbsp;<a href="../search.html" target="_blank">德柏</a>&nbsp;<a href="../search.html" target="_blank">张帆</a>&nbsp;<a href="../search.html" target="_blank">梁超</a>&nbsp;<a href="../search.html" target="_blank">涂凌</a>&nbsp;<a href="../search.html" target="_blank">代乐乐</a>&nbsp;<a href="../search.html" target="_blank">孙强</a>&nbsp;<a href="../search.html" target="_blank">范湉湉</a>&nbsp;<a href="../search.html" target="_blank">周铁</a>&nbsp;<a href="../search.html" target="_blank">国歌</a>&nbsp;<a href="../search.html" target="_blank">夏力薪</a>&nbsp;<a href="../search.html" target="_blank">屈菁菁</a>&nbsp;<a href="../search.html" target="_blank">杨笠</a>&nbsp;<a href="../search.html" target="_blank">欧阳奋强</a>&nbsp;<a href="../search.html" target="_blank">陈昊</a>&nbsp;<a href="../search.html" target="_blank">任帅</a>&nbsp;<a href="../search.html" target="_blank">李晓川</a>&nbsp;<a href="../search.html" target="_blank">周德华</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　星洲市民办高中铭龙中学为了更好地发挥学生的潜力，成立了以优秀英语教师雷鸣（张若昀 饰）和心理老师桑夏（黄尧 饰）为首的高三18班。李燃（王锵 饰）是铭龙中学一名普通的高三学生，他自幼失去父母，一直</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="../show.html" class="module-item-title" title="鸣龙少年">鸣龙少年</a>
-                        </div>
-                        <div class="module-item-text">更新30</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="莲花楼">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://pic9.iqiyipic.com/image/20230722/e5/43/a_100517696_m_601_m18_260_360.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="莲花楼">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="莲花楼">莲花楼</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E6%88%90%E6%AF%85.html" target="_blank">成毅</a>&nbsp;<a href="../search.html" target="_blank">曾舜晞</a>&nbsp;<a href="/search--%E8%82%96%E9%A1%BA%E5%B0%A7.html" target="_blank">肖顺尧</a>&nbsp;<a href="/search--%E9%99%88%E9%83%BD%E7%81%B5.html" target="_blank">陈都灵</a>&nbsp;<a href="/search--%E7%8E%8B%E9%B9%A4%E6%B6%A6.html" target="_blank">王鹤润</a>&nbsp;<a href="/search--%E9%99%88%E6%84%8F%E6%B6%B5.html" target="_blank">陈意涵</a>&nbsp;<a href="/search--%E5%BE%90%E7%99%BE%E6%85%A7.html" target="_blank">徐百慧</a>&nbsp;<a href="/search--%E5%88%98%E6%A2%A6%E8%8A%AE.html" target="_blank">刘梦芮</a>&nbsp;<a href="/search--%E5%90%B4%E6%96%BD%E4%B9%90.html" target="_blank">吴施乐</a>&nbsp;<a href="/search--%E8%B4%BA%E5%88%9A.html" target="_blank">贺刚</a>&nbsp;<a href="/search--%E5%8D%A2%E6%98%9F%E5%AE%87.html" target="_blank">卢星宇</a>&nbsp;<a href="/search--%E5%88%98%E9%94%A1%E6%98%8E.html" target="_blank">刘锡明</a>&nbsp;<a href="/search--%E8%B5%B5%E6%96%87%E6%B5%A9.html" target="_blank">赵文浩</a>&nbsp;<a href="/search--%E6%9D%8E%E5%BD%A7.html" target="_blank">李彧</a>&nbsp;<a href="/search--%E7%8E%8B%E4%B9%9D%E8%83%9C.html" target="_blank">王九胜</a>&nbsp;<a href="/search--%E5%91%A8%E5%B0%8F%E9%A3%9E.html" target="_blank">周小飞</a>&nbsp;<a href="/search--%E6%AE%B5%E9%92%B0.html" target="_blank">段钰</a>&nbsp;<a href="/search--%E7%8E%8B%E5%B2%97.html" target="_blank">王岗</a>&nbsp;<a href="/search--%E9%A9%AC%E6%95%AC%E6%B6%B5.html" target="_blank">马敬涵</a>&nbsp;<a href="/search--%E5%BC%A0%E7%AB%8B%E6%98%95.html" target="_blank">张立昕</a>&nbsp;<a href="/search--%E5%BC%A0%E5%A2%A8%E9%94%A1.html" target="_blank">张墨锡</a>&nbsp;<a href="/search--%E8%A8%80%E6%9D%B0.html" target="_blank">言杰</a>&nbsp;<a href="/search--%E4%B8%81%E4%B8%80%E4%B8%80.html" target="_blank">丁一一</a>&nbsp;<a href="/search--%E7%8E%8B%E5%BD%A6%E9%91%AB.html" target="_blank">王彦鑫</a>&nbsp;<a href="/search--%E8%81%82%E5%AD%90%E7%9A%93.html" target="_blank">聂子皓</a>&nbsp;<a href="/search--%E7%8E%8B%E5%A5%95%E7%8F%B5.html" target="_blank">王奕珵</a>&nbsp;<a href="/search--%E6%9E%97%E5%87%AF.html" target="_blank">林凯</a>&nbsp;<a href="/search--%E7%8E%8B%E9%9D%96.html" target="_blank">王靖</a>&nbsp;<a href="/search--%E6%9D%8E%E6%98%B6.html" target="_blank">李昶</a>&nbsp;<a href="/search--%E9%83%AD%E4%B8%9C%E6%B5%B7.html" target="_blank">郭东海</a>&nbsp;<a href="/search--%E6%98%93%E6%AD%A3%E7%A6%8F.html" target="_blank">易正福</a>&nbsp;<a href="/search--%E6%B5%A6%E5%B8%85.html" target="_blank">浦帅</a>&nbsp;<a href="/search--%E5%AD%99%E7%AB%8B%E5%BD%AC.html" target="_blank">孙立彬</a>&nbsp;<a href="/search--%E7%8E%8B%E6%98%9F%E5%A3%B9.html" target="_blank">王星壹</a>&nbsp;<a href="/search--%E9%83%AD%E4%BC%9F.html" target="_blank">郭伟</a>&nbsp;<a href="/search--%E9%AD%8F%E5%B7%8D.html" target="_blank">魏巍</a>&nbsp;<a href="/search--%E9%BB%84%E5%AE%A5%E6%98%8E.html" target="_blank">黄宥明</a>&nbsp;<a href="/search--%E4%BD%95%E4%B8%AD%E5%8D%8E.html" target="_blank">何中华</a>&nbsp;<a href="/search--%E5%88%98%E8%BF%A6.html" target="_blank">刘迦</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　该剧改编自藤萍的小说《吉祥纹莲花楼》。十年前四顾门门主李相夷以相夷太剑冠绝天下，为正道武林之光，却因与金鸳盟盟主笛飞声约战东海，两大高手就此消失在万顷碧波之上。四顾门与金鸳盟也两败俱伤渐渐消失于江</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="莲花楼">莲花楼</a>
-                        </div>
-                        <div class="module-item-text">全40集+番外</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="长相思">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc002003rpvd4j1689930008384/260" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="长相思">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="长相思">长相思</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E6%9D%A8%E7%B4%AB.html" target="_blank">杨紫</a>&nbsp;<a href="/search--%E5%BC%A0%E6%99%9A%E6%84%8F.html" target="_blank">张晚意</a>&nbsp;<a href="/search--%E9%82%93%E4%B8%BA.html" target="_blank">邓为</a>&nbsp;<a href="/search--%E7%8E%8B%E5%BC%98%E6%AF%85.html" target="_blank">王弘毅</a>&nbsp;<a href="/search--%E6%AA%80%E5%81%A5%E6%AC%A1.html" target="_blank">檀健次</a>&nbsp;<a href="/search--%E4%BB%A3%E9%9C%B2%E5%A8%83.html" target="_blank">代露娃</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">上古时期，人、神、妖混居，神农、轩辕、高辛三国鼎立。流落大荒的高辛王姬玖瑶（小夭）历经百年颠沛之苦，不但失去了身份，也失去了容貌，在清水镇落脚，成为了“无处可去、无人可依、无力自保”的玟小六。他悬壶为</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="长相思">长相思</a>
-                        </div>
-                        <div class="module-item-text">全39集+收官庆典</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="一念关山">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://pic6.iqiyipic.com/image/20231124/60/55/a_100517505_m_601_m15_260_360.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="一念关山">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="一念关山">一念关山</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E5%88%98%E8%AF%97%E8%AF%97.html" target="_blank">刘诗诗</a>&nbsp;<a href="/search--%E5%88%98%E5%AE%87%E5%AE%81.html" target="_blank">刘宇宁</a>&nbsp;<a href="/search--%E6%96%B9%E9%80%B8%E4%BC%A6.html" target="_blank">方逸伦</a>&nbsp;<a href="/search--%E4%BD%95%E8%93%9D%E9%80%97.html" target="_blank">何蓝逗</a>&nbsp;<a href="/search--%E9%99%88%E6%98%8A%E5%AE%87.html" target="_blank">陈昊宇</a>&nbsp;<a href="/search--%E5%B8%B8%E5%8D%8E%E6%A3%AE.html" target="_blank">常华森</a>&nbsp;<a href="/search--%E7%8E%8B%E8%89%B3.html" target="_blank">王艳</a>&nbsp;<a href="../search.html" target="_blank">吕行</a>&nbsp;<a href="/search--%E6%9D%8E%E6%AC%A2.html" target="_blank">李欢</a>&nbsp;<a href="/search--%E9%99%88%E5%AE%A5%E7%BB%B4.html" target="_blank">陈宥维</a>&nbsp;<a href="/search--%E9%99%88%E9%83%BD%E7%81%B5.html" target="_blank">陈都灵</a>&nbsp;<a href="/search--%E7%8E%8B%E4%B8%80%E5%93%B2.html" target="_blank">王一哲</a>&nbsp;<a href="../search.html" target="_blank">陈小纭</a>&nbsp;<a href="/search--%E5%BC%A0%E8%8A%B7%E6%BA%AA.html" target="_blank">张芷溪</a>&nbsp;<a href="/search--%E9%BB%84%E6%A2%A6%E8%8E%B9.html" target="_blank">黄梦莹</a>&nbsp;<a href="../search.html" target="_blank">张帆</a>&nbsp;<a href="/search--%E5%8F%B6%E9%9D%92.html" target="_blank">叶青</a>&nbsp;<a href="../search.html" target="_blank">叶筱玮</a>&nbsp;<a href="/search--%E5%8E%9F%E8%8B%A5%E8%88%AA.html" target="_blank">原若航</a>&nbsp;<a href="/search--%E5%90%B4%E5%BC%98.html" target="_blank">吴弘</a>&nbsp;<a href="/search--%E5%BC%A0%E5%9E%92.html" target="_blank">张垒</a>&nbsp;<a href="/search--%E8%8B%8F%E6%A2%A6%E8%8A%B8.html" target="_blank">苏梦芸</a>&nbsp;<a href="/search--%E5%BC%A0%E4%B9%94%E8%80%B3.html" target="_blank">张乔耳</a>&nbsp;<a href="/search--%E5%91%A8%E9%99%86%E5%95%A6.html" target="_blank">周陆啦</a>&nbsp;<a href="/search--%E5%B0%B9%E9%93%B8%E8%83%9C.html" target="_blank">尹铸胜</a>&nbsp;<a href="/search--%E5%BC%A0%E5%A4%A9%E9%98%B3.html" target="_blank">张天阳</a>&nbsp;<a href="/search--%E5%B8%B8%E9%93%96.html" target="_blank">常铖</a>&nbsp;<a href="../search.html" target="_blank">曾柯琅</a>&nbsp;<a href="/search--%E6%99%AF%E5%A6%82%E6%B4%8B.html" target="_blank">景如洋</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　新云洗绯色，黄沙漫漫红衣长。江湖行远舟，关山阵阵万重霜。该剧讲述安国朱衣卫前左使任如意（刘诗诗 饰）因机缘巧合成为梧国迎帝使小分队成员，和梧国六道堂堂主宁远舟（刘宇宁 饰）、风流浪子于十三（方逸伦</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="一念关山">一念关山</a>
-                        </div>
-                        <div class="module-item-text">全剧集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="宁安如梦">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://pic2.iqiyipic.com/image/20231107/f4/fc/a_100508969_m_601_m19_260_360.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="宁安如梦">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="宁安如梦">宁安如梦</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E7%99%BD%E9%B9%BF.html" target="_blank">白鹿</a>&nbsp;<a href="/search--%E5%BC%A0%E5%87%8C%E8%B5%AB.html" target="_blank">张凌赫</a>&nbsp;<a href="/search--%E7%8E%8B%E6%98%9F%E8%B6%8A.html" target="_blank">王星越</a>&nbsp;<a href="/search--%E5%91%A8%E5%B3%BB%E7%BA%AC.html" target="_blank">周峻纬</a>&nbsp;<a href="/search--%E5%88%98%E4%BA%9B%E5%AE%81.html" target="_blank">刘些宁</a>&nbsp;<a href="/search--%E5%91%A8%E5%A4%A7%E4%B8%BA.html" target="_blank">周大为</a>&nbsp;<a href="/search--%E7%A7%A6%E5%A4%A9%E5%AE%87.html" target="_blank">秦天宇</a>&nbsp;<a href="/search--%E5%B4%94%E7%BB%8D%E9%98%B3.html" target="_blank">崔绍阳</a>&nbsp;<a href="/search--%E5%8F%B6%E6%99%9E%E6%9C%88.html" target="_blank">叶晞月</a>&nbsp;<a href="/search--%E6%B1%A4%E6%A2%A6%E4%BD%B3.html" target="_blank">汤梦佳</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">该剧改编自时镜的同名小说，曾经的姜雪宁无依无靠，因要自保、也因贪婪，她不择手段的谋取权势，处心积虑当上了皇后，却因此践踏了无数真心，与青梅竹马的小侯爷反目。后，曾受她救命之恩的当朝帝师谢危竟逼宫谋反，</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="宁安如梦">宁安如梦</a>
-                        </div>
-                        <div class="module-item-text">番外</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="西出玉门">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc002005sbknaw1667467290914/260" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="西出玉门">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="西出玉门">西出玉门</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E5%80%AA%E5%A6%AE.html" target="_blank">倪妮</a>&nbsp;<a href="/search--%E7%99%BD%E5%AE%87.html" target="_blank">白宇</a>&nbsp;<a href="/search--%E9%87%91%E7%80%9A.html" target="_blank">金瀚</a>&nbsp;<a href="../search.html" target="_blank">孟子义</a>&nbsp;<a href="/search--%E5%BC%A0%E8%89%BA%E4%B8%8A.html" target="_blank">张艺上</a>&nbsp;<a href="/search--%E8%B5%B5%E8%BE%BE.html" target="_blank">赵达</a>&nbsp;<a href="/search--%E5%A4%8F%E6%A2%A6.html" target="_blank">夏梦</a>&nbsp;<a href="../search.html" target="_blank">李昀锐</a>&nbsp;<a href="../search.html" target="_blank">卢昱晓</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">该剧根据尾鱼的同名小说改编。讲述了“沙漠玫瑰”叶流西（倪妮 饰）与“智勇沙獠”昌东（白宇 饰），一个为了解开身世之谜，一个为破解过往真相，两人联手深入奇幻世界探险的故事。</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="西出玉门">西出玉门</a>
-                        </div>
-                        <div class="module-item-text">全38集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="三大队剧版">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://pic8.iqiyipic.com/image/20231221/4d/91/a_100545221_m_601_m17_260_360.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="三大队剧版">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="三大队剧版">三大队剧版</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E7%A7%A6%E6%98%8A.html" target="_blank">秦昊</a>&nbsp;<a href="/search--%E6%9D%8E%E4%B9%83%E6%96%87.html" target="_blank">李乃文</a>&nbsp;<a href="/search--%E9%99%88%E6%98%8E%E6%98%8A.html" target="_blank">陈明昊</a>&nbsp;<a href="/search--%E9%A9%AC%E5%90%9F%E5%90%9F.html" target="_blank">马吟吟</a>&nbsp;<a href="/search--%E4%BD%9F%E4%B8%BD%E5%A8%85.html" target="_blank">佟丽娅</a>&nbsp;<a href="/search--%E4%BB%BB%E6%95%8F.html" target="_blank">任敏</a>&nbsp;<a href="../search.html" target="_blank">杨新鸣</a>&nbsp;<a href="/search--%E8%8C%83%E9%9B%B7.html" target="_blank">范雷</a>&nbsp;<a href="../search.html" target="_blank">李晓川</a>&nbsp;<a href="/search--%E6%9E%97%E5%AE%B6%E5%B7%9D.html" target="_blank">林家川</a>&nbsp;<a href="/search--%E5%88%98%E5%A5%95%E9%93%81.html" target="_blank">刘奕铁</a>&nbsp;<a href="/search--%E5%B0%B9%E6%99%BA%E7%8E%84.html" target="_blank">尹智玄</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　讲述一次审讯意外，三大队刑警程兵（秦昊 饰）入狱服刑，队友受牵连脱警、降职，曾经的警界精英三大队分崩离析。十年牢狱，程兵重获自由，信仰崩塌，热血化为沉默，他失去一切，而案件的犯罪嫌疑人王大勇依旧在</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="三大队剧版">三大队剧版</a>
-                        </div>
-                        <div class="module-item-text">全24集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="../show.html" title="繁花">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc00200whsp9r61596292669940/260" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="繁花">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="../show.html" title="繁花">繁花</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="../search.html" target="_blank">胡歌</a>&nbsp;<a href="../search.html" target="_blank">马伊琍</a>&nbsp;<a href="../search.html" target="_blank">唐嫣</a>&nbsp;<a href="../search.html" target="_blank">辛芷蕾</a>&nbsp;<a href="../search.html" target="_blank">游本昌</a>&nbsp;<a href="../search.html" target="_blank">郑恺</a>&nbsp;<a href="../search.html" target="_blank">陈龙</a>&nbsp;<a href="../search.html" target="_blank">黄觉</a>&nbsp;<a href="../search.html" target="_blank">董勇</a>&nbsp;<a href="../search.html" target="_blank">杨皓宇</a>&nbsp;<a href="../search.html" target="_blank">曾美慧孜</a>&nbsp;<a href="../search.html" target="_blank">金宇澄</a>&nbsp;<a href="../search.html" target="_blank">陈国庆</a>&nbsp;<a href="../search.html" target="_blank">姜逸磊</a>&nbsp;<a href="../search.html" target="_blank">孙强</a>&nbsp;<a href="../search.html" target="_blank">吴越</a>&nbsp;<a href="../search.html" target="_blank">范湉湉</a>&nbsp;<a href="../search.html" target="_blank">佟晨洁</a>&nbsp;<a href="../search.html" target="_blank">王菊</a>&nbsp;<a href="../search.html" target="_blank">林熙蕾</a>&nbsp;<a href="../search.html" target="_blank">喻恩泰</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">剧集将围绕阿宝（胡歌饰）展开，九〇年代初，煌煌大时代，人人争上游，阿宝也变成了宝总，成功过，失败过，在沪上弄潮儿女中留下一段传奇。有过金碧辉煌，有过细水长流，男男女女，涨涨跌跌，道尽一个时代的情义与至</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="../show.html" class="module-item-title" title="繁花">繁花</a>
-                        </div>
-                        <div class="module-item-text">全30集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="南海归墟">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc00200tl9nvn91687165008506/260" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="南海归墟">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="南海归墟">南海归墟</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E6%BD%98%E7%B2%A4%E6%98%8E.html" target="_blank">潘粤明</a>&nbsp;<a href="/search--%E5%BC%A0%E9%9B%A8%E7%BB%AE.html" target="_blank">张雨绮</a>&nbsp;<a href="/search--%E5%A7%9C%E8%B6%85.html" target="_blank">姜超</a>&nbsp;<a href="/search--%E6%B1%A4%E9%95%87%E4%B8%9A.html" target="_blank">汤镇业</a>&nbsp;<a href="/search--%E7%8E%8B%E5%A5%95%E6%9D%83.html" target="_blank">王奕权</a>&nbsp;<a href="/search--%E7%A8%8B%E4%B8%9C.html" target="_blank">程东</a>&nbsp;<a href="../search.html" target="_blank">陈牧驰</a>&nbsp;<a href="/search--%E5%91%A8%E6%9D%A8%E6%B4%8B.html" target="_blank">周杨洋</a>&nbsp;<a href="/search--%E6%9C%B1%E6%A2%93%E7%91%9C.html" target="_blank">朱梓瑜</a>&nbsp;<a href="/search--%E4%BD%9F%E7%A3%8A.html" target="_blank">佟磊</a>&nbsp;<a href="/search--%E8%88%92%E8%80%80%E7%91%84.html" target="_blank">舒耀瑄</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　讲述“铁三角”胡八一（潘粤明 饰）、Shirley杨（张雨绮 饰）、王胖子（姜超 饰）再次重聚，启程前往南海，在风暴不断、海难频发的珊瑚螺旋海域展开了一段探寻归墟之国、寻找秦王照骨镜的惊险旅程。该</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="南海归墟">南海归墟</a>
-                        </div>
-                        <div class="module-item-text">第16集完结</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="以爱为营">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://4img.hitv.com/preview/sp_images/2023/03/09/202303091301106277933.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="以爱为营">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="以爱为营">以爱为营</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E7%99%BD%E9%B9%BF.html" target="_blank">白鹿</a>&nbsp;<a href="/search--%E7%8E%8B%E9%B9%A4%E6%A3%A3.html" target="_blank">王鹤棣</a>&nbsp;<a href="/search--%E9%AD%8F%E5%93%B2%E9%B8%A3.html" target="_blank">魏哲鸣</a>&nbsp;<a href="/search--%E6%B2%88%E7%BE%BD%E6%B4%81.html" target="_blank">沈羽洁</a>&nbsp;<a href="/search--%E5%88%98%E5%86%AC%E6%B2%81.html" target="_blank">刘冬沁</a>&nbsp;<a href="/search--%E5%A7%9C%E7%8F%AE%E7%91%B6.html" target="_blank">姜珮瑶</a>&nbsp;<a href="/search--%E8%81%82%E8%BF%9C.html" target="_blank">聂远</a>&nbsp;<a href="/search--%E6%9B%BE%E9%BB%8E.html" target="_blank">曾黎</a>&nbsp;<a href="/search--%E8%91%A3%E7%92%87.html" target="_blank">董璇</a>&nbsp;<a href="/search--%E5%88%98%E9%93%AD%E6%B5%A9.html" target="_blank">刘铭浩</a>&nbsp;<a href="/search--%E5%AF%87%E6%8C%AF%E6%B5%B7.html" target="_blank">寇振海</a>&nbsp;<a href="/search--%E7%8E%8B%E8%96%87.html" target="_blank">王薇</a>&nbsp;<a href="/search--%E6%9D%A8%E6%98%8E%E5%A8%9C.html" target="_blank">杨明娜</a>&nbsp;<a href="/search--%E9%83%91%E8%88%92%E7%8E%AF.html" target="_blank">郑舒环</a>&nbsp;<a href="/search--%E6%AE%B5%E6%98%9F%E7%BE%BD.html" target="_blank">段星羽</a>&nbsp;<a href="/search--%E5%AE%8B%E9%9C%84%E7%91%9B%E5%AD%90.html" target="_blank">宋霄瑛子</a>&nbsp;<a href="/search--%E5%AD%99%E5%82%B2.html" target="_blank">孙傲</a>&nbsp;<a href="/search--%E9%BB%84%E9%80%8D.html" target="_blank">黄逍</a>&nbsp;<a href="/search--%E5%91%A8%E6%9F%AF%E5%AE%87.html" target="_blank">周柯宇</a>&nbsp;<a href="../search.html" target="_blank">孔连顺</a>&nbsp;<a href="/search--%E5%90%95%E6%89%BF%E7%8F%8F.html" target="_blank">吕承珏</a>&nbsp;<a href="/search--%E5%AE%89%E6%82%A6%E6%BA%AA.html" target="_blank">安悦溪</a>&nbsp;<a href="/search--%E7%8E%8B%E8%80%80%E5%BA%86.html" target="_blank">王耀庆</a>&nbsp;<a href="/search--%E5%B1%A0%E8%8A%B7%E8%8E%B9.html" target="_blank">屠芷莹</a>&nbsp;<a href="/search--%E9%B2%81%E7%85%A7%E5%8D%8E.html" target="_blank">鲁照华</a>&nbsp;<a href="/search--%E5%88%98%E4%BA%9B%E5%AE%81.html" target="_blank">刘些宁</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">该剧根据翘摇的小说《错撩》改编，讲述了财经记者和霸道总裁之间阴差阳错的爱情故事。</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="以爱为营">以爱为营</a>
-                        </div>
-                        <div class="module-item-text">彩蛋2</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="异人之下">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://m.ykimg.com/0526000064CC39C813EBC60C4E9359CF" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="异人之下">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="异人之下">异人之下</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E5%BD%AD%E6%98%B1%E7%95%85.html" target="_blank">彭昱畅</a>&nbsp;<a href="/search--%E4%BE%AF%E6%98%8E%E6%98%8A.html" target="_blank">侯明昊</a>&nbsp;<a href="/search--%E7%8E%8B%E5%BD%B1%E7%92%90.html" target="_blank">王影璐</a>&nbsp;<a href="/search--%E7%8E%8B%E5%AD%A6%E5%9C%BB.html" target="_blank">王学圻</a>&nbsp;<a href="/search--%E6%AF%95%E9%9B%AF%E7%8F%BA.html" target="_blank">毕雯珺</a>&nbsp;<a href="/search--%E5%AE%8C%E9%A2%9C%E6%B4%9B%E7%BB%92.html" target="_blank">完颜洛绒</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　平凡少年张楚岚（彭昱畅 饰）因爷爷尸体的离奇失踪，被卷入前所未见的“异人”世界之中，面对“全性”突如其来的追杀、神秘少女冯宝宝（王影璐 饰）的突然闯入，张楚岚决心不再隐藏异能。随着对于爷爷前尘往事</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="异人之下">异人之下</a>
-                        </div>
-                        <div class="module-item-text">全27集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="长风渡">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2893842723.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="长风渡">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="长风渡">长风渡</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E7%99%BD%E6%95%AC%E4%BA%AD------------.html" target="_blank">白敬亭</a>&nbsp;<a href="../search.html" target="_blank">宋轶</a>&nbsp;<a href="/search--%E5%88%98%E5%AD%A6%E4%B9%89------------.html" target="_blank">刘学义</a>&nbsp;<a href="/search--%E5%BC%A0%E6%98%8A%E5%94%AF------------.html" target="_blank">张昊唯</a>&nbsp;<a href="/search--%E5%BC%A0%E7%9D%BF------------.html" target="_blank">张睿</a>&nbsp;<a href="/search--%E8%B5%B5%E5%AD%90%E7%90%AA------------.html" target="_blank">赵子琪</a>&nbsp;<a href="/search--%E5%BC%A0%E7%BB%8D%E5%88%9A------------.html" target="_blank">张绍刚</a>&nbsp;<a href="../search.html" target="_blank">沙溢</a>&nbsp;<a href="/search--%E8%83%A1%E5%8F%AF------------.html" target="_blank">胡可</a>&nbsp;<a href="/search--%E4%BD%95%E6%99%9F%E9%93%AD------------.html" target="_blank">何晟铭</a>&nbsp;<a href="/search--%E5%BC%A0%E6%A3%AA%E7%90%B0------------.html" target="_blank">张棪琰</a>&nbsp;<a href="/search--%E4%BD%95%E4%B8%AD%E5%8D%8E------------.html" target="_blank">何中华</a>&nbsp;<a href="/search--%E7%8E%8B%E7%AD%96------------.html" target="_blank">王策</a>&nbsp;<a href="/search--%E5%90%B4%E5%86%95------------.html" target="_blank">吴冕</a>&nbsp;<a href="/search--%E7%AB%A0%E5%91%88%E8%B5%AB------------.html" target="_blank">章呈赫</a>&nbsp;<a href="/search--%E5%AD%94%E7%90%B3------------.html" target="_blank">孔琳</a>&nbsp;<a href="/search--%E7%A8%8B%E6%A2%93------------.html" target="_blank">程梓</a>&nbsp;<a href="/search--%E7%8E%8B%E4%B9%9D%E8%83%9C------------.html" target="_blank">王九胜</a>&nbsp;<a href="/search--%E5%BC%A0%E6%99%9E%E4%B8%B4------------.html" target="_blank">张晞临</a>&nbsp;<a href="../search.html" target="_blank">丁勇岱</a>&nbsp;<a href="/search--%E7%8E%8B%E7%91%9E%E5%AD%90------------.html" target="_blank">王瑞子</a>&nbsp;<a href="/search--%E5%BC%A0%E7%BB%B4%E5%A8%9C------------.html" target="_blank">张维娜</a>&nbsp;<a href="/search--%E6%9D%8E%E6%AC%A3%E6%B3%BD------------.html" target="_blank">李欣泽</a>&nbsp;<a href="/search--%E8%B5%B5%E5%9C%86%E7%91%97------------.html" target="_blank">赵圆瑗</a>&nbsp;<a href="/search--%E8%81%82%E5%AD%90%E7%9A%93------------.html" target="_blank">聂子皓</a>&nbsp;<a href="/search--%E8%89%BE%E7%B1%B3------------.html" target="_blank">艾米</a>&nbsp;<a href="/search--%E6%9D%8E%E5%B0%8F%E8%83%96------------.html" target="_blank">李小胖</a>&nbsp;<a href="/search--%E9%83%AD%E6%98%8A%E9%92%A7------------.html" target="_blank">郭昊钧</a>&nbsp;<a href="/search--%E8%B5%B5%E5%A5%82%E7%84%B6------------.html" target="_blank">赵奂然</a>&nbsp;<a href="/search--%E9%82%93%E5%87%AF------------.html" target="_blank">邓凯</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　布商之女柳玉茹自小遭遇生母病重、庶母不慈、父亲不重视的困境，她不得已谨小慎微，做了十几年模范闺秀。不料，对婚姻抱有憧憬的她却被家里安排嫁给了名满扬州的纨绔顾九思。顾九思误会柳玉茹是为了攀附权贵才嫁</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="长风渡">长风渡</a>
-                        </div>
-                        <div class="module-item-text">全40集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="爱回家之开心速递">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2867566315.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="爱回家之开心速递">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2017</span>
-                                <span class="video-class">香港剧</span>
-                                <span>中国香港</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="爱回家之开心速递">爱回家之开心速递</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="../search.html" target="_blank">刘丹</a>&nbsp;<a href="/search--%E5%8D%95%E7%AB%8B%E6%96%87------------.html" target="_blank">单立文</a>&nbsp;<a href="/search--%E6%B1%A4%E7%9B%88%E7%9B%88------------.html" target="_blank">汤盈盈</a>&nbsp;<a href="/search--%E5%90%95%E6%85%A7%E4%BB%AA------------.html" target="_blank">吕慧仪</a>&nbsp;<a href="/search--%E7%BD%97%E4%B9%90%E6%9E%97------------.html" target="_blank">罗乐林</a>&nbsp;<a href="/search--%E9%A9%AC%E8%B4%AF%E4%B8%9C------------.html" target="_blank">马贯东</a>&nbsp;<a href="/search--%E8%8B%8F%E9%9F%B5%E5%A7%BF------------.html" target="_blank">苏韵姿</a>&nbsp;<a href="/search--%E5%91%A8%E5%98%89%E6%B4%9B------------.html" target="_blank">周嘉洛</a>&nbsp;<a href="/search--%E9%99%88%E6%B5%9A%E9%9C%86------------.html" target="_blank">陈浚霆</a>&nbsp;<a href="/search--%E5%90%B4%E4%BC%9F%E8%B1%AA------------.html" target="_blank">吴伟豪</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">處境劇的御用監製羅鎮岳已經準備開拍新一套處境劇，暫定叫《愛．回家之開心速遞》，「過往的處境劇都是以家庭為主，今次當然不例外啦。而故事除了家庭，因為網購現在都好hit，就會講到一間百貨公司，入面開設的網</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="爱回家之开心速递">爱回家之开心速递</a>
-                        </div>
-                        <div class="module-item-text">更新至2181集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="鹊刀门传奇">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc00200ycqsm0o1692064816191/260" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="鹊刀门传奇">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="鹊刀门传奇">鹊刀门传奇</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E8%B5%B5%E6%9C%AC%E5%B1%B1------------.html" target="_blank">赵本山</a>&nbsp;<a href="/search--%E5%AE%8B%E5%B0%8F%E5%AE%9D------------.html" target="_blank">宋小宝</a>&nbsp;<a href="/search--%E5%AE%8B%E6%99%93%E5%B3%B0------------.html" target="_blank">宋晓峰</a>&nbsp;<a href="/search--%E6%96%87%E6%9D%BE------------.html" target="_blank">文松</a>&nbsp;<a href="/search--%E7%A8%8B%E9%87%8E------------.html" target="_blank">程野</a>&nbsp;<a href="/search--%E6%9D%A8%E6%A0%91%E6%9E%97------------.html" target="_blank">杨树林</a>&nbsp;<a href="/search--%E7%94%B0%E5%A8%83------------.html" target="_blank">田娃</a>&nbsp;<a href="/search--%E7%8E%8B%E5%B0%8F%E8%99%8E------------.html" target="_blank">王小虎</a>&nbsp;<a href="/search--%E5%94%90%E9%89%B4%E5%86%9B------------.html" target="_blank">唐鉴军</a>&nbsp;<a href="/search--%E8%91%9B%E7%8F%8A%E7%8F%8A------------.html" target="_blank">葛珊珊</a>&nbsp;<a href="/search--%E5%8E%86%E6%99%93%E8%B4%BA------------.html" target="_blank">历晓贺</a>&nbsp;<a href="/search--%E6%AF%95%E7%95%85------------.html" target="_blank">毕畅</a>&nbsp;<a href="/search--%E8%B5%B5%E6%B5%B7%E7%87%95------------.html" target="_blank">赵海燕</a>&nbsp;<a href="/search--%E8%92%8B%E4%BE%9D%E6%9D%89------------.html" target="_blank">蒋依杉</a>&nbsp;<a href="/search--%E5%BC%A0%E5%B0%8F%E8%8B%B1------------.html" target="_blank">张小英</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">某朝末年，倭乱四起，宦官专权，东厂曹公公勾结倭寇，残害中原武林，意欲谋反。长海对外身份是鹊刀门掌门，实则是秘密抗倭组织成员，除了剿灭倭寇，另一项重要任务就是查出勾结倭寇的朝中汉奸。而同时曹公公也发现有</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="鹊刀门传奇">鹊刀门传奇</a>
-                        </div>
-                        <div class="module-item-text">全40集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="神隐">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://vcover-vt-pic.puui.qpic.cn/vcover_vt_pic/0/mzc002005yrabqm1702140694735/260" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="神隐">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="神隐">神隐</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E8%B5%B5%E9%9C%B2%E6%80%9D------------.html" target="_blank">赵露思</a>&nbsp;<a href="/search--%E7%8E%8B%E5%AE%89%E5%AE%87------------.html" target="_blank">王安宇</a>&nbsp;<a href="/search--%E9%A2%96%E5%84%BF------------.html" target="_blank">颖儿</a>&nbsp;<a href="../search.html" target="_blank">李昀锐</a>&nbsp;<a href="/search--%E6%9B%B9%E6%96%90%E7%84%B6------------.html" target="_blank">曹斐然</a>&nbsp;<a href="/search--%E5%8A%A0%E5%A5%88%E9%82%A3------------.html" target="_blank">加奈那</a>&nbsp;<a href="/search--%E5%B4%94%E8%88%AA------------.html" target="_blank">崔航</a>&nbsp;<a href="/search--%E8%B4%BA%E5%BC%80%E6%9C%97------------.html" target="_blank">贺开朗</a>&nbsp;<a href="/search--%E8%96%9B%E4%BD%B3%E5%87%9D------------.html" target="_blank">薛佳凝</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">　　该剧改编自星零的同名小说。讲述了神力被封的真神之子古晋与励志上进的新一代凤皇凤隐因一场意外相识，从此走上寻找凤隐仙元之路，此后在水凝兽阿音、妖族狐狸鸿奕、鹰族公主宴爽这些小伙伴的陪伴下，一路收集凤</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="神隐">神隐</a>
-                        </div>
-                        <div class="module-item-text">全40集</div>
-                    </div>
-
-                    <div class="module-item">
-                        <div class="module-item-cover">
-                            <div class="module-item-pic">
-                                <a href="/show.html" title="长月烬明">
-                                    <i class="icon-play"></i>
-                                </a>
-                                <img class="lazy lazyloaded" data-src="https://m.ykimg.com/050E0000642E600E1427220B3D46DC43" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="长月烬明">
-                                <div class="loading"></div>
-                            </div>
-                            <div class="module-item-caption">
-                                <span>2023</span>
-                                <span class="video-class">国产剧</span>
-                                <span>中国大陆</span>
-                            </div>
-                            <div class="module-item-content">
-                                <div class="module-item-style video-name">
-                                    <a href="/show.html" title="长月烬明">长月烬明</a>
-                                </div>
-                                <div class="module-item-style video-tag">
-                                    <a href="/search--%E7%BD%97%E4%BA%91%E7%86%99------------.html" target="_blank">罗云熙</a>&nbsp;<a href="/search--%E7%99%BD%E9%B9%BF------------.html" target="_blank">白鹿</a>&nbsp;<a href="/search--%E9%99%88%E9%83%BD%E7%81%B5------------.html" target="_blank">陈都灵</a>&nbsp;<a href="/search--%E9%82%93%E4%B8%BA------------.html" target="_blank">邓为</a>&nbsp;<a href="/search--%E5%AD%99%E7%8F%8D%E5%A6%AE------------.html" target="_blank">孙珍妮</a>&nbsp;<a href="../search.html" target="_blank">耿业庭</a>&nbsp;<a href="/search--%E6%9D%8E%E6%B2%9B%E6%81%A9------------.html" target="_blank">李沛恩</a>&nbsp;<a href="/search--%E4%BA%8E%E6%B3%A2------------.html" target="_blank">于波</a>&nbsp;<a href="/search--%E9%BB%84%E6%B5%B7%E5%86%B0------------.html" target="_blank">黄海冰</a>&nbsp;<a href="/search--%E9%83%91%E5%9B%BD%E9%9C%96------------.html" target="_blank">郑国霖</a>&nbsp;<a href="/search--%E5%BC%A0%E8%8A%B7%E6%BA%AA------------.html" target="_blank">张芷溪</a>&nbsp;<a href="/search--%E7%8E%8B%E4%B8%80%E8%8F%B2------------.html" target="_blank">王一菲</a>&nbsp;<a href="/search--%E8%82%96%E9%A1%BA%E5%B0%A7------------.html" target="_blank">肖顺尧</a>&nbsp;<a href="/search--%E6%B1%AA%E6%B1%90%E6%BD%AE------------.html" target="_blank">汪汐潮</a>&nbsp;<a href="/search--%E9%99%88%E5%8D%9A%E8%B1%AA------------.html" target="_blank">陈博豪</a>&nbsp;						</div>
-                                <div class="module-item-style video-text">为了解救被魔神澹台烬（罗云熙 饰）统治折磨的世界，衡阳宗掌门之女黎苏苏（白鹿 饰）孤注一掷，回到五百年前，化身叶家小女儿叶夕雾，阻止彼时尚未被邪念彻底侵蚀的景国质子澹台烬成为魔神。未料澹台烬竟是叶夕雾</div>
-                            </div>
-                        </div>
-                        <div class="module-item-titlebox">
-                            <a href="/show.html" class="module-item-title" title="长月烬明">长月烬明</a>
-                        </div>
-                        <div class="module-item-text">全40集</div>
-                    </div>
-                </div>
+				<div class="module-items">
+					{{ range .PageData.CurrentlyTrending }}
+					<div class="module-item">
+						<div class="module-item-cover">
+							<div class="module-item-pic">
+								<a href="show.html" title="{{ .VodName }}">
+									<i class="icon-play"></i>
+								</a>
+								<img alt="{{ .VodName }}"
+									 class="lazy lazyloaded"
+									 data-src="{{ .VodPic }}"
+									 onerror="this.src='/statics/image/loading.png'"
+									 src="/statics/image/loading.png">
+								<div class="loading"></div>
+							</div>
+							<div class="module-item-caption">
+								<span> {{ .VodYear }}</span>
+								<span class="video-class">{{ .VodClass }}</span>
+								<span>{{ .VodArea }}</span>
+							</div>
+							<div class="module-item-content">
+								<div class="module-item-style video-name">
+									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								</div>
+								<div class="module-item-style video-tag">
+									{{ $VodActorList := split .VodActor "," }}
+									{{ range $index, $name := $VodActorList }}
+									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
+									{{ end }}
+								</div>
+								<div class="module-item-style video-text">
+									{{ .VodContent }}
+								</div>
+							</div>
+						</div>
+						<div class="module-item-titlebox">
+							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+						</div>
+						<div class="module-item-text">{{ .VodRemarks }}</div>
+					</div>
+					{{end}}
+				</div>
             </div>
         </div>
         <!-- 分类页热播 -->
-
+		
+		<!--国产剧-->
         <div class="module module-bg">
             <div class="module-heading">
                 <h2 class="module-title"><a href="/v/guochan.html" title="国产剧">国产剧<span class="module-title-en">guochan</span></a></h2>
@@ -1461,6 +1019,8 @@
                 </div>
             </div>
         </div>
+		<!--国产剧-->
+		
         <div class="module module-bg">
             <div class="module-heading">
                 <h2 class="module-title"><a href="/v/gangju.html" title="香港剧">香港剧<span class="module-title-en">gangju</span></a></h2>
@@ -7102,11 +6662,10 @@
         </div>
         <!-- 有二级分类 -->
 
-
     </div>
 
     <div class="module-footer module-type">
-        <a href="/pianku-dianshiju-----------.html" class="load-all" title="全部电视剧">全部电视剧<i class="icon-arrow-right-o"></i></a>
+        <a href="/pianku-dianshiju.html" class="load-all" title="全部电视剧">全部电视剧<i class="icon-arrow-right-o"></i></a>
     </div>
 </main>
 

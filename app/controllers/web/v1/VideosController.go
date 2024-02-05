@@ -35,7 +35,7 @@ func (h *VideosController) Dianying(c *gin.Context) {
 	MacVod := models.MacVodMgr(mysql.DB)
 	MacType := models.MacTypeMgr(mysql.DB)
 
-	// 电影详细分类
+	// 二级详细分类
 	CacheMacType, _ := service.GetTable(table, "listMacType", []models.MacType{})
 	if CacheMacType == nil {
 		MacType.Debug().Where("type_pid", 1).Where("type_status", 1).Order("type_sort desc").Find(&listMacType)
@@ -161,14 +161,44 @@ func (h *VideosController) Dianying(c *gin.Context) {
 }
 
 func (h *VideosController) Dianshiju(c *gin.Context) {
+	table := "dianshiju.html"
+	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
 	}
-	data := value.(gin.H)
-	data["page"] = "dianshiju"
-	data["title"] = "电视剧"
-	c.HTML(http.StatusOK, "v/dianshiju.html", data)
+	DATA := value.(gin.H)
+	// 批量查询数据
+	var (
+		listMacType       []models.MacType
+		CurrentlyTrending []models.MacVod
+	)
+	MacVod := models.MacVodMgr(mysql.DB)
+	MacType := models.MacTypeMgr(mysql.DB)
+	// 二级详细分类
+	CacheMacType, _ := service.GetTable(table, "listMacType", []models.MacType{})
+	if CacheMacType == nil {
+		MacType.Debug().Where("type_pid", 2).Where("type_status", 1).Order("type_sort asc").Find(&listMacType)
+		service.SaveTable(table, "listMacType", listMacType)
+	} else {
+		listMacType = *CacheMacType.(*[]models.MacType)
+	}
+
+	// 正在热播
+	CacheCurrentlyTrending, _ := service.GetTable(table, "CurrentlyTrending", []models.MacVod{})
+	if CacheCurrentlyTrending == nil {
+		MacVod.Debug().Where("type_id_1", 2).Where("vod_status", 1).Order("vod_hits desc").Limit(16).Find(&CurrentlyTrending)
+		service.SaveTable(table, "CurrentlyTrending", CurrentlyTrending)
+	} else {
+		CurrentlyTrending = *CacheCurrentlyTrending.(*[]models.MacVod)
+	}
+
+	PageData["listMacType"] = listMacType
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+
+	DATA["PageData"] = PageData
+	DATA["page"] = "dianshiju"
+	c.HTML(http.StatusOK, "v/dianshiju.html", DATA)
 }
 
 func (h *VideosController) Dongman(c *gin.Context) {
