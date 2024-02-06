@@ -95,26 +95,85 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 }
 
 func (h *VideosController) Dongman(c *gin.Context) {
+	table := "dongman.html"
+	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
 	}
-	data := value.(gin.H)
-	data["page"] = "dongman"
-	data["title"] = "动漫"
-	c.HTML(http.StatusOK, "v/dongman.html", data)
+	DATA := value.(gin.H)
+	// 批量查询数据
+	var (
+		listMacType       []models.MacType
+		CurrentlyTrending []models.MacVod
+	)
+	MacVod := models.MacVodMgr(mysql.DB)
+	// 二级详细分类
+	service.ListMacType(table, 4, &listMacType)
+	// 正在热播
+	service.CurrentlyTrending(table, 4, 16, &CurrentlyTrending)
+	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
+	for _, item := range listMacType {
+		Name := item.TypeEn
+		TypeID := item.TypeID
+		var BindList []models.MacVod
+		// 动作片
+		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
+		if CacheList == nil {
+			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
+			service.SaveTable(table, Name, BindList)
+		} else {
+			BindList = *CacheList.(*[]models.MacVod)
+		}
+		PageData[Name] = BindList
+	}
+	PageData["listMacType"] = listMacType
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+
+	DATA["PageData"] = PageData
+	DATA["page"] = "dongman"
+	c.HTML(http.StatusOK, "v/dongman.html", DATA)
 }
 
 func (h *VideosController) Zongyi(c *gin.Context) {
+	table := "zongyi.html"
+	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
 	}
-	data := value.(gin.H)
-	data["page"] = "zongyi"
-	data["title"] = "综艺"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "v/zongyi.html", data)
+	DATA := value.(gin.H)
+	// 批量查询数据
+	var (
+		listMacType       []models.MacType
+		CurrentlyTrending []models.MacVod
+	)
+	MacVod := models.MacVodMgr(mysql.DB)
+	// 二级详细分类
+	service.ListMacType(table, 3, &listMacType)
+	// 正在热播
+	service.CurrentlyTrending(table, 3, 16, &CurrentlyTrending)
+	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
+	for _, item := range listMacType {
+		Name := item.TypeEn
+		TypeID := item.TypeID
+		var BindList []models.MacVod
+		// 动作片
+		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
+		if CacheList == nil {
+			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
+			service.SaveTable(table, Name, BindList)
+		} else {
+			BindList = *CacheList.(*[]models.MacVod)
+		}
+		PageData[Name] = BindList
+	}
+	PageData["listMacType"] = listMacType
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+
+	DATA["PageData"] = PageData
+	DATA["page"] = "zongyi"
+	c.HTML(http.StatusOK, "v/zongyi.html", DATA)
 }
 
 func (h *VideosController) Play(c *gin.Context) {
