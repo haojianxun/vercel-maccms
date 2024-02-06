@@ -30,7 +30,7 @@ func (h *VideosController) Dianying(c *gin.Context) {
 	// 二级详细分类
 	service.ListMacType(table, 1, &listMacType)
 	// 正在热播
-	service.CurrentlyTrending(table, 1, 16, &CurrentlyTrending)
+	service.ListMacVod(table, "CurrentlyTrending", 1, 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
@@ -70,7 +70,7 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 	// 二级详细分类
 	service.ListMacType(table, 2, &listMacType)
 	// 正在热播
-	service.CurrentlyTrending(table, 2, 16, &CurrentlyTrending)
+	service.ListMacVod(table, "CurrentlyTrending", 2, 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
@@ -111,7 +111,7 @@ func (h *VideosController) Dongman(c *gin.Context) {
 	// 二级详细分类
 	service.ListMacType(table, 4, &listMacType)
 	// 正在热播
-	service.CurrentlyTrending(table, 4, 16, &CurrentlyTrending)
+	service.ListMacVod(table, "CurrentlyTrending", 4, 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
@@ -152,7 +152,7 @@ func (h *VideosController) Zongyi(c *gin.Context) {
 	// 二级详细分类
 	service.ListMacType(table, 3, &listMacType)
 	// 正在热播
-	service.CurrentlyTrending(table, 3, 16, &CurrentlyTrending)
+	service.ListMacVod(table, "CurrentlyTrending", 3, 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn

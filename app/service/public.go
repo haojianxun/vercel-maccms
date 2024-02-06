@@ -5,15 +5,27 @@ import (
 	"goapi/pkg/mysql"
 )
 
-// 热播数据
+// 获取某个栏目下的视频数据
 
-func CurrentlyTrending(table string, typeId1, limit int, CurrentlyTrending *[]models.MacVod) {
-	CacheCurrentlyTrending, _ := GetTable(table, "CurrentlyTrending", []models.MacVod{})
-	if CacheCurrentlyTrending == nil {
-		models.MacVodMgr(mysql.DB).Debug().Where("type_id_1", typeId1).Where("vod_status", 1).Order("vod_hits desc").Limit(limit).Find(&CurrentlyTrending)
-		SaveTable(table, "CurrentlyTrending", CurrentlyTrending)
+func ListMacVod(table, name string, typeId1, limit int, listMacVod *[]models.MacVod) {
+	CacheListMacVod, _ := GetTable(table, name, []models.MacVod{})
+	if CacheListMacVod == nil {
+		models.MacVodMgr(mysql.DB).Debug().Where("type_id_1", typeId1).Where("vod_status", 1).Order("vod_hits desc").Limit(limit).Find(&listMacVod)
+		SaveTable(table, name, listMacVod)
 	} else {
-		*CurrentlyTrending = *CacheCurrentlyTrending.(*[]models.MacVod) // 更新指针指向的值
+		*listMacVod = *CacheListMacVod.(*[]models.MacVod) // 更新指针指向的值
+	}
+}
+
+// 获取某个栏目下的视频月榜数据
+
+func MonthListMacVod(table, name string, typeId1, limit int, MonthList *[]models.MacVod) {
+	CacheMonthList, _ := GetTable(table, name, []models.MacVod{})
+	if CacheMonthList == nil {
+		models.MacVodMgr(mysql.DB).Debug().Where("type_id_1", typeId1).Order("vod_hits_month desc").Limit(limit).Find(&MonthList)
+		SaveTable(table, name, MonthList)
+	} else {
+		*MonthList = *CacheMonthList.(*[]models.MacVod) // 更新指针指向的值
 	}
 }
 
