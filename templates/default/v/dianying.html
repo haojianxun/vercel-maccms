@@ -81,556 +81,63 @@
 		</div>
 		<!-- 分类页热播 -->
 		
-		<!--动作片-->
+		<!--二级分类数据列表-->
+		{{ range .PageData.listMacType }}
 		<div class="module module-bg">
 			<div class="module-heading">
 				<h2 class="module-title">
-					<a href="/v/action.html" title="动作片">动作片<span class="module-title-en">action</span></a>
+					<a href="/v/{{.TypeEn}}.html" title="{{.TypeName}}">{{.TypeName}}<span class="module-title-en">{{.TypeEn}}</span></a>
 				</h2>
-				<a class="more" href="/v/action.html" title="更多">更多动作片<i class="icon-arrow-right-o"></i></a>
+				<a class="more" href="/v/{{.TypeEn}}.html" title="更多">更多{{.TypeName}}<i class="icon-arrow-right-o"></i></a>
 			</div>
 			<div class="module-list module-line-list">
 				<div class="module-items">
-					{{ range .PageData.listDongZuoPian }}
+					{{ $list := ListMacVod $.PageData .TypeEn }}
+					{{range $index,$data := $list}}
 					<div class="module-item">
 						<div class="module-item-cover">
 							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
+								<a href="show.html" title="{{ $data.VodName }}">
 									<i class="icon-play"></i>
 								</a>
-								<img alt="{{ .VodName }}"
+								<img alt="{{ $data.VodName }}"
 									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
+									 data-src="{{ $data.VodPic }}"
 									 onerror="this.src='/statics/image/loading.png'"
 									 src="/statics/image/loading.png">
 								<div class="loading"></div>
 							</div>
 							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
+								<span> {{ $data.VodYear }}</span>
+								<span class="video-class">{{ $data.VodClass }}</span>
+								<span>{{ $data.VodArea }}</span>
 							</div>
 							<div class="module-item-content">
 								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+									<a href="show.html" title="{{ $data.VodName }}">{{ $data.VodName }}</a>
 								</div>
 								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
+									{{ $VodActorList := split $data.VodActor "," }}
 									{{ range $index, $name := $VodActorList }}
 									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
 									{{ end }}
 								</div>
 								<div class="module-item-style video-text">
-									{{ .VodContent }}
+									{{ $data.VodContent }}
 								</div>
 							</div>
 						</div>
 						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+							<a class="module-item-title" href="show.html" title="{{ $data.VodName }}">{{ $data.VodName }}</a>
 						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
+						<div class="module-item-text">{{ $data.VodRemarks }}</div>
 					</div>
 					{{end}}
 				</div>
 			</div>
 		</div>
-		<!--动作片-->
-		
-		
-		<!--喜剧片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title"><a href="/v/xiju.html" title="喜剧片">喜剧片<span
-						class="module-title-en">xiju</span></a></h2>
-				<a class="more" href="/v/xiju.html" title="更多">更多喜剧片<i class="icon-arrow-right-o"></i></a></div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listXiJuPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--喜剧片-->
-		
-		<!--爱情片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/romance.html" title="爱情片">爱情片<span class="module-title-en">romance</span></a>
-				</h2>
-				<a class="more" href="/v/romance.html" title="更多">更多爱情片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listAiQingPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--爱情片-->
-		
-		<!--科幻片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/science.html" title="科幻片">科幻片<span class="module-title-en">science</span></a>
-				</h2>
-				<a class="more" href="/v/science.html" title="更多">更多科幻片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listKeHuanPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--科幻片-->
-		
-		
-		<!--恐怖片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/horror.html" title="恐怖片">恐怖片<span class="module-title-en">horror</span></a>
-				</h2>
-				<a class="more" href="/v/horror.html" title="更多">更多恐怖片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listKongBuPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--恐怖片-->
-		
-		<!--剧情片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/feature.html" title="剧情片">剧情片<span class="module-title-en">feature</span></a>
-				</h2>
-				<a class="more" href="/v/feature.html" title="更多">更多剧情片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listJuQingPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--剧情片-->
-		
-		
-		<!--战争片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title"><a href="/v/war.html" title="战争片">战争片<span
-						class="module-title-en">war</span></a></h2>
-				<a class="more" href="/v/war.html" title="更多">更多战争片<i class="icon-arrow-right-o"></i></a></div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listZhanZhengPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--战争片-->
-		
-		
-		<!--动画片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/cartoon.html" title="动画片">动画片<span class="module-title-en">cartoon</span></a>
-				</h2>
-				<a class="more" href="/v/cartoon.html" title="更多">更多动画片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listDongHuaPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--动画片-->
-		
-		<!--奇幻片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/qihuan.html" title="奇幻片">奇幻片<span class="module-title-en">qihuan</span></a>
-				</h2>
-				<a class="more" href="/v/qihuan.html" title="更多">更多奇幻片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listQiHuanPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--奇幻片-->
-		
-		<!--记录片-->
-		<div class="module module-bg">
-			<div class="module-heading">
-				<h2 class="module-title">
-					<a href="/v/jilupian.html" title="记录片">记录片<span class="module-title-en">jilupian</span></a>
-				</h2>
-				<a class="more" href="/v/jilupian.html" title="更多">更多记录片<i class="icon-arrow-right-o"></i></a>
-			</div>
-			<div class="module-list module-line-list">
-				<div class="module-items">
-					{{ range .PageData.listJiLuPian }}
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="{{ .VodName }}"
-									 class="lazy lazyloaded"
-									 data-src="{{ .VodPic }}"
-									 onerror="this.src='/statics/image/loading.png'"
-									 src="/statics/image/loading.png">
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span> {{ .VodYear }}</span>
-								<span class="video-class">{{ .VodClass }}</span>
-								<span>{{ .VodArea }}</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-								</div>
-								<div class="module-item-style video-tag">
-									{{ $VodActorList := split .VodActor "," }}
-									{{ range $index, $name := $VodActorList }}
-									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
-									{{ end }}
-								</div>
-								<div class="module-item-style video-text">
-									{{ .VodContent }}
-								</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
-						</div>
-						<div class="module-item-text">{{ .VodRemarks }}</div>
-					</div>
-					{{end}}
-				</div>
-			</div>
-		</div>
-		<!--记录片-->
-		<!-- 有二级分类 -->
+		{{end}}
+		<!-- 二级分类数据列表 -->
 	
 	
 	</div>

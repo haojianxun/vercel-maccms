@@ -2,6 +2,7 @@ package bootstrap
 
 import (
 	"github.com/gin-gonic/gin"
+	"goapi/app/models"
 	"goapi/templates"
 	"html/template"
 	"io/fs"
@@ -34,8 +35,9 @@ func SetupTemplate(router *gin.Engine) {
 func SetFuncMap() template.FuncMap {
 	// 注册自定义模板函数
 	funcMap := template.FuncMap{
-		"split": split,
-		"add":   add,
+		"split":      split,
+		"add":        add,
+		"ListMacVod": ListMacVod,
 	}
 	return funcMap
 }
@@ -46,4 +48,9 @@ func split(str, sep string) []string {
 
 func add(a, b int) int {
 	return a + b
+}
+
+func ListMacVod(PageData map[string]interface{}, name string) []models.MacVod {
+	list := PageData[name].([]models.MacVod)
+	return list
 }

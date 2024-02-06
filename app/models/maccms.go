@@ -1212,7 +1212,7 @@ var MacTopicColumns = struct {
 
 // MacType [...]
 type MacType struct {
-	TypeID        uint16 `gorm:"primaryKey;column:type_id" json:"-"`          // 分类ID
+	TypeID        uint16 `gorm:"primaryKey;column:type_id" json:"typeID"`     // 分类ID
 	TypeName      string `gorm:"column:type_name" json:"typeName"`            // 分类名称
 	TypeEn        string `gorm:"column:type_en" json:"typeEn"`                // 分类英文名
 	TypeSort      uint16 `gorm:"column:type_sort" json:"typeSort"`            // 分类排序
