@@ -85,7 +85,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	// 首页动漫
 	CachelistDongManu, _ := service.GetTable(table, "listDongMan", []models.MacVod{})
 	if CachelistDongManu == nil {
-		DB.Debug().Where("type_id", 4).Order("vod_hits desc").Limit(14).Find(&listDongMan)
+		DB.Debug().Where("type_id_1", 4).Order("vod_hits desc").Limit(14).Find(&listDongMan)
 		service.SaveTable(table, "listDongMan", listDongMan)
 	} else {
 		listDongMan = *CachelistDongManu.(*[]models.MacVod)
@@ -94,7 +94,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	// 动漫月榜
 	CacheMonthDongMan, _ := service.GetTable(table, "MonthDongMan", []models.MacVod{})
 	if CacheMonthDongMan == nil {
-		DB.Debug().Where("type_id", 4).Order("vod_hits_month desc").Limit(10).Find(&MonthDongMan)
+		DB.Debug().Where("type_id_1", 4).Order("vod_hits_month desc").Limit(10).Find(&MonthDongMan)
 		service.SaveTable(table, "MonthDongMan", MonthDongMan)
 	} else {
 		MonthDongMan = *CacheMonthDongMan.(*[]models.MacVod)
@@ -103,7 +103,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	// 首页综艺
 	CachelistZongYi, _ := service.GetTable(table, "listZongYi", []models.MacVod{})
 	if CachelistZongYi == nil {
-		DB.Debug().Where("type_id", 3).Order("vod_hits desc").Limit(14).Find(&listZongYi)
+		DB.Debug().Where("type_id_1", 3).Order("vod_hits desc").Limit(14).Find(&listZongYi)
 		service.SaveTable(table, "listZongYi", listZongYi)
 	} else {
 		listZongYi = *CachelistZongYi.(*[]models.MacVod)
@@ -112,7 +112,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	// 综艺月榜
 	CacheMonthZongYi, _ := service.GetTable(table, "MonthZongYi", []models.MacVod{})
 	if CacheMonthZongYi == nil {
-		DB.Debug().Where("type_id", 3).Order("vod_hits_month desc").Limit(10).Find(&MonthZongYi)
+		DB.Debug().Where("type_id_1", 3).Order("vod_hits_month desc").Limit(10).Find(&MonthZongYi)
 		service.SaveTable(table, "MonthZongYi", MonthZongYi)
 	} else {
 		MonthZongYi = *CacheMonthZongYi.(*[]models.MacVod)
@@ -125,8 +125,8 @@ func (h *IndexController) Index(c *gin.Context) {
 		DB.Debug().Order("vod_time desc").Limit(8).Find(&NewsAll)
 		DB.Debug().Where("type_id_1", 1).Order("vod_time desc").Limit(8).Find(&NewsVideos)
 		DB.Debug().Where("type_id_1", 2).Order("vod_time desc").Limit(8).Find(&NewsDianShiJu)
-		DB.Debug().Where("type_id", 4).Order("vod_time desc").Limit(8).Find(&NewsDongMan)
-		DB.Debug().Where("type_id", 3).Order("vod_time desc").Limit(8).Find(&NewsZongYi)
+		DB.Debug().Where("type_id_1", 4).Order("vod_time desc").Limit(8).Find(&NewsDongMan)
+		DB.Debug().Where("type_id_1", 3).Order("vod_time desc").Limit(8).Find(&NewsZongYi)
 		listNewVideos = map[string][]models.MacVod{
 			"NewsAll":       NewsAll,
 			"NewsVideos":    NewsVideos,
