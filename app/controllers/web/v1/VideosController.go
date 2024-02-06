@@ -56,7 +56,7 @@ func (h *VideosController) Dianying(c *gin.Context) {
 		// 动作片
 		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
 		if CacheList == nil {
-			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(14).Find(&BindList)
+			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
 			service.SaveTable(table, Name, BindList)
 		} else {
 			BindList = *CacheList.(*[]models.MacVod)
@@ -103,6 +103,21 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 		CurrentlyTrending = *CacheCurrentlyTrending.(*[]models.MacVod)
 	}
 
+	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
+	for _, item := range listMacType {
+		Name := item.TypeEn
+		TypeID := item.TypeID
+		var BindList []models.MacVod
+		// 动作片
+		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
+		if CacheList == nil {
+			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
+			service.SaveTable(table, Name, BindList)
+		} else {
+			BindList = *CacheList.(*[]models.MacVod)
+		}
+		PageData[Name] = BindList
+	}
 	PageData["listMacType"] = listMacType
 	PageData["CurrentlyTrending"] = CurrentlyTrending
 
