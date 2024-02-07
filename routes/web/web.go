@@ -22,7 +22,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		// 搜索
 		webV1.GET("/search.html", GroupV1.IndexController.Search)
 		// 详情
-		webV1.GET("/show.html", GroupV1.VideosController.Show)
+		webV1.GET("/show-:params", GroupV1.VideosController.Show)
 		// 排行榜
 		webV1.GET("/top.html", GroupV1.VideosController.Top)
 		// Web

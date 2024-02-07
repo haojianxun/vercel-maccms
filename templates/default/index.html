@@ -26,7 +26,7 @@
 					<div class="module-item">
 						<div class="module-item-cover">
 							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
+								<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 									<i class="icon-play"></i>
 								</a>
 								<img alt="{{ .VodName }}"
@@ -43,7 +43,7 @@
 							</div>
 							<div class="module-item-content">
 								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-style video-tag">
 									{{ $VodActorList := split .VodActor "," }}
@@ -57,7 +57,7 @@
 							</div>
 						</div>
 						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+							<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 						</div>
 						<div class="module-item-text">{{ .VodRemarks }}</div>
 					</div>
@@ -86,7 +86,7 @@
 						<div class="module-item">
 							<div class="module-item-cover">
 								<div class="module-item-pic">
-									<a href="show.html" title="{{ .VodName }}">
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 										<i class="icon-play"></i>
 									</a>
 									<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -103,7 +103,7 @@
 								
 								<div class="module-item-content">
 									<div class="module-item-style video-name">
-										<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 									</div>
 									<div class="module-item-style video-tag">
 										{{ $VodActorList := split .VodActor "," }}
@@ -117,7 +117,7 @@
 								</div>
 							</div>
 							<div class="module-item-titlebox">
-								<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 							</div>
 							<div class="module-item-text">{{ .VodRemarks }}</div>
 						</div>
@@ -133,7 +133,7 @@
 					<div class="scroll-box">
 						<div class="module-textlist scroll-content">
 							{{ range $index,$value := .PageData.MonthDianYing}}
-							<a class="text-list-item" href="show.html">
+							<a class="text-list-item" href="show-{{ EncryptID $value.VodID }}.html">
 								<div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
 								<div class="text-list-title">
 									<h3>{{ $value.VodName }}</h3>
@@ -167,7 +167,7 @@
 						<div class="module-item">
 							<div class="module-item-cover">
 								<div class="module-item-pic">
-									<a href="show.html" title="{{ .VodName }}">
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 										<i class="icon-play"></i>
 									</a>
 									<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -184,7 +184,7 @@
 								
 								<div class="module-item-content">
 									<div class="module-item-style video-name">
-										<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 									</div>
 									<div class="module-item-style video-tag">
 										{{ $VodActorList := split .VodActor "," }}
@@ -198,7 +198,7 @@
 								</div>
 							</div>
 							<div class="module-item-titlebox">
-								<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 							</div>
 							<div class="module-item-text">{{ .VodRemarks }}</div>
 						</div>
@@ -214,7 +214,7 @@
 					<div class="scroll-box">
 						<div class="module-textlist scroll-content">
 							{{ range $index,$value := .PageData.MonthDianShiJu}}
-							<a class="text-list-item" href="show.html">
+							<a class="text-list-item" href="show-{{ EncryptID $value.VodID }}.html">
 								<div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
 								<div class="text-list-title">
 									<h3>{{ $value.VodName }}</h3>
@@ -248,7 +248,7 @@
 						<div class="module-item">
 							<div class="module-item-cover">
 								<div class="module-item-pic">
-									<a href="show.html" title="{{ .VodName }}">
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 										<i class="icon-play"></i>
 									</a>
 									<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -265,7 +265,7 @@
 								
 								<div class="module-item-content">
 									<div class="module-item-style video-name">
-										<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 									</div>
 									<div class="module-item-style video-tag">
 										{{ $VodActorList := split .VodActor "," }}
@@ -279,7 +279,7 @@
 								</div>
 							</div>
 							<div class="module-item-titlebox">
-								<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 							</div>
 							<div class="module-item-text">{{ .VodRemarks }}</div>
 						</div>
@@ -295,7 +295,7 @@
 					<div class="scroll-box">
 						<div class="module-textlist scroll-content">
 							{{ range $index,$value := .PageData.MonthDongMan}}
-							<a class="text-list-item" href="show.html">
+							<a class="text-list-item" href="show-{{ EncryptID $value.VodID }}.html">
 								<div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
 								<div class="text-list-title">
 									<h3>{{ $value.VodName }}</h3>
@@ -327,7 +327,7 @@
 						<div class="module-item">
 							<div class="module-item-cover">
 								<div class="module-item-pic">
-									<a href="show.html" title="{{ .VodName }}">
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 										<i class="icon-play"></i>
 									</a>
 									<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -344,7 +344,7 @@
 								
 								<div class="module-item-content">
 									<div class="module-item-style video-name">
-										<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 									</div>
 									<div class="module-item-style video-tag">
 										{{ $VodActorList := split .VodActor "," }}
@@ -358,7 +358,7 @@
 								</div>
 							</div>
 							<div class="module-item-titlebox">
-								<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 							</div>
 							<div class="module-item-text">{{ .VodRemarks }}</div>
 						</div>
@@ -374,7 +374,7 @@
 					<div class="scroll-box">
 						<div class="module-textlist scroll-content">
 							{{ range $index,$value := .PageData.MonthZongYi}}
-							<a class="text-list-item" href="show.html">
+							<a class="text-list-item" href="show-{{ EncryptID $value.VodID }}.html">
 								<div class="text-list-num top-main top-{{ add $index 1 }}">{{ add $index 1 }}</div>
 								<div class="text-list-title">
 									<h3>{{ $value.VodName }}</h3>
@@ -426,7 +426,7 @@
 							<div class="module-item">
 								<div class="module-item-cover">
 									<div class="module-item-pic">
-										<a href="show.html" title="{{ .VodName }}">
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 											<i class="icon-play"></i>
 										</a>
 										<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -443,7 +443,7 @@
 									
 									<div class="module-item-content">
 										<div class="module-item-style video-name">
-											<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+											<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 										</div>
 										<div class="module-item-style video-tag">
 											{{ $VodActorList := split .VodActor "," }}
@@ -457,8 +457,7 @@
 									</div>
 								</div>
 								<div class="module-item-titlebox">
-									<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName
-																										 }}</a>
+									<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-text">{{ .VodRemarks }}</div>
 							</div>
@@ -478,7 +477,7 @@
 							<div class="module-item">
 								<div class="module-item-cover">
 									<div class="module-item-pic">
-										<a href="show.html" title="{{ .VodName }}">
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 											<i class="icon-play"></i>
 										</a>
 										<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -495,7 +494,7 @@
 									
 									<div class="module-item-content">
 										<div class="module-item-style video-name">
-											<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+											<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 										</div>
 										<div class="module-item-style video-tag">
 											{{ $VodActorList := split .VodActor "," }}
@@ -509,7 +508,7 @@
 									</div>
 								</div>
 								<div class="module-item-titlebox">
-									<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName
+									<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName
 																										 }}</a>
 								</div>
 								<div class="module-item-text">{{ .VodRemarks }}</div>
@@ -530,7 +529,7 @@
 							<div class="module-item">
 								<div class="module-item-cover">
 									<div class="module-item-pic">
-										<a href="show.html" title="{{ .VodName }}">
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 											<i class="icon-play"></i>
 										</a>
 										<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -547,7 +546,7 @@
 									
 									<div class="module-item-content">
 										<div class="module-item-style video-name">
-											<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+											<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 										</div>
 										<div class="module-item-style video-tag">
 											{{ $VodActorList := split .VodActor "," }}
@@ -561,8 +560,7 @@
 									</div>
 								</div>
 								<div class="module-item-titlebox">
-									<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName
-																										 }}</a>
+									<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-text">{{ .VodRemarks }}</div>
 							</div>
@@ -582,7 +580,7 @@
 							<div class="module-item">
 								<div class="module-item-cover">
 									<div class="module-item-pic">
-										<a href="show.html" title="{{ .VodName }}">
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 											<i class="icon-play"></i>
 										</a>
 										<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -599,7 +597,7 @@
 									
 									<div class="module-item-content">
 										<div class="module-item-style video-name">
-											<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+											<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 										</div>
 										<div class="module-item-style video-tag">
 											{{ $VodActorList := split .VodActor "," }}
@@ -613,8 +611,7 @@
 									</div>
 								</div>
 								<div class="module-item-titlebox">
-									<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName
-																										 }}</a>
+									<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-text">{{ .VodRemarks }}</div>
 							</div>
@@ -634,7 +631,7 @@
 							<div class="module-item">
 								<div class="module-item-cover">
 									<div class="module-item-pic">
-										<a href="show.html" title="{{ .VodName }}">
+										<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 											<i class="icon-play"></i>
 										</a>
 										<img alt="{{ .VodName }}" class="lazy lazyloaded"
@@ -651,7 +648,7 @@
 									
 									<div class="module-item-content">
 										<div class="module-item-style video-name">
-											<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+											<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 										</div>
 										<div class="module-item-style video-tag">
 											{{ $VodActorList := split .VodActor "," }}
@@ -665,8 +662,7 @@
 									</div>
 								</div>
 								<div class="module-item-titlebox">
-									<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName
-																										 }}</a>
+									<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-text">{{ .VodRemarks }}</div>
 							</div>

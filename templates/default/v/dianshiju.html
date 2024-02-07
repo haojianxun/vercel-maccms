@@ -38,7 +38,7 @@
 					<div class="module-item">
 						<div class="module-item-cover">
 							<div class="module-item-pic">
-								<a href="show.html" title="{{ .VodName }}">
+								<a href="show-{{ EncryptID .VodId }}.html" title="{{ .VodName }}">
 									<i class="icon-play"></i>
 								</a>
 								<img alt="{{ .VodName }}"
@@ -55,7 +55,7 @@
 							</div>
 							<div class="module-item-content">
 								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+									<a href="show-{{ EncryptID .VodId }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-style video-tag">
 									{{ $VodActorList := split .VodActor "," }}
@@ -69,7 +69,7 @@
 							</div>
 						</div>
 						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ .VodName }}">{{ .VodName }}</a>
+							<a class="module-item-title" href="show-{{ EncryptID .VodId }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 						</div>
 						<div class="module-item-text">{{ .VodRemarks }}</div>
 					</div>
@@ -95,7 +95,7 @@
 					<div class="module-item">
 						<div class="module-item-cover">
 							<div class="module-item-pic">
-								<a href="show.html" title="{{ $data.VodName }}">
+								<a href="show-{{ $data.VodId }}.html" title="{{ $data.VodName }}">
 									<i class="icon-play"></i>
 								</a>
 								<img alt="{{ $data.VodName }}"
@@ -112,7 +112,7 @@
 							</div>
 							<div class="module-item-content">
 								<div class="module-item-style video-name">
-									<a href="show.html" title="{{ $data.VodName }}">{{ $data.VodName }}</a>
+									<a href="show-{{ $data.VodId }}.html" title="{{ $data.VodName }}">{{ $data.VodName }}</a>
 								</div>
 								<div class="module-item-style video-tag">
 									{{ $VodActorList := split $data.VodActor "," }}
@@ -126,7 +126,7 @@
 							</div>
 						</div>
 						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="{{ $data.VodName }}">{{ $data.VodName }}</a>
+							<a class="module-item-title" href="show-{{ $data.VodId }}.html" title="{{ $data.VodName }}">{{ $data.VodName }}</a>
 						</div>
 						<div class="module-item-text">{{ $data.VodRemarks }}</div>
 					</div>

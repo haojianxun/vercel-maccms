@@ -1,11 +1,15 @@
 package v1
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
 	"goapi/app/service"
+	"goapi/pkg/maccms"
+	"goapi/pkg/mysql"
 	"net/http"
+	"strings"
 )
 
 type VideosController struct {
@@ -168,6 +172,45 @@ func (h *VideosController) Zongyi(c *gin.Context) {
 	c.HTML(http.StatusOK, "v/zongyi.html", DATA)
 }
 
+func (h *VideosController) Show(c *gin.Context) {
+	table := "show.html"
+	PageData := cmap.New().Items()
+	value, exists := c.Get("data")
+	if !exists {
+		value = gin.H{}
+	}
+	DATA := value.(gin.H)
+
+	// 获取路由中的参数值
+	params := strings.ReplaceAll(c.Param("params"), ".html", "")
+	if len(params) > 6 {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
+	VodID := maccms.DecryptID(params)
+	var detail models.MacVod
+	err := models.MacVodMgr(mysql.DB).Where("vod_id", VodID).Find(&detail).Error
+	if err != nil {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
+	fmt.Println("VodID:", VodID)
+	var (
+		CurrentlyTrending []models.MacVod
+	)
+	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
+		"type_id_1":  3,
+		"vod_status": 1,
+	}, "vod_hits desc", 16, &CurrentlyTrending)
+
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+	PageData["detail"] = detail
+	DATA["VodID"] = VodID
+	DATA["PageData"] = PageData
+	DATA["page"] = "show"
+	c.HTML(http.StatusOK, "show.html", DATA)
+}
+
 func (h *VideosController) Play(c *gin.Context) {
 	value, exists := c.Get("data")
 	if !exists {
@@ -178,18 +221,6 @@ func (h *VideosController) Play(c *gin.Context) {
 	data["title"] = "Play"
 	data["list"] = gin.H{"asas": "asas"}
 	c.HTML(http.StatusOK, "play.html", data)
-}
-
-func (h *VideosController) Show(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "show"
-	data["title"] = "show"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "show.html", data)
 }
 
 func (h *VideosController) PianKu(c *gin.Context) {

@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"github.com/gin-gonic/gin"
 	"goapi/app/models"
+	"goapi/pkg/maccms"
 	"goapi/templates"
 	"html/template"
 	"io/fs"
@@ -38,6 +39,8 @@ func SetFuncMap() template.FuncMap {
 		"split":      split,
 		"add":        add,
 		"ListMacVod": ListMacVod,
+		"EncryptID":  maccms.EncryptID,
+		"DecryptID":  maccms.DecryptID,
 	}
 	return funcMap
 }
