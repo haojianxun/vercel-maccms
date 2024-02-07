@@ -195,7 +195,13 @@ func (h *VideosController) Show(c *gin.Context) {
 	}
 	var (
 		CurrentlyTrending []models.MacVod
+		MacTypeDetail     models.MacType
 	)
+	err = models.MacTypeMgr(mysql.DB).Where("type_id", detail.TypeID1).Find(&MacTypeDetail).Error
+	if err != nil {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
 	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
 		"type_id_1":  3,
 		"vod_status": 1,
@@ -203,9 +209,10 @@ func (h *VideosController) Show(c *gin.Context) {
 
 	PageData["CurrentlyTrending"] = CurrentlyTrending
 	PageData["detail"] = detail
+	PageData["MacTypeDetail"] = MacTypeDetail
 	DATA["VodID"] = VodID
 	DATA["PageData"] = PageData
-	DATA["page"] = "show"
+	DATA["page"] = MacTypeDetail.TypeEn
 	c.HTML(http.StatusOK, "show.html", DATA)
 }
 

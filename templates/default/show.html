@@ -47,16 +47,17 @@
 							<a class="tag-link" href="v/dianying.html" title="{{ .PageData.detail.VodTag }}">
 								<span class="video-tag-icon">
 								  <i class="icon-cate-dy"></i>
-								  {{ .PageData.detail.VodTag }}
+								  {{ .PageData.MacTypeDetail.TypeName }}
 								</span>
 							</a>
-							{{ $VodClassList := split .PageData.detail.VodClass "," }}
-							{{ range $index, $name := $VodClassList }}
+							
 							<div class="tag-link">
 								<span class="slash">/</span>
+								{{ $VodClassList := split .PageData.detail.VodClass "," }}
+								{{ range $index, $name := $VodClassList }}
 								<a href="pianku.html">{{$name}}</a><span class="slash">/</span>
+								{{ end }}
 							</div>
-							{{ end }}
 							<a class="tag-link" href="pianku.html">{{ .PageData.detail.VodYear }} </a>
 							<a class="tag-link" href="pianku.html">{{ .PageData.detail.VodArea }} </a>
 						</div>
@@ -139,7 +140,7 @@
 						<button class="share-btn" data-clipboard-text="dianyi.ng/show.html 我正在电影先生观看《{{ .PageData.detail.VodName }}》，推荐给你一起看！">好影片，与好朋友一起分享<i class="icon-happy"></i>
 						</button>
 					</div>
-					<a class="btn-important btn-large shadow-drop" href="/play.html" title="立刻播放{{ .PageData.detail.VodName }}"><i class="icon-play"></i><strong>立即播放</strong></a>
+					<a class="btn-important btn-large shadow-drop" href="/play-{{ EncryptID $.PageData.detail.VodID }}-1-1.html" title="立刻播放{{ .PageData.detail.VodName }}"><i class="icon-play"></i><strong>立即播放</strong></a>
 					<a class="btn-aux btn-aux-o btn-large gotodownloadlist" href="/voddown/2FtqCS-1-1.html"><i class="icon-download"></i><strong>下载</strong></a>
 				</div>
 			</div>
@@ -210,7 +211,7 @@
 						<div class="module-tab-content">
 							{{ $VodPlayFromList := split .PageData.detail.VodPlayFrom "$$$" }}
 							{{ range $index, $name := $VodPlayFromList }}
-							<div class="module-tab-item tab-item" data-dropdown-value="{{ $name }}">
+							<div class="module-tab-item tab-item {{ if eq $index 0 }}selected{{end}}" data-dropdown-value="{{ $name }}">
 								<span>{{ $name }}</span>
 								<small>
 									{{ GetVodCount $.PageData.detail.VodPlayURL "$$$" $index }}
@@ -226,7 +227,7 @@
 			
 			{{ $VodPlayUrlList := split .PageData.detail.VodPlayURL "$$$" }}
 			{{ range $index, $data := $VodPlayUrlList }}
-			<div class="module-list module-player-list tab-list sort-list" id="glist-{{ add $index 1 }}">
+			<div class="module-list module-player-list tab-list sort-list {{ if eq $index 0 }}selected{{end}}" id="glist-{{ add $index 1 }}">
 				<div class="module-tab module-sorttab">
 					<input class="module-tab-input" id="tab-sort-{{ add $index 1 }}" name="tab-sort" type="hidden"/>
 					<label class="module-tab-name"><i class="icon-sort"></i></label>
