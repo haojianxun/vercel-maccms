@@ -5,7 +5,6 @@ import (
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
 	"goapi/app/service"
-	"goapi/pkg/mysql"
 	"net/http"
 )
 
@@ -26,24 +25,22 @@ func (h *VideosController) Dianying(c *gin.Context) {
 		listMacType       []models.MacType
 		CurrentlyTrending []models.MacVod
 	)
-	MacVod := models.MacVodMgr(mysql.DB)
 	// 二级详细分类
 	service.ListMacType(table, 1, &listMacType)
 	// 正在热播
-	service.ListMacVod(table, "CurrentlyTrending", 1, 16, &CurrentlyTrending)
+	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
+		"type_id_1":  1,
+		"vod_status": 1,
+	}, "vod_hits desc", 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
 		TypeID := item.TypeID
 		var BindList []models.MacVod
-		// 动作片
-		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
-		if CacheList == nil {
-			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
-			service.SaveTable(table, Name, BindList)
-		} else {
-			BindList = *CacheList.(*[]models.MacVod)
-		}
+		service.ListWhereMacVod(table, Name, map[string]interface{}{
+			"type_id":    TypeID,
+			"vod_status": 1,
+		}, "vod_hits desc", 16, &BindList)
 		PageData[Name] = BindList
 	}
 	PageData["listMacType"] = listMacType
@@ -66,24 +63,22 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 		listMacType       []models.MacType
 		CurrentlyTrending []models.MacVod
 	)
-	MacVod := models.MacVodMgr(mysql.DB)
 	// 二级详细分类
 	service.ListMacType(table, 2, &listMacType)
 	// 正在热播
-	service.ListMacVod(table, "CurrentlyTrending", 2, 16, &CurrentlyTrending)
+	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
+		"type_id_1":  2,
+		"vod_status": 1,
+	}, "vod_hits desc", 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
 		TypeID := item.TypeID
 		var BindList []models.MacVod
-		// 动作片
-		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
-		if CacheList == nil {
-			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
-			service.SaveTable(table, Name, BindList)
-		} else {
-			BindList = *CacheList.(*[]models.MacVod)
-		}
+		service.ListWhereMacVod(table, Name, map[string]interface{}{
+			"type_id":    TypeID,
+			"vod_status": 1,
+		}, "vod_hits desc", 16, &BindList)
 		PageData[Name] = BindList
 	}
 	PageData["listMacType"] = listMacType
@@ -107,24 +102,23 @@ func (h *VideosController) Dongman(c *gin.Context) {
 		listMacType       []models.MacType
 		CurrentlyTrending []models.MacVod
 	)
-	MacVod := models.MacVodMgr(mysql.DB)
 	// 二级详细分类
 	service.ListMacType(table, 4, &listMacType)
 	// 正在热播
-	service.ListMacVod(table, "CurrentlyTrending", 4, 16, &CurrentlyTrending)
+	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
+		"type_id_1":  4,
+		"vod_status": 1,
+	}, "vod_hits desc", 16, &CurrentlyTrending)
+
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
 		TypeID := item.TypeID
 		var BindList []models.MacVod
-		// 动作片
-		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
-		if CacheList == nil {
-			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
-			service.SaveTable(table, Name, BindList)
-		} else {
-			BindList = *CacheList.(*[]models.MacVod)
-		}
+		service.ListWhereMacVod(table, Name, map[string]interface{}{
+			"type_id":    TypeID,
+			"vod_status": 1,
+		}, "vod_hits desc", 16, &BindList)
 		PageData[Name] = BindList
 	}
 	PageData["listMacType"] = listMacType
@@ -148,24 +142,22 @@ func (h *VideosController) Zongyi(c *gin.Context) {
 		listMacType       []models.MacType
 		CurrentlyTrending []models.MacVod
 	)
-	MacVod := models.MacVodMgr(mysql.DB)
 	// 二级详细分类
 	service.ListMacType(table, 3, &listMacType)
 	// 正在热播
-	service.ListMacVod(table, "CurrentlyTrending", 3, 16, &CurrentlyTrending)
+	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
+		"type_id_1":  3,
+		"vod_status": 1,
+	}, "vod_hits desc", 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
 		TypeID := item.TypeID
 		var BindList []models.MacVod
-		// 动作片
-		CacheList, _ := service.GetTable(table, Name, []models.MacVod{})
-		if CacheList == nil {
-			MacVod.Debug().Where("type_id", TypeID).Order("vod_hits desc").Limit(16).Find(&BindList)
-			service.SaveTable(table, Name, BindList)
-		} else {
-			BindList = *CacheList.(*[]models.MacVod)
-		}
+		service.ListWhereMacVod(table, Name, map[string]interface{}{
+			"type_id":    TypeID,
+			"vod_status": 1,
+		}, "vod_hits desc", 16, &BindList)
 		PageData[Name] = BindList
 	}
 	PageData["listMacType"] = listMacType

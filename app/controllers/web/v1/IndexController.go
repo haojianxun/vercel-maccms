@@ -47,24 +47,48 @@ func (h *IndexController) Index(c *gin.Context) {
 	PageData["TodayCount"] = TodayCount
 
 	// 首页电影
-	service.ListMacVod(table, "listDianYing", 1, 14, &listDianYing)
+	service.ListWhereMacVod(table, "listDianYing", map[string]interface{}{
+		"type_id_1":  1,
+		"vod_status": 1,
+	}, "vod_hits desc", 14, &listDianYing)
 	// 电影月榜
-	service.MonthListMacVod(table, "MonthDianYing", 1, 10, &MonthDianYing)
+	service.ListWhereMacVod(table, "MonthDianYing", map[string]interface{}{
+		"type_id_1":  1,
+		"vod_status": 1,
+	}, "vod_hits_month desc", 10, &MonthDianYing)
 
 	// 首页电视剧
-	service.ListMacVod(table, "listDianShiJu", 2, 14, &listDianShiJu)
+	service.ListWhereMacVod(table, "listDianShiJu", map[string]interface{}{
+		"type_id_1":  2,
+		"vod_status": 1,
+	}, "vod_hits desc", 14, &listDianShiJu)
 	// 电视剧月榜
-	service.MonthListMacVod(table, "MonthDianShiJu", 2, 10, &MonthDianShiJu)
+	service.ListWhereMacVod(table, "MonthDianShiJu", map[string]interface{}{
+		"type_id_1":  2,
+		"vod_status": 1,
+	}, "vod_hits_month desc", 10, &MonthDianShiJu)
 
 	// 首页动漫
-	service.ListMacVod(table, "listDongMan", 4, 14, &listDongMan)
+	service.ListWhereMacVod(table, "listDongMan", map[string]interface{}{
+		"type_id_1":  4,
+		"vod_status": 1,
+	}, "vod_hits desc", 14, &listDongMan)
 	// 动漫月榜
-	service.MonthListMacVod(table, "MonthDongMan", 4, 10, &MonthDongMan)
+	service.ListWhereMacVod(table, "MonthDongMan", map[string]interface{}{
+		"type_id_1":  4,
+		"vod_status": 1,
+	}, "vod_hits_month desc", 10, &MonthDongMan)
 
 	// 首页综艺
-	service.ListMacVod(table, "listZongYi", 3, 14, &listZongYi)
+	service.ListWhereMacVod(table, "listZongYi", map[string]interface{}{
+		"type_id_1":  3,
+		"vod_status": 1,
+	}, "vod_hits desc", 14, &listZongYi)
 	// 综艺月榜
-	service.MonthListMacVod(table, "MonthZongYi", 3, 10, &MonthZongYi)
+	service.ListWhereMacVod(table, "MonthZongYi", map[string]interface{}{
+		"type_id_1":  3,
+		"vod_status": 1,
+	}, "vod_hits_month desc", 10, &MonthZongYi)
 
 	// 最新影片
 	listNewVideos := make(map[string][]models.MacVod)
