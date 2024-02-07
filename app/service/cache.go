@@ -27,8 +27,7 @@ func GetTable(tableName, name string, structName interface{}) (interface{}, erro
 		return nil, err
 	}
 
-	// 检查返回的数据是否为空
-	if len(data) == 0 || data[0] == nil {
+	if len(data) == 0 || data[0] == nil || data[0] == "[]" {
 		return nil, fmt.Errorf("未找到键：%s，字段：%s 的数据", tableName, name)
 	}
 
