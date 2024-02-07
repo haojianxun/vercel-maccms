@@ -10,107 +10,136 @@
 			<div class="mobile-play">
 				<div class="module-item-cover">
 					<div class="module-item-pic">
-						<img class="lazyload" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2891257290.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
+						<img class="lazyload"
+							 data-src="{{ .PageData.detail.VodPic }}"
+							 onerror="this.src='/statics/image/loading.png'"
+							 src="/statics/image/loading.png"/>
 					</div>
 				</div>
 			</div>
 			<div class="video-cover">
 				<div class="module-item-cover">
 					<div class="module-item-pic">
-						<a href="/play.html" title="立刻播放哆啦A梦：大雄与天空的理想乡"><i class="icon-play"></i></a><img alt="哆啦A梦：大雄与天空的理想乡" class="lazyload" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2891257290.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
+						<a href="/play.html" title="立刻播放{{ .PageData.detail.VodName }}">
+							<i class="icon-play"></i>
+						</a>
+						<img class="lazyload"
+							 alt="{{ .PageData.detail.VodName }}"
+							 data-src="{{ .PageData.detail.VodPic }}"
+							 onerror="this.src='/statics/image/loading.png'"
+							 src="/statics/image/loading.png"/>
 						<div class="loading"></div>
 					</div>
 				</div>
 			</div>
 			<div class="video-info">
 				<div class="video-info-header">
-					<h1 class="page-title">哆啦A梦：大雄与天空的理想乡</h1>
-					<h2 class="video-subtitle" title="又名：Doraemon the Movie: Nobita’s Sky Utopia,哆啦A梦：大雄与天空的理想乡 映画ドラえもん のび太と空の理想郷">
-						<a href="/search--------------/writer/Doraemon+the+Movie%3A+Nobita%E2%80%99s+Sky+Utopia.html" target="_blank">Doraemon the Movie: Nobita’s Sky Utopia</a><span class="slash">/</span><a href="/search--------------/writer/%E5%93%86%E5%95%A6A%E6%A2%A6%EF%BC%9A%E5%A4%A7%E9%9B%84%E4%B8%8E%E5%A4%A9%E7%A9%BA%E7%9A%84%E7%90%86%E6%83%B3%E4%B9%A1.html" target="_blank">哆啦A梦：大雄与天空的理想乡</a><span class="slash">/</span><a href="/search--------------/writer/%E6%98%A0%E7%94%BB%E3%83%89%E3%83%A9%E3%81%88%E3%82%82%E3%82%93.html" target="_blank">映画ドラえもん</a><span class="slash">/</span><a href="/search--------------/writer/%E3%81%AE%E3%81%B3%E5%A4%AA%E3%81%A8%E7%A9%BA%E3%81%AE%E7%90%86%E6%83%B3%E9%83%B7.html" target="_blank">のび太と空の理想郷</a><span class="slash">/</span>
+					<h1 class="page-title">{{ .PageData.detail.VodName }}</h1>
+					<h2 class="video-subtitle" title="又名：{{ .PageData.detail.VodSub }},{{ .PageData.detail.VodName }}">
+						<a href="search.html" target="_blank">{{ .PageData.detail.VodName }}</a><span class="slash">/</span>
+						{{ $VodSubList := split .PageData.detail.VodSub "/" }}
+						{{ range $index, $name := $VodSubList }}
+						<a href="search.html" target="_blank">{{ $name }}</a><span class="slash">/</span>
+						{{ end }}
 					</h2>
 					<div class="scroll-box">
 						<div class="video-info-aux scroll-content">
-							<a class="tag-link" href="v/dianying.html" title="电影">
-                    <span class="video-tag-icon">
-                      <i class="icon-cate-dy"></i>
-                      电影
-                    </span>
+							<a class="tag-link" href="v/dianying.html" title="{{ .PageData.detail.VodTag }}">
+								<span class="video-tag-icon">
+								  <i class="icon-cate-dy"></i>
+								  {{ .PageData.detail.VodTag }}
+								</span>
 							</a>
+							{{ $VodClassList := split .PageData.detail.VodClass "," }}
+							{{ range $index, $name := $VodClassList }}
 							<div class="tag-link">
 								<span class="slash">/</span>
-								<a href="/pianku-20---%E5%8A%A8%E7%94%BB--------.html">动画</a><span class="slash">/</span>
+								<a href="pianku.html">{{$name}}</a><span class="slash">/</span>
 							</div>
-							
-							<a class="tag-link" href="/pianku-20-----------2023.html">2023 </a>
-							
-							<a class="tag-link" href="/pianku-20-%E6%97%A5%E6%9C%AC----------.html">日本 </a>
+							{{ end }}
+							<a class="tag-link" href="pianku.html">{{ .PageData.detail.VodYear }} </a>
+							<a class="tag-link" href="pianku.html">{{ .PageData.detail.VodArea }} </a>
 						</div>
 					</div>
-					<a class="btn-important btn-large shadow-drop video-info-play" href="/play.html" title="立刻播放哆啦A梦：大雄与天空的理想乡"><i class="icon-play"></i><strong>立即播放</strong></a>
-					<a class="video-info-downbtn video-info-play gotodownloadlist gotodownloadlist" href="/voddown/2FtqCS-1-1.html"><i class="icon-download"></i><strong>影片下载</strong></a>
+					<a class="btn-important btn-large shadow-drop video-info-play" href="play.html" title="立刻播放{{ .PageData.detail.VodName }}"><i class="icon-play"></i><strong>立即播放</strong></a>
+					<a class="video-info-downbtn video-info-play gotodownloadlist gotodownloadlist" href="voddown/2FtqCS-1-1.html"><i class="icon-download"></i><strong>影片下载</strong></a>
 				</div>
 				
 				<div class="video-info-main">
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">导演：</span>
-						<div class="video-info-item video-info-actor"><span class="slash">/</span>
-							<a href="/search------%E5%A0%82%E5%B1%B1%E5%8D%93%E8%A7%81--------.html" target="_blank">堂山卓见</a><span class="slash">/</span>
+						<div class="video-info-item video-info-actor">
+							<span class="slash">/</span>
+							{{ $VodDirectorList := split .PageData.detail.VodDirector "," }}
+							{{ range $index, $name := $VodDirectorList }}
+							<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+							{{ end }}
 						</div>
 					</div>
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">编剧：</span>
-						<div class="video-info-item video-info-actor"><span class="slash">/</span>
-							<a href="/search--------------/writer/%E5%8F%A4%E6%B3%BD%E8%89%AF%E5%A4%AA.html" target="_blank">古泽良太</a><span class="slash">/</span><a href="/search--------------/writer/%E8%97%A4%E5%AD%90%C2%B7F%C2%B7%E4%B8%8D%E4%BA%8C%E9%9B%84.html" target="_blank">藤子·F·不二雄</a><span class="slash">/</span>
+						<div class="video-info-item video-info-actor">
+							<span class="slash">/</span>
+							{{ $VodWriterList := split .PageData.detail.VodWriter "," }}
+							{{ range $index, $name := $VodWriterList }}
+							<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+							{{ end }}
 						</div>
 					</div>
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">主演：</span>
-						<div class="video-info-item video-info-actor"><span class="slash">/</span>
-							<a href="search.html" target="_blank">水田山葵</a><span class="slash">/</span><a href="search.html" target="_blank">大原惠美</a><span class="slash">/</span><a href="search.html" target="_blank">嘉数由美</a><span class="slash">/</span><a href="search.html" target="_blank">木村昴</a><span class="slash">/</span><a href="search.html" target="_blank">关智一</a><span class="slash">/</span><a href="search.html" target="_blank">永濑廉</a><span class="slash">/</span><a href="search.html" target="_blank">井上麻里奈</a><span class="slash">/</span><a href="search.html" target="_blank">水濑祈</a><span class="slash">/</span>
+						<div class="video-info-item video-info-actor">
+							<span class="slash">/</span>
+							{{ $VodActorList := split .PageData.detail.VodActor "," }}
+							{{ range $index, $name := $VodActorList }}
+							<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+							{{ end }}
 						</div>
 					</div>
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">上映：</span>
-						<div class="video-info-item">2023-06-01(中国大陆),2023-03-03(日本)<em></em><span class="slash">/</span>
-							<a href="/search-------%E6%97%A5%E8%AF%AD-------.html" target="_blank">日语</a><span class="slash">/</span>
+						<div class="video-info-item">{{ .PageData.detail.VodPubdate }}<em></em><span class="slash">/</span>
+							<a href="search.html" target="_blank">{{ .PageData.detail.VodLang }}</a><span class="slash">/</span>
 						</div>
 					</div>
 					<div class="video-info-items">
 						<span class="video-info-itemtitle"> 备注：</span>
 						<div class="video-info-item">
-							<span class="slash">/</span> 共1集<span class="slash">/</span><em></em>TC
+							<span class="slash">/</span> {{ .PageData.detail.VodRemarks }}<span class="slash">/</span><em></em>{{ .PageData.detail.VodVersion }}
 						</div>
 					</div>
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">片长：</span>
-						<div class="video-info-item">107分钟</div>
+						<div class="video-info-item">{{ .PageData.detail.VodDuration }}</div>
 					</div>
 					
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">评价：</span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://search.douban.com/movie/subject_search?search_text=哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到豆瓣页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/douban.ico" style="width: 15px; height: 15px"/></a></span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://www.douyin.com/search/哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到抖音页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/douyin.ico" style="width: 15px; height: 15px"/></a></span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://www.kuaishou.com/search/video?searchKey=哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到快手页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/kuaishou.ico" style="width: 15px; height: 15px"/></a></span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://www.ixigua.com/search/哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到西瓜视频页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/xigua.ico" style="width: 15px; height: 15px"/></a></span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://s.weibo.com/weibo?q=哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到微博页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/weibo.ico" style="width: 15px; height: 15px"/></a></span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://www.toutiao.com/search?keyword=哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到头条页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/toutiao.ico" style="width: 15px; height: 15px"/></a></span>
-						<span class="text-muted" style="margin-right: 10px"><a href="https://www.baidu.com/s?wd=哆啦A梦：大雄与天空的理想乡" rel="nofollow" target="_blank" title="到百度页面查看《哆啦A梦：大雄与天空的理想乡》"><img src="{{.__STATIC__}}/favicon/baidu.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://search.douban.com/movie/subject_search?search_text={{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到豆瓣页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/douban.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://www.douyin.com/search/{{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到抖音页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/douyin.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://www.kuaishou.com/search/video?searchKey={{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到快手页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/kuaishou.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://www.ixigua.com/search/{{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到西瓜视频页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/xigua.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://s.weibo.com/weibo?q={{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到微博页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/weibo.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://www.toutiao.com/search?keyword={{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到头条页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/toutiao.ico" style="width: 15px; height: 15px"/></a></span>
+						<span class="text-muted" style="margin-right: 10px"><a href="https://www.baidu.com/s?wd={{ .PageData.detail.VodName }}" rel="nofollow" target="_blank" title="到百度页面查看《{{ .PageData.detail.VodName }}》"><img src="{{.__STATIC__}}/favicon/baidu.ico" style="width: 15px; height: 15px"/></a></span>
 					</div>
 					
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">剧情：</span>
 						<div class="video-info-item video-info-content vod_content">
-							<span>　　哆啦A梦与大雄驾驶具有时光跳跃机能的“时光齐柏林飞船”，为了寻找自古以来许多冒险家梦寐以求的亚特兰提斯和龙宫城等每个人都曾想像过的梦幻乌托邦，在空中展开了一场大冒险。</span>
+							<span>
+								{{ .PageData.detail.VodContent }}
+							</span>
 							<a class="shrink" href="javaScript:">收起</a>
 						</div>
 					</div>
 				</div>
 				<div class="video-info-footer display">
 					<div class="video-info-share">
-						<button class="share-btn" data-clipboard-text="dianyi.ng/show.html 我正在电影先生观看《哆啦A梦：大雄与天空的理想乡》，推荐给你一起看！">好影片，与好朋友一起分享<i class="icon-happy"></i>
+						<button class="share-btn" data-clipboard-text="dianyi.ng/show.html 我正在电影先生观看《{{ .PageData.detail.VodName }}》，推荐给你一起看！">好影片，与好朋友一起分享<i class="icon-happy"></i>
 						</button>
 					</div>
-					<a class="btn-important btn-large shadow-drop" href="/play.html" title="立刻播放哆啦A梦：大雄与天空的理想乡"><i class="icon-play"></i><strong>立即播放</strong></a>
+					<a class="btn-important btn-large shadow-drop" href="/play.html" title="立刻播放{{ .PageData.detail.VodName }}"><i class="icon-play"></i><strong>立即播放</strong></a>
 					<a class="btn-aux btn-aux-o btn-large gotodownloadlist" href="/voddown/2FtqCS-1-1.html"><i class="icon-download"></i><strong>下载</strong></a>
 				</div>
 			</div>
