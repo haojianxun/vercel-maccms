@@ -33,9 +33,13 @@ func SetupRoute(router *gin.Engine) *gin.Engine {
 }
 
 func NoResponse(c *gin.Context) {
-	//返回 404 状态码
-	c.JSON(http.StatusNotFound, gin.H{
-		"status": 404,
-		"error":  "404, page not exists!",
-	})
+	if c.Request.Method == "GET" {
+		c.HTML(http.StatusOK, "404", nil)
+	} else {
+		//返回 404 状态码
+		c.JSON(http.StatusNotFound, gin.H{
+			"status": 404,
+			"error":  "404, page not exists!",
+		})
+	}
 }
