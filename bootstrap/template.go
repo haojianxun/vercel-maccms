@@ -36,17 +36,37 @@ func SetupTemplate(router *gin.Engine) {
 func SetFuncMap() template.FuncMap {
 	// 注册自定义模板函数
 	funcMap := template.FuncMap{
-		"split":      split,
-		"add":        add,
-		"ListMacVod": ListMacVod,
-		"EncryptID":  maccms.EncryptID,
-		"DecryptID":  maccms.DecryptID,
+		"split":         split,
+		"add":           add,
+		"len":           lenFunction,
+		"GetVodCount":   GetVodCount,
+		"GetSplitFirst": GetSplitFirst,
+		"ListMacVod":    ListMacVod,
+		"EncryptID":     maccms.EncryptID,
+		"DecryptID":     maccms.DecryptID,
 	}
 	return funcMap
 }
 
 func split(str, sep string) []string {
 	return strings.Split(str, sep)
+}
+
+func lenFunction(v map[string]interface{}) int {
+	return len(v)
+}
+
+func GetSplitFirst(str, sep string) string {
+	res := strings.Split(str, sep)
+	if len(res) > 0 {
+		return res[0]
+	}
+	return ""
+}
+
+func GetVodCount(str, sep string, index int) int {
+	res := strings.Split(str, sep)
+	return len(strings.Split(res[index], "#"))
 }
 
 func add(a, b int) int {

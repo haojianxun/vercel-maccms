@@ -1,7 +1,6 @@
 package v1
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
@@ -194,7 +193,6 @@ func (h *VideosController) Show(c *gin.Context) {
 		c.HTML(http.StatusOK, "404", nil)
 		return
 	}
-	fmt.Println("VodID:", VodID)
 	var (
 		CurrentlyTrending []models.MacVod
 	)

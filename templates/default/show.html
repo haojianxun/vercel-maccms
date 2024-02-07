@@ -151,9 +151,9 @@
 				<div class="module-domain-prompt">
 					<div class="module-domain-title">电影先生 快捷域名</div>
 					<div class="module-domain-main">
-						<a href="index.html" target="_blank">DianYi<strong>.ng</strong></a
-						><em>/</em><a href="https://dianying.xianshe.ng" target="_blank">XianShe<strong>.ng</strong></a
-					><em>/</em><a href="https://xn--44qz85a01qpc.com" target="_blank">电影先生<strong>.com</strong></a>
+						<a href="index.html" target="_blank">DianYi<strong>.ng</strong></a><em>/</em>
+						<a href="https://dianying.xianshe.ng" target="_blank">XianShe<strong>.ng</strong></a><em>/</em>
+						<a href="https://xn--44qz85a01qpc.com" target="_blank">电影先生<strong>.com</strong></a>
 					</div>
 				</div>
 				<div class="module-domain-prompt">
@@ -164,6 +164,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- 广告位 -->
 		<style>
 			.module-blocklist a em {
@@ -187,7 +188,6 @@
 				.module-blocklist a {
 					overflow: initial;
 				}
-				
 				.module-blocklist a em {
 					top: -5px;
 					right: -5px;
@@ -196,94 +196,52 @@
 		</style>
 		<div class="module">
 			<div class="module-heading">
-				<h2 class="module-title" title="哆啦A梦：大雄与天空的理想乡在线观看列表">选集播放:<span class="module-title-en">SELECTED</span>
+				<h2 class="module-title" title="{{ .PageData.detail.VodName }}在线观看列表">选集播放:<span class="module-title-en">SELECTED</span>
 				</h2>
 				<div class="module-tab module-player-tab">
 					<input class="module-tab-input" id="tab" name="tab" type="hidden"/>
 					<label class="module-tab-name"
-					><span class="module-tab-value"><strong>切换线路</strong></span
-					><i class="icon-arrow-bottom-o"></i
-					></label>
+					><span class="module-tab-value"><strong>切换线路</strong></span><i class="icon-arrow-bottom-o"></i></label>
 					<div class="module-tab-items">
 						<div class="module-tab-title">
-							播放节点列表<span class="close-drop"><i class="icon-close-o"></i></span>
+							播放节点列表
+							<span class="close-drop"><i class="icon-close-o"></i></span>
 						</div>
 						<div class="module-tab-content">
-							<div class="module-tab-item tab-item" data-dropdown-value="QI节点">
-								<span>QI节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="QT节点">
-								<span>QT节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="MR节点">
-								<span>MR节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="DI节点">
-								<span>DI节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="AN节点">
-								<span>AN节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="YI节点">
-								<span>YI节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="NG节点">
-								<span>NG节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="FD节点">
-								<span>FD节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="SU节点">
-								<span>SU节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="DM节点">
-								<span>DM节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="HD节点">
-								<span>HD节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="BI节点">
-								<span>BI节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="AQ节点">
-								<span>AQ节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="WU节点">
-								<span>WU节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="UK节点">
-								<span>UK节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="SD节点">
-								<span>SD节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="HN节点">
-								<span>HN节点</span><small>1</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="DB节点">
-								<span>DB节点</span><small>2</small></div>
-							
-							<div class="module-tab-item tab-item" data-dropdown-value="TK节点">
-								<span>TK节点</span><small>1</small></div>
+							{{ $VodPlayFromList := split .PageData.detail.VodPlayFrom "$$$" }}
+							{{ range $index, $name := $VodPlayFromList }}
+							<div class="module-tab-item tab-item" data-dropdown-value="{{ $name }}">
+								<span>{{ $name }}</span>
+								<small>
+									{{ GetVodCount $.PageData.detail.VodPlayURL "$$$" $index }}
+								</small>
+							</div>
+							{{ end }}
 						</div>
 					</div>
 				</div>
 				<div class="shortcuts-mobile-overlay"></div>
 			</div>
 			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-15">
+			
+			{{ $VodPlayUrlList := split .PageData.detail.VodPlayURL "$$$" }}
+			{{ range $index, $data := $VodPlayUrlList }}
+			<div class="module-list module-player-list tab-list sort-list" id="glist-{{ add $index 1 }}">
 				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
+					<input class="module-tab-input" id="tab-sort-{{ add $index 1 }}" name="tab-sort" type="hidden"/>
 					<label class="module-tab-name"><i class="icon-sort"></i></label>
 					<div class="module-tab-items">
 						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-15"><i class="icon-sort"></i>排序</a>
+							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-{{ add $index 1 }}"><i class="icon-sort"></i>排序</a>
 						</div>
 						<div class="module-tab-content">
 							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-15">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡高清正片"><span>高清正片</span>
+								<div class="sort-item" id="sort-item-{{ add $index 1 }}">
+									{{ $VodUrlList := split $data "#" }}
+									{{ range $kk, $vv := $VodUrlList }}
+									<a href="play-{{ EncryptID $.PageData.detail.VodID }}-{{ add $index 1 }}-{{ add $kk 1 }}.html" title="播放 {{ $.PageData.detail.VodName }}"><span>{{ GetSplitFirst $vv "$" }}</span>
 									</a>
+									{{ end }}
 								</div>
 							</div>
 						</div>
@@ -292,513 +250,15 @@
 				<div class="shortcuts-mobile-overlay"></div>
 				<div class="module-blocklist scroll-box scroll-box-y">
 					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡高清正片"><span>高清正片</span> </a>
+						{{ $VodUrlList := split $data "#" }}
+						{{ range $kk, $vv := $VodUrlList }}
+						<a href="play-{{ EncryptID $.PageData.detail.VodID }}-{{ add $index 1 }}-{{ add $kk 1 }}.html" title="播放{{ $.PageData.detail.VodName }}"><span>{{ GetSplitFirst $vv "$" }}</span> </a>
+						{{ end }}
 					</div>
 				</div>
 			</div>
+			{{ end }}
 			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-1">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-1"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-1">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡哆啦A梦"><span>哆啦A梦</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡哆啦A梦"><span>哆啦A梦</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡哆啦A梦"><span>哆啦A梦</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡哆啦A梦"><span>哆啦A梦</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-19">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-19"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-19">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-11">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-11"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-11">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD中字"><span>HD中字</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD国语"><span>HD国语</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD中字"><span>HD中字</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD国语"><span>HD国语</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-8">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-8"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-8">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡TC国语"><span>TC国语</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡TC国语"><span>TC国语</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-4">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-4"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-4">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-9">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-9"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-9">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡枪版"><span>枪版</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡1080P"><span>1080P</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡枪版"><span>枪版</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡1080P"><span>1080P</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-10">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-10"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-10">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡枪版"><span>枪版</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡1080P"><span>1080P</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡枪版"><span>枪版</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡1080P"><span>1080P</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-14">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-14"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-14">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD中字"><span>HD中字</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD中字"><span>HD中字</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-18">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-18"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-18">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD高清日语版"><span>HD高清日语版</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD高清国语版"><span>HD高清国语版</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD高清日语版"><span>HD高清日语版</span>
-						</a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD高清国语版"><span>HD高清国语版</span>
-						</a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-7">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-7"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-7">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD中字"><span>HD中字</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD国语"><span>HD国语</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD中字"><span>HD中字</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD国语"><span>HD国语</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-16">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-16"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-16">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span>
-									</a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-2">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-2"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-2">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-5">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-5"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-5">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-13">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-13"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-13">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡720P"><span>720P</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡720P"><span>720P</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-17">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-17"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-17">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-3">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-3"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-3">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span>
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡正片"><span>正片</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-6">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-6"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-6">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡TC"><span>TC</span> </a>
-									
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡TC"><span>TC</span> </a>
-						
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡HD"><span>HD</span> </a>
-					</div>
-				</div>
-			</div>
-			
-			<div class="module-list module-player-list tab-list sort-list" id="glist-12">
-				<div class="module-tab module-sorttab">
-					<input class="module-tab-input" id="tab-sort" name="tab-sort" type="hidden"/>
-					<label class="module-tab-name"><i class="icon-sort"></i></label>
-					<div class="module-tab-items">
-						<div class="module-tab-title">
-							选集<span class="close-drop"><i class="icon-close-o"></i></span><a class="desc sort-button" href="javascript:void(0);" to="#sort-item-12"><i class="icon-sort"></i>排序</a>
-						</div>
-						<div class="module-tab-content">
-							<div class="module-blocklist">
-								<div class="sort-item" id="sort-item-12">
-									<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡TC"><span>TC</span> </a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="shortcuts-mobile-overlay"></div>
-				<div class="module-blocklist scroll-box scroll-box-y">
-					<div class="scroll-content">
-						<a href="/play.html" title="播放哆啦A梦：大雄与天空的理想乡TC"><span>TC</span> </a>
-					</div>
-				</div>
-			</div>
 		</div>
 		<!-- 播放列表 -->
 		
