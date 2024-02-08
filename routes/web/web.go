@@ -15,6 +15,8 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		// 首页入口
 		webV1.GET("/", GroupV1.IndexController.Index)
 		webV1.GET("/index.html", GroupV1.IndexController.Index)
+		webV1.GET("/prestrain.html", GroupV1.IndexController.PresTrain)
+		webV1.GET("/player/dplayer.html", GroupV1.IndexController.DPlayer)
 		// 片库
 		webV1.GET("/pianku.html", GroupV1.VideosController.PianKu)
 		// 播放

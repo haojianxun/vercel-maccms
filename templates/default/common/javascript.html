@@ -100,36 +100,11 @@
 {{ if eq .page "play"}}
 <!--play.html-->
 <script type="text/javascript">
-    var vod_name='射雕英雄传之九阴白骨爪',
+    var vod_name='{{ .PageData.detail.VodName }}',
         vod_url=window.location.href,
-        vod_part='HD';
+        vod_part='{{ .PageData.detail.Part }}';
 </script>
 
-<script type="text/javascript">
-    var player_aaaa = {
-        "flag": "play",
-        "encrypt": 2,
-        "trysee": 0,
-        "points": 0,
-        "link": "/play.html",
-        "link_next": "",
-        "link_pre": "",
-        "vod_data": {
-            "vod_name": "射雕英雄传之九阴白骨爪",
-            "vod_actor": "严屹宽,阮巨,黄曦彦,何昶希,更登彭措,汪小敏,林柏叡,杨秀措,廖银玥,刘涵",
-            "vod_director": "傅鸫",
-            "vod_class": "动作"
-        },
-        "url": "JTY4JTc0JTc0JTcwJTczJTNBJTJGJTJGJTc2JTMxJTJFJTMxJTMwJTM4JTMwJTc0JTY3JTJFJTYzJTZGJTZEJTJGJTMyJTMwJTMyJTMzJTMwJTM5JTJGJTMyJTMxJTJGJTYxJTQyJTQzJTQzJTUyJTRFJTcyJTQxJTMwJTM4JTMyJTJGJTc2JTY5JTY0JTY1JTZGJTJGJTY5JTZFJTY0JTY1JTc4JTJFJTZEJTMzJTc1JTM4",
-        "url_next": "",
-        "from": "sdm3u8",
-        "server": "no",
-        "note": "",
-        "id": "3fkSCS",
-        "sid": 1,
-        "nid": 1
-    }
-</script>
 <script>
     // 影片评论
     $(function(){
@@ -203,8 +178,6 @@
         });
     }
 </script>
-<script type="text/javascript" src="{{.__JS__}}/playerconfig.js"></script>
-<script type="text/javascript" src="{{.__JS__}}/player.js"></script>
 <script type="text/javascript" src="{{.__JS__}}/history.js"></script>
 <script type="text/javascript" src="{{.__JS__}}/jquery.qrcode.min.js"></script>
 <script type="text/javascript" src="{{.__JS__}}/swiper-bundle.min.js"></script>

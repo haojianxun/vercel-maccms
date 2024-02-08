@@ -290,6 +290,12 @@ func (h *VideosController) Play(c *gin.Context) {
 	PageData["VodID"] = VodID
 	PageData["Node"] = helpers.StringToInt(Node) - 1
 	PageData["Part"] = helpers.StringToInt(Part) - 1
+	PageData["Link"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], Part)
+	PageData["LinkNext"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], helpers.StringToInt(Part)+1)
+
+	// 播放地址
+	PageData["Url"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], Part)
+	PageData["UrlNext"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], helpers.StringToInt(Part)+1)
 	DATA["PageData"] = PageData
 	DATA["page"] = MacTypeDetail.TypeEn
 	c.HTML(http.StatusOK, "play.html", DATA)

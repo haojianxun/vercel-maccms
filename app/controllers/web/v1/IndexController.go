@@ -14,6 +14,18 @@ type IndexController struct {
 	BaseController
 }
 
+func (h *IndexController) PresTrain(c *gin.Context) {
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+	c.HTML(http.StatusOK, "prestrain.html", DATA)
+}
+
+func (h *IndexController) DPlayer(c *gin.Context) {
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+	c.HTML(http.StatusOK, "dplayer.html", DATA)
+}
+
 func (h *IndexController) Index(c *gin.Context) {
 	table := "index.html"
 	PageData := cmap.New().Items()
