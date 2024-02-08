@@ -1,6 +1,7 @@
 package v1
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
@@ -194,22 +195,32 @@ func (h *VideosController) Show(c *gin.Context) {
 		return
 	}
 	var (
-		CurrentlyTrending []models.MacVod
-		MacTypeDetail     models.MacType
+		Related, CurrentlyTrending []models.MacVod
+		MacTypeDetail              models.MacType
 	)
 	err = models.MacTypeMgr(mysql.DB).Where("type_id", detail.TypeID1).Find(&MacTypeDetail).Error
 	if err != nil {
 		c.HTML(http.StatusOK, "404", nil)
 		return
 	}
-	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-		"type_id_1":  3,
+	// 相关影片
+	RelatedName := fmt.Sprintf("Related:%v", detail.TypeID)
+	service.ListWhereMacVod(table, RelatedName, map[string]interface{}{
+		"type_id":    detail.TypeID,
 		"vod_status": 1,
-	}, "vod_hits desc", 16, &CurrentlyTrending)
+	}, "vod_year desc,vod_hits desc", 16, &Related)
 
-	PageData["CurrentlyTrending"] = CurrentlyTrending
+	// 正在热播
+	ReBoName := fmt.Sprintf("CurrentlyTrending:%v", detail.TypeID)
+	service.ListWhereMacVod(table, ReBoName, map[string]interface{}{
+		"type_id":    detail.TypeID,
+		"vod_status": 1,
+	}, "vod_hits desc", 10, &CurrentlyTrending)
+
 	PageData["detail"] = detail
 	PageData["MacTypeDetail"] = MacTypeDetail
+	PageData["Related"] = Related
+	PageData["CurrentlyTrending"] = CurrentlyTrending
 	DATA["VodID"] = VodID
 	DATA["PageData"] = PageData
 	DATA["page"] = MacTypeDetail.TypeEn

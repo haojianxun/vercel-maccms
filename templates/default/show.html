@@ -274,732 +274,104 @@
 			</div>
 			<div class="module-list module-lines-list">
 				<div class="module-items">
+					{{ range .PageData.Related }}
 					<div class="module-item">
 						<div class="module-item-cover">
 							<div class="module-item-pic">
-								<a href="" title="哆啦A梦：大雄与天空的理想乡">
+								<a href="/show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 									<i class="icon-play"></i>
 								</a>
-								<img alt="哆啦A梦：大雄与天空的理想乡" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2891257290.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
+								<img alt="{{ .VodName }}"
+									 class="lazy lazyloaded"
+									 data-src="{{ .VodPic }}"
+									 onerror="this.src='/statics/image/loading.png'"
+									 src="/statics/image/loading.png">
 								<div class="loading"></div>
 							</div>
 							<div class="module-item-caption">
-								<span>2023</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
+								<span> {{ .VodYear }}</span>
+								{{ $VodClassList := split .VodClass "," }}
+								{{ range $index, $name := $VodClassList }}
+								<span class="video-class">{{$name}}</span>
+								{{ end }}
+								<span>{{ .VodArea }}</span>
 							</div>
 							<div class="module-item-content">
 								<div class="module-item-style video-name">
-									<a href="" title="哆啦A梦：大雄与天空的理想乡">哆啦A梦：大雄与天空的理想乡</a>
+									<a href="/show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-style video-tag">
-									<a href="search.html" target="_blank">水田山葵</a>&nbsp;<a href="search.html" target="_blank">大原惠美</a>&nbsp;<a href="search.html" target="_blank">嘉数由美</a>&nbsp;<a href="search.html" target="_blank">木村昴</a>&nbsp;<a href="search.html" target="_blank">关智一</a>&nbsp;<a href="search.html" target="_blank">永濑廉</a>&nbsp;<a href="search.html" target="_blank">井上麻里奈</a>&nbsp;<a href="search.html" target="_blank">水濑祈</a>&nbsp;
+									{{ $VodActorList := split .VodActor "," }}
+									{{ range $index, $name := $VodActorList }}
+									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
+									{{ end }}
 								</div>
-								<div class="module-item-style video-text">哆啦A梦与大雄驾驶具有时光跳跃机能的“时光齐柏林飞船”，为了寻找自古以来许多冒险家梦寐以求的亚特兰提斯和龙宫城等每个人都曾想像过的梦幻乌托邦，在空中展开了一场大冒险。</div>
+								<div class="module-item-style video-text">
+									{{ .VodContent }}
+								</div>
 							</div>
 						</div>
 						<div class="module-item-titlebox">
-							<a class="module-item-title" href="" title="哆啦A梦：大雄与天空的理想乡">哆啦A梦：大雄与天空的理想乡</a>
+							<a class="module-item-title" href="/show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 						</div>
-						<div class="module-item-text">TC</div>
+						<div class="module-item-text">{{ .VodRemarks }}</div>
 					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="艾特熊和赛娜鼠2">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="艾特熊和赛娜鼠2" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2874235354.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2022</span>
-								<span class="video-class">动画片</span>
-								<span>法国,卢森堡</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="艾特熊和赛娜鼠2">艾特熊和赛娜鼠2</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E6%9C%97%E8%B4%9D%E5%B0%94%C2%B7%E7%BB%B4%E5%B0%94%E6%A3%AE------------.html" target="_blank">朗贝尔·维尔森</a>&nbsp;<a href="/search--%E6%B3%A2%E5%88%A9%E5%A8%9C%C2%B7%E5%B8%83%E4%BC%A6%E7%BA%B3------------.html" target="_blank">波利娜·布伦纳</a>&nbsp;<a href="/search--%E7%B1%B3%E6%AD%87%E5%B0%94%C2%B7%E5%8B%92%E9%B2%81%E6%A2%AD------------.html" target="_blank">米歇尔·勒鲁梭</a>&nbsp;<a href="/search--%E5%B8%AD%E7%90%B3%C2%B7%E8%8D%A3%E7%89%B9------------.html" target="_blank">席琳·荣特</a>&nbsp;<a href="/search--%E8%8E%B1%E7%93%A6%E5%A8%9C%C2%B7%E6%89%80%E7%BD%97%E9%97%A8------------.html" target="_blank">莱瓦娜·所罗门</a>&nbsp;<a href="/search--%E8%AE%A9-%E9%A9%AC%E5%85%8B%C2%B7%E6%BD%98%E6%B6%85%E6%8F%90%E5%B0%94------------.html" target="_blank">让-马克·潘涅提尔</a>&nbsp;<a href="/search--%E5%85%8B%E9%87%8C%E6%96%AF%E5%A4%9A%E5%A4%AB%C2%B7%E5%8B%92%E8%8E%AB%E5%9B%A0------------.html" target="_blank">克里斯多夫·勒莫因</a>&nbsp;<a href="/search--Georges+Caudron------------.html" target="_blank">Georges Caudron</a>&nbsp;<a href="/search--%E8%AE%A9-%E8%8F%B2%E5%88%A9%E6%99%AE%C2%B7%E7%9A%AE%E9%A9%AC%E8%B5%AB%E4%B8%B9------------.html" target="_blank">让-菲利普·皮马赫丹</a>&nbsp;<a href="/search--Charlotte+Hennequin------------.html" target="_blank">Charlotte Hennequin</a>&nbsp;<a href="/search--Igor+Chometowski------------.html" target="_blank">Igor Chometowski</a>&nbsp;<a href="/search--Xavier+Fagnon------------.html" target="_blank">Xavier Fagnon</a>&nbsp;<a href="/search--Thierry+Bordas------------.html" target="_blank">Thierry Bordas</a>&nbsp;<a href="/search--Luc+Boulad------------.html" target="_blank">Luc Boulad</a>&nbsp;<a href="/search--Antony+Delcleve------------.html" target="_blank">Antony Delcleve</a>&nbsp;<a href="/search--Nadine+Girard------------.html" target="_blank">Nadine Girard</a>&nbsp;<a href="/search--Christian+Peythieu------------.html" target="_blank">Christian Peythieu</a>&nbsp;<a href="/search--Thierry+Walker------------.html" target="_blank">Thierry Walker</a>&nbsp;<a href="/search--%E9%98%BF%E4%BB%80%E5%88%A9%C2%B7%E5%8D%9A%E5%BD%BB------------.html" target="_blank">阿什利·博彻</a>&nbsp;<a href="/search--Daniel+Hagen------------.html" target="_blank">Daniel Hagen</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">法国动画片制作公司Folivari联手Studiocanal拍摄动画片[艾特熊和赛娜鼠]续集。 [艾特熊和赛娜鼠]荣获2014年奥斯卡最佳动画片提名，影片围绕小老鼠赛娜与体型硕大的熊先生艾特之间的友情</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="艾特熊和赛娜鼠2">艾特熊和赛娜鼠2</a>
-						</div>
-						<div class="module-item-text">HD</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="鸡妈鸭仔">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="鸡妈鸭仔" class="lazy lazyloaded" data-src="https://leshizyimg.com/upload/vod/20240112-1/ecb067158d05857ea20d76dc9942e643.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2011</span>
-								<span class="video-class">动画片</span>
-								<span>韩国</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="鸡妈鸭仔">鸡妈鸭仔</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E5%B4%94%E5%B2%B7%E6%A4%8D------------.html" target="_blank">崔岷植</a>&nbsp;<a href="/search--%E4%BF%9E%E6%89%BF%E8%B1%AA------------.html" target="_blank">俞承豪</a>&nbsp;<a href="/search--%E6%96%87%E7%B4%A0%E4%B8%BD------------.html" target="_blank">文素丽</a>&nbsp;<a href="/search--%E6%9C%B4%E5%93%B2%E6%B0%91------------.html" target="_blank">朴哲民</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">喧嚣的农舍内，母鸡们如同机器一般按点进食、按点下蛋，没有半点自由。虽然绝大多数同伴都习惯了这种无忧无虑的囚徒生活，但是小母鸡叶芽（文素利配音）却时刻想要逃出樊笼，自由自在孵化她的小宝宝，为此她连续三天</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="鸡妈鸭仔">鸡妈鸭仔</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="史酷比！亲吻乐团收妖记">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="史酷比！亲吻乐团收妖记" class="lazy lazyloaded" data-src="https://pic.dianyi.ng/upload/vod/20210730-6/c469e938ccf798a13b5b36f78e1af1fa.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2015</span>
-								<span class="video-class">动画片</span>
-								<span>美国</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="史酷比！亲吻乐团收妖记">史酷比！亲吻乐团收妖记</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--GeneSimmons------------.html" target="_blank">GeneSimmons</a>&nbsp;<a href="/search--PaulStanley------------.html" target="_blank">PaulStanley</a>&nbsp;<a href="/search--TommyThayer------------.html" target="_blank">TommyThayer</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">史酷比和朋友们以及史上最富有传奇色彩的摇滚乐队之一的亲吻乐团即将在这个全新的世界展开惊心动魄的大冒险！史酷比一行人进入了属于亲吻乐团的主题公园，这个主题公园以惊悚恐怖元素为主，让游人感受不一样的鬼屋之</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="史酷比！亲吻乐团收妖记">史酷比！亲吻乐团收妖记</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="史努比：花生大电影">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="史努比：花生大电影" class="lazy lazyloaded" data-src="https://pic.dianyi.ng/upload/vod/20210726-1/6acb5c276977f8b93bd3898202d018b1.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2015</span>
-								<span class="video-class">动画片</span>
-								<span>美国</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="史努比：花生大电影">史努比：花生大电影</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E8%AF%BA%E4%BA%9A%C2%B7%E6%96%BD%E7%BA%B3%E6%99%AE------------.html" target="_blank">诺亚·施纳普</a>&nbsp;<a href="/search--%E6%AF%94%E5%B0%94%C2%B7%E8%8E%AB%E4%BC%A6%E8%8C%A8------------.html" target="_blank">比尔·莫伦茨</a>&nbsp;<a href="/search--%E5%BC%97%E6%9C%97%E8%A5%BF%E6%96%AF%E5%8D%A1%C2%B7%E5%8D%A1%E5%B8%95%E5%B0%94%E8%BF%AA------------.html" target="_blank">弗朗西斯卡·卡帕尔迪</a>&nbsp;<a href="/search--%E9%A9%AC%E9%87%8C%E5%9F%83%E5%B0%94%C2%B7%E5%B8%8C%E8%8C%A8------------.html" target="_blank">马里埃尔·希茨</a>&nbsp;<a href="/search--%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%C2%B7%E5%8A%A0%E8%8A%AC------------.html" target="_blank">亚历山大·加芬</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">总是闹出一堆笑话的查理·布朗（诺亚·施纳普 Noah Schnapp 配音）这一次有了暗恋的“红发小女孩”（弗朗西斯卡·卡帕尔迪 Francesca Capaldi 配音），他能否获得她的注意呢？而史</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="史努比：花生大电影">史努比：花生大电影</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="即便明天世界终结">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="即便明天世界终结" class="lazy lazyloaded" data-src="https://pic.dianyi.ng/upload/vod/20210726-1/1838bbdcf13abd91ce2ffd58a0838e65.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2019</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="即便明天世界终结">即便明天世界终结</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E6%A2%B6%E8%A3%95%E8%B4%B5------------.html" target="_blank">梶裕贵</a>&nbsp;<a href="/search--%E4%B8%AD%E5%B2%9B%E8%89%AF%E6%A0%91------------.html" target="_blank">中岛良树</a>&nbsp;<a href="/search--%E5%86%85%E7%94%B0%E7%9C%9F%E7%A4%BC------------.html" target="_blank">内田真礼</a>&nbsp;<a href="/search--%E5%8D%83%E6%9C%AC%E6%9C%A8%E5%BD%A9%E8%8A%B1------------.html" target="_blank">千本木彩花</a>&nbsp;<a href="/search--%E6%82%A0%E6%9C%A8%E7%A2%A7------------.html" target="_blank">悠木碧</a>&nbsp;<a href="search.html" target="_blank">水濑祈</a>&nbsp;<a href="/search--%E6%B4%A5%E7%94%B0%E5%81%A5%E6%AC%A1%E9%83%8E------------.html" target="_blank">津田健次郎</a>&nbsp;<a href="/search--%E6%A3%AE%E5%B7%9D%E6%99%BA%E4%B9%8B------------.html" target="_blank">森川智之</a>&nbsp;<a href="/search--%E6%B0%B4%E6%A0%91%E5%A5%88%E5%A5%88------------.html" target="_blank">水树奈奈</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">自从小时候母亲去世以来，就封锁了心灵的真。 一直守护在他身旁的，青梅竹马琴莉。 高中三年级的现在，就在终于准备跨出一步的两人面前， 来自另一个日本的，另一个“我”突然出现——。</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="即便明天世界终结">即便明天世界终结</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="吹牛大王历险记">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="吹牛大王历险记" class="lazy lazyloaded" data-src="https://snzypic.com/upload/vod/20240112-1/cabe76c8ef4c5e0b4ff446262e90c6dc.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>1979</span>
-								<span class="video-class">动画片</span>
-								<span>法国</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="吹牛大王历险记">吹牛大王历险记</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E5%A4%9A%E7%B1%B3%E5%B0%BC%E5%85%8B%C2%B7%E5%B8%95%E8%92%82%E9%9B%B7%E5%B0%94------------.html" target="_blank">多米尼克·帕蒂雷尔</a>&nbsp;<a href="/search--%E7%B1%B3%E6%AD%87%E5%B0%94%C2%B7%E4%BC%8A%E8%8E%B1%E4%BA%9A%E6%96%AF------------.html" target="_blank">米歇尔·伊莱亚斯</a>&nbsp;<a href="/search--Georges+Atlas------------.html" target="_blank">Georges Atlas</a>&nbsp;<a href="/search--Ren%C3%A9+B%C3%A9riard------------.html" target="_blank">René Bériard</a>&nbsp;<a href="/search--%E8%8E%AB%E9%87%8C%E6%96%AF%C2%B7%E8%88%8D%E7%BB%B4------------.html" target="_blank">莫里斯·舍维</a>&nbsp;<a href="/search--Maurice+Ducasse------------.html" target="_blank">Maurice Ducasse</a>&nbsp;<a href="/search--Christian+Duvaleix------------.html" target="_blank">Christian Duvaleix</a>&nbsp;<a href="/search--%E9%9B%85%E5%85%8B%C2%B7%E8%B4%B9%E9%87%8C%E5%9F%83------------.html" target="_blank">雅克·费里埃</a>&nbsp;<a href="/search--Olivier+Hussenot------------.html" target="_blank">Olivier Hussenot</a>&nbsp;<a href="/search--Francine+Laine------------.html" target="_blank">Francine Laine</a>&nbsp;<a href="/search--Serge+Lhorca------------.html" target="_blank">Serge Lhorca</a>&nbsp;<a href="/search--%E7%B1%B3%E6%AD%87%E5%B0%94%C2%B7%E8%8E%AB%E5%A4%9A------------.html" target="_blank">米歇尔·莫多</a>&nbsp;<a href="/search--%E9%9B%85%E5%85%8B%C2%B7%E9%A9%AC%E5%85%B0------------.html" target="_blank">雅克·马兰</a>&nbsp;<a href="/search--Serge+Nadaud------------.html" target="_blank">Serge Nadaud</a>&nbsp;<a href="/search--%E4%BA%9A%E5%8E%86%E5%B1%B1%E5%A4%A7%C2%B7%E9%87%8C%E5%B0%BC%E5%A5%A5------------.html" target="_blank">亚历山大·里尼奥</a>&nbsp;<a href="/search--%E7%BD%97%E8%B4%9D%E5%B0%94%C2%B7%E7%BD%97%E5%88%A9%E6%96%AF------------.html" target="_blank">罗贝尔·罗利斯</a>&nbsp;<a href="/search--Harald+Juhnke------------.html" target="_blank">Harald Juhnke</a>&nbsp;<a href="/search--%E6%AF%94%E5%88%A9%C2%B7%E5%8D%A1%E6%81%A9%E6%96%AF------------.html" target="_blank">比利·卡恩斯</a>&nbsp;<a href="/search--%E8%BF%88%E5%85%8B%C2%B7%E9%A9%AC%E6%AD%87%E5%B0%94------------.html" target="_blank">迈克·马歇尔</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">Le baron de Munchausen a coutume de réunir ses amis autour d&amp;#39;un d?ner dans son chateau. Il leur</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="吹牛大王历险记">吹牛大王历险记</a>
-						</div>
-						<div class="module-item-text">HD</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="三勇士在遥远的海岸">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="三勇士在遥远的海岸" class="lazy lazyloaded" data-src="https://snzypic.com/upload/vod/20240112-1/7463e16abd42025befc3930d61c9293a.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2012</span>
-								<span class="video-class">动画片</span>
-								<span>俄罗斯</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="三勇士在遥远的海岸">三勇士在遥远的海岸</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9+%D0%91%D1%8B%D0%BA%D0%BE%D0%B2%D1%81%D0%BA%D0%B8%D0%B9-%D0%A0%D0%BE%D0%BC%D0%B0%D1%88%D0%BE%D0%B2------------.html" target="_blank">Дмитрий Быковский-Ромашов</a>&nbsp;<a href="/search--%D0%92%D0%B0%D0%BB%D0%B5%D1%80%D0%B8%D0%B9+%D0%A1%D0%BE%D0%BB%D0%BE%D0%B2%D1%8C%D0%B5%D0%B2------------.html" target="_blank">Валерий Соловьев</a>&nbsp;<a href="/search--%D0%9E%D0%BB%D0%B5%D0%B3+%D0%9A%D1%83%D0%BB%D0%B8%D0%BA%D0%BE%D0%B2%D0%B8%D1%87------------.html" target="_blank">Олег Куликович</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">如果你是俄罗斯史诗英雄尼基季奇、穆洛梅茨和波波维奇的粉丝，那么你一定很乐于看到他们新的冒险故事。</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="三勇士在遥远的海岸">三勇士在遥远的海岸</a>
-						</div>
-						<div class="module-item-text">HD</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="没有耳朵的兔子和两只耳朵的小鸡">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="没有耳朵的兔子和两只耳朵的小鸡" class="lazy lazyloaded" data-src="https://snzypic.com/upload/vod/20240112-1/81df95a0dad558875b554e92babccd36.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2013</span>
-								<span class="video-class">动画片</span>
-								<span>德国</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="没有耳朵的兔子和两只耳朵的小鸡">没有耳朵的兔子和两只耳朵的小鸡</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E7%88%B1%E7%8E%9B%C2%B7%E6%96%BD%E5%A8%81%E6%A0%BC------------.html" target="_blank">爱玛·施威格</a>&nbsp;<a href="/search--%E8%92%82%E5%B0%94%C2%B7%E6%96%BD%E5%A8%81%E6%A0%BC------------.html" target="_blank">蒂尔·施威格</a>&nbsp;<a href="/search--%E9%A9%AC%E6%8F%90%E4%BA%9A%E6%96%AF%C2%B7%E6%96%BD%E7%BB%B4%E8%B5%AB%E5%A4%AB------------.html" target="_blank">马提亚斯·施维赫夫</a>&nbsp;<a href="/search--Rick+Kavanian------------.html" target="_blank">Rick Kavanian</a>&nbsp;<a href="/search--%E6%B3%95%E8%B5%AB%E9%87%8C%C2%B7%E4%BA%9A%E8%BF%AA%E5%A7%86------------.html" target="_blank">法赫里·亚迪姆</a>&nbsp;<a href="/search--Hans-Joachim+Heist------------.html" target="_blank">Hans-Joachim Heist</a>&nbsp;<a href="/search--Thomas+Hackenberg------------.html" target="_blank">Thomas Hackenberg</a>&nbsp;<a href="/search--Ranja+Bonalana------------.html" target="_blank">Ranja Bonalana</a>&nbsp;<a href="/search--Katja+Liebing------------.html" target="_blank">Katja Liebing</a>&nbsp;<a href="/search--Thomas+Balou+Martin------------.html" target="_blank">Thomas Balou Martin</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">根据克劳斯·鲍姆加特和蒂尔·施威格的同名儿童绘本改编，A rabbit is discriminated by all the other rabbits and even by the fox fo</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="没有耳朵的兔子和两只耳朵的小鸡">没有耳朵的兔子和两只耳朵的小鸡</a>
-						</div>
-						<div class="module-item-text">HD</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="台风诺尔达">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="台风诺尔达" class="lazy lazyloaded" data-src="https://pic.dianyi.ng/upload/vod/20220415-1/0f111bef6f76e049c973074f840ae4a3.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2015</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="台风诺尔达">台风诺尔达</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E9%87%8E%E6%9D%91%E5%91%A8%E5%B9%B3------------.html" target="_blank">野村周平</a>&nbsp;<a href="/search--%E6%B8%85%E5%8E%9F%E6%9E%9C%E8%80%B6------------.html" target="_blank">清原果耶</a>&nbsp;<a href="/search--%E9%87%91%E5%AD%90%E5%A4%A7%E5%9C%B0------------.html" target="_blank">金子大地</a>&nbsp;<a href="/search--%E6%9C%AC%E5%A4%9A%E7%9C%9F%E6%A2%A8%E5%AD%90------------.html" target="_blank">本多真梨子</a>&nbsp;<a href="/search--%E5%B0%8F%E5%B2%9B%E8%8B%B1%E6%A0%91------------.html" target="_blank">小岛英树</a>&nbsp;<a href="/search--Lynn------------.html" target="_blank">Lynn</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">2011年に設立され、13年に劇場公開された短編「陽なたのアオシグレ」やマルコメのカップみそ汁のCMアニメーションなどで注目される新進気鋭の制作会社スタジオコロリドによるオリジナルの劇場アニメーション</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="台风诺尔达">台风诺尔达</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="LoveLive! Sunshine!! 学园偶像电影 彩虹彼端">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="LoveLive! Sunshine!! 学园偶像电影 彩虹彼端" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2542697666.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2019</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="LoveLive! Sunshine!! 学园偶像电影 彩虹彼端">LoveLive! Sunshine!! 学园偶像电影 彩虹彼端</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E4%BC%8A%E6%B3%A2%E6%9D%8F%E6%A0%91------------.html" target="_blank">伊波杏树</a>&nbsp;<a href="/search--%E9%BD%90%E8%97%A4%E6%9C%B1%E5%A4%8F------------.html" target="_blank">齐藤朱夏</a>&nbsp;<a href="/search--%E9%80%A2%E7%94%B0%E6%A2%A8%E9%A6%99%E5%AD%90------------.html" target="_blank">逢田梨香子</a>&nbsp;<a href="/search--%E9%AB%98%E6%A7%BB%E5%8A%A0%E5%A5%88%E5%AD%90------------.html" target="_blank">高槻加奈子</a>&nbsp;<a href="/search--%E9%99%8D%E5%B9%A1%E7%88%B1------------.html" target="_blank">降幡爱</a>&nbsp;<a href="/search--%E5%B0%8F%E6%9E%97%E7%88%B1%E9%A6%99------------.html" target="_blank">小林爱香</a>&nbsp;<a href="/search--%E5%B0%8F%E5%AE%AB%E6%9C%89%E7%BA%B1------------.html" target="_blank">小宫有纱</a>&nbsp;<a href="/search--%E8%AF%B9%E8%AE%BF%E5%A5%88%E5%A5%88%E9%A6%99------------.html" target="_blank">诹访奈奈香</a>&nbsp;<a href="/search--%E9%93%83%E6%9C%A8%E7%88%B1%E5%A5%88------------.html" target="_blank">铃木爱奈</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">Aqours作为浦星女学院的学园偶像在最后的Love Live！中获得了漂亮的胜利。但是准备编入新学校的2年生、1年生面前却连续发生了意外的麻烦，而且前往毕业旅行的3年生也不知所踪！只有当大家要分开的</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="LoveLive! Sunshine!! 学园偶像电影 彩虹彼端">LoveLive! Sunshine!! 学园偶像电影 彩虹彼端</a>
-						</div>
-						<div class="module-item-text">HD</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="刺猬索尼克2">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="刺猬索尼克2" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2871463816.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2022</span>
-								<span class="video-class">动画片</span>
-								<span>美国,日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="刺猬索尼克2">刺猬索尼克2</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E8%A9%B9%E5%A7%86%E6%96%AF%C2%B7%E9%BA%A6%E6%96%AF%E7%99%BB------------.html" target="_blank">詹姆斯·麦斯登</a>&nbsp;<a href="/search--%E9%87%91%C2%B7%E5%87%AF%E7%91%9E------------.html" target="_blank">金·凯瑞</a>&nbsp;<a href="/search--%E6%9C%AC%C2%B7%E6%96%BD%E7%93%A6%E8%8C%A8------------.html" target="_blank">本·施瓦茨</a>&nbsp;<a href="/search--%E6%8F%90%E5%8D%A1%C2%B7%E6%A3%AE%E6%99%AE%E7%89%B9------------.html" target="_blank">提卡·森普特</a>&nbsp;<a href="/search--%E4%BC%8A%E5%BE%B7%E9%87%8C%E6%96%AF%C2%B7%E8%89%BE%E5%B0%94%E5%B7%B4------------.html" target="_blank">伊德里斯·艾尔巴</a>&nbsp;<a href="/search--%E5%A8%9C%E5%A1%94%E8%8E%8E%C2%B7%E7%BD%97%E6%96%AF%E9%9F%A6%E5%B0%94------------.html" target="_blank">娜塔莎·罗斯韦尔</a>&nbsp;<a href="/search--%E4%BA%9A%E5%BD%93%C2%B7%E4%BD%A9%E9%87%8C------------.html" target="_blank">亚当·佩里</a>&nbsp;<a href="/search--%E8%B0%A2%E9%BB%98%C2%B7%E6%91%A9%E5%B0%94------------.html" target="_blank">谢默·摩尔</a>&nbsp;<a href="/search--%E6%9D%8E%C2%B7%E9%A9%AC%E8%B4%BE%E9%81%93%E5%B8%83------------.html" target="_blank">李·马贾道布</a>&nbsp;<a href="/search--%E7%A7%91%E7%90%B3%C2%B7%E6%AC%A7%E8%82%96%E5%86%85%E5%B8%8C------------.html" target="_blank">科琳·欧肖内希</a>&nbsp;<a href="/search--%E6%A2%85%E6%B4%9B%E5%BE%B7%C2%B7%E8%AF%BA%E8%A5%BF%E6%99%AE%C2%B7%E5%B0%BC%E6%9B%BC------------.html" target="_blank">梅洛德·诺西普·尼曼</a>&nbsp;<a href="/search--%E6%B1%A4%E5%A7%86%C2%B7%E5%B7%B4%E7%89%B9%E5%8B%92------------.html" target="_blank">汤姆·巴特勒</a>&nbsp;<a href="/search--%E5%B8%83%E6%8B%89%E5%BE%B7%C2%B7%E5%8D%A1%E5%88%A9%E5%88%A9%E8%8E%AB%E5%BA%93------------.html" target="_blank">布拉德·卡利利莫库</a>&nbsp;<a href="/search--%E6%9D%B0%E5%A4%AB%C2%B7%E6%A1%91%E5%8D%A1------------.html" target="_blank">杰夫·桑卡</a>&nbsp;<a href="/search--%E4%BC%8A%E4%B8%BD%E8%8E%8E%E7%99%BD%C2%B7%E9%B2%8D%E6%81%A9------------.html" target="_blank">伊丽莎白·鲍恩</a>&nbsp;<a href="/search--%E5%A4%9A%E6%81%A9%C2%B7%E5%88%97%E5%A4%AB------------.html" target="_blank">多恩·列夫</a>&nbsp;<a href="/search--%E9%87%8C%E6%96%AF%C2%B7%E5%A8%81%E5%BB%89%E5%A7%86%E6%96%AF------------.html" target="_blank">里斯·威廉姆斯</a>&nbsp;<a href="/search--%E8%A5%BF%E8%92%99%C2%B7%E9%92%B1------------.html" target="_blank">西蒙·钱</a>&nbsp;<a href="/search--%E5%BC%97%E9%9B%B7%E6%B3%BD%C2%B7%E7%A7%91%E6%AF%94%E7%89%B9------------.html" target="_blank">弗雷泽·科比特</a>&nbsp;<a href="/search--%E5%A5%8E%E5%9B%A0%C2%B7%E5%8E%84%E5%88%A9------------.html" target="_blank">奎因·厄利</a>&nbsp;<a href="/search--%E9%A9%AC%E5%BA%93%E6%96%AF%C2%B7%E5%A5%A5%E9%9B%B7%E9%87%8C%E5%A5%A5------------.html" target="_blank">马库斯·奥雷里奥</a>&nbsp;<a href="/search--%E5%B0%BC%E6%89%98%C2%B7%E6%8B%89%E9%87%8C%E5%A5%A5%E8%90%A8------------.html" target="_blank">尼托·拉里奥萨</a>&nbsp;<a href="/search--%E8%BF%88%E5%85%8B%C2%B7%E9%B2%81%E8%8F%B2%E8%AF%BA------------.html" target="_blank">迈克·鲁菲诺</a>&nbsp;<a href="/search--%E6%9C%AC%C2%B7%E6%96%BD%E7%93%A6%E5%85%B9------------.html" target="_blank">本·施瓦兹</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">索尼克在绿丘镇安顿下来之后，就急着要证明自己有能力成为一名真正的英雄。当蛋头博士带着全新的搭档纳克鲁斯，又回来寻找一块力量强大足以毁灭人类文明的翡翠的时候，他就面对了另一个严峻的考验。这次索尼克和他自</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="刺猬索尼克2">刺猬索尼克2</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="魔发精灵3">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="魔发精灵3" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2900050357.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2023</span>
-								<span class="video-class">动画片</span>
-								<span>美国</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="魔发精灵3">魔发精灵3</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E8%B4%BE%E6%96%AF%E6%B1%80%C2%B7%E6%B1%80%E5%B8%83%E8%8E%B1%E5%85%8B------------.html" target="_blank">贾斯汀·汀布莱克</a>&nbsp;<a href="/search--%E5%AE%89%E5%A8%9C%C2%B7%E8%82%AF%E5%BE%B7%E9%87%8C%E5%85%8B------------.html" target="_blank">安娜·肯德里克</a>&nbsp;<a href="/search--%E6%88%B4%E7%BB%B4%E5%BE%B7%C2%B7%E8%BF%AA%E6%A0%BC%E6%96%AF------------.html" target="_blank">戴维德·迪格斯</a>&nbsp;<a href="/search--%E4%BD%90%E4%BC%8A%C2%B7%E4%B8%B9%E6%96%AF%E5%88%87%E5%B0%94------------.html" target="_blank">佐伊·丹斯切尔</a>&nbsp;<a href="/search--%E5%85%8B%E9%87%8C%E6%96%AF%E6%89%98%E5%A4%AB%C2%B7%E6%A2%85%E5%85%B9-%E6%99%AE%E8%8E%B1%E7%91%9F------------.html" target="_blank">克里斯托夫·梅兹-普莱瑟</a>&nbsp;<a href="/search--%E5%9F%83%E9%87%8C%E5%85%8B%C2%B7%E5%AE%89%E5%BE%B7%E7%83%88------------.html" target="_blank">埃里克·安德烈</a>&nbsp;<a href="/search--%E6%98%86%E7%91%99%C2%B7%E5%86%85%E4%BA%9A------------.html" target="_blank">昆瑙·内亚</a>&nbsp;<a href="/search--%E5%AE%89%E5%BE%B7%E9%B2%81%C2%B7%E5%85%B0%E5%86%85%E6%96%AF------------.html" target="_blank">安德鲁·兰内斯</a>&nbsp;<a href="/search--%E8%89%BE%E7%B1%B3%C2%B7%E8%88%92%E9%BB%98------------.html" target="_blank">艾米·舒默</a>&nbsp;<a href="/search--%E4%BD%90%E8%8E%8E%C2%B7%E9%A9%AC%E6%A2%85%E7%89%B9------------.html" target="_blank">佐莎·马梅特</a>&nbsp;<a href="/search--%E5%8D%A1%E8%BF%AA%E5%B0%8F%E5%AD%90------------.html" target="_blank">卡迪小子</a>&nbsp;<a href="/search--%E7%89%B9%E6%B4%9B%E8%80%B6%C2%B7%E5%B8%8C%E6%96%87------------.html" target="_blank">特洛耶·希文</a>&nbsp;<a href="/search--%E7%BD%97%E6%81%A9%C2%B7%E8%8A%AC%E5%A5%87%E6%96%AF------------.html" target="_blank">罗恩·芬奇斯</a>&nbsp;<a href="/search--%E9%B2%81%E4%BF%9D%E7%BD%97------------.html" target="_blank">鲁保罗</a>&nbsp;<a href="/search--%E5%8D%A1%E7%B1%B3%E6%8B%89%C2%B7%E5%8D%A1%E8%B4%9D%E6%AC%A7------------.html" target="_blank">卡米拉·卡贝欧</a>&nbsp;<a href="/search--%E5%9F%BA%E5%8D%97%C2%B7%E6%B1%A4%E6%99%AE%E6%A3%AE------------.html" target="_blank">基南·汤普森</a>&nbsp;<a href="/search--%E5%AE%89%E5%BE%B7%E6%A3%AE%C2%B7%E5%B8%95%E5%85%8B------------.html" target="_blank">安德森·帕克</a>&nbsp;<a href="/search--%E7%BD%97%E5%85%B0%E5%A4%9A%C2%B7%E8%BE%BE%E7%BB%B4%E6%8B%89-%E8%B4%9D%E5%B0%94%E7%89%B9%E5%85%B0------------.html" target="_blank">罗兰多·达维拉-贝尔特兰</a>&nbsp;<a href="/search--%E8%89%BE%E8%AF%BA%C2%B7%E8%B4%BE%E6%B2%83------------.html" target="_blank">艾诺·贾沃</a>&nbsp;<a href="/search--%E5%8D%A1%E6%B4%9B%E7%90%B3%C2%B7%E8%80%B6%E5%B0%94%E7%89%B9------------.html" target="_blank">卡洛琳·耶尔特</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">暂无简介</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="魔发精灵3">魔发精灵3</a>
-						</div>
-						<div class="module-item-text">HD中字</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="全职猎人剧场版：绯色的幻影">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="全职猎人剧场版：绯色的幻影" class="lazy lazyloaded" data-src="https://pic.dianyi.ng/upload/vod/20220118-1/298b4ecda267170d2df8bbcfcd9c25c5.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2013</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="全职猎人剧场版：绯色的幻影">全职猎人剧场版：绯色的幻影</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E6%BD%98%E6%83%A0%E7%BE%8E------------.html" target="_blank">潘惠美</a>&nbsp;<a href="/search--%E4%BC%8A%E6%BF%91%E8%8C%89%E8%8E%89%E4%B9%9F------------.html" target="_blank">伊濑茉莉也</a>&nbsp;<a href="/search--%E8%97%A4%E5%8E%9F%E5%90%AF%E6%B2%BB------------.html" target="_blank">藤原启治</a>&nbsp;<a href="/search--%E6%B3%BD%E5%9F%8E%E7%BE%8E%E9%9B%AA------------.html" target="_blank">泽城美雪</a>&nbsp;<a href="/search--%E6%B5%AA%E5%B7%9D%E5%A4%A7%E8%BE%85------------.html" target="_blank">浪川大辅</a>&nbsp;<a href="/search--%E5%86%85%E7%94%B0%E7%9B%B4%E5%93%89------------.html" target="_blank">内田直哉</a>&nbsp;<a href="/search--%E5%A4%A7%E5%A1%9A%E6%98%8E%E5%A4%AB------------.html" target="_blank">大塚明夫</a>&nbsp;<a href="/search--%E5%B1%B1%E5%8F%A3%E8%83%9C%E5%B9%B3------------.html" target="_blank">山口胜平</a>&nbsp;<a href="/search--%E6%97%A5%E9%AB%98%E6%B3%95%E5%AD%90------------.html" target="_blank">日高法子</a>&nbsp;<a href="/search--%E6%9C%A8%E5%86%85%E7%A7%80%E4%BF%A1------------.html" target="_blank">木内秀信</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">此去经年，窟卢塔族惨遭灭族的伤痛依然时时折磨着最后的遗民酷拉皮卡（泽城美雪 配音）的身心。在追寻幻影旅团的旅途中，酷拉皮卡竟意外重逢当年的本族好友Bairo，谁知却被对方夺去了号称“七大美色”之一的绯</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="全职猎人剧场版：绯色的幻影">全职猎人剧场版：绯色的幻影</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="名侦探柯南：瞳孔中的暗杀者">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="名侦探柯南：瞳孔中的暗杀者" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p453729514.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2000</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="名侦探柯南：瞳孔中的暗杀者">名侦探柯南：瞳孔中的暗杀者</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E8%8C%B6%E9%A3%8E%E6%9E%97------------.html" target="_blank">茶风林</a>&nbsp;<a href="/search--%E5%8D%83%E5%8F%B6%E4%B8%80%E4%BC%B8------------.html" target="_blank">千叶一伸</a>&nbsp;<a href="/search--%E7%99%BE%E7%99%BE%E9%BA%BB%E5%AD%90------------.html" target="_blank">百百麻子</a>&nbsp;<a href="/search--%E6%B1%9F%E5%B7%9D%E5%A4%AE%E7%94%9F------------.html" target="_blank">江川央生</a>&nbsp;<a href="/search--%E6%B7%B1%E8%A7%81%E6%A2%A8%E5%8A%A0------------.html" target="_blank">深见梨加</a>&nbsp;<a href="/search--%E6%9E%97%E5%8E%9F%E6%83%A0%E7%BE%8E------------.html" target="_blank">林原惠美</a>&nbsp;<a href="/search--%E4%BA%95%E4%B8%8A%E5%92%8C%E5%BD%A6------------.html" target="_blank">井上和彦</a>&nbsp;<a href="/search--%E5%B2%A9%E5%B1%85%E7%94%B1%E5%B8%8C%E5%AD%90------------.html" target="_blank">岩居由希子</a>&nbsp;<a href="/search--%E7%A5%9E%E8%B0%B7%E6%98%8E------------.html" target="_blank">神谷明</a>&nbsp;<a href="/search--%E5%8A%A0%E6%BF%91%E5%BA%B7%E4%B9%8B------------.html" target="_blank">加濑康之</a>&nbsp;<a href="/search--%E5%B0%8F%E6%B1%A0%E4%BA%9A%E5%B8%8C%E5%AD%90------------.html" target="_blank">小池亚希子</a>&nbsp;<a href="/search--%E6%9D%BE%E4%BA%95%E8%8F%9C%E6%A8%B1%E5%AD%90------------.html" target="_blank">松井菜樱子</a>&nbsp;<a href="/search--%E6%A3%AE%E5%B7%9D%E6%99%BA%E4%B9%8B------------.html" target="_blank">森川智之</a>&nbsp;<a href="/search--%E9%95%BF%E5%B6%9D%E9%AB%98%E5%A3%AB------------.html" target="_blank">长嶝高士</a>&nbsp;<a href="/search--%E4%B8%AD%E7%94%B0%E6%B5%A9%E4%BA%8C------------.html" target="_blank">中田浩二</a>&nbsp;<a href="/search--%E7%BB%AA%E6%96%B9%E8%B4%A4%E4%B8%80------------.html" target="_blank">绪方贤一</a>&nbsp;<a href="/search--%E5%A4%A7%E5%8E%9F%E6%B2%99%E8%80%B6%E9%A6%99------------.html" target="_blank">大原沙耶香</a>&nbsp;<a href="/search--%E5%A4%A7%E8%B0%B7%E8%82%B2%E6%B1%9F------------.html" target="_blank">大谷育江</a>&nbsp;<a href="/search--%E6%96%8B%E8%B4%BA%E5%85%89%E5%B8%8C------------.html" target="_blank">斋贺光希</a>&nbsp;<a href="/search--%E7%9B%90%E6%B3%BD%E5%85%BC%E4%BA%BA------------.html" target="_blank">盐泽兼人</a>&nbsp;<a href="/search--%E9%AB%98%E6%9C%A8%E6%B6%89------------.html" target="_blank">高木涉</a>&nbsp;<a href="/search--%E9%AB%98%E5%B2%9B%E9%9B%85%E7%BD%97------------.html" target="_blank">高岛雅罗</a>&nbsp;<a href="/search--%E9%AB%98%E5%B1%B1%E5%8D%97------------.html" target="_blank">高山南</a>&nbsp;<a href="/search--%E5%B1%B1%E5%8F%A3%E8%83%9C%E5%B9%B3------------.html" target="_blank">山口胜平</a>&nbsp;<a href="/search--%E5%B1%B1%E5%B4%8E%E5%92%8C%E4%BD%B3%E5%A5%88------------.html" target="_blank">山崎和佳奈</a>&nbsp;<a href="/search--%E5%B1%B1%E9%87%8E%E4%BA%95%E4%BB%81------------.html" target="_blank">山野井仁</a>&nbsp;<a href="/search--%E6%B1%A4%E5%B1%8B%E6%95%A6%E5%AD%90------------.html" target="_blank">汤屋敦子</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">柯南在街头目睹一名正打电话的警察在雨中被射杀，忙将凶手追踪，但凶手逃脱。死者闭眼一刻紧抓左胸，似乎有所暗示。事后柯南从目暮警官口中了解到紧抓左胸是暗示那里有警察手册。不久又有警察手拿警察手册被人射杀于</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="名侦探柯南：瞳孔中的暗杀者">名侦探柯南：瞳孔中的暗杀者</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="/show.html" title="名侦探柯南：引爆摩天楼">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="名侦探柯南：引爆摩天楼" class="lazy lazyloaded" data-src="https://video.lebimg.com/upload/vod/20230222-4/2fe682bcaa37ec109b39f803ad13b95a.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>1997</span>
-								<span class="video-class">动画片</span>
-								<span>日本</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="/show.html" title="名侦探柯南：引爆摩天楼">名侦探柯南：引爆摩天楼</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="/search--%E9%AB%98%E5%B1%B1%E5%8D%97------------.html" target="_blank">高山南</a>&nbsp;<a href="/search--%E5%B1%B1%E5%B4%8E%E5%92%8C%E4%BD%B3%E5%A5%88------------.html" target="_blank">山崎和佳奈</a>&nbsp;<a href="/search--%E6%9D%BE%E4%BA%95%E8%8F%9C%E6%A8%B1%E5%AD%90------------.html" target="_blank">松井菜樱子</a>&nbsp;<a href="/search--%E5%B1%B1%E5%8F%A3%E8%83%9C%E5%B9%B3------------.html" target="_blank">山口胜平</a>&nbsp;<a href="/search--%E7%BB%AA%E6%96%B9%E8%B4%A4%E4%B8%80------------.html" target="_blank">绪方贤一</a>&nbsp;<a href="/search--%E5%B2%A9%E5%B1%85%E7%94%B1%E5%B8%8C%E5%AD%90------------.html" target="_blank">岩居由希子</a>&nbsp;<a href="/search--%E9%AB%98%E6%9C%A8%E6%B6%89------------.html" target="_blank">高木涉</a>&nbsp;<a href="/search--%E5%A4%A7%E8%B0%B7%E8%82%B2%E6%B1%9F------------.html" target="_blank">大谷育江</a>&nbsp;<a href="/search--%E5%B1%B1%E5%B4%8E%E5%B7%A7------------.html" target="_blank">山崎巧</a>&nbsp;<a href="/search--%E7%89%B9%E7%BD%97%E4%BC%8A%C2%B7%E8%B4%9D%E5%85%8B------------.html" target="_blank">特罗伊·贝克</a>&nbsp;<a href="/search--%E8%8C%B6%E9%A3%8E%E6%9E%97------------.html" target="_blank">茶风林</a>&nbsp;<a href="/search--%E5%B1%B1%E8%B7%AF%E5%92%8C%E5%BC%98------------.html" target="_blank">山路和弘</a>&nbsp;<a href="/search--%E5%8A%B3%E6%8B%89%C2%B7%E8%B4%9D%E8%8E%89------------.html" target="_blank">劳拉·贝莉</a>&nbsp;<a href="/search--%E5%8D%83%E5%8F%B6%E4%B8%80%E4%BC%B8------------.html" target="_blank">千叶一伸</a>&nbsp;<a href="/search--%E4%B8%80%E6%9D%A1%E5%92%8C%E7%9F%A2------------.html" target="_blank">一条和矢</a>&nbsp;<a href="/search--%E7%9C%9F%E5%B1%B1%E4%BA%9A%E5%AD%90------------.html" target="_blank">真山亚子</a>&nbsp;<a href="/search--%E7%9F%B3%E7%94%B0%E5%A4%AA%E9%83%8E------------.html" target="_blank">石田太郎</a>&nbsp;<a href="/search--%E7%A7%91%E7%90%B3%C2%B7%E5%85%8B%E6%9E%97%E8%82%AF%E6%AF%94%E5%B0%94------------.html" target="_blank">科琳·克林肯比尔</a>&nbsp;<a href="/search--%E7%99%BE%E7%99%BE%E9%BA%BB%E5%AD%90------------.html" target="_blank">百百麻子</a>&nbsp;<a href="/search--%E8%97%A4%E6%9C%AC%E8%AE%A9------------.html" target="_blank">藤本让</a>&nbsp;<a href="/search--%E8%97%A4%E5%9F%8E%E8%A3%95%E5%A3%AB------------.html" target="_blank">藤城裕士</a>&nbsp;<a href="/search--Monica%C2%B7Rial------------.html" target="_blank">Monica·Rial</a>&nbsp;<a href="/search--%E8%BE%BE%E8%92%99%C2%B7%E5%85%8B%E6%8B%89%E5%85%8B------------.html" target="_blank">达蒙·克拉克</a>&nbsp;<a href="/search--%E8%82%AF%E7%89%B9%C2%B7%E5%A8%81%E5%BB%89%E6%96%AF------------.html" target="_blank">肯特·威廉斯</a>&nbsp;<a href="/search--%E7%A5%9E%E8%B0%B7%E6%98%8E------------.html" target="_blank">神谷明</a>&nbsp;<a href="/search--%E5%9F%83%E9%87%8C%E5%85%8B%C2%B7%E9%9F%A6%E5%B0%94------------.html" target="_blank">埃里克·韦尔</a>&nbsp;<a href="/search--%E8%B4%BE%E6%96%AF%E6%B1%80%C2%B7%E5%BA%93%E5%85%8B------------.html" target="_blank">贾斯汀·库克</a>&nbsp;<a href="/search--%E7%BA%A6%E7%BF%B0%C2%B7%E4%BC%AF%E6%A0%BC%E8%BF%88%E5%B0%94------------.html" target="_blank">约翰·伯格迈尔</a>&nbsp;<a href="/search--%E9%A9%AC%E5%85%8B%C2%B7%E5%85%B0%E5%BC%80%E6%96%AF%E7%89%B9------------.html" target="_blank">马克·兰开斯特</a>&nbsp;<a href="/search--%E5%87%AF%E5%B0%94%C2%B7%E8%B5%AB%E4%BC%AF%E7%89%B9------------.html" target="_blank">凯尔·赫伯特</a>&nbsp;<a href="/search--%E5%87%AF%E7%89%B9%E6%9E%97%C2%B7%E6%A0%BC%E6%8B%89%E6%96%AF------------.html" target="_blank">凯特林·格拉斯</a>&nbsp;<a href="/search--%E5%85%8B%E6%8B%89%E9%87%8C%E6%81%A9%C2%B7%E5%93%88%E6%99%AE------------.html" target="_blank">克拉里恩·哈普</a>&nbsp;<a href="/search--%E6%A0%BC%E9%9B%B7%E6%A0%BC%C2%B7%E8%89%BE%E5%B0%94%E6%96%AF------------.html" target="_blank">格雷格·艾尔斯</a>&nbsp;<a href="/search--%E8%BE%9B%E8%A5%BF%E5%A8%85%C2%B7%E5%85%8B%E5%85%B0%E5%85%B9------------.html" target="_blank">辛西娅·克兰兹</a>&nbsp;<a href="/search--Ed%C2%B7Blaylock------------.html" target="_blank">Ed·Blaylock</a>&nbsp;<a href="/search--%E8%97%A4%E4%BA%95%E4%BD%B3%E4%BB%A3%E5%AD%90------------.html" target="_blank">藤井佳代子</a>&nbsp;<a href="/search--%E5%B9%B3%E5%B0%BE%E4%BB%81------------.html" target="_blank">平尾仁</a>&nbsp;<a href="/search--%E7%9B%90%E6%B3%BD%E5%85%BC%E4%BA%BA------------.html" target="_blank">盐泽兼人</a>&nbsp;<a href="/search--Alison%C2%B7Viktorin------------.html" target="_blank">Alison·Viktorin</a>&nbsp;<a href="/search--%E5%AE%AB%E5%AF%BA%E6%99%BA------------.html" target="_blank">宫寺智</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">知名建筑设计师森谷帝二这日邀请新一参加在他府上举办的茶会，柯南只得电话拜托小兰。柯南、小兰及毛利小五郎三人未入森府，已被绝对对称的宏伟建筑吸引。衣香鬓影的茶会上，森谷帝二令人诧异地大声攻击年轻设计师，</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="/show.html" title="名侦探柯南：引爆摩天楼">名侦探柯南：引爆摩天楼</a>
-						</div>
-						<div class="module-item-text">正片</div>
-					</div>
+					{{ end }}
 				</div>
 			</div>
 		</div>
 		<!-- 相关影片 -->
+		
 		<div class="module">
 			<div class="module-heading">
 				<h2 class="module-title">正在热播<span class="module-title-en">TRENDING</span></h2>
-				<a class="more" href="/pianku-20-----------.html" title="更多">更多<i class="icon-arrow-right-o"></i></a>
+				<a class="more" href="/pianku.html" title="更多">更多<i class="icon-arrow-right-o"></i></a>
 			</div>
 			<div class="module-list module-line-list">
 				<div class="module-items">
+					{{ range .PageData.CurrentlyTrending }}
 					<div class="module-item">
 						<div class="module-item-cover">
 							<div class="module-item-pic">
-								<a href="show.html" title="黑土无言">
+								<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
 									<i class="icon-play"></i>
 								</a>
-								<img alt="黑土无言" class="lazy lazyloaded" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc002009eh8rti1667459282319/260" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
+								<img alt="{{ .VodName }}"
+									 class="lazy lazyloaded"
+									 data-src="{{ .VodPic }}"
+									 onerror="this.src='/statics/image/loading.png'"
+									 src="/statics/image/loading.png">
 								<div class="loading"></div>
 							</div>
 							<div class="module-item-caption">
-								<span>2024</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
+								<span> {{ .VodYear }}</span>
+								{{ $VodClassList := split .VodClass "," }}
+								{{ range $index, $name := $VodClassList }}
+								<span class="video-class">{{$name}}</span>
+								{{ end }}
+								<span>{{ .VodArea }}</span>
 							</div>
 							<div class="module-item-content">
 								<div class="module-item-style video-name">
-									<a href="show.html" title="黑土无言">黑土无言</a>
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</div>
 								<div class="module-item-style video-tag">
-									<a href="search.html" target="_blank">陈建斌</a>&nbsp;<a href="search.html" target="_blank">胡军</a>&nbsp;<a href="search.html" target="_blank">邓家佳</a>&nbsp;<a href="search.html" target="_blank">史策</a>&nbsp;<a href="search.html" target="_blank">路宏</a>&nbsp;<a href="search.html" target="_blank">陈靖可</a>&nbsp;<a href="search.html" target="_blank">邢佳栋</a>&nbsp;<a href="search.html" target="_blank">姜宏波</a>&nbsp;<a href="search.html" target="_blank">侯长荣</a>&nbsp;<a href="search.html" target="_blank">杨雨潼</a>&nbsp;<a href="search.html" target="_blank">张逗逗</a>&nbsp;<a href="search.html" target="_blank">于洋</a>&nbsp;<a href="search.html" target="_blank">冯秦川</a>&nbsp;<a href="search.html" target="_blank">赵健</a>&nbsp;<a href="search.html" target="_blank">王广源</a>&nbsp;<a href="search.html" target="_blank">杜星奇</a>&nbsp;<a href="search.html" target="_blank">邹德江</a>&nbsp;<a href="search.html" target="_blank">耿艺展</a>&nbsp;<a href="search.html" target="_blank">林潇</a>&nbsp;<a href="search.html" target="_blank">单思杰</a>&nbsp;<a href="search.html" target="_blank">赵倬霆</a>&nbsp;<a href="search.html" target="_blank">李政霖</a>&nbsp;
+									{{ $VodActorList := split .VodActor "," }}
+									{{ range $index, $name := $VodActorList }}
+									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
+									{{ end }}
 								</div>
-								<div class="module-item-style video-text">　　宁静的东北小城澜河，因一桩离奇杀人案掀起波澜。当地著名企业红桥集团发生命案，一夜之间三人被杀，犯罪嫌疑人杨四（胡军 饰）在逃亡途中被抓捕归案，但刑警队长关宇（陈建斌 饰）在审讯途中发现诸多疑点而严</div>
+								<div class="module-item-style video-text">　　
+																		  {{ .VodContent }}
+								</div>
 							</div>
 						</div>
 						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="黑土无言">黑土无言</a>
+							<a class="module-item-title" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 						</div>
-						<div class="module-item-text">更新至5集</div>
+						<div class="module-item-text">{{ .VodRemarks }}</div>
 					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="如果奔跑是我的人生">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="如果奔跑是我的人生" class="lazy lazyloaded" data-src="https://pic3.iqiyipic.com/image/20231231/57/49/a_100535209_m_601_m3_260_360.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2024</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="如果奔跑是我的人生">如果奔跑是我的人生</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="search.html" target="_blank">钟楚曦</a>&nbsp;<a href="search.html" target="_blank">杨超越</a>&nbsp;<a href="search.html" target="_blank">许娣</a>&nbsp;<a href="search.html" target="_blank">陈小艺</a>&nbsp;<a href="search.html" target="_blank">侯雯元</a>&nbsp;<a href="search.html" target="_blank">宋洋</a>&nbsp;<a href="search.html" target="_blank">王宥钧</a>&nbsp;<a href="search.html" target="_blank">李添诺</a>&nbsp;<a href="search.html" target="_blank">荣飞</a>&nbsp;<a href="search.html" target="_blank">王柠</a>&nbsp;<a href="search.html" target="_blank">刘迅</a>&nbsp;<a href="search.html" target="_blank">谭希和</a>&nbsp;<a href="search.html" target="_blank">王德顺</a>&nbsp;<a href="search.html" target="_blank">刘恒甫</a>&nbsp;<a href="search.html" target="_blank">苏岩</a>&nbsp;<a href="search.html" target="_blank">艾丽娅</a>&nbsp;<a href="search.html" target="_blank">牛飘</a>&nbsp;<a href="search.html" target="_blank">曾柯琅</a>&nbsp;<a href="search.html" target="_blank">徐一航</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">　　一场车祸给秀芳和秀丽姐妹俩的家庭带来毁灭性的打击——姐姐秀芳的独女安心是一位青年舞蹈老师，在车祸中受到重伤、失去了双腿；妹妹秀丽的小儿子不幸殒命但大女儿若华逃过一劫。视舞蹈为生命的安心难以承受这巨</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="如果奔跑是我的人生">如果奔跑是我的人生</a>
-						</div>
-						<div class="module-item-text">更新至6集</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="侦察英雄">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="侦察英雄" class="lazy lazyloaded" data-src="https://pic0.iqiyipic.com/image/20240109/3b/0f/a_100550173_m_601_m6_260_360.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2024</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="侦察英雄">侦察英雄</a>
-								</div>
-								<div class="module-item-style video-tag"><a href="search.html" target="_blank">罗晋</a>&nbsp;<a href="search.html" target="_blank">马思纯</a>&nbsp;<a href="search.html" target="_blank">黄澄澄</a>&nbsp;<a href="search.html" target="_blank">曹璐</a>&nbsp;<a href="search.html" target="_blank">上白</a>&nbsp;<a href="search.html" target="_blank">吕晓霖</a>&nbsp;<a href="search.html" target="_blank">杨帆</a>&nbsp;<a href="search.html" target="_blank">韩鹏翼</a>&nbsp;<a href="search.html" target="_blank">赵亦涵</a>&nbsp;<a href="search.html" target="_blank">赵靖舒玉</a>&nbsp;<a href="search.html" target="_blank">王化诚</a>&nbsp;<a href="search.html" target="_blank">武志强</a>&nbsp;<a href="search.html" target="_blank">蒋欣奇</a>&nbsp;<a href="search.html" target="_blank">李明轩</a>&nbsp;<a href="search.html" target="_blank">宋佳伦</a>&nbsp;<a href="search.html" target="_blank">高鑫</a>&nbsp;<a href="search.html" target="_blank">柳明明</a>&nbsp;<a href="search.html" target="_blank">陈昊</a>&nbsp;<a href="search.html" target="_blank">欧阳德嵘</a>&nbsp;<a href="search.html" target="_blank"></a>&nbsp;<a href="search.html" target="_blank">陈冠宇</a>&nbsp;<a href="search.html" target="_blank">李厚基</a>&nbsp;<a href="search.html" target="_blank"></a>&nbsp;<a href="search.html" target="_blank">张野</a>&nbsp;<a href="search.html" target="_blank">李昕哲</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">　　故事发生在1951年初抗美援朝第四次战役时期。志愿军某师侦察科长梁辰（罗晋 饰）带领师侦察连在乌云山炸毁隘口，成功迟滞美军进攻掩护全师撤离。归途中他们营救了被敌人渗透分队抓走的文工队员，粉碎敌军偷</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="侦察英雄">侦察英雄</a>
-						</div>
-						<div class="module-item-text">更新至7集</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="这！就是街舞第六季">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="这！就是街舞第六季" class="lazy lazyloaded" data-src="https://m.ykimg.com/052600006541B13AC847B7122D3626A2" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2023</span>
-								<span class="video-class">内地综艺</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="这！就是街舞第六季">这！就是街舞第六季</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="search.html" target="_blank">吴建豪</a>&nbsp;<a href="search.html" target="_blank">朴宰范</a>&nbsp;<a href="search.html" target="_blank">丁程鑫</a>&nbsp;<a href="search.html" target="_blank">廖搏</a>&nbsp;<a href="search.html" target="_blank">韩庚</a>&nbsp;<a href="search.html" target="_blank">黄渤</a>&nbsp;<a href="search.html" target="_blank">张颂文</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">《这！就是街舞》第六季是街舞竞技真人秀，前五季的街舞完成了从小众文化到大众文化的转变，随着Breaking第一次成为亚运会、奥运会这样世界级体育盛会的竞赛项目，中国的街舞文化越来越兴盛，影响力越来越大</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="这！就是街舞第六季">这！就是街舞第六季</a>
-						</div>
-						<div class="module-item-text">更新至第20240112期</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="你也有今天">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="你也有今天" class="lazy lazyloaded" data-src="https://m.ykimg.com/0584000064D0505E13EB660C8D1FA43F" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2024</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="你也有今天">你也有今天</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="search.html" target="_blank">陈星旭</a>&nbsp;<a href="search.html" target="_blank">章若楠</a>&nbsp;<a href="search.html" target="_blank">陈小纭</a>&nbsp;<a href="search.html" target="_blank">李俊贤</a>&nbsp;<a href="search.html" target="_blank">合文俊</a>&nbsp;<a href="search.html" target="_blank">李殿尊</a>&nbsp;<a href="search.html" target="_blank">陈昊蓝</a>&nbsp;<a href="search.html" target="_blank">谢帅</a>&nbsp;<a href="search.html" target="_blank">范帅琦</a>&nbsp;<a href="search.html" target="_blank">叶筱玮</a>&nbsp;<a href="search.html" target="_blank">蓝城</a>&nbsp;<a href="search.html" target="_blank">翁虹</a>&nbsp;<a href="search.html" target="_blank">岳跃利</a>&nbsp;<a href="search.html" target="_blank">刘洁</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">　　怀揣着律师梦想的纯真少女成瑶，被一个最顶级的律师事务所录取，于是她决定搬到离公司近一些的地方住可以更好的工作。没想到房东一房两租，成瑶跟另一个租客发生争吵。结果那个人竟然是成瑶律所的老板钱恒。钱恒</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="你也有今天">你也有今天</a>
-						</div>
-						<div class="module-item-text">更新至17集</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="大江大河之岁月如歌">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="大江大河之岁月如歌" class="lazy lazyloaded" data-src="https://pic0.iqiyipic.com/image/20240102/87/7e/a_100530560_m_601_m8_260_360.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2024</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="大江大河之岁月如歌">大江大河之岁月如歌</a>
-								</div>
-								<div class="module-item-style video-tag"><a href="search.html" target="_blank">王凯</a>&nbsp;<a href="search.html" target="_blank">杨烁</a>&nbsp;<a href="search.html" target="_blank">董子健</a>&nbsp;<a href="search.html" target="_blank">杨采钰</a>&nbsp;<a href="search.html" target="_blank">黄觉</a>&nbsp;<a href="search.html" target="_blank">房子斌</a>&nbsp;<a href="search.html" target="_blank">刘丹</a>&nbsp;<a href="search.html" target="_blank">梁超</a>&nbsp;<a href="search.html" target="_blank">刘同</a>&nbsp;<a href="search.html" target="_blank">左凌峰</a>&nbsp;<a href="search.html" target="_blank">胡耘豪</a>&nbsp;<a href="search.html" target="_blank">卜宇鑫</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">　　1993年6月，东海化工与洛达公司的跨国合作正在如火如荼地推进，而促成东海合资的关键人物宋运辉，正在各方面都比不上东海的彭阳农药厂带着工人们搞工艺改革，经历了东海到彭阳巨大落差的宋运辉依然秉持奋斗</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="大江大河之岁月如歌">大江大河之岁月如歌</a>
-						</div>
-						<div class="module-item-text">更新至10集</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="陌上人如玉">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="陌上人如玉" class="lazy lazyloaded" data-src="https://pic3.iqiyipic.com/image/20231229/14/12/a_100445441_m_601_m7_260_360.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2023</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="陌上人如玉">陌上人如玉</a>
-								</div>
-								<div class="module-item-style video-tag"><a href="search.html" target="_blank">肖燕</a>&nbsp;<a href="search.html" target="_blank">翟子路</a>&nbsp;<a href="search.html" target="_blank">盛英豪</a>&nbsp;<a href="search.html" target="_blank">钟丽丽</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">　　宋家是出了名的书香世家，家中子女无一不是文坛巨匠、年少成名。唯独三女宋竹，除了好看，完全没有遗传到父辈们一丝的优点。然而越是如此，宋竹对学习之事就越不上心。一心想要摆脱家族的光环，整天琢磨如何把自</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="陌上人如玉">陌上人如玉</a>
-						</div>
-						<div class="module-item-text">更新至34集</div>
-					</div>
-					
-					<div class="module-item">
-						<div class="module-item-cover">
-							<div class="module-item-pic">
-								<a href="show.html" title="漂洋过海再爱你">
-									<i class="icon-play"></i>
-								</a>
-								<img alt="漂洋过海再爱你" class="lazy lazyloaded" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2902689782.jpg" onerror="this.src='/statics/image/loading.png'" src="/statics/image/loading.png"/>
-								<div class="loading"></div>
-							</div>
-							<div class="module-item-caption">
-								<span>2023</span>
-								<span class="video-class">国产剧</span>
-								<span>中国大陆</span>
-							</div>
-							<div class="module-item-content">
-								<div class="module-item-style video-name">
-									<a href="show.html" title="漂洋过海再爱你">漂洋过海再爱你</a>
-								</div>
-								<div class="module-item-style video-tag">
-									<a href="search.html" target="_blank">陈学冬</a>&nbsp;<a href="search.html" target="_blank">宋轶</a>&nbsp;<a href="search.html" target="_blank">徐洋</a>&nbsp;<a href="search.html" target="_blank">韩童生</a>&nbsp;<a href="search.html" target="_blank">王术一</a>&nbsp;<a href="search.html" target="_blank">李蒙萌</a>&nbsp;<a href="search.html" target="_blank">王驾麟</a>&nbsp;<a href="search.html" target="_blank">熊乃槿</a>&nbsp;<a href="search.html" target="_blank">吕行</a>&nbsp;<a href="search.html" target="_blank">蒋诗萌</a>&nbsp;<a href="search.html" target="_blank">白梓轩</a>&nbsp;<a href="search.html" target="_blank">李晓川</a>&nbsp;
-								</div>
-								<div class="module-item-style video-text">公司高管夏缘，在30岁生日来临之际准备与男友宋航宇订婚，看似事业爱情双丰收。可订婚宴上，未婚夫竟然失踪了。夏缘打听到宋航宇斩断一切去了国外，决定放下一切给自己一个交代。另一边，与夏缘有过节的郝未来，被父亲安排出国打工磨炼。95后女孩叶思琪和乔彬闪婚闪离，一时头脑发热想要追寻新生活的叶思琪也踏上了旅程，为离婚后悔的乔彬追随叶思琪的脚步到了国外。四人在阴差阳错下结伴上路。这一年，四人去到农场、餐馆、酒庄、游乐场等多个地方打工。丰富了旅程也各自有了自己新的人生整理。一年时间，有人放下执念、有人理解了现实人生、有</div>
-							</div>
-						</div>
-						<div class="module-item-titlebox">
-							<a class="module-item-title" href="show.html" title="漂洋过海再爱你">漂洋过海再爱你</a>
-						</div>
-						<div class="module-item-text">更新至21集</div>
-					</div>
+					{{ end }}
 				</div>
 			</div>
 		</div>
