@@ -22,7 +22,12 @@ func ListWhereMacVod(table, name string, where map[string]interface{}, order str
 func ListMacType(table string, typePid int, listMacType *[]models.MacType) {
 	CacheMacType, _ := GetTable(table, "listMacType", []models.MacType{})
 	if CacheMacType == nil {
-		models.MacTypeMgr(mysql.DB).Debug().Where("type_pid", typePid).Where("type_status", 1).Order("type_sort asc").Find(&listMacType)
+		where := map[string]interface{}{}
+		where["type_status"] = 1
+		if typePid >= 0 {
+			where["type_pid"] = typePid
+		}
+		models.MacTypeMgr(mysql.DB).Debug().Where(where).Order("type_sort asc").Find(&listMacType)
 		SaveTable(table, "listMacType", listMacType)
 	} else {
 		*listMacType = *CacheMacType.(*[]models.MacType) // 更新指针指向的值

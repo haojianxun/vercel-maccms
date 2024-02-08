@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"goapi/app/models"
 	"goapi/pkg/maccms"
@@ -44,6 +45,7 @@ func SetFuncMap() template.FuncMap {
 		"ListMacVod":    ListMacVod,
 		"EncryptID":     maccms.EncryptID,
 		"DecryptID":     maccms.DecryptID,
+		"TypeName":      TypeName,
 	}
 	return funcMap
 }
@@ -76,4 +78,16 @@ func add(a, b int) int {
 func ListMacVod(PageData map[string]interface{}, name string) []models.MacVod {
 	list := PageData[name].([]models.MacVod)
 	return list
+}
+
+func TypeName(listMacType, TypeID interface{}) string {
+	name := ""
+	list := listMacType.([]models.MacType)
+	for _, data := range list {
+		if fmt.Sprintf("%v", TypeID) == fmt.Sprintf("%v", data.TypeID) {
+			name = data.TypeName
+			break
+		}
+	}
+	return name
 }

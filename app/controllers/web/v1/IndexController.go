@@ -27,12 +27,14 @@ func (h *IndexController) Index(c *gin.Context) {
 	// 批量查询数据
 	var (
 		TodayCount                                                                    int64
+		listMacType                                                                   []models.MacType
 		CurrentlyTrending, listDianYing, MonthDianYing, listDianShiJu, MonthDianShiJu []models.MacVod
 		listDongMan, MonthDongMan, listZongYi, MonthZongYi, NewsAll, NewsVideos       []models.MacVod
 		NewsDianShiJu, NewsDongMan, NewsZongYi                                        []models.MacVod
 	)
 	DB := models.MacVodMgr(mysql.DB)
-
+	// 查询所有分类
+	service.ListMacType(table, -1, &listMacType)
 	// 正在热播
 	CacheCurrentlyTrending, _ := service.GetTable(table, "CurrentlyTrending", []models.MacVod{})
 	if CacheCurrentlyTrending == nil {
@@ -111,6 +113,7 @@ func (h *IndexController) Index(c *gin.Context) {
 		listNewVideos = *CachelistNewVideos.(*map[string][]models.MacVod)
 	}
 
+	PageData["listMacType"] = listMacType
 	PageData["CurrentlyTrending"] = CurrentlyTrending
 	PageData["listDianYing"] = listDianYing
 	PageData["MonthDianYing"] = MonthDianYing
