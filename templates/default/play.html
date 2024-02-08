@@ -13,7 +13,7 @@
                         <ul class="tips-list">
                             <div class="swiper-container">
                                 <div class="swiper-wrapper">
-                                    <li class="swiper-slide">正在播放《{{ .PageData.detail.VodName }}》HD - SD节点</li>
+                                    <li class="swiper-slide">正在播放《{{ .PageData.detail.VodName }}》{{ .PageData.PartName }} - SD节点</li>
                                     <li class="swiper-slide"><span class="btn-main">提醒</span>不要轻易相信视频中的任何广告，谨防上当受骗</li>
                                     <li class="swiper-slide"><span class="btn-yellow">技巧</span>如遇视频无法播放或加载速度慢，可尝试切换播放节点或者切换解析</li>
                                     <li class="swiper-slide"><span class="btn-main">节点</span>请优先使用靠前节点，NG节点为海外独享</li>
@@ -30,17 +30,17 @@
 										"encrypt": 2,
 										"trysee": 0,
 										"points": 0,
-										"link": "/paly-HcNqCS-1-1.html",
-										"link_next": "/paly-HcNqCS-9-5.html",
-										"link_pre": "/paly-HcNqCS-9-3.html",
+										"link": "/{{ .PageData.Link }}",
+										"link_next": "/{{ .PageData.LinkNext }}",
+										"link_pre": "/{{ .PageData.LinkPre }}",
 										"vod_data": {
-											"vod_name": "少爷和我",
-											"vod_actor": "张哲华,詹鑫,土豆,吕严,李子雄,王骁,王劲松,蒋龙,张小婉,李晓川,何蓝逗,马旭东,嵇嘉禾,荣飞,傅迦,李川,松天硕,滕哲,雷淞然,杨雨光,李勤勤,李逗逗,刘旸,六兽,石老板,彭浩森,李之夏,孔令美,李璐,贲恩泽 ,史元庭,郝鹏飞,余骁睿,郑钧颢,李奎,罗梓烁,傅铂涵",
-											"vod_director": "王莉",
-											"vod_class": "网剧,剧情,青春,喜剧,短片"
+											"vod_name": "{{ .PageData.detail.VodName }}",
+											"vod_actor": "{{ .PageData.detail.VodActor }}",
+											"vod_director": "{{ .PageData.detail.VodDirector }}",
+											"vod_class": "{{ .PageData.detail.VodClass }}"
 										},
-										"url": "JTY4JTc0JTc0JTcwJTczJTNBJTJGJTJGJTc2JTJFJTYzJTY0JTZFJTZDJTdBJTMyJTJFJTYzJTZGJTZEJTJGJTMyJTMwJTMyJTM0JTMwJTMyJTMwJTM1JTJGJTMyJTM4JTM3JTMwJTM4JTVGJTY0JTM1JTM0JTY2JTM3JTY2JTYxJTY0JTJGJTY5JTZFJTY0JTY1JTc4JTJFJTZEJTMzJTc1JTM4",
-										"url_next": "JTY4JTc0JTc0JTcwJTczJTNBJTJGJTJGJTc2JTJFJTYzJTY0JTZFJTZDJTdBJTMyJTJFJTYzJTZGJTZEJTJGJTMyJTMwJTMyJTM0JTMwJTMyJTMwJTM1JTJGJTMyJTM4JTM3JTMwJTM3JTVGJTMxJTYyJTMzJTMwJTM3JTMxJTM2JTYzJTJGJTY5JTZFJTY0JTY1JTc4JTJFJTZEJTMzJTc1JTM4",
+										"url": "{{ .PageData.Url }}",
+										"url_next": "{{ .PageData.UrlNext }}",
 										"from": "lzm3u8",
 										"server": "no",
 										"note": "",
@@ -161,7 +161,7 @@
                             <div class="module-tab-content">
 								{{ $VodPlayFromList := split .PageData.detail.VodPlayFrom "$$$" }}
 								{{ range $index, $name := $VodPlayFromList }}
-								<div class="module-tab-item tab-item {{ if eq $index $.PageData.Node }}selected{{end}}" data-dropdown-value="{{ $name }}">
+								<div class="module-tab-item tab-item {{ if eq (add 1 $index) $.PageData.Node }}selected{{end}}" data-dropdown-value="{{ $name }}">
 									<span>{{ $name }}</span>
 									<small>{{ GetVodCount $.PageData.detail.VodPlayURL "$$$" $index }}</small>
 								</div>
@@ -174,7 +174,7 @@
 				
 				{{ $VodPlayUrlList := split .PageData.detail.VodPlayURL "$$$" }}
 				{{ range $index, $data := $VodPlayUrlList }}
-                <div class="module-list module-player-list tab-list sort-list  {{ if eq $index $.PageData.Node }}selected{{end}}   player-side-playlist">
+                <div class="module-list module-player-list tab-list sort-list  {{ if eq (add $index 1) $.PageData.Node }}selected{{end}} player-side-playlist">
                     <div class="module-tab module-sorttab">
                         <input type="hidden" name="tab-sort" id="tab-sort-{{ add $index 1 }}" class="module-tab-input">
                         <label class="module-tab-name"><i class="icon-sort"></i></label>
@@ -190,7 +190,7 @@
 										{{ range $kk, $vv := $VodUrlList }}
 										<a onclick="topLine(event)"
 										   href="play-{{ EncryptID $.PageData.detail.VodID }}-{{ add $index 1 }}-{{ add $kk 1 }}.html"
-										   class="{{ if eq $kk $.PageData.Part }}selected{{end}}"
+										   class="{{ if eq (add $kk 1) $.PageData.Part }}selected{{end}}"
 										   title="{{ $.PageData.detail.VodName }}">
 											<span>{{ GetSplitFirst $vv "$" }}</span>
 											<div class="playon">
@@ -210,8 +210,8 @@
 							{{ $VodUrlList := split $data "#" }}
 							{{ range $kk, $vv := $VodUrlList }}
 							<a href="play-{{ EncryptID $.PageData.detail.VodID }}-{{ add $index 1 }}-{{ add $kk 1 }}.html"
-							   class="{{ if eq $kk $.PageData.Part }}selected{{end}}"
-							   title="播放{{ $.PageData.detail.VodName }} {{ $.PageData.Part }} "
+							   class="{{ if eq (add $kk 1) $.PageData.Part }}selected{{end}}"
+							   title="播放{{ $.PageData.detail.VodName }} {{ $.PageData.PartName }} "
 							>
 								<span>{{ GetSplitFirst $vv "$" }}</span>
 								<div class="playon">

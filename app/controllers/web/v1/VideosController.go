@@ -249,11 +249,9 @@ func (h *VideosController) Play(c *gin.Context) {
 	}
 	// TOCzRb-1-1
 	array := strings.Split(params, "-")
-	VodID := maccms.DecryptID(array[0]) // 视频ID
-	Node := array[1]                    // 播放节点/播放线路
-	Part := array[2]                    // 第几集/第几部分
-	fmt.Println(Node)
-	fmt.Println(Part)
+	VodID := maccms.DecryptID(array[0])   // 视频ID
+	Node := helpers.StringToInt(array[1]) // 播放节点/播放线路
+	Part := helpers.StringToInt(array[2]) // 第几集/第几部分
 	var detail models.MacVod
 	err := models.MacVodMgr(mysql.DB).Where("vod_id", VodID).Find(&detail).Error
 	if err != nil {
@@ -288,14 +286,22 @@ func (h *VideosController) Play(c *gin.Context) {
 	PageData["Related"] = Related
 	PageData["CurrentlyTrending"] = CurrentlyTrending
 	PageData["VodID"] = VodID
-	PageData["Node"] = helpers.StringToInt(Node) - 1
-	PageData["Part"] = helpers.StringToInt(Part) - 1
-	PageData["Link"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], Part)
-	PageData["LinkNext"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], helpers.StringToInt(Part)+1)
-
+	PageData["Node"] = Node
+	PageData["Part"] = Part
+	PageData["Link"] = fmt.Sprintf("%v-%v-%v.html", array[0], Node, Part)
+	PageData["LinkNext"] = fmt.Sprintf("%v-%v-%v.html", array[0], Node, Part+1)
+	PageData["LinkPre"] = fmt.Sprintf("%v-%v-%v.html", array[0], Node, Part-1)
 	// 播放地址
-	PageData["Url"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], Part)
-	PageData["UrlNext"] = fmt.Sprintf("%v-%v-%v.html", array[0], array[1], helpers.StringToInt(Part)+1)
+	VodPlayURLGroup := strings.Split(detail.VodPlayURL, "$$$")
+	PartGroup := strings.Split(VodPlayURLGroup[Node-1], "#")
+	CurrentUrlInfo := strings.Split(PartGroup[Part-1], "$")
+	PageData["PartName"] = CurrentUrlInfo[0]
+	PageData["NodeName"] = CurrentUrlInfo[0]
+	PageData["Url"] = maccms.Base64encode(maccms.EncodeURL(CurrentUrlInfo[1]))
+	if len(PartGroup) > Part {
+		NextUrlInfo := strings.Split(PartGroup[Part], "$")
+		PageData["UrlNext"] = maccms.Base64encode(maccms.EncodeURL(NextUrlInfo[1]))
+	}
 	DATA["PageData"] = PageData
 	DATA["page"] = MacTypeDetail.TypeEn
 	c.HTML(http.StatusOK, "play.html", DATA)
