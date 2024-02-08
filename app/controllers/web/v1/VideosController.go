@@ -6,6 +6,7 @@ import (
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
 	"goapi/app/service"
+	"goapi/pkg/helpers"
 	"goapi/pkg/maccms"
 	"goapi/pkg/mysql"
 	"net/http"
@@ -73,7 +74,7 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
 		"type_id_1":  2,
 		"vod_status": 1,
-	}, "vod_hits desc", 16, &CurrentlyTrending)
+	}, "vod_year desc,vod_hits desc", 16, &CurrentlyTrending)
 	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
 	for _, item := range listMacType {
 		Name := item.TypeEn
@@ -82,7 +83,7 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 		service.ListWhereMacVod(table, Name, map[string]interface{}{
 			"type_id":    TypeID,
 			"vod_status": 1,
-		}, "vod_hits desc", 16, &BindList)
+		}, "vod_year desc,vod_hits desc", 16, &BindList)
 		PageData[Name] = BindList
 	}
 	PageData["listMacType"] = listMacType
@@ -228,15 +229,70 @@ func (h *VideosController) Show(c *gin.Context) {
 }
 
 func (h *VideosController) Play(c *gin.Context) {
+	table := "play.html"
+	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
 	}
-	data := value.(gin.H)
-	data["page"] = "play"
-	data["title"] = "Play"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "play.html", data)
+	DATA := value.(gin.H)
+	// 获取路由中的参数值
+	params := strings.ReplaceAll(c.Param("params"), ".html", "")
+	if len(params) < 10 {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
+	// 参数不正确
+	if !strings.Contains(params, "-") {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
+	// TOCzRb-1-1
+	array := strings.Split(params, "-")
+	VodID := maccms.DecryptID(array[0]) // 视频ID
+	Node := array[1]                    // 播放节点/播放线路
+	Part := array[2]                    // 第几集/第几部分
+	fmt.Println(Node)
+	fmt.Println(Part)
+	var detail models.MacVod
+	err := models.MacVodMgr(mysql.DB).Where("vod_id", VodID).Find(&detail).Error
+	if err != nil {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
+	var (
+		Related, CurrentlyTrending []models.MacVod
+		MacTypeDetail              models.MacType
+	)
+	err = models.MacTypeMgr(mysql.DB).Where("type_id", detail.TypeID1).Find(&MacTypeDetail).Error
+	if err != nil {
+		c.HTML(http.StatusOK, "404", nil)
+		return
+	}
+	// 相关影片
+	RelatedName := fmt.Sprintf("Related:%v", detail.TypeID)
+	service.ListWhereMacVod(table, RelatedName, map[string]interface{}{
+		"type_id":    detail.TypeID,
+		"vod_status": 1,
+	}, "vod_year desc,vod_hits desc", 16, &Related)
+
+	// 正在热播
+	ReBoName := fmt.Sprintf("CurrentlyTrending:%v", detail.TypeID)
+	service.ListWhereMacVod(table, ReBoName, map[string]interface{}{
+		"type_id":    detail.TypeID,
+		"vod_status": 1,
+	}, "vod_hits desc", 10, &CurrentlyTrending)
+
+	PageData["detail"] = detail
+	PageData["MacTypeDetail"] = MacTypeDetail
+	PageData["Related"] = Related
+	PageData["CurrentlyTrending"] = CurrentlyTrending
+	PageData["VodID"] = VodID
+	PageData["Node"] = helpers.StringToInt(Node) - 1
+	PageData["Part"] = helpers.StringToInt(Part) - 1
+	DATA["PageData"] = PageData
+	DATA["page"] = MacTypeDetail.TypeEn
+	c.HTML(http.StatusOK, "play.html", DATA)
 }
 
 func (h *VideosController) PianKu(c *gin.Context) {

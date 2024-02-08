@@ -18,7 +18,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		// 片库
 		webV1.GET("/pianku.html", GroupV1.VideosController.PianKu)
 		// 播放
-		webV1.GET("/play.html", GroupV1.VideosController.Play)
+		webV1.GET("/play-:params", GroupV1.VideosController.Play)
 		// 搜索
 		webV1.GET("/search.html", GroupV1.IndexController.Search)
 		// 详情
