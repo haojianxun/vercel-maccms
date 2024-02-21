@@ -29,6 +29,8 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		webV1.GET("/top.html", GroupV1.VideosController.Top)
 		// Web
 		webV1.GET("/web.html", GroupV1.IndexController.Web)
+		// About
+		webV1.GET("/about.html", GroupV1.IndexController.About)
 		// APP
 		webV1.GET("/label/app.html", GroupV1.IndexController.App)
 		// 站点路由

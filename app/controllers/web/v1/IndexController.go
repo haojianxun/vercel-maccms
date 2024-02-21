@@ -153,6 +153,18 @@ func (h *IndexController) Web(c *gin.Context) {
 	c.HTML(http.StatusOK, "web.html", data)
 }
 
+func (h *IndexController) About(c *gin.Context) {
+	value, exists := c.Get("data")
+	if !exists {
+		value = gin.H{}
+	}
+	data := value.(gin.H)
+	data["page"] = "about"
+	data["title"] = "About"
+	data["list"] = gin.H{"a": "b"}
+	c.HTML(http.StatusOK, "about.html", data)
+}
+
 func (h *IndexController) App(c *gin.Context) {
 	value, exists := c.Get("data")
 	if !exists {

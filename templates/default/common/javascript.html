@@ -39,25 +39,37 @@
     }
 </script>
 <script type="text/javascript">
-    document.onkeydown=function(){
-        var e = window.event||arguments[0];
-        if(e.keyCode==123){
-            alert('禁止调试');
-            return false;
-        }
-    }
-    var threshold = 160;
-    window.setInterval(function() {
-        if (window.outerWidth - window.innerWidth > threshold ||
-            window.outerHeight - window.innerHeight > threshold) {
-            function disableDebugger() {
-                debugger;
-            }
-            $(document).ready(function () {
-                disableDebugger();
-            });
-        }
-    }, 1e3);
+	document.onkeydown = function () {
+		var e = window.event || arguments[0];
+		if (e.keyCode == 123) {
+			alert('禁止调试');
+			return false;
+		}
+		if ((e.ctrlKey) && (e.shiftKey) && (e.keyCode == 73)) {
+			alert('禁止调试');
+			return false;
+		}
+		if ((e.ctrlKey) && (e.keyCode == 85)) {
+			alert('禁止调试');
+			return false;
+		}
+		if ((e.ctrlKey) && (e.keyCode == 83)) {
+			alert('禁止调试');
+			return false;
+		}
+	}
+	var threshold = 160;
+	window.setInterval(function () {
+		if (window.outerWidth - window.innerWidth > threshold ||
+				window.outerHeight - window.innerHeight > threshold) {
+			function disableDebugger() {
+				debugger;
+			}
+			$(document).ready(function () {
+				disableDebugger();
+			});
+		}
+	}, 1e3);
 </script>
 <!--中文繁体切换-->
 <script src="{{.__JS__}}/font.js"></script>
