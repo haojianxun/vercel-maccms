@@ -11,6 +11,7 @@ import (
 	"goapi/pkg/config"
 	"goapi/pkg/logger"
 	"io/ioutil"
+	"time"
 )
 
 const DefaultHeader = "Tracking-Id"
@@ -31,6 +32,7 @@ func TlsHandler() gin.HandlerFunc {
 
 func TraceLogger() gin.HandlerFunc {
 	return func(ctx *gin.Context) {
+		ctx.Set("startTime", time.Now().UnixMilli())
 		// 每个请求生成的请求RequestId具有全局唯一性
 		RequestId := ctx.GetHeader(DefaultHeader)
 		// 如果不存在，则生成TrackingID

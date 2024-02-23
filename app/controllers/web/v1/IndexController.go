@@ -141,6 +141,8 @@ func (h *IndexController) Index(c *gin.Context) {
 	PageData["listNewVideos"] = listNewVideos
 	DATA["PageData"] = PageData
 	DATA["page"] = "index"
+	startTime, _ := c.Get("startTime")
+	fmt.Println("当前耗时", time.Now().UnixMilli()-startTime.(int64), "ms")
 	c.HTML(http.StatusOK, "index.html", DATA)
 }
 
