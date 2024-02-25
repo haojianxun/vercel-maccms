@@ -39,6 +39,7 @@ func SetFuncMap() template.FuncMap {
 	funcMap := template.FuncMap{
 		"split":         split,
 		"add":           add,
+		"sub":           sub,
 		"len":           lenFunction,
 		"GetVodCount":   GetVodCount,
 		"GetSplitFirst": GetSplitFirst,
@@ -73,6 +74,10 @@ func GetVodCount(str, sep string, index int) int {
 
 func add(a, b int) int {
 	return a + b
+}
+
+func sub(a, b int) int {
+	return a - b
 }
 
 func ListMacVod(PageData map[string]interface{}, name string) []models.MacVod {

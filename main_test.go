@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"goapi/pkg/maccms"
 	"net/url"
+	"strings"
 	"testing"
 )
 
@@ -33,4 +34,51 @@ func Urls() {
 	encodedURL2 := maccms.EncodeURL(decodedURL)
 
 	fmt.Println("EncodedURL URL:", encodedURL2)
+}
+
+type MovieInfo struct {
+	MovieName    string
+	ActorName    string
+	AreaName     string
+	DirectorName string
+	Page         string
+	Year         string
+}
+
+func extractParameters(url string) (page, movieName, actorName, areaName, directorName, year string) {
+	// 使用字符串分割来提取参数
+	parts := strings.Split(url, "---")
+	if len(parts) < 4 {
+		return "", "", "", "", "", ""
+	}
+
+	// 根据前缀判断参数类型
+	switch {
+	case strings.HasPrefix(parts[0], "-"):
+		movieName = strings.ReplaceAll(parts[0], "-", "")
+	case strings.HasPrefix(parts[0], "--"):
+		actorName = strings.ReplaceAll(parts[0], "-", "")
+	}
+	areaName = strings.ReplaceAll(parts[1], "-", "")
+	directorName = strings.ReplaceAll(parts[2], "-", "")
+	page = strings.ReplaceAll(parts[3], "-", "")
+	year = strings.ReplaceAll(parts[4], "-", "")
+	return page, movieName, actorName, areaName, directorName, year
+}
+
+func TestReg(t *testing.T) {
+	// 测试示例URL
+	urls := []string{
+		"-电影名称----------第几页---",
+		"--演员名称---------第几页---",
+		"---大陆--------第几页---",
+		"------导演-----第几页---",
+		"-----------第几页---年份",
+	}
+
+	// 提取参数并打印
+	for _, url := range urls {
+		page, name, actorName, areaName, directorName, year := extractParameters(url)
+		fmt.Println("page", page, "name", name, "actorName", actorName, "areaName", areaName, "directorName", directorName, "year", year)
+	}
 }

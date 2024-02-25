@@ -27,7 +27,6 @@
                                     <a href="search.html" class=""><i class="icon-hot"></i>涉过愤怒的海</a>
                                     <a href="search.html" class=""><i class="icon-hot"></i>93国际列车大劫案：莫斯科行动</a>
                                     <a href="search.html" class=""><i class="icon-hot"></i>志愿军：雄兵出击</a>
-
                                 </div>
                             </div>
                         </div>
@@ -39,28 +38,38 @@
             </form>
             <div class="search-stat">
                 <h1></h1>
-                <h2>搜索"" ，找到 <strong class="mac_total"></strong>部影视作品</h2>
+                <h2>搜索 "{{ .PageData.wd }}" ，找到 <strong class="mac_total"></strong> 部影视作品</h2>
             </div>
         </div>
         <div class="module">
             <div class="module-list">
                 <div class="module-items">
-
+					
+					{{ range .PageData.pageList.List }}
                     <div class="module-search-item">
                         <div class="video-cover">
                             <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放团建吧！七斋"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://0img.hitv.com/preview/sp_images/2023/08/01/202308011138554239683.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="团建吧！七斋">
+                                <div class="module-item-pic">
+									<a href="play-{{ EncryptID .VodID }}-1-1.html" title="{{ .VodName }}">
+										<i class="icon-play"></i></a>
+									<img alt="{{ .VodName }}"
+										 class="lazy lazyloaded"
+										 data-src="{{ .VodPic }}"
+										 onerror="this.src='/statics/image/loading.png'"
+										 src="/statics/image/loading.png">
                                     <div class="loading"></div>
                                 </div>
                             </div>
                         </div>
                         <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="团建吧！七斋">更新至20230822</a>
-                                <h3><a href="show.html" title="团建吧！七斋">团建吧！七斋</a></h3>
+                            <div class="video-info-header">
+								<a class="video-serial" href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodRemarks }}</a>
+                                <h3>
+									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								</h3>
                                 <div class="video-info-aux">
                                     <a href="v/dianshiju.html" title="电视剧" class="tag-link"><span class="video-tag-icon">
-                                         <i class="icon-cate-ds"></i>
-                      电视剧</span></a>
+                                         <i class="icon-cate-ds"></i>电视剧</span></a>
                                     <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
                                     <div class="tag-link"><a href="search.html" target="_blank">内地</a>&nbsp;</div>
                                 </div>
@@ -75,375 +84,26 @@
                                         <a href="search.html" target="_blank">周雨彤</a><span class="slash">/</span><a href="search.html" target="_blank">王佑硕</a><span class="slash">/</span><a href="search.html" target="_blank">苏晓彤</a><span class="slash">/</span><a href="search.html" target="_blank">郑伟</a><span class="slash">/</span><a href="search.html" target="_blank">付伟伦</a><span class="slash">/</span><a href="search.html" target="_blank">余承恩</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">王可</a><span class="slash">/</span>						</div>
                                 </div>
                                 <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">《团建吧！七斋》是《大宋少年志2》的衍生内容，邀请周雨彤、王佑硕、苏晓彤等七斋八斋中的各个主演成员，来到山清水秀的民宿地放松团建，通过捉鸡捕虾的趣味劳动，默契考验的趣味游戏，感人真挚的聊天局等活动形式，展示主演团线下的原生关系。</div>
+                                    <div class="video-info-item">《{{ .VodName }}》是《大宋少年志2》的衍生内容，邀请周雨彤、王佑硕、苏晓彤等七斋八斋中的各个主演成员，来到山清水秀的民宿地放松团建，通过捉鸡捕虾的趣味劳动，默契考验的趣味游戏，感人真挚的聊天局等活动形式，展示主演团线下的原生关系。</div>
                                 </div>
                             </div>
                             <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放团建吧！七斋"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载团建吧！七斋"><i class="icon-download"></i><strong>下载</strong></a>
+                                <a href="play-{{ EncryptID .VodID }}-1-1.html" class="btn-important btn-base" title="立刻播放{{ .VodName }}"><i class="icon-play"></i><strong>立即播放</strong></a>
+                                <a href="show-{{ EncryptID .VodID }}.html" class="btn-aux btn-aux-o btn-base" title="下载{{ .VodName }}"><i class="icon-download"></i><strong>下载</strong></a>
                             </div>
                         </div>
                     </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放封神第一部：朝歌风云"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://img.dianyi.ng/view/photo/s_ratio_poster/public/p2892956776.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="封神第一部：朝歌风云">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="封神第一部：朝歌风云">完结</a>
-                                <h3><a href="show.html" title="封神第一部：朝歌风云">封神第一部：朝歌风云</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianying.html" title="电影" class="tag-link"><span class="video-tag-icon">
-                                        <i class="icon-cate-dy"></i>
-                    电影</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">中国大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">乌尔善</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">费翔</a><span class="slash">/</span><a href="search.html" target="_blank">李雪健</a><span class="slash">/</span><a href="search.html" target="_blank">黄渤</a><span class="slash">/</span><a href="search.html" target="_blank">于适</a><span class="slash">/</span><a href="search.html" target="_blank">陈牧驰</a><span class="slash">/</span><a href="search.html" target="_blank">娜然</a><span class="slash">/</span><a href="search.html" target="_blank">此沙</a><span class="slash">/</span><a href="search.html" target="_blank">武亚凡</a><span class="slash">/</span><a href="search.html" target="_blank">夏雨</a><span class="slash">/</span><a href="search.html" target="_blank">袁泉</a><span class="slash">/</span><a href="search.html" target="_blank">王洛勇</a><span class="slash">/</span><a href="search.html" target="_blank">侯雯元</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">李昀锐</a><span class="slash">/</span><a href="search.html" target="_blank">杨玏</a><span class="slash">/</span><a href="search.html" target="_blank">陈坤</a><span class="slash">/</span><a href="search.html" target="_blank">许还山</a><span class="slash">/</span><a href="search.html" target="_blank">高曙光</a><span class="slash">/</span><a href="search.html" target="_blank">冯绍峰</a><span class="slash">/</span><a href="search.html" target="_blank">杨立新</a><span class="slash">/</span><a href="search.html" target="_blank">丁勇岱</a><span class="slash">/</span><a href="search.html" target="_blank">高冬平</a><span class="slash">/</span><a href="search.html" target="_blank">徐冲</a><span class="slash">/</span><a href="search.html" target="_blank">韩鹏翼</a><span class="slash">/</span><a href="search.html" target="_blank">单敬尧</a><span class="slash">/</span><a href="search.html" target="_blank">吴汉坤</a><span class="slash">/</span><a href="search.html" target="_blank">百力嘎</a><span class="slash">/</span><a href="search.html" target="_blank">刘乐</a><span class="slash">/</span><a href="search.html" target="_blank">许翔</a><span class="slash">/</span><a href="search.html" target="_blank">刘涵</a><span class="slash">/</span><a href="search.html" target="_blank">徐菲</a><span class="slash">/</span><a href="search.html" target="_blank">孙睿</a><span class="slash">/</span><a href="search.html" target="_blank">耿业庭</a><span class="slash">/</span><a href="search.html" target="_blank">金志浩</a><span class="slash">/</span><a href="search.html" target="_blank">屈愉超</a><span class="slash">/</span><a href="search.html" target="_blank">黄涛</a><span class="slash">/</span><a href="search.html" target="_blank">樊汶东</a><span class="slash">/</span><a href="search.html" target="_blank">姜宝成</a><span class="slash">/</span><a href="search.html" target="_blank">阿仁</a><span class="slash">/</span><a href="search.html" target="_blank">米铁增</a><span class="slash">/</span><a href="search.html" target="_blank">僧格仁钦</a><span class="slash">/</span><a href="search.html" target="_blank">马文忠</a><span class="slash">/</span><a href="search.html" target="_blank">宁文彤</a><span class="slash">/</span><a href="search.html" target="_blank">张经伟</a><span class="slash">/</span><a href="search.html" target="_blank">杨添皓</a><span class="slash">/</span><a href="search.html" target="_blank">李泽宇</a><span class="slash">/</span><a href="search.html" target="_blank">夏晨旭</a><span class="slash">/</span><a href="search.html" target="_blank">宋宁峰</a><span class="slash">/</span><a href="search.html" target="_blank">俞颖</a><span class="slash">/</span><a href="search.html" target="_blank">吴超</a><span class="slash">/</span><a href="search.html" target="_blank">杨大鹏</a><span class="slash">/</span><a href="search.html" target="_blank">赵磊</a><span class="slash">/</span><a href="search.html" target="_blank">张振煊</a><span class="slash">/</span><a href="search.html" target="_blank">宋渡宇</a><span class="slash">/</span><a href="search.html" target="_blank">文波</a><span class="slash">/</span><a href="search.html" target="_blank">图门巴雅尔</a><span class="slash">/</span><a href="search.html" target="_blank">慕晓博</a><span class="slash">/</span><a href="search.html" target="_blank">春晓</a><span class="slash">/</span><a href="search.html" target="_blank">其勒木格</a><span class="slash">/</span><a href="search.html" target="_blank">张雪菡</a><span class="slash">/</span><a href="search.html" target="_blank">钱波</a><span class="slash">/</span><a href="search.html" target="_blank">巴雅尔图</a><span class="slash">/</span><a href="search.html" target="_blank">吴兴国</a><span class="slash">/</span><a href="search.html" target="_blank">那尔那茜</a><span class="slash">/</span><a href="search.html" target="_blank">刘潮</a><span class="slash">/</span><a href="search.html" target="_blank">张艺泷</a><span class="slash">/</span><a href="search.html" target="_blank">孙煌辰</a><span class="slash">/</span><a href="search.html" target="_blank">艾力江·</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">　　商王殷寿（费翔 饰）勾结狐妖妲己（娜然 饰），暴虐无道，引发天谴。昆仑仙人姜子牙（黄渤 饰）携“封神榜”下山，寻找天下共主，以救苍生。西伯侯之子姬发（于适 饰）逐渐发现殷寿的本来面目，反出朝歌。各</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放封神第一部：朝歌风云"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载封神第一部：朝歌风云"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放射雕英雄传之九阴白骨爪"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc002003k947021623264205213/0" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="射雕英雄传之九阴白骨爪">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="射雕英雄传之九阴白骨爪">正片</a>
-                                <h3><a href="show.html" title="射雕英雄传之九阴白骨爪">射雕英雄传之九阴白骨爪</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianying.html" title="电影" class="tag-link"><span class="video-tag-icon">
-                                        <i class="icon-cate-dy"></i>
-                    电影</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2021</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">内地</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">傅鸫</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">严屹宽</a><span class="slash">/</span><a href="search.html" target="_blank">阮巨</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">何昶希</a><span class="slash">/</span><a href="search.html" target="_blank">更登彭措</a><span class="slash">/</span><a href="search.html" target="_blank">汪小敏</a><span class="slash">/</span><a href="search.html" target="_blank">林柏叡</a><span class="slash">/</span><a href="search.html" target="_blank">杨秀措</a><span class="slash">/</span><a href="search.html" target="_blank">廖银玥</a><span class="slash">/</span><a href="search.html" target="_blank">刘涵</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">少女梅若华流落街头，被黄药师收为徒弟改名梅超风，与师兄弟一起在桃花岛上习武长大。黄药师发现梅超风对自己的情感已超乎师徒之情，借故离岛，两年后带回妻子冯蘅和半部《九阴真经》。</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放射雕英雄传之九阴白骨爪"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载射雕英雄传之九阴白骨爪"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放冥海禁地"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="http://pic3.iqiyipic.com/image/20211021/3a/06/v_162950937_m_601_m2_260_360.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="冥海禁地">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="冥海禁地">正片</a>
-                                <h3><a href="show.html" title="冥海禁地">冥海禁地</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianying.html" title="电影" class="tag-link"><span class="video-tag-icon">
-                                        <i class="icon-cate-dy"></i>
-                    电影</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2021</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">中国大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">刘雨星</a><span class="slash">/</span><a href="search.html" target="_blank">乔乐</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">黄子琪</a><span class="slash">/</span><a href="search.html" target="_blank">唐文龙</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">《冥海禁地》改编自潘海根同名热门小说，这是国内首个海洋探险系列IP，也是第一部展现神秘“海捞者”疍家人的水上传奇生活的IP项目。电影以探险寻宝为主题，融合了航海、冒险、怪兽等多种热点元素，围绕着海底城</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放冥海禁地"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载冥海禁地"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放东北插班生"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://pic.dianyi.ng/upload/vod/20220608-1/6779050b7aa6712d96a30a1019f0ce21.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="东北插班生">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="东北插班生">正片</a>
-                                <h3><a href="show.html" title="东北插班生">东北插班生</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianying.html" title="电影" class="tag-link"><span class="video-tag-icon">
-                                        <i class="icon-cate-dy"></i>
-                    电影</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2017</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">中国大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">姜秉辰</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">史元庭</a><span class="slash">/</span><a href="search.html" target="_blank">陈昊森</a><span class="slash">/</span><a href="search.html" target="_blank">范少勋</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">崔真真</a><span class="slash">/</span><a href="search.html" target="_blank">苏祈安</a><span class="slash">/</span><a href="search.html" target="_blank">刘尔金</a><span class="slash">/</span><a href="search.html" target="_blank">高捷</a><span class="slash">/</span><a href="search.html" target="_blank">张国强</a><span class="slash">/</span><a href="search.html" target="_blank">秦教授</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">《东北插班生》讲述了东北黑道之子王虎转学到台湾一所问题高中，无意间撞坏高校总长交接仪式，得罪台北高校老大，而由于王虎个性鲜明及南北文化差异，东北热血少年与台湾艋舺少年之间碰撞出一系列爆笑故事。影片以南</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放东北插班生"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载东北插班生"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放束手就擒吧！韩队长"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc00200fvpjijc1693376127542/0" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="束手就擒吧！韩队长">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="束手就擒吧！韩队长">更新至23集</a>
-                                <h3><a href="show.html" title="束手就擒吧！韩队长">束手就擒吧！韩队长</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianshiju.html" title="电视剧" class="tag-link"><span class="video-tag-icon">
-                                         <i class="icon-cate-ds"></i>
-                      电视剧</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">中国大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">罗健玮</a><span class="slash">/</span><a href="search.html" target="_blank">王晨</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">陈思澈</a><span class="slash">/</span><a href="search.html" target="_blank">孙熹之</a><span class="slash">/</span><a href="search.html" target="_blank">林曦汐</a><span class="slash">/</span><a href="search.html" target="_blank">杨康</a><span class="slash">/</span><a href="search.html" target="_blank">张牧晨</a><span class="slash">/</span><a href="search.html" target="_blank">阚子义</a><span class="slash">/</span><a href="search.html" target="_blank">陈广文</a><span class="slash">/</span><a href="search.html" target="_blank"></a><span class="slash">/</span><a href="search.html" target="_blank">韩彦博</a><span class="slash">/</span><a href="search.html" target="_blank">王晨</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">该剧讲述护林员韩夕舟（黄曦彦饰）与旧时同窗许楠楠（陈思澈饰）之间的爱情故事。两个人从学生时代的“误会”到成年后重逢的几年间，孙熹之扮演的报社主编吴问一直守护在失忆的许楠楠身边，并渐渐爱上了她。然而随着</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放束手就擒吧！韩队长"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载束手就擒吧！韩队长"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放封神训练营"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://m.ykimg.com/052600006510F32E13EB66D01858C016" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="封神训练营">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="封神训练营">更新至20231109期</a>
-                                <h3><a href="show.html" title="封神训练营">封神训练营</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/zongyi.html" title="综艺" class="tag-link"><span class="video-tag-icon">
-                                          <i class="icon-cate-zy"></i>
-                        综艺</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">中国大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">乌尔善</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">乌尔善</a><span class="slash">/</span><a href="search.html" target="_blank">于适</a><span class="slash">/</span><a href="search.html" target="_blank">陈牧驰</a><span class="slash">/</span><a href="search.html" target="_blank">娜然</a><span class="slash">/</span><a href="search.html" target="_blank"></a><span class="slash">/</span><a href="search.html" target="_blank">武亚凡</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">李昀锐</a><span class="slash">/</span><a href="search.html" target="_blank">那尔那茜</a><span class="slash">/</span><a href="search.html" target="_blank">吴昕</a><span class="slash">/</span><a href="search.html" target="_blank">沈凌</a><span class="slash">/</span><a href="search.html" target="_blank">侯雯元</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">　　《封神训练营》是一档演员成长纪实观察真人秀，记录“封神质子团”从全球海选开始，经历面试、文化、武术、弓箭、礼仪、舞蹈等专业课程培训、阶段性汇报演出、合宿纪实……蜕变为电影主角的全过程。　　EP01</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放封神训练营"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载封神训练营"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="play.html" title="立刻播放东北插班生"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://img.haiwaikan.com/ximgs/cc55f6fcd58a978726025541a8214bc139a03b362276763b816748d01042a4a78b586ddbc4aa5b55ab9d6fed694ec801.jpg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="东北插班生">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="show.html" title="东北插班生">第24集</a>
-                                <h3><a href="show.html" title="东北插班生">东北插班生</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianshiju.html" title="电视剧" class="tag-link"><span class="video-tag-icon">
-                                         <i class="icon-cate-ds"></i>
-                      电视剧</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2022</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">彭宇</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">史元庭</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">崔真真</a><span class="slash">/</span><a href="search.html" target="_blank">苏祈安</a><span class="slash">/</span><a href="search.html" target="_blank">刘尔金</a><span class="slash">/</span><a href="search.html" target="_blank">高捷</a><span class="slash">/</span><a href="search.html" target="_blank">张国强</a><span class="slash">/</span><a href="search.html" target="_blank">秦教授</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">东北某⾼中的差等⽣王⻁，是⼀个典型的学习困难户，其调⽪的性格、爱管闲事的作⻛，给他开洗浴中⼼的⽗亲王⼤⻁惹了不少麻烦。望⼦成⻰的王⼤⻁在朋友的建议下，决定送⼉⼦去远离家乡的澳门读书，试图让王⻁彻底脱离</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="play.html" class="btn-important btn-base" title="立刻播放东北插班生"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="show.html" class="btn-aux btn-aux-o btn-base" title="下载东北插班生"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="/play.html" title="立刻播放封神训练营直拍版"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://img.lzzyimg.com/upload/vod/20231013-1/c038fe3e2767a34a95a48141dde4a504.jpeg" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="封神训练营直拍版">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="/show.html" title="封神训练营直拍版">更新至2023-12-11期期</a>
-                                <h3><a href="/show.html" title="封神训练营直拍版">封神训练营直拍版</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/zongyi.html" title="综艺" class="tag-link"><span class="video-tag-icon">
-                                          <i class="icon-cate-zy"></i>
-                        综艺</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">大陆</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">未知</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">乌尔善</a><span class="slash">/</span><a href="search.html" target="_blank">于适</a><span class="slash">/</span><a href="search.html" target="_blank">陈牧驰</a><span class="slash">/</span><a href="search.html" target="_blank">娜然</a><span class="slash">/</span><a href="search.html" target="_blank"></a><span class="slash">/</span><a href="search.html" target="_blank">武亚凡</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">李昀锐</a><span class="slash">/</span><a href="search.html" target="_blank">那尔那茜</a><span class="slash">/</span><a href="search.html" target="_blank">吴昕</a><span class="slash">/</span><a href="search.html" target="_blank">沈凌</a><span class="slash">/</span><a href="search.html" target="_blank">侯雯元</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">&amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp;《封神训练营 直拍版》是一档封神质子团从无到有的全景式记录综艺，从个人视角揭秘演艺界“黄埔军校”背后成长及人物关系养成。</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="/play.html" class="btn-important btn-base" title="立刻播放封神训练营直拍版"><i class="icon-play"></i><strong>立即播放</strong></a>
-                                <a href="/show.html" class="btn-aux btn-aux-o btn-base" title="下载封神训练营直拍版"><i class="icon-download"></i><strong>下载</strong></a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="module-search-item">
-                        <div class="video-cover">
-                            <div class="module-item-cover">
-                                <div class="module-item-pic"><a href="/play.html" title="立刻播放封神第一部独家纪录片"><i class="icon-play"></i></a><img class="lazy lazyload" data-src="https://puui.qpic.cn/vcover_vt_pic/0/mzc00200vt2rkvi1690041423895/0" src="/statics/image/loading.png" onerror="javascript:this.src='/statics/image/loading.png'" alt="封神第一部独家纪录片">
-                                    <div class="loading"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="video-info">
-                            <div class="video-info-header"><a class="video-serial" href="/show.html" title="封神第一部独家纪录片">全集</a>
-                                <h3><a href="/show.html" title="封神第一部独家纪录片">封神第一部独家纪录片</a></h3>
-                                <div class="video-info-aux">
-                                    <a href="v/dianshiju.html" title="电视剧" class="tag-link"><span class="video-tag-icon">
-                                         <i class="icon-cate-ds"></i>
-                      电视剧</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">内地</a>&nbsp;</div>
-                                </div>
-                            </div>
-                            <div class="video-info-main">
-                                <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">乌尔善</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">费翔</a><span class="slash">/</span><a href="search.html" target="_blank">李雪健</a><span class="slash">/</span><a href="search.html" target="_blank">黄渤</a><span class="slash">/</span><a href="search.html" target="_blank">于适</a><span class="slash">/</span><a href="search.html" target="_blank">陈牧驰</a><span class="slash">/</span><a href="search.html" target="_blank">娜然</a><span class="slash">/</span><a href="search.html" target="_blank">此沙</a><span class="slash">/</span><a href="search.html" target="_blank">武亚凡</a><span class="slash">/</span><a href="search.html" target="_blank">夏雨</a><span class="slash">/</span><a href="search.html" target="_blank">袁泉</a><span class="slash">/</span><a href="search.html" target="_blank">王洛勇</a><span class="slash">/</span><a href="search.html" target="_blank">侯雯元</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">李昀锐</a><span class="slash">/</span><a href="search.html" target="_blank">杨玏</a><span class="slash">/</span><a href="search.html" target="_blank">陈坤</a><span class="slash">/</span>						</div>
-                                </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">商王殷寿与狐妖妲己勾结，暴虐无道，引发天谴。昆仑仙人姜子牙携“封神榜”下山，寻找天下共主，以救苍生。西伯侯之子姬发逐渐发现殷寿的本来面目，反出朝歌…… 《封神第一部》独家纪录片呈现了电影拍摄的幕后故事、演员成长与主创分享。</div>
-                                </div>
-                            </div>
-                            <div class="video-info-footer">
-                                <a href="/play.html" class="btn-important btn-base" title="立刻播放封神第一部独家纪录片"><i class="icon-play"></i><strong>立即播放</strong></a>
-                            </div>
-                        </div>
-                    </div>
+					{{end}}
 
                 </div>
                 <div class="module-footer">
                     <div id="page">
-                        <a href="/search--%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number page-previous" title="首页">首页</a>
-                        <a href="/search--%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number page-previous" title="上一页">上一页</a>
-                        <span class="page-number page-current display">1</span>
-                        <a href="/search--%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number display" title="第2页">2</a>
-                        <a href="/search--%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number page-next" title="下一页">下一页</a>
-                        <a href="/search--%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number page-next" title="尾页">尾页</a>
+                        <a href="/{{ .PageData.linkPage.IndexPage }}" class="page-number page-previous" title="首页">首页</a>
+                        <a href="/{{ .PageData.linkPage.PagePrevious }}" class="page-number page-previous" title="上一页">上一页</a>
+                        <span class="page-number page-current display">{{ .PageData.pageList.CurrentPage }}</span>
+<!--                        <a href="/search&#45;&#45;%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number display" title="第2页">2</a>-->
+                        <a href="/{{ .PageData.linkPage.PageNext }}" class="page-number page-next" title="下一页">下一页</a>
+                        <a href="/{{ .PageData.linkPage.EndPage }}" class="page-number page-next" title="尾页">尾页</a>
                     </div>
                 </div>
                 <!-- 分页 -->

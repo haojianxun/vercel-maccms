@@ -22,7 +22,28 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		// 播放
 		webV1.GET("/play-:params", GroupV1.VideosController.Play)
 		// 搜索
-		webV1.GET("/search.html", GroupV1.IndexController.Search)
+		{
+			// 搜索
+			webV1.GET("/search.html", GroupV1.IndexController.Search)
+			webV1.GET("/search:search", GroupV1.IndexController.Search)
+			//// 电影名称搜索
+			//// search-:电影名称----------:第几页---.html
+			//webV1.GET("/search-:movieName----------:page---.html", GroupV1.IndexController.Search)
+			//// search--:演员名称---------:第几页---.html
+			//webV1.GET("/search--:actorName---------:page---.html", GroupV1.IndexController.Search)
+			//// search---:大陆--------:第几页---.html
+			//webV1.GET("/search---:areaName--------:page---.html", GroupV1.IndexController.Search)
+			//// search------:导演-----:第几页---.html
+			//webV1.GET("/search------:directorName-----:page---.html", GroupV1.IndexController.Search)
+			//// search-----------:第几页---:年份.html
+			//webV1.GET("/search-----------:page---:year.html", GroupV1.IndexController.Search)
+
+			//-电影名称----------第几页---
+			//--演员名称---------第几页---
+			//---大陆--------第几页---
+			//------导演-----第几页---
+			//-----------第几页---年份
+		}
 		// 详情
 		webV1.GET("/show-:params", GroupV1.VideosController.Show)
 		// 排行榜

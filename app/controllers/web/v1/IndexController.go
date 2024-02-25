@@ -7,9 +7,12 @@ import (
 	"goapi/app/models"
 	"goapi/app/requests"
 	"goapi/app/service"
+	"goapi/pkg/helpers"
 	"goapi/pkg/mysql"
 	"goapi/pkg/page"
 	"net/http"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -182,22 +185,68 @@ func (h *IndexController) App(c *gin.Context) {
 	c.HTML(http.StatusOK, "label/app.html", data)
 }
 
+func extractParameters(url string) (movie, actor, area, director string, pageNum, year int64) {
+	// 使用字符串分割来提取参数
+	parts := strings.Split(url, "---")
+	if len(parts) < 5 {
+		return "", "", "", "", 1, 0
+	}
+
+	// 根据前缀判断参数类型
+	switch {
+	case strings.HasPrefix(parts[0], "-"):
+		movie = strings.ReplaceAll(parts[0], "-", "")
+	case strings.HasPrefix(parts[0], "--"):
+		actor = strings.ReplaceAll(parts[0], "-", "")
+	}
+	area = strings.ReplaceAll(parts[1], "-", "")
+	director = strings.ReplaceAll(parts[2], "-", "")
+	pageNum = helpers.StringToInt64(strings.ReplaceAll(parts[3], "-", ""))
+	year = helpers.StringToInt64(strings.ReplaceAll(parts[4], "-", ""))
+	return movie, actor, area, director, pageNum, year
+}
+
 func (h *IndexController) Search(c *gin.Context) {
-	//table := "search.html"
 	var (
 		params   requests.Search // 搜索数据
 		pageList page.PageList   // 返回数据
 	)
+	params.Name = c.Query("wd")
+	search := strings.ReplaceAll(c.Param("search"), ".html", "")
+	movie, actor, area, director, pageNum, year := extractParameters(search)
+	fmt.Printf("Movie: %s, Actor: %s, Area: %s, Director: %s, Page: %s, Year: %s\n", movie, actor, area, director, pageNum, year)
+	fmt.Println(search)
+	fmt.Println(search)
+	fmt.Println(search)
+	if len(movie) > 0 {
+		params.Name = movie
+	}
+	if pageNum > 0 {
+		params.PageNum = pageNum
+	}
+	//table := "search.html"
 	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
 		value = gin.H{}
 	}
 	DATA := value.(gin.H)
-
+	where := cmap.New().Items()
+	where["vod_status"] = 1
+	if len(actor) > 0 {
+		where["vod_actor LIKE"] = fmt.Sprintf("%%%v%%", actor)
+	}
+	if len(director) > 0 {
+		where["vod_director LIKE"] = fmt.Sprintf("%%%v%%", director)
+	}
+	if len(area) > 0 {
+		where["vod_area LIKE"] = fmt.Sprintf("%%%v%%", area)
+	}
+	if year > 0 {
+		where["vod_year"] = year
+	}
 	// 获取路由中的参数值
-	params.Name = c.Query("wd")
-	models.MacVodMgr(mysql.DB).Where("vod_name LIKE ?", fmt.Sprintf("%%%v%%", params.Name)).Count(&pageList.Total)
+	models.MacVodMgr(mysql.DB).Where("vod_name LIKE ?", fmt.Sprintf("%%%v%%", params.Name)).Where(where).Count(&pageList.Total)
 	// 设置分页参数
 	pageList.CurrentPage = params.PageNum
 	pageList.PageSize = params.PageSize
@@ -208,6 +257,7 @@ func (h *IndexController) Search(c *gin.Context) {
 			"vod_name LIKE ?",
 			fmt.Sprintf("%%%v%%", params.Name),
 		).
+		Where(where).
 		Offset(int(pageList.Offset)).
 		Limit(int(pageList.PageSize)).
 		Find(&listSearch).Error
@@ -217,7 +267,26 @@ func (h *IndexController) Search(c *gin.Context) {
 	}
 	pageList.List = listSearch
 	PageData["pageList"] = pageList
+	PageData["wd"] = params.Name
+
+	linkPage := cmap.New().Items()
+	CurrentPage := fmt.Sprintf("%s%s", "search", c.Param("search"))
+	linkPage["CurrentPage"] = CurrentPage
+	linkPage["IndexPage"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.IndexPage, 10))
+	linkPage["PagePrevious"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.PagePrevious, 10))
+	linkPage["PageNext"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.PageNext, 10))
+	linkPage["EndPage"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.PageTotal, 10))
+	PageData["linkPage"] = linkPage
+
 	DATA["PageData"] = PageData
 	DATA["page"] = "search"
 	c.HTML(http.StatusOK, "search.html", DATA)
+}
+
+// PageList 分页返回数
+type PageList struct {
+	Total     int64 `json:"total"`
+	PageNum   int64 `json:"pageNum"`   // 第几页
+	PageSize  int64 `json:"pageSize"`  // 每页多少条
+	PageTotal int64 `json:"pageTotal"` // 总页数
 }

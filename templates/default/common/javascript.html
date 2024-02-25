@@ -246,7 +246,7 @@
 {{ if or (eq .page "pianku") (eq .page "search") }}
 <script>
     // pianku.html 、search.html
-    $(".mac_total").text('119997');
+    $(".mac_total").text('{{ .PageData.pageList.Total }}');
 </script>
 {{end}}
 
