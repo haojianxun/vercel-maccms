@@ -24,7 +24,7 @@
 			{{end}}
 			
 			
-			{{if eq .page "index"}}
+			{{if or (eq .page "index") (eq .page "search")}}
 			<div class="nav-search">
 				<form action="/search.html" class="search-dh"></form>
 			</div>

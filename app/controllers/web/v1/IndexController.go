@@ -5,11 +5,11 @@ import (
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
+	"goapi/app/requests"
 	"goapi/app/service"
-	"goapi/pkg/maccms"
 	"goapi/pkg/mysql"
+	"goapi/pkg/page"
 	"net/http"
-	"strings"
 	"time"
 )
 
@@ -183,7 +183,11 @@ func (h *IndexController) App(c *gin.Context) {
 }
 
 func (h *IndexController) Search(c *gin.Context) {
-	table := "search.html"
+	//table := "search.html"
+	var (
+		params   requests.Search // 搜索数据
+		pageList page.PageList   // 返回数据
+	)
 	PageData := cmap.New().Items()
 	value, exists := c.Get("data")
 	if !exists {
@@ -192,47 +196,28 @@ func (h *IndexController) Search(c *gin.Context) {
 	DATA := value.(gin.H)
 
 	// 获取路由中的参数值
-	params := strings.ReplaceAll(c.Param("params"), ".html", "")
-	if len(params) > 6 {
-		c.HTML(http.StatusOK, "404", nil)
-		return
-	}
-	VodID := maccms.DecryptID(params)
-	var detail models.MacVod
-	err := models.MacVodMgr(mysql.DB).Where("vod_id", VodID).Find(&detail).Error
+	params.Name = c.Query("wd")
+	models.MacVodMgr(mysql.DB).Where("vod_name LIKE ?", fmt.Sprintf("%%%v%%", params.Name)).Count(&pageList.Total)
+	// 设置分页参数
+	pageList.CurrentPage = params.PageNum
+	pageList.PageSize = params.PageSize
+	page.InitPageList(&pageList)
+	var listSearch []models.MacVod
+	err := models.MacVodMgr(mysql.DB).
+		Where(
+			"vod_name LIKE ?",
+			fmt.Sprintf("%%%v%%", params.Name),
+		).
+		Offset(int(pageList.Offset)).
+		Limit(int(pageList.PageSize)).
+		Find(&listSearch).Error
 	if err != nil {
 		c.HTML(http.StatusOK, "404", nil)
 		return
 	}
-	var (
-		Related, CurrentlyTrending []models.MacVod
-		MacTypeDetail              models.MacType
-	)
-	err = models.MacTypeMgr(mysql.DB).Where("type_id", detail.TypeID1).Find(&MacTypeDetail).Error
-	if err != nil {
-		c.HTML(http.StatusOK, "404", nil)
-		return
-	}
-	// 相关影片
-	RelatedName := fmt.Sprintf("Related:%v", detail.TypeID)
-	service.ListWhereMacVod(table, RelatedName, map[string]interface{}{
-		"type_id":    detail.TypeID,
-		"vod_status": 1,
-	}, "vod_year desc,vod_hits desc", 16, &Related)
-
-	// 正在热播
-	ReBoName := fmt.Sprintf("CurrentlyTrending:%v", detail.TypeID)
-	service.ListWhereMacVod(table, ReBoName, map[string]interface{}{
-		"type_id":    detail.TypeID,
-		"vod_status": 1,
-	}, "vod_hits desc", 10, &CurrentlyTrending)
-
-	PageData["detail"] = detail
-	PageData["MacTypeDetail"] = MacTypeDetail
-	PageData["Related"] = Related
-	PageData["CurrentlyTrending"] = CurrentlyTrending
-	DATA["VodID"] = VodID
+	pageList.List = listSearch
+	PageData["pageList"] = pageList
 	DATA["PageData"] = PageData
-	DATA["page"] = MacTypeDetail.TypeEn
+	DATA["page"] = "search"
 	c.HTML(http.StatusOK, "search.html", DATA)
 }
