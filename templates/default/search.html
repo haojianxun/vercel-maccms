@@ -68,23 +68,38 @@
 									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</h3>
                                 <div class="video-info-aux">
-                                    <a href="v/dianshiju.html" title="电视剧" class="tag-link"><span class="video-tag-icon">
-                                         <i class="icon-cate-ds"></i>电视剧</span></a>
-                                    <div class="tag-link"><a href="search.html" target="_blank">2023</a>&nbsp;</div>
-                                    <div class="tag-link"><a href="search.html" target="_blank">内地</a>&nbsp;</div>
+                                    <a href="v/dianshiju.html" title="电视剧" class="tag-link">
+										<span class="video-tag-icon">
+                                         <i class="icon-cate-ds"></i>电视剧
+										</span>
+									</a>
+                                    <div class="tag-link"><a href="search.html" target="_blank">{{ .VodYear }}</a>&nbsp;</div>
+                                    <div class="tag-link"><a href="search.html" target="_blank">{{ .VodArea }}</a>&nbsp;</div>
                                 </div>
                             </div>
                             <div class="video-info-main">
                                 <div class="video-info-items"><span class="video-info-itemtitle">导演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">未知</a><span class="slash">/</span>						</div>
+									<div class="video-info-item video-info-actor">
+										<span class="slash">/</span>
+										{{ $VodDirectorList := split .VodDirector "," }}
+										{{ range $index, $name := $VodDirectorList }}
+										<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+										{{ end }}
+									</div>
                                 </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">主演：</span>
-                                    <div class="video-info-item video-info-actor"><span class="slash">/</span>
-                                        <a href="search.html" target="_blank">周雨彤</a><span class="slash">/</span><a href="search.html" target="_blank">王佑硕</a><span class="slash">/</span><a href="search.html" target="_blank">苏晓彤</a><span class="slash">/</span><a href="search.html" target="_blank">郑伟</a><span class="slash">/</span><a href="search.html" target="_blank">付伟伦</a><span class="slash">/</span><a href="search.html" target="_blank">余承恩</a><span class="slash">/</span><a href="" target="_blank">黄曦彦</a><span class="slash">/</span><a href="search.html" target="_blank">王可</a><span class="slash">/</span>						</div>
+                                <div class="video-info-items">
+									<span class="video-info-itemtitle">主演：</span>
+									<div class="video-info-item video-info-actor">
+										<span class="slash">/</span>
+										{{ $VodActorList := split .VodActor "," }}
+										{{ range $index, $name := $VodActorList }}
+										<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+										{{ end }}
+									</div>
                                 </div>
-                                <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">《{{ .VodName }}》是《大宋少年志2》的衍生内容，邀请周雨彤、王佑硕、苏晓彤等七斋八斋中的各个主演成员，来到山清水秀的民宿地放松团建，通过捉鸡捕虾的趣味劳动，默契考验的趣味游戏，感人真挚的聊天局等活动形式，展示主演团线下的原生关系。</div>
+                                <div class="video-info-items">
+									<span class="video-info-itemtitle">剧情：</span>
+                                    <div class="video-info-item">《{{ .VodName }}》{{ .VodContent }}</div>
                                 </div>
                             </div>
                             <div class="video-info-footer">
