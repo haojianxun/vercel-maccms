@@ -11,7 +11,6 @@ import (
 	"goapi/pkg/mysql"
 	"goapi/pkg/page"
 	"net/http"
-	"strconv"
 	"strings"
 	"time"
 )
@@ -268,25 +267,9 @@ func (h *IndexController) Search(c *gin.Context) {
 	pageList.List = listSearch
 	PageData["pageList"] = pageList
 	PageData["wd"] = params.Name
-
-	linkPage := cmap.New().Items()
-	CurrentPage := fmt.Sprintf("%s%s", "search", c.Param("search"))
-	linkPage["CurrentPage"] = CurrentPage
-	linkPage["IndexPage"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.IndexPage, 10))
-	linkPage["PagePrevious"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.PagePrevious, 10))
-	linkPage["PageNext"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.PageNext, 10))
-	linkPage["EndPage"] = strings.ReplaceAll(CurrentPage, strconv.FormatInt(pageList.CurrentPage, 10), strconv.FormatInt(pageList.PageTotal, 10))
-	PageData["linkPage"] = linkPage
+	PageData["PaginationHTML"] = page.PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
 
 	DATA["PageData"] = PageData
 	DATA["page"] = "search"
 	c.HTML(http.StatusOK, "search.html", DATA)
-}
-
-// PageList 分页返回数
-type PageList struct {
-	Total     int64 `json:"total"`
-	PageNum   int64 `json:"pageNum"`   // 第几页
-	PageSize  int64 `json:"pageSize"`  // 每页多少条
-	PageTotal int64 `json:"pageTotal"` // 总页数
 }

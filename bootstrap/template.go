@@ -40,6 +40,7 @@ func SetFuncMap() template.FuncMap {
 		"split":         split,
 		"add":           add,
 		"sub":           sub,
+		"raw":           raw,
 		"len":           lenFunction,
 		"GetVodCount":   GetVodCount,
 		"GetSplitFirst": GetSplitFirst,
@@ -53,6 +54,10 @@ func SetFuncMap() template.FuncMap {
 
 func split(str, sep string) []string {
 	return strings.Split(str, sep)
+}
+
+func raw(text string) template.HTML {
+	return template.HTML(text)
 }
 
 func lenFunction(v map[string]interface{}) int {

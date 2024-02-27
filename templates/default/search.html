@@ -97,14 +97,9 @@
 
                 </div>
                 <div class="module-footer">
-                    <div id="page">
-                        <a href="/{{ .PageData.linkPage.IndexPage }}" class="page-number page-previous" title="首页">首页</a>
-                        <a href="/{{ .PageData.linkPage.PagePrevious }}" class="page-number page-previous" title="上一页">上一页</a>
-                        <span class="page-number page-current display">{{ .PageData.pageList.CurrentPage }}</span>
-<!--                        <a href="/search&#45;&#45;%E9%BB%84%E6%9B%A6%E5%BD%A6.html" class="page-number display" title="第2页">2</a>-->
-                        <a href="/{{ .PageData.linkPage.PageNext }}" class="page-number page-next" title="下一页">下一页</a>
-                        <a href="/{{ .PageData.linkPage.EndPage }}" class="page-number page-next" title="尾页">尾页</a>
-                    </div>
+					<div id="page">
+						{{ raw .PageData.PaginationHTML }}
+					</div>
                 </div>
                 <!-- 分页 -->
 
