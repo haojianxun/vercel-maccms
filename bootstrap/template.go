@@ -48,6 +48,7 @@ func SetFuncMap() template.FuncMap {
 		"EncryptID":     maccms.EncryptID,
 		"DecryptID":     maccms.DecryptID,
 		"TypeName":      TypeName,
+		"TypeEn":        TypeEn,
 	}
 	return funcMap
 }
@@ -96,6 +97,18 @@ func TypeName(listMacType, TypeID interface{}) string {
 	for _, data := range list {
 		if fmt.Sprintf("%v", TypeID) == fmt.Sprintf("%v", data.TypeID) {
 			name = data.TypeName
+			break
+		}
+	}
+	return name
+}
+
+func TypeEn(listMacType, TypeID interface{}) string {
+	name := ""
+	list := listMacType.([]models.MacType)
+	for _, data := range list {
+		if fmt.Sprintf("%v", TypeID) == fmt.Sprintf("%v", data.TypeID) {
+			name = data.TypeEn
 			break
 		}
 	}

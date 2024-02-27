@@ -51,7 +51,7 @@ func (h *IndexController) Index(c *gin.Context) {
 	)
 	DB := models.MacVodMgr(mysql.DB)
 	// 查询所有分类
-	service.ListMacType(table, -1, &listMacType)
+	service.ListMacType("common", -1, &listMacType)
 	// 正在热播
 	CacheCurrentlyTrending, _ := service.GetTable(table, "CurrentlyTrending", []models.MacVod{})
 	if CacheCurrentlyTrending == nil {
@@ -268,6 +268,10 @@ func (h *IndexController) Search(c *gin.Context) {
 	PageData["pageList"] = pageList
 	PageData["wd"] = params.Name
 	PageData["PaginationHTML"] = page.PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
+	var listMacType []models.MacType
+	// 查询所有分类
+	service.ListMacType("common", -1, &listMacType)
+	PageData["listMacType"] = listMacType
 
 	DATA["PageData"] = PageData
 	DATA["page"] = "search"
