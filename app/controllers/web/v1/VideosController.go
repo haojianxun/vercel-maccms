@@ -294,7 +294,13 @@ func (h *VideosController) Play(c *gin.Context) {
 	// 播放地址
 	VodPlayURLGroup := strings.Split(detail.VodPlayURL, "$$$")
 	PartGroup := strings.Split(VodPlayURLGroup[Node-1], "#")
-	CurrentUrlInfo := strings.Split(PartGroup[Part-1], "$")
+	var CurrentUrlInfo []string
+	if len(PartGroup) < Part-1 {
+		// 最大不能超出数组
+		CurrentUrlInfo = strings.Split(PartGroup[len(PartGroup)-1], "$")
+	} else {
+		CurrentUrlInfo = strings.Split(PartGroup[Part-1], "$")
+	}
 	PageData["PartName"] = CurrentUrlInfo[0]
 	PageData["NodeName"] = CurrentUrlInfo[0]
 	PageData["Url"] = maccms.Base64encode(maccms.EncodeURL(CurrentUrlInfo[1]))

@@ -167,10 +167,13 @@
                             <div class="module-tab-content">
 								{{ $VodPlayFromList := split .PageData.detail.VodPlayFrom "$$$" }}
 								{{ range $index, $name := $VodPlayFromList }}
-								<div class="module-tab-item tab-item {{ if eq (add 1 $index) $.PageData.Node }}selected{{end}}" data-dropdown-value="{{ $name }}">
+								<a class="module-tab-item tab-item {{ if eq (add 1 $index) $.PageData.Node }}selected{{end}}"
+								   data-dropdown-value="{{ $name }}"
+								   href="/play-{{ EncryptID $.PageData.detail.VodID }}-{{ add $index 1 }}-{{ $.PageData.Part }}.html"
+								>
 									<span>{{ $name }}</span>
 									<small>{{ GetVodCount $.PageData.detail.VodPlayURL "$$$" $index }}</small>
-								</div>
+								</a>
 								{{ end }}
                             </div>
                         </div>
