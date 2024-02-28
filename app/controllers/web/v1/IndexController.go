@@ -7,7 +7,6 @@ import (
 	"goapi/app/models"
 	"goapi/app/requests"
 	"goapi/app/service"
-	"goapi/pkg/helpers"
 	"goapi/pkg/mysql"
 	"goapi/pkg/page"
 	"net/http"
@@ -19,6 +18,7 @@ type IndexController struct {
 	BaseController
 }
 
+// PresTrain loading 加载页面
 func (h *IndexController) PresTrain(c *gin.Context) {
 	value, _ := c.Get("data")
 	DATA := value.(gin.H)
@@ -29,6 +29,33 @@ func (h *IndexController) DPlayer(c *gin.Context) {
 	value, _ := c.Get("data")
 	DATA := value.(gin.H)
 	c.HTML(http.StatusOK, "dplayer.html", DATA)
+}
+
+func (h *IndexController) Web(c *gin.Context) {
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+	DATA["page"] = "web"
+	DATA["title"] = "Web"
+	PageMs(c)
+	c.HTML(http.StatusOK, "web.html", DATA)
+}
+
+func (h *IndexController) About(c *gin.Context) {
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+	DATA["page"] = "about"
+	DATA["title"] = "About"
+	PageMs(c)
+	c.HTML(http.StatusOK, "about.html", DATA)
+}
+
+func (h *IndexController) App(c *gin.Context) {
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+	DATA["page"] = "app"
+	DATA["title"] = "App"
+	PageMs(c)
+	c.HTML(http.StatusOK, "label/app.html", DATA)
 }
 
 func (h *IndexController) Index(c *gin.Context) {
@@ -143,66 +170,8 @@ func (h *IndexController) Index(c *gin.Context) {
 	PageData["listNewVideos"] = listNewVideos
 	DATA["PageData"] = PageData
 	DATA["page"] = "index"
-	startTime, _ := c.Get("startTime")
-	fmt.Println("当前耗时", time.Now().UnixMilli()-startTime.(int64), "ms")
+	PageMs(c)
 	c.HTML(http.StatusOK, "index.html", DATA)
-}
-
-func (h *IndexController) Web(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "web"
-	data["title"] = "Web"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "web.html", data)
-}
-
-func (h *IndexController) About(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "about"
-	data["title"] = "About"
-	data["list"] = gin.H{"a": "b"}
-	c.HTML(http.StatusOK, "about.html", data)
-}
-
-func (h *IndexController) App(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "app"
-	data["title"] = "App"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "label/app.html", data)
-}
-
-func extractParameters(url string) (movie, actor, area, director string, pageNum, year int64) {
-	// 使用字符串分割来提取参数
-	parts := strings.Split(url, "---")
-	if len(parts) < 5 {
-		return "", "", "", "", 1, 0
-	}
-
-	// 根据前缀判断参数类型
-	switch {
-	case strings.HasPrefix(parts[0], "-"):
-		movie = strings.ReplaceAll(parts[0], "-", "")
-	case strings.HasPrefix(parts[0], "--"):
-		actor = strings.ReplaceAll(parts[0], "-", "")
-	}
-	area = strings.ReplaceAll(parts[1], "-", "")
-	director = strings.ReplaceAll(parts[2], "-", "")
-	pageNum = helpers.StringToInt64(strings.ReplaceAll(parts[3], "-", ""))
-	year = helpers.StringToInt64(strings.ReplaceAll(parts[4], "-", ""))
-	return movie, actor, area, director, pageNum, year
 }
 
 func (h *IndexController) Search(c *gin.Context) {
@@ -267,7 +236,7 @@ func (h *IndexController) Search(c *gin.Context) {
 	pageList.List = listSearch
 	PageData["pageList"] = pageList
 	PageData["wd"] = params.Name
-	PageData["PaginationHTML"] = page.PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
+	PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
 
 	DATA["PageData"] = PageData
 	DATA["page"] = "search"
