@@ -99,7 +99,12 @@
                         <div class="video-info-main">
                             <div class="video-info-items"><span class="video-info-itemtitle">剧情：</span>
                                 <div class="video-info-item video-info-content">
-                                    <p class="zkjj_a">少女梅若华流落街头，被黄药师收为徒弟改名梅超风，与师兄弟一起在桃花岛上习武长大。黄药师发现梅超风对自己的情感已超乎师徒之情，借故离岛，两年后带回妻子冯蘅和半部《九阴真经》。<span class="zk_jj red">[展开全部]</span></p><p class="sqjj_a" style="display: none;">　少女梅若华流落街头，被黄药师收为徒弟改名梅超风，与师兄弟一起在桃花岛上习武长大。黄药师发现梅超风对自己的情感已超乎师徒之情，借故离岛，两年后带回妻子冯蘅和半部《九阴真经》。<span class="sq_jj red">[收起部分]</span></p>
+                                    <p class="zkjj_a">{{ raw .PageData.detail.VodContent }}
+										<span class="zk_jj red">[展开全部]</span>
+									</p>
+									<p class="sqjj_a" style="display: none;">　{{ raw .PageData.detail.VodContent }}
+										<span class="sq_jj red">[收起部分]</span>
+									</p>
                                 </div>
                             </div>
                         </div>
@@ -114,7 +119,8 @@
                                         <div class="qrcode-img"></div>
                                         <div class="block-name">
                                             <p>使用 手机浏览器 扫码观看</p>
-                                            <strong>{{ .PageData.detail.VodName }} -HD</strong></div>
+                                            <strong>{{ .PageData.detail.VodName }} -HD</strong>
+										</div>
                                     </a></div>
                                 </div>
                             </div>
