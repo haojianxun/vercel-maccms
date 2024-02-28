@@ -68,10 +68,14 @@
 									<a href="show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
 								</h3>
                                 <div class="video-info-aux">
-                                    <a href="v/dianshiju.html" title="电视剧" class="tag-link">
+                                    <a
+                                            href="v/{{ TypeEn $.PageData.listMacType .TypeID1 }}.html"
+                                       title="{{ TypeName $.PageData.listMacType .TypeID1 }}"
+                                       class="tag-link">
 										<span class="video-tag-icon">
-                                         <i class="icon-cate-ds"></i>电视剧
+                                         <i class="icon-cate-ds"></i>&nbsp;{{ TypeName $.PageData.listMacType .TypeID1 }}
 										</span>
+
 									</a>
                                     <div class="tag-link"><a href="search.html" target="_blank">{{ .VodYear }}</a>&nbsp;</div>
                                     <div class="tag-link"><a href="search.html" target="_blank">{{ .VodArea }}</a>&nbsp;</div>
@@ -83,7 +87,11 @@
 										<span class="slash">/</span>
 										{{ $VodDirectorList := split .VodDirector "," }}
 										{{ range $index, $name := $VodDirectorList }}
-										<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+                                            {{ if eq $name "" }}
+                                            <a href="search.html" target="_blank">未知</a><span class="slash">/</span>
+                                            {{ else }}
+                                            <a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+                                            {{ end }}
 										{{ end }}
 									</div>
                                 </div>
@@ -93,13 +101,17 @@
 										<span class="slash">/</span>
 										{{ $VodActorList := split .VodActor "," }}
 										{{ range $index, $name := $VodActorList }}
-										<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+                                            {{ if eq $name "" }}
+                                            <a href="search.html" target="_blank">未知</a><span class="slash">/</span>
+                                            {{ else }}
+                                            <a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+                                            {{ end }}
 										{{ end }}
 									</div>
                                 </div>
                                 <div class="video-info-items">
 									<span class="video-info-itemtitle">剧情：</span>
-                                    <div class="video-info-item">《{{ .VodName }}》{{ .VodContent }}</div>
+                                    <div class="video-info-item">{{ raw .VodContent }}</div>
                                 </div>
                             </div>
                             <div class="video-info-footer">
