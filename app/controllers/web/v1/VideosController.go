@@ -314,25 +314,24 @@ func (h *VideosController) Play(c *gin.Context) {
 }
 
 func (h *VideosController) PianKu(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "pianku"
-	data["title"] = "PianKu"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "pianku.html", data)
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+
+	// 默认为电影片库
+	// 电视剧片库
+	// 动漫片库
+	// 综艺片库
+	DATA["page"] = "pianku"
+	DATA["title"] = "PianKu"
+	PageMs(c)
+	c.HTML(http.StatusOK, "pianku.html", DATA)
 }
 
 func (h *VideosController) Top(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "top"
-	data["title"] = "Top"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "top.html", data)
+	value, _ := c.Get("data")
+	DATA := value.(gin.H)
+	DATA["page"] = "top"
+	DATA["title"] = "Top"
+	PageMs(c)
+	c.HTML(http.StatusOK, "top.html", DATA)
 }
