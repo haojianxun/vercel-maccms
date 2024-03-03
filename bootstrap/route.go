@@ -3,6 +3,7 @@ package bootstrap
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	v1 "goapi/app/controllers/web/v1"
 	"goapi/app/middlewares/common"
 	conf "goapi/pkg/config"
 	"goapi/routes/client"
@@ -14,7 +15,6 @@ import (
 func SetupRoute(router *gin.Engine) *gin.Engine {
 	router.Use(common.TraceLogger()) // 日志追踪
 	router.Use(common.Cors())        // 跨域
-	router.NoRoute(NoResponse)
 	router.GET("/route", func(context *gin.Context) {
 		requestId, _ := context.Get("Tracking-Id")
 		context.String(200, fmt.Sprintf("Hello World!：%v\n\n", requestId))
@@ -29,12 +29,13 @@ func SetupRoute(router *gin.Engine) *gin.Engine {
 	client.RegisterClientRoutes(router.Group("/"))
 	// web 相关页面
 	web.RegisterWebRoutes(router.Group("/"))
+	router.NoRoute(NoResponse)
 	return router
 }
 
 func NoResponse(c *gin.Context) {
 	if c.Request.Method == "GET" {
-		c.HTML(http.StatusOK, "404", nil)
+		v1.NoPage(c)
 	} else {
 		//返回 404 状态码
 		c.JSON(http.StatusNotFound, gin.H{
