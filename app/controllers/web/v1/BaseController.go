@@ -3,6 +3,7 @@ package v1
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"goapi/app/service"
 	"goapi/pkg/helpers"
 	"net/http"
 	"net/url"
@@ -110,6 +111,6 @@ func PageMs(c *gin.Context) {
 }
 
 func NoPage(c *gin.Context) {
-	DATA := GetDATA(c)
+	DATA := service.Site(c)
 	c.HTML(http.StatusNotFound, "404", DATA)
 }

@@ -1,19 +1,14 @@
 package v1
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
+	"goapi/app/service"
 )
 
 // Web 定义客户端中间件
 func Web() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		data := gin.H{}
-		HTTP := "https://"
-		data["__URL__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, c.Request.URL.String())
-		data["__STATIC__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics")
-		data["__CSS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/css")
-		data["__JS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/js")
+		data := service.Site(c)
 		// 设置语言，默认英文
 		SetLang(c, "zh")
 		path := c.FullPath()
