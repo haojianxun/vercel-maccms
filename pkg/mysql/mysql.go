@@ -29,9 +29,9 @@ func ConnectDB() *gorm.DB {
 		prefix   = config.GetString("database.mysql.prefix")
 		charset  = config.GetString("database.mysql.charset")
 	)
-	tls := "true"
-	if len(os.Getenv("TLS")) > 0 {
-		tls = os.Getenv("TLS")
+	tls := "false"
+	if len(os.Getenv("MYSQL_TLS")) > 0 {
+		tls = os.Getenv("MYSQL_TLS")
 	}
 	dns := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?tls=%s&interpolateParams=true&charset=%s&parseTime=%t&loc=%s", username, password, host, port, database, tls, charset, true, "Local")
 	gormConfig := mysql.New(mysql.Config{

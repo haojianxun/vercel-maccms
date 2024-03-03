@@ -6,7 +6,9 @@ import (
 	"github.com/go-redis/redis"
 	"goapi/pkg/config"
 	"goapi/pkg/logger"
+	"os"
 	"reflect"
+	"strings"
 	"sync"
 	"time"
 )
@@ -29,26 +31,25 @@ func (rdb *Redis) ConnectDB(selectDB int) *Redis {
 	// 初始化 Redis 连接信息
 	var (
 		err       error
+		Options   *redis.Options
 		RedisIp   = config.GetString("redis.host")
 		RedisPort = config.GetString("redis.port")
 		Pw        = config.GetString("redis.password")
 	)
-	if len(Pw) > 0 {
-		rdb.Client = redis.NewClient(&redis.Options{
-			// vercel 中走 tls 模式
-			TLSConfig: &tls.Config{
-				MinVersion: tls.VersionTLS12,
-			},
-			Addr:     RedisIp + ":" + RedisPort,
-			DB:       rdb.DefaultDB, // use default DB
-			Password: Pw,            // no password set
-		})
-	} else {
-		rdb.Client = redis.NewClient(&redis.Options{
-			Addr: RedisIp + ":" + RedisPort,
-			DB:   rdb.DefaultDB, // use default DB
-		})
+	Options = &redis.Options{
+		Addr: RedisIp + ":" + RedisPort,
+		DB:   rdb.DefaultDB, // use default DB
 	}
+	if len(Pw) > 0 {
+		Options.Password = Pw
+	}
+	if strings.EqualFold("true", os.Getenv("REDIS_TLS")) {
+		// vercel 中走 tls 模式
+		Options.TLSConfig = &tls.Config{
+			MinVersion: tls.VersionTLS12,
+		}
+	}
+	rdb.Client = redis.NewClient(Options)
 PING:
 	res, err := rdb.Client.Ping().Result()
 	if err != nil {
