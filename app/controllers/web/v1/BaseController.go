@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"goapi/pkg/helpers"
+	"net/http"
 	"net/url"
 	"strings"
 	"time"
@@ -17,6 +18,12 @@ type GroupV1 struct {
 	IndexController
 	VideosController
 	ArttypeController
+}
+
+func GetDATA(c *gin.Context) gin.H {
+	value, _ := c.Get("data")
+	data := value.(gin.H)
+	return data
 }
 
 // PaginationHTML 生成搜索结果页面的分页 HTML 代码。
@@ -100,4 +107,9 @@ func extractParameters(url string) (movie, actor, area, director string, pageNum
 func PageMs(c *gin.Context) {
 	startTime, _ := c.Get("startTime")
 	fmt.Println("当前耗时", time.Now().UnixMilli()-startTime.(int64), "ms")
+}
+
+func NoPage(c *gin.Context) {
+	DATA := GetDATA(c)
+	c.HTML(http.StatusNotFound, "404", DATA)
 }

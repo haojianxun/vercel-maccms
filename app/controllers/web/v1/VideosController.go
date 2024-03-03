@@ -20,11 +20,7 @@ type VideosController struct {
 func (h *VideosController) Dianying(c *gin.Context) {
 	table := "dianying.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	// 批量查询数据
 	var (
 		listMacType       []models.MacType
@@ -58,11 +54,7 @@ func (h *VideosController) Dianying(c *gin.Context) {
 func (h *VideosController) Dianshiju(c *gin.Context) {
 	table := "dianshiju.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	// 批量查询数据
 	var (
 		listMacType       []models.MacType
@@ -97,11 +89,7 @@ func (h *VideosController) Dianshiju(c *gin.Context) {
 func (h *VideosController) Dongman(c *gin.Context) {
 	table := "dongman.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	// 批量查询数据
 	var (
 		listMacType       []models.MacType
@@ -137,11 +125,7 @@ func (h *VideosController) Dongman(c *gin.Context) {
 func (h *VideosController) Zongyi(c *gin.Context) {
 	table := "zongyi.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	// 批量查询数据
 	var (
 		listMacType       []models.MacType
@@ -176,23 +160,19 @@ func (h *VideosController) Zongyi(c *gin.Context) {
 func (h *VideosController) Show(c *gin.Context) {
 	table := "show.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 
 	// 获取路由中的参数值
 	params := strings.ReplaceAll(c.Param("params"), ".html", "")
 	if len(params) > 6 {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	VodID := maccms.DecryptID(params)
 	var detail models.MacVod
 	err := models.MacVodMgr(mysql.DB).Where("vod_id", VodID).Find(&detail).Error
 	if err != nil {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	var (
@@ -201,7 +181,7 @@ func (h *VideosController) Show(c *gin.Context) {
 	)
 	err = models.MacTypeMgr(mysql.DB).Where("type_id", detail.TypeID1).Find(&MacTypeDetail).Error
 	if err != nil {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	// 相关影片
@@ -231,20 +211,16 @@ func (h *VideosController) Show(c *gin.Context) {
 func (h *VideosController) Play(c *gin.Context) {
 	table := "play.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	// 获取路由中的参数值
 	params := strings.ReplaceAll(c.Param("params"), ".html", "")
 	if len(params) < 10 {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	// 参数不正确
 	if !strings.Contains(params, "-") {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	// TOCzRb-1-1
@@ -255,7 +231,7 @@ func (h *VideosController) Play(c *gin.Context) {
 	var detail models.MacVod
 	err := models.MacVodMgr(mysql.DB).Where("vod_id", VodID).Find(&detail).Error
 	if err != nil {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	var (
@@ -264,7 +240,7 @@ func (h *VideosController) Play(c *gin.Context) {
 	)
 	err = models.MacTypeMgr(mysql.DB).Where("type_id", detail.TypeID1).Find(&MacTypeDetail).Error
 	if err != nil {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	// 相关影片
@@ -314,8 +290,7 @@ func (h *VideosController) Play(c *gin.Context) {
 }
 
 func (h *VideosController) PianKu(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 
 	// 默认为电影片库
 	// 电视剧片库
@@ -328,8 +303,7 @@ func (h *VideosController) PianKu(c *gin.Context) {
 }
 
 func (h *VideosController) Top(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	DATA["page"] = "top"
 	DATA["title"] = "Top"
 	PageMs(c)

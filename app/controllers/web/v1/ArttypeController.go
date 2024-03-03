@@ -10,13 +10,9 @@ type ArttypeController struct {
 }
 
 func (h *ArttypeController) Zixun(c *gin.Context) {
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	data := value.(gin.H)
-	data["page"] = "zixun"
-	data["title"] = "资讯"
-	data["list"] = gin.H{"asas": "asas"}
-	c.HTML(http.StatusOK, "arttype/zixun.html", data)
+	DATA := GetDATA(c)
+	DATA["page"] = "zixun"
+	DATA["title"] = "资讯"
+	DATA["list"] = gin.H{"asas": "asas"}
+	c.HTML(http.StatusOK, "arttype/zixun.html", DATA)
 }

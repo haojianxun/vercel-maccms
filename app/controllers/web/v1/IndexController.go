@@ -20,20 +20,17 @@ type IndexController struct {
 
 // PresTrain loading 加载页面
 func (h *IndexController) PresTrain(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	c.HTML(http.StatusOK, "prestrain.html", DATA)
 }
 
 func (h *IndexController) DPlayer(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	c.HTML(http.StatusOK, "dplayer.html", DATA)
 }
 
 func (h *IndexController) Web(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	DATA["page"] = "web"
 	DATA["title"] = "Web"
 	PageMs(c)
@@ -41,8 +38,7 @@ func (h *IndexController) Web(c *gin.Context) {
 }
 
 func (h *IndexController) About(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	DATA["page"] = "about"
 	DATA["title"] = "About"
 	PageMs(c)
@@ -50,8 +46,7 @@ func (h *IndexController) About(c *gin.Context) {
 }
 
 func (h *IndexController) App(c *gin.Context) {
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	DATA["page"] = "app"
 	DATA["title"] = "App"
 	PageMs(c)
@@ -61,8 +56,7 @@ func (h *IndexController) App(c *gin.Context) {
 func (h *IndexController) Index(c *gin.Context) {
 	table := "index.html"
 	PageData := cmap.New().Items()
-	value, _ := c.Get("data")
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	// 获取当前时间
 	now := time.Now()
 	// 获取当天凌晨00:00的时间戳
@@ -194,11 +188,7 @@ func (h *IndexController) Search(c *gin.Context) {
 	}
 	//table := "search.html"
 	PageData := cmap.New().Items()
-	value, exists := c.Get("data")
-	if !exists {
-		value = gin.H{}
-	}
-	DATA := value.(gin.H)
+	DATA := GetDATA(c)
 	where := cmap.New().Items()
 	where["vod_status"] = 1
 	if len(actor) > 0 {
@@ -230,7 +220,7 @@ func (h *IndexController) Search(c *gin.Context) {
 		Limit(int(pageList.PageSize)).
 		Find(&listSearch).Error
 	if err != nil {
-		c.HTML(http.StatusOK, "404", nil)
+		NoPage(c)
 		return
 	}
 	pageList.List = listSearch
