@@ -18,25 +18,52 @@ type VideosController struct {
 }
 
 func (h *VideosController) Dianying(c *gin.Context) {
-	table := "dianying.html"
 	PageData := cmap.New().Items()
 	DATA := GetDATA(c)
 	// 批量查询数据
 	var (
+		macType           models.MacType
 		listMacType       []models.MacType
 		CurrentlyTrending []models.MacVod
 	)
-	// 二级详细分类
-	service.ListMacType(table, 1, &listMacType)
-	// 正在热播
-	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-		"type_id_1":  1,
-		"vod_status": 1,
-	}, "vod_hits desc", 16, &CurrentlyTrending)
-	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
-	for _, item := range listMacType {
-		Name := item.TypeEn
-		TypeID := item.TypeID
+	typeEn := strings.ReplaceAll(c.Param("params"), ".html", "")
+	if len(typeEn) <= 0 {
+		NoPage(c)
+		return
+	}
+	table := typeEn
+	where := map[string]interface{}{}
+	where["type_status"] = 1
+	where["type_en"] = typeEn
+	models.MacTypeMgr(mysql.DB).Debug().Where(where).Order("type_sort asc").Find(&macType)
+	if macType.TypeID == 0 {
+		NoPage(c)
+		return
+	}
+	// 二级栏目详细分类获取
+	if macType.TypePid == 0 {
+		service.ListMacType(table, int(macType.TypeID), &listMacType)
+		// 正在热播
+		service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
+			"type_id_1":  macType.TypeID,
+			"vod_status": 1,
+		}, "vod_hits desc", 16, &CurrentlyTrending)
+		PageData["CurrentlyTrending"] = CurrentlyTrending
+		// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
+		for _, item := range listMacType {
+			Name := item.TypeEn
+			TypeID := item.TypeID
+			var BindList []models.MacVod
+			service.ListWhereMacVod(table, Name, map[string]interface{}{
+				"type_id":    TypeID,
+				"vod_status": 1,
+			}, "vod_hits desc", 16, &BindList)
+			PageData[Name] = BindList
+		}
+	} else {
+		service.ListMacType(table, int(macType.TypePid), &listMacType)
+		Name := macType.TypeEn
+		TypeID := macType.TypeID
 		var BindList []models.MacVod
 		service.ListWhereMacVod(table, Name, map[string]interface{}{
 			"type_id":    TypeID,
@@ -45,9 +72,8 @@ func (h *VideosController) Dianying(c *gin.Context) {
 		PageData[Name] = BindList
 	}
 	PageData["listMacType"] = listMacType
-	PageData["CurrentlyTrending"] = CurrentlyTrending
 	DATA["PageData"] = PageData
-	DATA["page"] = "dianying"
+	DATA["page"] = typeEn
 	c.HTML(http.StatusOK, "v/dianying.html", DATA)
 }
 

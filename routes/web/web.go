@@ -57,8 +57,8 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		// 站点路由
 		v := webV1.Group("/v")
 		{
-			// 电影
-			v.GET("/dianying.html", GroupV1.VideosController.Dianying)
+			// 电影以及二级分类
+			v.GET("/:params", GroupV1.VideosController.Dianying)
 			// 电视剧
 			v.GET("/dianshiju.html", GroupV1.VideosController.Dianshiju)
 			// 动漫
