@@ -49,12 +49,21 @@ func SetFuncMap() template.FuncMap {
 		"DecryptID":     maccms.DecryptID,
 		"TypeName":      TypeName,
 		"TypeEn":        TypeEn,
+		"IsUnknown":     IsUnknown,
 	}
 	return funcMap
 }
 
 func split(str, sep string) []string {
 	return strings.Split(str, sep)
+}
+
+func IsUnknown(str string) string {
+	if len(str) == 0 {
+		return "未知"
+	} else {
+		return str
+	}
 }
 
 func raw(text string) template.HTML {

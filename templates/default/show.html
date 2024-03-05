@@ -73,7 +73,7 @@
 							<span class="slash">/</span>
 							{{ $VodDirectorList := split .PageData.detail.VodDirector "," }}
 							{{ range $index, $name := $VodDirectorList }}
-							<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+							<a href="search.html" target="_blank">{{IsUnknown $name}}</a><span class="slash">/</span>
 							{{ end }}
 						</div>
 					</div>
@@ -83,7 +83,7 @@
 							<span class="slash">/</span>
 							{{ $VodWriterList := split .PageData.detail.VodWriter "," }}
 							{{ range $index, $name := $VodWriterList }}
-							<a href="search.html" target="_blank">{{$name}}</a><span class="slash">/</span>
+							<a href="search.html" target="_blank">{{IsUnknown $name}}</a><span class="slash">/</span>
 							{{ end }}
 						</div>
 					</div>
@@ -111,7 +111,7 @@
 					</div>
 					<div class="video-info-items">
 						<span class="video-info-itemtitle">片长：</span>
-						<div class="video-info-item">{{ .PageData.detail.VodDuration }}</div>
+						<div class="video-info-item">{{ IsUnknown .PageData.detail.VodDuration }}</div>
 					</div>
 					
 					<div class="video-info-items">
