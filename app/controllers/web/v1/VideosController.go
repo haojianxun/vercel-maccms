@@ -5,10 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
+	"goapi/app/requests"
 	"goapi/app/service"
 	"goapi/pkg/helpers"
 	"goapi/pkg/maccms"
 	"goapi/pkg/mysql"
+	"goapi/pkg/page"
 	"net/http"
 	"strings"
 )
@@ -40,7 +42,7 @@ func (h *VideosController) Category(c *gin.Context) {
 		NoPage(c)
 		return
 	}
-	// 二级栏目详细分类获取
+	// 有二级分类
 	if macType.TypePid == 0 {
 		service.ListMacType(table, int(macType.TypeID), &listMacType)
 		// 正在热播
@@ -60,16 +62,36 @@ func (h *VideosController) Category(c *gin.Context) {
 			}, "vod_hits desc", 16, &BindList)
 			PageData[Name] = BindList
 		}
+		DATA["subCategory"] = 1
 	} else {
 		service.ListMacType(table, int(macType.TypePid), &listMacType)
-		Name := macType.TypeEn
-		TypeID := macType.TypeID
-		var BindList []models.MacVod
-		service.ListWhereMacVod(table, Name, map[string]interface{}{
-			"type_id":    TypeID,
-			"vod_status": 1,
-		}, "vod_hits desc", 16, &BindList)
-		PageData[Name] = BindList
+		var pageList page.PageList // 返回数据
+		var params requests.Search // 搜索数据
+		params.PageSize = 72       // 每页默认72条数据
+		whereSub := cmap.New().Items()
+		whereSub["vod_status"] = 1
+		whereSub["type_id"] = macType.TypeID
+		// 获取路由中的参数值
+		models.MacVodMgr(mysql.DB).Where(whereSub).Count(&pageList.Total)
+		// 设置分页参数
+		pageList.CurrentPage = params.PageNum
+		pageList.PageSize = params.PageSize
+		page.InitPageList(&pageList)
+		var listResult []models.MacVod
+		err := models.MacVodMgr(mysql.DB).
+			Where(whereSub).
+			Offset(int(pageList.Offset)).
+			Limit(int(pageList.PageSize)).
+			Find(&listResult).Error
+		if err != nil {
+			NoPage(c)
+			return
+		}
+		pageList.List = listResult
+		PageData["pageList"] = pageList
+		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
+		DATA["subCategory"] = 0
+		DATA["macType"] = macType
 	}
 	PageData["listMacType"] = listMacType
 	DATA["PageData"] = PageData

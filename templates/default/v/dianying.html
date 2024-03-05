@@ -6,12 +6,13 @@
 <!-- 头部 -->
 <main class="wrapper" id="main">
 	<div class="content">
+		<!-- 分类页分类-start -->
 		<div class="page-heading">
 			<h1 class="page-title">电影</h1>
 			<div class="list-header scroll-box">
 				<div class="block-box-items scroll-content">
 					{{ range .PageData.listMacType }}
-					<div class="block-box-item ">
+					<div class="block-box-item {{ if eq $.page .TypeEn}}selected{{end}}">
 						<a class="block-box-content" href="/v/{{.TypeEn}}.html" title="{{.TypeName}}"> <strong class="title">{{.TypeName}}</strong> </a>
 						<div class="block-box-bg">
 							{{.TypeName}}
@@ -28,8 +29,9 @@
 				</div>
 			</div>
 		</div>
-		<!-- 分类页分类 -->
-		
+		<!-- 分类页分类-end -->
+
+		{{ if eq .subCategory 1 }}
 		<div class="module module-bg">
 			<div class="module-heading">
 				<h2 class="module-title">热播电影<span class="module-title-en">TRENDING</span></h2>
@@ -80,8 +82,8 @@
 			</div>
 		</div>
 		<!-- 分类页热播 -->
-		
-		<!--二级分类数据列表-->
+
+		<!-- 有二级分类 -->
 		{{ range .PageData.listMacType }}
 		<div class="module module-bg">
 			<div class="module-heading">
@@ -137,14 +139,72 @@
 			</div>
 		</div>
 		{{end}}
-		<!-- 二级分类数据列表 -->
+		<!-- 有二级分类 -->
+		{{end}}
+
+		{{ if eq .subCategory 0 }}
+		<div class="module module-bg">
+			<div class="module-heading">
+				<h2 class="module-title">{{ $.PageData.pageList.Total }}部{{ .macType.TypeName }}</h2>
+			</div>
+			<div class="module-list">
+				<div class="module-items">
+					{{ range .PageData.pageList.List }}
+					<div class="module-item">
+						<div class="module-item-cover">
+							<div class="module-item-pic">
+								<a href="/show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">
+									<i class="icon-play"></i>
+								</a>
+								<img alt="{{ .VodName }}"
+									 class="lazy lazyloaded"
+									 data-src="{{ .VodPic }}"
+									 onerror="this.src='/statics/image/loading.png'"
+									 src="/statics/image/loading.png">
+								<div class="loading"></div>
+							</div>
+							<div class="module-item-caption">
+								<span>{{ .VodYear }}</span>
+								<span class="video-class">{{ TypeName $.PageData.listMacType .TypeID }}</span>
+								<span>{{ .VodArea }}</span>
+							</div>
+							<div class="module-item-content">
+								<div class="module-item-style video-name">
+									<a href="/show-{{ EncryptID .VodID }}.html" title="{{ .VodName }}">{{ .VodName }}</a>
+								</div>
+								<div class="module-item-style video-tag">
+									{{ $VodActorList := split .VodActor "," }}
+									{{ range $index, $name := $VodActorList }}
+									<a href="search.html" target="_blank">{{$name}}</a>&nbsp;
+									{{ end }}
+								</div>
+								<div class="module-item-style video-text">　　{{ raw .VodContent }}</div>
+							</div>
+						</div>
+						<div class="module-item-titlebox">
+							<a href="/show-{{ EncryptID .VodID }}.html" class="module-item-title" title="{{ .VodName }}">{{ .VodName }}</a>
+						</div>
+						<div class="module-item-text">{{ .VodRemarks }}</div>
+					</div>
+					{{end}}
+				</div>
+			</div>
+		</div>
+
+		<div class="module-footer">
+			<div id="page">
+				{{ raw .PageData.PaginationHTML }}
+			</div>
+		</div>
+		{{end}}
 	
 	
 	</div>
-	
+
 	<div class="module-footer module-type">
-		<a class="load-all" href="/pianku-dianying.html" title="全部电影">全部电影<i class="icon-arrow-right-o"></i></a>
+		<a class="load-all" href="/pianku-{{ .macType.TypeEn }}.html" title="全部{{ .macType.TypeName }}">全部{{ .macType.TypeName }}<i class="icon-arrow-right-o"></i></a>
 	</div>
+
 </main>
 
 {{template "footer" .}}
