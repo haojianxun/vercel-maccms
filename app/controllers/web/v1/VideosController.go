@@ -17,7 +17,7 @@ type VideosController struct {
 	BaseController
 }
 
-func (h *VideosController) Dianying(c *gin.Context) {
+func (h *VideosController) Category(c *gin.Context) {
 	PageData := cmap.New().Items()
 	DATA := GetDATA(c)
 	// 批量查询数据
