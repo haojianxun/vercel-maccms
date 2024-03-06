@@ -1,4 +1,4 @@
-{{ define "v/dianying.html" }}
+{{ define "v/category.html" }}
 {{template "head" .}}
 <body class="page">
 {{template "header" .}}
@@ -8,7 +8,7 @@
 	<div class="content">
 		<!-- 分类页分类-start -->
 		<div class="page-heading">
-			<h1 class="page-title">电影</h1>
+			<h1 class="page-title">{{ .macType.TypeName }}</h1>
 			<div class="list-header scroll-box">
 				<div class="block-box-items scroll-content">
 					{{ range .PageData.listMacType }}

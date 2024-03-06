@@ -226,7 +226,7 @@ func (h *IndexController) Search(c *gin.Context) {
 	pageList.List = listSearch
 	PageData["pageList"] = pageList
 	PageData["wd"] = params.Name
-	PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
+	PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), "search", params.Name)
 	var listMacType []models.MacType
 	// 查询所有分类
 	service.ListMacType("common", -1, &listMacType)

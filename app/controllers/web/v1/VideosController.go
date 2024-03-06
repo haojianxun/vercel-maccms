@@ -5,12 +5,10 @@ import (
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
-	"goapi/app/requests"
 	"goapi/app/service"
 	"goapi/pkg/helpers"
 	"goapi/pkg/maccms"
 	"goapi/pkg/mysql"
-	"goapi/pkg/page"
 	"net/http"
 	"strings"
 )
@@ -42,61 +40,15 @@ func (h *VideosController) Category(c *gin.Context) {
 		NoPage(c)
 		return
 	}
-	// 有二级分类
+	DATA["page"] = macType.TypeEn
+	DATA["macType"] = macType
+	// 顶级栏目处理
 	if macType.TypePid == 0 {
-		service.ListMacType(table, int(macType.TypeID), &listMacType)
-		// 正在热播
-		service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-			"type_id_1":  macType.TypeID,
-			"vod_status": 1,
-		}, "vod_hits desc", 16, &CurrentlyTrending)
-		PageData["CurrentlyTrending"] = CurrentlyTrending
-		// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
-		for _, item := range listMacType {
-			Name := item.TypeEn
-			TypeID := item.TypeID
-			var BindList []models.MacVod
-			service.ListWhereMacVod(table, Name, map[string]interface{}{
-				"type_id":    TypeID,
-				"vod_status": 1,
-			}, "vod_hits desc", 16, &BindList)
-			PageData[Name] = BindList
-		}
-		DATA["subCategory"] = 1
+		TopCategory(c, table, DATA, PageData, macType, listMacType, CurrentlyTrending)
 	} else {
-		service.ListMacType(table, int(macType.TypePid), &listMacType)
-		var pageList page.PageList // 返回数据
-		var params requests.Search // 搜索数据
-		params.PageSize = 72       // 每页默认72条数据
-		whereSub := cmap.New().Items()
-		whereSub["vod_status"] = 1
-		whereSub["type_id"] = macType.TypeID
-		// 获取路由中的参数值
-		models.MacVodMgr(mysql.DB).Where(whereSub).Count(&pageList.Total)
-		// 设置分页参数
-		pageList.CurrentPage = params.PageNum
-		pageList.PageSize = params.PageSize
-		page.InitPageList(&pageList)
-		var listResult []models.MacVod
-		err := models.MacVodMgr(mysql.DB).
-			Where(whereSub).
-			Offset(int(pageList.Offset)).
-			Limit(int(pageList.PageSize)).
-			Find(&listResult).Error
-		if err != nil {
-			NoPage(c)
-			return
-		}
-		pageList.List = listResult
-		PageData["pageList"] = pageList
-		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), params.Name)
-		DATA["subCategory"] = 0
-		DATA["macType"] = macType
+		// 子栏目处理
+		SubCategory(c, table, DATA, PageData, macType, listMacType)
 	}
-	PageData["listMacType"] = listMacType
-	DATA["PageData"] = PageData
-	DATA["page"] = typeEn
-	c.HTML(http.StatusOK, "v/dianying.html", DATA)
 }
 
 func (h *VideosController) Dianshiju(c *gin.Context) {
