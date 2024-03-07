@@ -54,7 +54,7 @@ func (h *IndexController) App(c *gin.Context) {
 }
 
 func (h *IndexController) Google(c *gin.Context) {
-	c.String(http.StatusOK, "\ngoogle-site-verification: google8fcf6226304ee6af.html")
+	c.String(http.StatusOK, "google-site-verification: google8fcf6226304ee6af.html")
 }
 
 func (h *IndexController) Index(c *gin.Context) {
