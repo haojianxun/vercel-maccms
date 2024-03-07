@@ -53,6 +53,14 @@ func (h *IndexController) App(c *gin.Context) {
 	c.HTML(http.StatusOK, "label/app.html", DATA)
 }
 
+func (h *IndexController) Robots(c *gin.Context) {
+	DATA := GetDATA(c)
+	DATA["page"] = "robots"
+	DATA["title"] = "Robots"
+	PageMs(c)
+	c.HTML(http.StatusOK, "robots.txt", DATA)
+}
+
 func (h *IndexController) Google(c *gin.Context) {
 	c.String(http.StatusOK, "google-site-verification: google8fcf6226304ee6af.html")
 }

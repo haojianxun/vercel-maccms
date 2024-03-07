@@ -1,0 +1,30 @@
+{{ define "robots.txt" }}
+User-agent: Baiduspider
+Allow: /
+User-agent: Sosospider
+Allow: /
+User-agent: sogou spider
+Allow: /
+User-agent: YodaoBot
+Allow: /
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: MSNBot
+Allow: /
+User-agent: Google
+Disallow:
+User-agent: Bing
+Disallow:
+User-agent: Yahoo
+Disallow:
+User-agent: Baidu
+Disallow:
+User-agent: Yandex
+Disallow:
+User-agent: DuckDuckGo
+Disallow:
+User-agent: *
+Disallow: /
+{{end}}
