@@ -264,7 +264,7 @@ func (h *VideosController) Show(c *gin.Context) {
 	PageData["CurrentlyTrending"] = CurrentlyTrending
 	DATA["VodID"] = VodID
 	DATA["PageData"] = PageData
-	DATA["page"] = MacTypeDetail.TypeEn
+	DATA["page"] = "show"
 	c.HTML(http.StatusOK, "show.html", DATA)
 }
 
@@ -345,7 +345,7 @@ func (h *VideosController) Play(c *gin.Context) {
 		PageData["UrlNext"] = maccms.Base64encode(maccms.EncodeURL(NextUrlInfo[1]))
 	}
 	DATA["PageData"] = PageData
-	DATA["page"] = MacTypeDetail.TypeEn
+	DATA["page"] = "play"
 	c.HTML(http.StatusOK, "play.html", DATA)
 }
 
