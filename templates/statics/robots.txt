@@ -1,4 +1,3 @@
-{{ define "robots.txt" }}
 User-agent: Baiduspider
 Allow: /
 User-agent: Sosospider
@@ -27,4 +26,3 @@ User-agent: DuckDuckGo
 Disallow:
 User-agent: *
 Disallow: /
-{{end}}

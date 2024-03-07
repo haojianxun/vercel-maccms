@@ -7,8 +7,11 @@ import (
 	"goapi/app/models"
 	"goapi/app/requests"
 	"goapi/app/service"
+	"goapi/pkg/logger"
 	"goapi/pkg/mysql"
 	"goapi/pkg/page"
+	"goapi/templates"
+	"io/fs"
 	"net/http"
 	"strings"
 	"time"
@@ -54,11 +57,15 @@ func (h *IndexController) App(c *gin.Context) {
 }
 
 func (h *IndexController) Robots(c *gin.Context) {
-	DATA := GetDATA(c)
-	DATA["page"] = "robots"
-	DATA["title"] = "Robots"
-	PageMs(c)
-	c.HTML(http.StatusOK, "robots.txt", DATA)
+	data, err := fs.ReadFile(templates.Statics, "statics/robots.txt")
+	if err != nil {
+		logger.Info(err)
+		NoPage(c)
+		return
+	}
+	contentType := http.DetectContentType(data)
+	c.Data(http.StatusOK, contentType, data)
+
 }
 
 func (h *IndexController) Google(c *gin.Context) {
