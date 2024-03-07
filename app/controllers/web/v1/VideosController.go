@@ -5,10 +5,12 @@ import (
 	"github.com/gin-gonic/gin"
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
+	"goapi/app/requests"
 	"goapi/app/service"
 	"goapi/pkg/helpers"
 	"goapi/pkg/maccms"
 	"goapi/pkg/mysql"
+	"goapi/pkg/page"
 	"net/http"
 	"strings"
 )
@@ -18,37 +20,95 @@ type VideosController struct {
 }
 
 func (h *VideosController) Category(c *gin.Context) {
-	PageData := cmap.New().Items()
-	DATA := GetDATA(c)
-	// 批量查询数据
-	var (
-		macType           models.MacType
-		listMacType       []models.MacType
-		CurrentlyTrending []models.MacVod
-	)
+	// 获取参数
 	typeEn := strings.ReplaceAll(c.Param("params"), ".html", "")
 	if len(typeEn) <= 0 {
 		NoPage(c)
 		return
 	}
-	table := typeEn
-	where := map[string]interface{}{}
-	where["type_status"] = 1
-	where["type_en"] = typeEn
-	models.MacTypeMgr(mysql.DB).Debug().Where(where).Order("type_sort asc").Find(&macType)
-	if macType.TypeID == 0 {
+
+	// 初始化数据
+	DATA := GetDATA(c)
+	PageData := cmap.New().Items()
+
+	// 查询分类数据
+	macType := models.MacType{}
+	where := map[string]interface{}{
+		"type_status": 1,
+		"type_en":     typeEn,
+	}
+	if err := models.MacTypeMgr(mysql.DB).Where(where).First(&macType).Error; err != nil {
 		NoPage(c)
 		return
 	}
+
+	// 设置页面数据
 	DATA["page"] = macType.TypeEn
 	DATA["macType"] = macType
-	// 顶级栏目处理
+
+	// 处理顶级栏目下的数据
 	if macType.TypePid == 0 {
-		TopCategory(c, table, DATA, PageData, macType, listMacType, CurrentlyTrending)
-	} else {
-		// 子栏目处理
-		SubCategory(c, table, DATA, PageData, macType, listMacType)
+		var listMacType []models.MacType
+		service.ListMacType(typeEn, int(macType.TypeID), &listMacType)
+		PageData["listMacType"] = listMacType
+
+		// 获取正在热播的视频
+		var CurrentlyTrending []models.MacVod
+		service.ListWhereMacVod(typeEn, "CurrentlyTrending", map[string]interface{}{
+			"type_id_1":  macType.TypeID,
+			"vod_status": 1,
+		}, "vod_hits desc", 16, &CurrentlyTrending)
+		PageData["CurrentlyTrending"] = CurrentlyTrending
+
+		// 查询每个子分类下的数据
+		for _, item := range listMacType {
+			var BindList []models.MacVod
+			service.ListWhereMacVod(typeEn, item.TypeEn, map[string]interface{}{
+				"type_id":    item.TypeID,
+				"vod_status": 1,
+			}, "vod_hits desc", 16, &BindList)
+			PageData[item.TypeEn] = BindList
+		}
+
+		DATA["CategoryType"] = "top"
+		DATA["NavName"] = macType.TypeEn
+
+	} else { // 处理子栏目下的数据
+		var listMacType []models.MacType
+		service.ListMacType(typeEn, int(macType.TypePid), &listMacType)
+		PageData["listMacType"] = listMacType
+
+		// 获取子分类下的视频列表
+		var pageList page.PageList
+		var params requests.Search
+		params.PageSize = 72
+		whereSub := cmap.New().Items()
+		whereSub["type_id"] = macType.TypeID
+		whereSub["vod_status"] = 1
+
+		models.MacVodMgr(mysql.DB).Where(whereSub).Count(&pageList.Total)
+		pageList.CurrentPage = params.PageNum
+		pageList.PageSize = params.PageSize
+		page.InitPageList(&pageList)
+
+		var listResult []models.MacVod
+		models.MacVodMgr(mysql.DB).
+			Where(whereSub).
+			Offset(int(pageList.Offset)).
+			Limit(int(pageList.PageSize)).
+			Find(&listResult)
+
+		pageList.List = listResult
+		PageData["pageList"] = pageList
+		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), macType.TypeEn, params.Name)
+
+		DATA["CategoryType"] = "sub"
+		DATA["NavName"] = maccms.TypeName(listMacType, macType.TypePid)
 	}
+
+	// 设置页面数据并返回
+	DATA["PageData"] = PageData
+	c.HTML(http.StatusOK, "v/category.html", DATA)
 }
 
 func (h *VideosController) Dianshiju(c *gin.Context) {

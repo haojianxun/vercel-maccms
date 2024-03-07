@@ -3,13 +3,8 @@ package v1
 import (
 	"fmt"
 	"github.com/gin-gonic/gin"
-	cmap "github.com/orcaman/concurrent-map"
-	"goapi/app/models"
-	"goapi/app/requests"
 	"goapi/app/service"
 	"goapi/pkg/helpers"
-	"goapi/pkg/mysql"
-	"goapi/pkg/page"
 	"net/http"
 	"net/url"
 	"strings"
@@ -118,62 +113,4 @@ func PageMs(c *gin.Context) {
 func NoPage(c *gin.Context) {
 	DATA := service.Site(c)
 	c.HTML(http.StatusNotFound, "404", DATA)
-}
-
-// 顶级栏目处理
-
-func TopCategory(c *gin.Context, table string, DATA, PageData map[string]interface{}, macType models.MacType, listMacType []models.MacType, CurrentlyTrending []models.MacVod) {
-	service.ListMacType(table, int(macType.TypeID), &listMacType)
-	// 正在热播
-	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-		"type_id_1":  macType.TypeID,
-		"vod_status": 1,
-	}, "vod_hits desc", 16, &CurrentlyTrending)
-	PageData["CurrentlyTrending"] = CurrentlyTrending
-	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
-	for _, item := range listMacType {
-		Name := item.TypeEn
-		TypeID := item.TypeID
-		var BindList []models.MacVod
-		service.ListWhereMacVod(table, Name, map[string]interface{}{
-			"type_id":    TypeID,
-			"vod_status": 1,
-		}, "vod_hits desc", 16, &BindList)
-		PageData[Name] = BindList
-	}
-	DATA["subCategory"] = 1
-	PageData["listMacType"] = listMacType
-	DATA["PageData"] = PageData
-	c.HTML(http.StatusOK, "v/category.html", DATA)
-}
-
-// 子栏目处理
-
-func SubCategory(c *gin.Context, table string, DATA, PageData map[string]interface{}, macType models.MacType, listMacType []models.MacType) {
-	service.ListMacType(table, int(macType.TypePid), &listMacType)
-	var pageList page.PageList // 返回数据
-	var params requests.Search // 搜索数据
-	params.PageSize = 72       // 每页默认72条数据
-	whereSub := cmap.New().Items()
-	whereSub["type_id"] = macType.TypeID
-	whereSub["vod_status"] = 1
-	// 获取路由中的参数值
-	models.MacVodMgr(mysql.DB).Where(whereSub).Count(&pageList.Total)
-	// 设置分页参数
-	pageList.CurrentPage = params.PageNum
-	pageList.PageSize = params.PageSize
-	page.InitPageList(&pageList)
-	var listResult []models.MacVod
-	models.MacVodMgr(mysql.DB).
-		Where(whereSub).
-		Offset(int(pageList.Offset)).
-		Limit(int(pageList.PageSize)).
-		Find(&listResult)
-	pageList.List = listResult
-	PageData["pageList"] = pageList
-	PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), macType.TypeEn, params.Name)
-	DATA["subCategory"] = 0
-	PageData["listMacType"] = listMacType
-	DATA["PageData"] = PageData
-	c.HTML(http.StatusOK, "v/category.html", DATA)
 }

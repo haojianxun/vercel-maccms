@@ -31,7 +31,7 @@
 		</div>
 		<!-- 分类页分类-end -->
 
-		{{ if eq .subCategory 1 }}
+		{{ if eq .CategoryType "top" }}
 		<div class="module module-bg">
 			<div class="module-heading">
 				<h2 class="module-title">热播电影<span class="module-title-en">TRENDING</span></h2>
@@ -142,7 +142,7 @@
 		<!-- 有二级分类 -->
 		{{end}}
 
-		{{ if eq .subCategory 0 }}
+		{{ if eq .CategoryType "sub" }}
 		<div class="module module-bg">
 			<div class="module-heading">
 				<h2 class="module-title">{{ $.PageData.pageList.Total }}部{{ .macType.TypeName }}</h2>

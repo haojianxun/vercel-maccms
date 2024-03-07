@@ -14,6 +14,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 	{
 		// 首页入口
 		webV1.GET("/", GroupV1.IndexController.Index)
+		webV1.GET("/google8fcf6226304ee6af.html", GroupV1.IndexController.Google)
 		webV1.GET("/index.html", GroupV1.IndexController.Index)
 		webV1.GET("/prestrain.html", GroupV1.IndexController.PresTrain)
 		webV1.GET("/player/dplayer.html", GroupV1.IndexController.DPlayer)

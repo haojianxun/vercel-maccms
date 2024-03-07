@@ -53,6 +53,10 @@ func (h *IndexController) App(c *gin.Context) {
 	c.HTML(http.StatusOK, "label/app.html", DATA)
 }
 
+func (h *IndexController) Google(c *gin.Context) {
+	c.String(http.StatusOK, "\ngoogle-site-verification: google8fcf6226304ee6af.html")
+}
+
 func (h *IndexController) Index(c *gin.Context) {
 	table := "index.html"
 	PageData := cmap.New().Items()
