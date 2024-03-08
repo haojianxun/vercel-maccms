@@ -20,7 +20,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		webV1.GET("/prestrain.html", GroupV1.IndexController.PresTrain)
 		webV1.GET("/player/dplayer.html", GroupV1.IndexController.DPlayer)
 		// 片库
-		webV1.GET("/pianku.html", GroupV1.VideosController.PianKu)
+		webV1.GET("/pianku-:params", GroupV1.VideosController.PianKu)
 		// 播放
 		webV1.GET("/play-:params", GroupV1.VideosController.Play)
 		// 搜索
