@@ -196,12 +196,12 @@
 <!--play.html-->
 {{end}}
 
-{{ if eq .page "show"}}
+{{ if or (eq .page "show") (eq .page "play")}}
 <!--show.html-->
 <script type="text/javascript">
     $(".tab-item:first,.module-list:first").addClass("selected");
 </script>
-<script type="text/javascript" src="{{.__JS__}}/js/desc.js"></script>
+<script type="text/javascript" src="{{.__JS__}}/desc.js"></script>
 <!--show.html-->
 {{end}}
 

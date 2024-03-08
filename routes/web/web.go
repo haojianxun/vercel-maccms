@@ -61,12 +61,12 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		{
 			// 电影以及二级分类
 			v.GET("/:params", GroupV1.VideosController.Category)
-			// 电视剧
-			v.GET("/dianshiju.html", GroupV1.VideosController.Dianshiju)
-			// 动漫
-			v.GET("/dongman.html", GroupV1.VideosController.Dongman)
-			// 综艺
-			v.GET("/zongyi.html", GroupV1.VideosController.Zongyi)
+			//// 电视剧
+			//v.GET("/dianshiju.html", GroupV1.VideosController.Dianshiju)
+			//// 动漫
+			//v.GET("/dongman.html", GroupV1.VideosController.Dongman)
+			//// 综艺
+			//v.GET("/zongyi.html", GroupV1.VideosController.Zongyi)
 		}
 
 		arttype := webV1.Group("/arttype")

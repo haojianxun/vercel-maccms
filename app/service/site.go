@@ -14,10 +14,8 @@ func Site(c *gin.Context) gin.H {
 	PageData["__CSS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/css")
 	PageData["__JS__"] = fmt.Sprintf("%s%s%s", HTTP, c.Request.Host, "/statics/js")
 
-	// 公共数据
-	// 查询所有分类
 	var NavMenus []models.MacType
-	ListMacType("common", -1, &NavMenus)
+	ListMacType("NavMenus", 0, &NavMenus)
 	PageData["NavMenus"] = NavMenus
 	return PageData
 }

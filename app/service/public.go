@@ -24,6 +24,7 @@ func ListMacType(table string, typePid int, listMacType *[]models.MacType) {
 	if CacheMacType == nil {
 		where := map[string]interface{}{}
 		where["type_status"] = 1
+		where["type_mid"] = 1
 		if typePid >= 0 {
 			where["type_pid"] = typePid
 		}

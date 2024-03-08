@@ -77,10 +77,10 @@ func PaginationHTML(currentPage, totalPages int, pageType, keyword string) strin
 	if nextPage > totalPages {
 		nextPage = totalPages
 	}
-	html += fmt.Sprintf("<a href=\"/search-%s----------%d---.html\" class=\"page-number page-next\" title=\"下一页\">下一页</a>\n", encodedKeyword, nextPage)
+	html += fmt.Sprintf("<a href=\"/%s-%s----------%d---.html\" class=\"page-number page-next\" title=\"下一页\">下一页</a>\n", pageType, encodedKeyword, nextPage)
 
 	// 尾页链接
-	html += fmt.Sprintf("<a href=\"/search-%s----------%d---.html\" class=\"page-number page-next\" title=\"尾页\">尾页</a>\n", encodedKeyword, totalPages)
+	html += fmt.Sprintf("<a href=\"/%s-%s----------%d---.html\" class=\"page-number page-next\" title=\"尾页\">尾页</a>\n", pageType, encodedKeyword, totalPages)
 	return html
 }
 

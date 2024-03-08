@@ -43,7 +43,7 @@ func (h *VideosController) Category(c *gin.Context) {
 	}
 
 	// 设置页面数据
-	DATA["page"] = macType.TypeEn
+	DATA["page"] = typeEn
 	DATA["macType"] = macType
 
 	// 处理顶级栏目下的数据
@@ -103,7 +103,7 @@ func (h *VideosController) Category(c *gin.Context) {
 		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), macType.TypeEn, params.Name)
 
 		DATA["CategoryType"] = "sub"
-		DATA["NavName"] = maccms.TypeName(listMacType, macType.TypePid)
+		DATA["NavName"] = maccms.TypeEn(DATA["NavMenus"], macType.TypePid)
 	}
 
 	// 设置页面数据并返回
@@ -264,7 +264,7 @@ func (h *VideosController) Show(c *gin.Context) {
 	PageData["CurrentlyTrending"] = CurrentlyTrending
 	DATA["VodID"] = VodID
 	DATA["PageData"] = PageData
-	DATA["page"] = MacTypeDetail.TypeEn
+	DATA["page"] = "show"
 	c.HTML(http.StatusOK, "show.html", DATA)
 }
 
@@ -345,7 +345,7 @@ func (h *VideosController) Play(c *gin.Context) {
 		PageData["UrlNext"] = maccms.Base64encode(maccms.EncodeURL(NextUrlInfo[1]))
 	}
 	DATA["PageData"] = PageData
-	DATA["page"] = MacTypeDetail.TypeEn
+	DATA["page"] = "play"
 	c.HTML(http.StatusOK, "play.html", DATA)
 }
 
