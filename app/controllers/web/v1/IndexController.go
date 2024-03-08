@@ -68,6 +68,18 @@ func (h *IndexController) Robots(c *gin.Context) {
 
 }
 
+func (h *IndexController) SouGou(c *gin.Context) {
+	data, err := fs.ReadFile(templates.Statics, "statics/sogousiteverification.txt")
+	if err != nil {
+		logger.Info(err)
+		NoPage(c)
+		return
+	}
+	contentType := http.DetectContentType(data)
+	c.Data(http.StatusOK, contentType, data)
+
+}
+
 func (h *IndexController) Google(c *gin.Context) {
 	c.String(http.StatusOK, "google-site-verification: google8fcf6226304ee6af.html")
 }

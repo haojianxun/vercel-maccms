@@ -13,6 +13,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 	webV1 := router.Group("/")
 	{
 		webV1.GET("/robots.txt", GroupV1.IndexController.Robots)
+		webV1.GET("/sogousiteverification.txt", GroupV1.IndexController.SouGou)
 		// 首页入口
 		webV1.GET("/", GroupV1.IndexController.Index)
 		webV1.GET("/google8fcf6226304ee6af.html", GroupV1.IndexController.Google)
