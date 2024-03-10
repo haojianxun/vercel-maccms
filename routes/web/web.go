@@ -46,6 +46,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 			//---大陆--------第几页---
 			//------导演-----第几页---
 			//-----------第几页---年份
+			// search-:电影名称-:演员名称-:大陆-:导演-:年份-:第几页.html
 		}
 		// 详情
 		webV1.GET("/show-:params", GroupV1.VideosController.Show)

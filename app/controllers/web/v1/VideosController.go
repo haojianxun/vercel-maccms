@@ -102,6 +102,14 @@ func (h *VideosController) Category(c *gin.Context) {
 		PageData["pageList"] = pageList
 		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), macType.TypeEn, params.Name)
 
+		urlParams := make(map[string]string)
+		urlParams["movie"] = ""
+		urlParams["actor"] = ""
+		urlParams["area"] = ""
+		urlParams["director"] = ""
+		urlParams["year"] = ""
+		PageData["PaginationHTML"] = PaginationHTMLCategory(int(pageList.CurrentPage), int(pageList.PageTotal), fmt.Sprintf("%s%s", "v/", macType.TypeEn), urlParams)
+
 		DATA["CategoryType"] = "sub"
 		DATA["NavName"] = maccms.TypeEn(DATA["NavMenus"], macType.TypePid)
 	}
