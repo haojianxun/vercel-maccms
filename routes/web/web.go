@@ -27,7 +27,6 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		// 搜索
 		{
 			// 搜索
-			webV1.GET("/search.html", GroupV1.IndexController.Search)
 			webV1.GET("/search:search", GroupV1.IndexController.Search)
 			//// 电影名称搜索
 			//// search-:电影名称----------:第几页---.html

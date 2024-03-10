@@ -207,12 +207,8 @@ func (h *IndexController) Search(c *gin.Context) {
 	params.Name = c.Query("wd")
 	search := strings.ReplaceAll(c.Param("search"), ".html", "")
 	movie, actor, area, director, pageNum, year := extractParameters(search)
-	fmt.Printf("Movie: %s, Actor: %s, Area: %s, Director: %s, Page: %s, Year: %s\n", movie, actor, area, director, pageNum, year)
-	fmt.Println(search)
-	fmt.Println(search)
-	fmt.Println(search)
-	if len(movie) > 0 {
-		params.Name = movie
+	if len(params.Name) > 0 {
+		movie = params.Name
 	}
 	if pageNum > 0 {
 		params.PageNum = pageNum
@@ -235,7 +231,7 @@ func (h *IndexController) Search(c *gin.Context) {
 		where["vod_year"] = year
 	}
 	// 获取路由中的参数值
-	models.MacVodMgr(mysql.DB).Where("vod_name LIKE ?", fmt.Sprintf("%%%v%%", params.Name)).Where(where).Count(&pageList.Total)
+	models.MacVodMgr(mysql.DB).Where("vod_name LIKE ?", fmt.Sprintf("%%%v%%", movie)).Where(where).Count(&pageList.Total)
 	// 设置分页参数
 	pageList.CurrentPage = params.PageNum
 	pageList.PageSize = params.PageSize
@@ -244,7 +240,7 @@ func (h *IndexController) Search(c *gin.Context) {
 	err := models.MacVodMgr(mysql.DB).
 		Where(
 			"vod_name LIKE ?",
-			fmt.Sprintf("%%%v%%", params.Name),
+			fmt.Sprintf("%%%v%%", movie),
 		).
 		Where(where).
 		Offset(int(pageList.Offset)).
@@ -257,7 +253,15 @@ func (h *IndexController) Search(c *gin.Context) {
 	pageList.List = listSearch
 	PageData["pageList"] = pageList
 	PageData["wd"] = params.Name
-	PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), "search", params.Name)
+	urlParams := make(map[string]string)
+	urlParams["movie"] = movie
+	urlParams["actor"] = actor
+	urlParams["area"] = area
+	urlParams["director"] = director
+	if year > 0 {
+		urlParams["year"] = fmt.Sprintf("%v", year)
+	}
+	PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), "search", urlParams)
 	var listMacType []models.MacType
 	// 查询所有分类
 	service.ListMacType("common", -1, &listMacType)

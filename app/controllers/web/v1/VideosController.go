@@ -21,7 +21,10 @@ type VideosController struct {
 
 func (h *VideosController) Category(c *gin.Context) {
 	// 获取参数
-	typeEn := strings.ReplaceAll(c.Param("params"), ".html", "")
+	strParams := strings.ReplaceAll(c.Param("params"), ".html", "")
+	params := strings.Split(strParams, "-")
+	typeEn := params[0]
+	//pageNum := params[6]
 	if len(typeEn) <= 0 {
 		NoPage(c)
 		return
@@ -100,15 +103,13 @@ func (h *VideosController) Category(c *gin.Context) {
 
 		pageList.List = listResult
 		PageData["pageList"] = pageList
-		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), macType.TypeEn, params.Name)
-
 		urlParams := make(map[string]string)
 		urlParams["movie"] = ""
 		urlParams["actor"] = ""
 		urlParams["area"] = ""
 		urlParams["director"] = ""
 		urlParams["year"] = ""
-		PageData["PaginationHTML"] = PaginationHTMLCategory(int(pageList.CurrentPage), int(pageList.PageTotal), fmt.Sprintf("%s%s", "v/", macType.TypeEn), urlParams)
+		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), fmt.Sprintf("%s%s", "v/", macType.TypeEn), urlParams)
 
 		DATA["CategoryType"] = "sub"
 		DATA["NavName"] = maccms.TypeEn(DATA["NavMenus"], macType.TypePid)
