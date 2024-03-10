@@ -13,6 +13,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 	webV1 := router.Group("/")
 	{
 		webV1.GET("/robots.txt", GroupV1.IndexController.Robots)
+		webV1.GET("/sogousiteverification.txt", GroupV1.IndexController.SouGou)
 		// 首页入口
 		webV1.GET("/", GroupV1.IndexController.Index)
 		webV1.GET("/google8fcf6226304ee6af.html", GroupV1.IndexController.Google)
@@ -20,7 +21,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		webV1.GET("/prestrain.html", GroupV1.IndexController.PresTrain)
 		webV1.GET("/player/dplayer.html", GroupV1.IndexController.DPlayer)
 		// 片库
-		webV1.GET("/pianku.html", GroupV1.VideosController.PianKu)
+		webV1.GET("/pianku-:params", GroupV1.VideosController.PianKu)
 		// 播放
 		webV1.GET("/play-:params", GroupV1.VideosController.Play)
 		// 搜索
