@@ -11,14 +11,9 @@
 				<div class="library-box library-box-first scroll-box ovauto">
 					<div class="scroll-content">
 						<div class="library-list">
-							
-							<a class="library-item  selected" href="/pianku-dianying-----------.html" title=" 电影片库"> 电影片库</a>
-							
-							<a class="library-item  " href="/pianku-dianshiju-----------.html" title=" 电视剧片库"> 电视剧片库</a>
-							
-							<a class="library-item  " href="/pianku-dongman-----------.html" title=" 动漫片库"> 动漫片库</a>
-							
-							<a class="library-item  " href="/pianku-zongyi-----------.html" title=" 综艺片库"> 综艺片库</a>
+							{{ range .NavMenus }}
+							<a class="library-item  {{ if eq $.page .TypeEn}}selected{{end}}" href="/pianku/{{.TypeEn}}-----------.html" title="{{.TypeName}}片库">{{.TypeName}}片库</a>
+							{{end}}
 						</div>
 					</div>
 				</div>

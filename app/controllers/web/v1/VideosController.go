@@ -19,6 +19,32 @@ type VideosController struct {
 	BaseController
 }
 
+func (h *VideosController) PianKu(c *gin.Context) {
+	// 获取参数
+	strParams := strings.ReplaceAll(c.Param("params"), ".html", "")
+	args := strings.Split(strParams, "-")
+	PageName := args[0]
+	if len(PageName) <= 0 {
+		NoPage(c)
+		return
+	}
+	DATA := GetDATA(c)
+	PageData := cmap.New().Items()
+	NavMenus := DATA["NavMenus"]
+	fmt.Println(NavMenus)
+	fmt.Println(NavMenus)
+
+	// 默认为电影片库
+	// 电视剧片库
+	// 动漫片库
+	// 综艺片库
+	DATA["page"] = PageName
+	DATA["title"] = "PianKu"
+	DATA["PageData"] = PageData
+	PageMs(c)
+	c.HTML(http.StatusOK, "pianku.html", DATA)
+}
+
 func (h *VideosController) Category(c *gin.Context) {
 	// 获取参数
 	strParams := strings.ReplaceAll(c.Param("params"), ".html", "")
@@ -122,112 +148,6 @@ func (h *VideosController) Category(c *gin.Context) {
 	// 设置页面数据并返回
 	DATA["PageData"] = PageData
 	c.HTML(http.StatusOK, "v/category.html", DATA)
-}
-
-func (h *VideosController) Dianshiju(c *gin.Context) {
-	table := "dianshiju.html"
-	PageData := cmap.New().Items()
-	DATA := GetDATA(c)
-	// 批量查询数据
-	var (
-		listMacType       []models.MacType
-		CurrentlyTrending []models.MacVod
-	)
-	// 二级详细分类
-	service.ListMacType(table, 2, &listMacType)
-	// 正在热播
-	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-		"type_id_1":  2,
-		"vod_status": 1,
-	}, "vod_year desc,vod_hits desc", 16, &CurrentlyTrending)
-	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
-	for _, item := range listMacType {
-		Name := item.TypeEn
-		TypeID := item.TypeID
-		var BindList []models.MacVod
-		service.ListWhereMacVod(table, Name, map[string]interface{}{
-			"type_id":    TypeID,
-			"vod_status": 1,
-		}, "vod_year desc,vod_hits desc", 16, &BindList)
-		PageData[Name] = BindList
-	}
-	PageData["listMacType"] = listMacType
-	PageData["CurrentlyTrending"] = CurrentlyTrending
-
-	DATA["PageData"] = PageData
-	DATA["page"] = "dianshiju"
-	c.HTML(http.StatusOK, "v/dianshiju.html", DATA)
-}
-
-func (h *VideosController) Dongman(c *gin.Context) {
-	table := "dongman.html"
-	PageData := cmap.New().Items()
-	DATA := GetDATA(c)
-	// 批量查询数据
-	var (
-		listMacType       []models.MacType
-		CurrentlyTrending []models.MacVod
-	)
-	// 二级详细分类
-	service.ListMacType(table, 4, &listMacType)
-	// 正在热播
-	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-		"type_id_1":  4,
-		"vod_status": 1,
-	}, "vod_hits desc", 16, &CurrentlyTrending)
-
-	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
-	for _, item := range listMacType {
-		Name := item.TypeEn
-		TypeID := item.TypeID
-		var BindList []models.MacVod
-		service.ListWhereMacVod(table, Name, map[string]interface{}{
-			"type_id":    TypeID,
-			"vod_status": 1,
-		}, "vod_hits desc", 16, &BindList)
-		PageData[Name] = BindList
-	}
-	PageData["listMacType"] = listMacType
-	PageData["CurrentlyTrending"] = CurrentlyTrending
-
-	DATA["PageData"] = PageData
-	DATA["page"] = "dongman"
-	c.HTML(http.StatusOK, "v/dongman.html", DATA)
-}
-
-func (h *VideosController) Zongyi(c *gin.Context) {
-	table := "zongyi.html"
-	PageData := cmap.New().Items()
-	DATA := GetDATA(c)
-	// 批量查询数据
-	var (
-		listMacType       []models.MacType
-		CurrentlyTrending []models.MacVod
-	)
-	// 二级详细分类
-	service.ListMacType(table, 3, &listMacType)
-	// 正在热播
-	service.ListWhereMacVod(table, "CurrentlyTrending", map[string]interface{}{
-		"type_id_1":  3,
-		"vod_status": 1,
-	}, "vod_hits desc", 16, &CurrentlyTrending)
-	// 根据分类遍历查询每个子类的下的数据，一般获取14条按照热度倒序排序
-	for _, item := range listMacType {
-		Name := item.TypeEn
-		TypeID := item.TypeID
-		var BindList []models.MacVod
-		service.ListWhereMacVod(table, Name, map[string]interface{}{
-			"type_id":    TypeID,
-			"vod_status": 1,
-		}, "vod_hits desc", 16, &BindList)
-		PageData[Name] = BindList
-	}
-	PageData["listMacType"] = listMacType
-	PageData["CurrentlyTrending"] = CurrentlyTrending
-
-	DATA["PageData"] = PageData
-	DATA["page"] = "zongyi"
-	c.HTML(http.StatusOK, "v/zongyi.html", DATA)
 }
 
 func (h *VideosController) Show(c *gin.Context) {
@@ -360,19 +280,6 @@ func (h *VideosController) Play(c *gin.Context) {
 	DATA["PageData"] = PageData
 	DATA["page"] = "play"
 	c.HTML(http.StatusOK, "play.html", DATA)
-}
-
-func (h *VideosController) PianKu(c *gin.Context) {
-	DATA := GetDATA(c)
-
-	// 默认为电影片库
-	// 电视剧片库
-	// 动漫片库
-	// 综艺片库
-	DATA["page"] = "pianku"
-	DATA["title"] = "PianKu"
-	PageMs(c)
-	c.HTML(http.StatusOK, "pianku.html", DATA)
 }
 
 func (h *VideosController) Top(c *gin.Context) {

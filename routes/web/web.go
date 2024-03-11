@@ -20,32 +20,11 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		webV1.GET("/index.html", GroupV1.IndexController.Index)
 		webV1.GET("/prestrain.html", GroupV1.IndexController.PresTrain)
 		webV1.GET("/player/dplayer.html", GroupV1.IndexController.DPlayer)
-		// 片库
-		webV1.GET("/pianku-:params", GroupV1.VideosController.PianKu)
 		// 播放
 		webV1.GET("/play-:params", GroupV1.VideosController.Play)
 		// 搜索
 		{
-			// 搜索
 			webV1.GET("/search:search", GroupV1.IndexController.Search)
-			//// 电影名称搜索
-			//// search-:电影名称----------:第几页---.html
-			//webV1.GET("/search-:movieName----------:page---.html", GroupV1.IndexController.Search)
-			//// search--:演员名称---------:第几页---.html
-			//webV1.GET("/search--:actorName---------:page---.html", GroupV1.IndexController.Search)
-			//// search---:大陆--------:第几页---.html
-			//webV1.GET("/search---:areaName--------:page---.html", GroupV1.IndexController.Search)
-			//// search------:导演-----:第几页---.html
-			//webV1.GET("/search------:directorName-----:page---.html", GroupV1.IndexController.Search)
-			//// search-----------:第几页---:年份.html
-			//webV1.GET("/search-----------:page---:year.html", GroupV1.IndexController.Search)
-
-			//-电影名称----------第几页---
-			//--演员名称---------第几页---
-			//---大陆--------第几页---
-			//------导演-----第几页---
-			//-----------第几页---年份
-			// search-:电影名称-:演员名称-:大陆-:导演-:年份-:第几页.html
 		}
 		// 详情
 		webV1.GET("/show-:params", GroupV1.VideosController.Show)
@@ -57,17 +36,16 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 		webV1.GET("/about.html", GroupV1.IndexController.About)
 		// APP
 		webV1.GET("/label/app.html", GroupV1.IndexController.App)
-		// 站点路由
+		// 电影以及二级分类
 		v := webV1.Group("/v")
 		{
-			// 电影以及二级分类
 			v.GET("/:params", GroupV1.VideosController.Category)
-			//// 电视剧
-			//v.GET("/dianshiju.html", GroupV1.VideosController.Dianshiju)
-			//// 动漫
-			//v.GET("/dongman.html", GroupV1.VideosController.Dongman)
-			//// 综艺
-			//v.GET("/zongyi.html", GroupV1.VideosController.Zongyi)
+		}
+		// 片库
+
+		pianku := webV1.Group("/pianku")
+		{
+			pianku.GET("/:params", GroupV1.VideosController.PianKu)
 		}
 
 		arttype := webV1.Group("/arttype")
