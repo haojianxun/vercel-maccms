@@ -28,6 +28,7 @@ func GetDATA(c *gin.Context) gin.H {
 
 // PaginationHTML 生成搜索结果页面的分页 HTML 代码。
 // 它接受当前页码、总页数和搜索关键字作为输入。
+
 func PaginationHTML(currentPage, totalPages int, pageType string, params map[string]string) string {
 	// 初始化 HTML 字符串
 	html := "\n"

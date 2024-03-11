@@ -22,9 +22,8 @@ type VideosController struct {
 func (h *VideosController) Category(c *gin.Context) {
 	// 获取参数
 	strParams := strings.ReplaceAll(c.Param("params"), ".html", "")
-	params := strings.Split(strParams, "-")
-	typeEn := params[0]
-	//pageNum := params[6]
+	args := strings.Split(strParams, "-")
+	typeEn := args[0]
 	if len(typeEn) <= 0 {
 		NoPage(c)
 		return
@@ -84,6 +83,9 @@ func (h *VideosController) Category(c *gin.Context) {
 		// 获取子分类下的视频列表
 		var pageList page.PageList
 		var params requests.Search
+		if len(args) >= 6 && len(args[6]) > 0 {
+			params.PageNum = helpers.StringToInt64(args[6])
+		}
 		params.PageSize = 72
 		whereSub := cmap.New().Items()
 		whereSub["type_id"] = macType.TypeID
@@ -103,13 +105,15 @@ func (h *VideosController) Category(c *gin.Context) {
 
 		pageList.List = listResult
 		PageData["pageList"] = pageList
-		urlParams := make(map[string]string)
-		urlParams["movie"] = ""
-		urlParams["actor"] = ""
-		urlParams["area"] = ""
-		urlParams["director"] = ""
-		urlParams["year"] = ""
-		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), fmt.Sprintf("%s%s", "v/", macType.TypeEn), urlParams)
+		PageData["PaginationHTML"] = PaginationHTML(int(pageList.CurrentPage), int(pageList.PageTotal), fmt.Sprintf("%s%s", "v/", macType.TypeEn),
+			map[string]string{
+				"movie":    "",
+				"actor":    "",
+				"area":     "",
+				"director": "",
+				"year":     "",
+			},
+		)
 
 		DATA["CategoryType"] = "sub"
 		DATA["NavName"] = maccms.TypeEn(DATA["NavMenus"], macType.TypePid)
