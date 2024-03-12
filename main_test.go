@@ -3,6 +3,7 @@ package main_test
 import (
 	"fmt"
 	"goapi/pkg/maccms"
+	"goapi/pkg/seoTools/bing"
 	"net/url"
 	"testing"
 )
@@ -36,5 +37,14 @@ func Urls() {
 }
 
 func TestReg(t *testing.T) {
-
+	// 调用 submitURLBatch 方法提交 URL 批处理请求
+	var urlList []string
+	for i := 1; i <= 88; i++ {
+		urlList = append(urlList, fmt.Sprintf("https://dianyingxs.cc/vod/detail/id/%v.html", i))
+	}
+	err, _ := bing.SubmitURLBatch("https://dianyingxs.cc", urlList)
+	if err != nil {
+		fmt.Println("提交请求失败:", err)
+		return
+	}
 }

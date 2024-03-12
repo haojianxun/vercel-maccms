@@ -4,13 +4,33 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gin-gonic/gin"
+	"goapi/app/models"
 	"goapi/pkg/echo"
+	"goapi/pkg/mysql"
+	"goapi/pkg/seoTools/bing"
 	"log"
 	"net/http"
 )
 
 type SeoController struct {
 	BaseController
+}
+
+func (h *SeoController) BingIndex(c *gin.Context) {
+	var list []models.MacVod
+	DB := models.MacVodMgr(mysql.DB)
+	DB.Where("vod_status", 1).Order("vod_id asc").Limit(100).Find(&list)
+	// 调用 submitURLBatch 方法提交 URL 批处理请求
+	var urlList []string
+	for _, item := range list {
+		urlList = append(urlList, fmt.Sprintf("https://dianyingxs.cc/vod/detail/id/%v.html", item.VodID))
+	}
+	err, res := bing.SubmitURLBatch("https://dianyingxs.cc", urlList)
+	if err != nil {
+		echo.Error(c, "Failed", err.Error())
+		return
+	}
+	echo.Success(c, gin.H{"res": res}, "")
 }
 
 func (h *SeoController) GetGoogleIndex(c *gin.Context) {
