@@ -52,7 +52,16 @@ LOG_MYSQL_ERROR: true
 ## mysql error 日志
 LOG_MYSQL_WARN: true
 # 通知邮箱
-NOTIFY_EMAIL: mail@haogou.cc
+NOTIFY_EMAIL: mail@dyxs.site
+
+# seo相关配置参数
+seo:
+  bing:
+    apikey: 61c162905ad447ddbe8df1cbd0ea138e
+  baidu:
+    apikey:
+  sogou:
+    apikey:
 
 
 

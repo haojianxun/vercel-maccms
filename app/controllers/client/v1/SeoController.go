@@ -4,12 +4,15 @@ import (
 	"fmt"
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gin-gonic/gin"
+	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
 	"goapi/pkg/echo"
 	"goapi/pkg/mysql"
+	"goapi/pkg/page"
 	"goapi/pkg/seoTools/bing"
 	"log"
 	"net/http"
+	"time"
 )
 
 type SeoController struct {
@@ -17,12 +20,29 @@ type SeoController struct {
 }
 
 func (h *SeoController) BingIndex(c *gin.Context) {
-	var list []models.MacVod
-	DB := models.MacVodMgr(mysql.DB)
-	DB.Where("vod_status", 1).Order("vod_id asc").Limit(100).Find(&list)
+	startTime := time.Date(2024, 03, 12, 0, 0, 0, 0, time.FixedZone("CST", 8*3600))
+	timeDiff := time.Now().Unix() - startTime.Unix()
+	day := timeDiff / 86400
+	CurrentPage := day
+	// 获取视屏数据
+	var pageList page.PageList
+	where := cmap.New().Items()
+	where["vod_status"] = 1
+	models.MacVodMgr(mysql.DB).Where(where).Where("vod_id > ?", 88).Count(&pageList.Total)
+	pageList.CurrentPage = CurrentPage
+	pageList.PageSize = 100
+	page.InitPageList(&pageList)
+	var listResult []models.MacVod
+	models.MacVodMgr(mysql.DB).
+		Where(where).
+		Where("vod_id > ?", 88).
+		Offset(int(pageList.Offset)).
+		Limit(int(pageList.PageSize)).
+		Order("vod_id asc").
+		Find(&listResult)
 	// 调用 submitURLBatch 方法提交 URL 批处理请求
 	var urlList []string
-	for _, item := range list {
+	for _, item := range listResult {
 		urlList = append(urlList, fmt.Sprintf("https://dianyingxs.cc/vod/detail/id/%v.html", item.VodID))
 	}
 	err, res := bing.SubmitURLBatch("https://dianyingxs.cc", urlList)
@@ -30,7 +50,7 @@ func (h *SeoController) BingIndex(c *gin.Context) {
 		echo.Error(c, "Failed", err.Error())
 		return
 	}
-	echo.Success(c, gin.H{"res": res}, "")
+	echo.Success(c, gin.H{"res": res, "urlList": urlList, "day": day}, "")
 }
 
 func (h *SeoController) GetGoogleIndex(c *gin.Context) {
