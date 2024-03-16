@@ -80,6 +80,18 @@ func (h *IndexController) SouGou(c *gin.Context) {
 
 }
 
+func (h *IndexController) Baidu(c *gin.Context) {
+	data, err := fs.ReadFile(templates.Statics, "statics/baidu_verify_codeva-irCSP8JvXx.html")
+	if err != nil {
+		logger.Info(err)
+		NoPage(c)
+		return
+	}
+	contentType := http.DetectContentType(data)
+	c.Data(http.StatusOK, contentType, data)
+
+}
+
 func (h *IndexController) Google(c *gin.Context) {
 	c.String(http.StatusOK, "google-site-verification: google8fcf6226304ee6af.html")
 }
