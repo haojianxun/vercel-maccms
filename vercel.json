@@ -22,7 +22,7 @@
       "dest": "/api/client"
     },
     {
-      "src": "/statics/(.*)",
+      "src": "/aaa/(.*)",
       "dest": "/static/templates/statics/$1"
     },
     {
