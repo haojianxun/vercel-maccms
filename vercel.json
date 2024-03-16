@@ -12,7 +12,8 @@
       "use": "@vercel/static",
       "src": "templates/statics/**",
       "config": {
-        "zeroConfig": true
+        "zeroConfig": true,
+        "outputDirectory": "jingtai"
       }
     }
   ],
