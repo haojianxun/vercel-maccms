@@ -24,6 +24,10 @@
     {
       "src": "/statics/(.*)",
       "dest": "/static/templates/statics/$1"
+    },
+    {
+      "src": "/baidu_verify_codeva-irCSP8JvXx.html",
+      "dest": "/static/templates/statics/baidu_verify_codeva-irCSP8JvXx.html"
     }
   ]
 }
