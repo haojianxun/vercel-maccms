@@ -7,6 +7,10 @@
       "config": {
         "zeroConfig": true
       }
+    },
+    {
+      "src": "statics/(.*)",
+      "use": "@vercel/static"
     }
   ],
   "routes": [
