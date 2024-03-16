@@ -15,7 +15,7 @@
 
 - 点击 `部署静态资源` 快速部署 statics 资源
 
-[![部署静态资源](https://img.shields.io/badge/%E9%83%A8%E7%BD%B2-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90-brightgreen)](https://vercel.com/new/clone?utm_source=busiyi&utm_campaign=oss&repository-url=https://github.com/dyxs-site/vercel-maccms/tree/main/templates/statics&env=CONFIG)
+[![部署静态资源](https://img.shields.io/badge/%E9%83%A8%E7%BD%B2-%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90-brightgreen)](https://vercel.com/new/clone?utm_source=busiyi&utm_campaign=oss&repository-url=https://github.com/dyxs-site/vercel-maccms/tree/main/templates/statics)
 
 
 ## 配置文件
