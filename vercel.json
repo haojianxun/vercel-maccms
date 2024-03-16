@@ -18,10 +18,6 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/api/client"
-    },
-    {
       "src": "/aaa/(.*)",
       "dest": "/static/templates/statics/$1"
     },
