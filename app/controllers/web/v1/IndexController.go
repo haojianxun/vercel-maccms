@@ -10,7 +10,7 @@ import (
 	"goapi/pkg/logger"
 	"goapi/pkg/mysql"
 	"goapi/pkg/page"
-	"goapi/templates"
+	"goapi/statics"
 	"io/fs"
 	"net/http"
 	"strings"
@@ -57,7 +57,7 @@ func (h *IndexController) App(c *gin.Context) {
 }
 
 func (h *IndexController) Robots(c *gin.Context) {
-	data, err := fs.ReadFile(templates.Statics, "statics/robots.txt")
+	data, err := fs.ReadFile(statics.Init, "statics/robots.txt")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
@@ -69,7 +69,7 @@ func (h *IndexController) Robots(c *gin.Context) {
 }
 
 func (h *IndexController) SouGou(c *gin.Context) {
-	data, err := fs.ReadFile(templates.Statics, "statics/sogousiteverification.txt")
+	data, err := fs.ReadFile(statics.Init, "statics/sogousiteverification.txt")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
@@ -81,7 +81,7 @@ func (h *IndexController) SouGou(c *gin.Context) {
 }
 
 func (h *IndexController) Baidu(c *gin.Context) {
-	data, err := fs.ReadFile(templates.Statics, "statics/baidu_verify_codeva-irCSP8JvXx.html")
+	data, err := fs.ReadFile(statics.Init, "statics/baidu_verify_codeva-irCSP8JvXx.html")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
