@@ -1,0 +1,72 @@
+{
+  "APP_NAME": "GoApi",
+  "APP_ENV": "dev",
+  "APP_URL": "http://127.0.0.1",
+  "APP_PORT": 8090,
+  "APP_PPROF": true,
+  "DB_CONNECTION": "mysql",
+  "DB_HOST": "127.0.0.1",
+  "DB_PORT": 3306,
+  "DB_DATABASE": "maccms",
+  "DB_USERNAME": "root",
+  "DB_PASSWORD": "123456",
+  "DB_PREFIX": "mac_",
+  "REDIS_HOST": "127.0.0.1",
+  "REDIS_PASSWORD": "",
+  "REDIS_PORT": 6379,
+  "REDIS_DB": 0,
+  "PW_SALT": "xw2023-06-08",
+  "LOG_MYSQL_DEBUG": true,
+  "LOG_MYSQL_ERROR": true,
+  "LOG_MYSQL_WARN": true,
+  "NOTIFY_EMAIL": "mail@dyxs.site",
+  "maccms": {
+    "site": {
+      "site_name": "电影先生 - dianyingxs.cc 在线 播放 观看",
+      "site_url": "dianyingxs.cc",
+      "site_wapurl": "dianyingxs.cc",
+      "site_keywords": "电影先生,在线播放,在线观看,百度网盘,免费视频,在线视频,预告片,dianyingxs.cc",
+      "site_description": "电影先生提供最新最快的视频分享数据-dianyingxs.cc",
+      "site_icp": "",
+      "site_qq": "",
+      "site_email": "mail@dianyingxs.cc",
+      "install_dir": "/",
+      "site_logo": "",
+      "site_waplogo": "",
+      "template_dir": "DYXS2",
+      "html_dir": "html",
+      "mob_status": "0",
+      "mob_template_dir": "DYXS2",
+      "mob_html_dir": "html",
+      "site_tj": "<script>\nvar _hmt = _hmt || [];\n(function() {\n  var hm = document.createElement(\"script\");\n  hm.src = \"https://hm.baidu.com/hm.js?f46a2caaf84b781dc103b13289d90383\";\n  var s = document.getElementsByTagName(\"script\")[0]; \n  s.parentNode.insertBefore(hm, s);\n})();\n<\/script>\n<script>let u=\"https:\/\/api.cgyx.tv:66\",token=\"f7dd072abb9af17700b0b8a1bd8b8e1dc43e13838257436c31c30f4495aba5a79382ef3b36808ab90351f85de968be49838554c9b1e809e46631bdd330fc2189\";var cltj = document.createElement(\"script\");cltj.src = u + \"\/tj\/tongji.js?v=1.3\";var s = document.getElementsByTagName(\"script\")[0];s.parentNode.insertBefore(cltj,s);<\/script>",
+      "site_status": "1",
+      "site_close_tip": "站点暂时关闭，请稍后访问",
+      "ads_dir": "ads",
+      "mob_ads_dir": "ads"
+    }
+  },
+  "seo": {
+    "bing": {
+      "apikey": "61c162905ad447ddbe8df1cbd0ea138e"
+    },
+    "baidu": {
+      "apikey": ""
+    },
+    "sogou": {
+      "apikey": ""
+    }
+  },
+  "bark": {
+    "url": "https://api.day.app/",
+    "key": {
+      "mac": "YaemvezPAqvc2ASewcP2KH",
+      "iphone": "nPuDoXfXsMpVrDaqU9to88"
+    },
+    "logo": "https://avatars.githubusercontent.com/u/135967790?s=400&u=0efb3cc947e9f0c2165c11f65f374524cb48915d&v=4"
+  },
+  "wechat": {
+    "botUrl": "http://106.52.198.173:8000",
+    "guid": "68d4ebef-f854-3387-ab40-7832d51dab25",
+    "BelongWx": "xiaomg_zs"
+  }
+}

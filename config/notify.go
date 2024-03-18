@@ -7,6 +7,6 @@ import (
 // email 参数
 func init() {
 	config.Add("notify", config.StrMap{
-		"email": config.Env("NOTIFY_EMAIL", "iszmxw@qq.com"),
+		"email": config.Env("NOTIFY_EMAIL", "mail@dyxs.site"),
 	})
 }
