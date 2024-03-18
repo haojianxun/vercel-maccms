@@ -7,18 +7,18 @@
 			{{if eq .page "index"}}
 			<div class="dianyi-ng">
 				<div class="header-logo">
-					<h1 class="slogan">电影先生 DianYi.ng</h1>
+					<h1 class="slogan">{{$.maccms.site.site_name}} {{.maccms.site.site_url}}</h1>
 					<div class="fixed-logo">
-						<a class="logo" href="" title="电影先生">
-							<img alt="电影先生" src="{{.__STATIC__}}/image/index-logo-s.png">
+						<a class="logo" href="" title="{{$.maccms.site.site_name}}">
+							<img alt="{{$.maccms.site.site_name}}" src="{{.__STATIC__}}/image/index-logo-s.png">
 						</a>
 					</div>
 				</div>
 			</div>
 			{{else}}
 			<div class="brand">
-				<a class="logo" href="../index.html" title="电影先生">
-					<img alt="电影先生" src="{{.__STATIC__}}/picture/logo-s.png">
+				<a class="logo" href="../index.html" title="{{$.maccms.site.site_name}}">
+					<img alt="{{$.maccms.site.site_name}}" src="{{.__STATIC__}}/picture/logo-s.png">
 				</a>
 			</div>
 			{{end}}
@@ -53,7 +53,7 @@
 								</div>
 							</div>
 						</div>
-						<a href="/top.html" class="search-btn search-cupfox" id="search-cupfox" title="电影先生排行榜"><i class="icon-cupfox phb"></i><span>搜全网</span></a>						<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
+						<a href="/top.html" class="search-btn search-cupfox" id="search-cupfox" title="{{$.maccms.site.site_name}}排行榜"><i class="icon-cupfox phb"></i><span>搜全网</span></a>						<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
 						<button class="cancel-btn" type="button">取消</button>
 					</div>
 				</form>
@@ -62,7 +62,7 @@
 			
 			<div class="nav">
 				<ul class="nav-menu-items">
-					<li class="nav-menu-item {{if eq .page "index"}}selected{{end}}"><a href="/" title="电影先生首页"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>首页</span></a></li>
+					<li class="nav-menu-item {{if eq .page "index"}}selected{{end}}"><a href="/" title="{{$.maccms.site.site_name}}首页"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>首页</span></a></li>
 					{{ range $.NavMenus }}
 					<li class="nav-menu-item {{if (eq $.NavName .TypeEn) }}selected{{end}}">
 						<a href="/v/{{ .TypeEn }}.html" title="{{ .TypeName }}">
@@ -71,8 +71,8 @@
 					</li>
 					{{end}}
 					<li class="nav-menu-item {{if eq .page "zixun"}}selected{{end}}"><a href="/arttype/zixun.html" title="资讯"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>资讯</span></a></li>
-					<li class="nav-menu-item domain plus {{if eq .page "web"}}selected{{end}}"><a href="/web.html" title="电影先生最新域名"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>网址</span><em>+</em></a></li>
-					<li class="nav-menu-item {{if eq .page "app"}}selected{{end}}"><a href="/label/app.html" title="下载电影先生APP"><i class="icon-app pc"></i><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>APP</span></a></li>
+					<li class="nav-menu-item domain plus {{if eq .page "web"}}selected{{end}}"><a href="/web.html" title="{{$.maccms.site.site_name}}最新域名"><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>网址</span><em>+</em></a></li>
+					<li class="nav-menu-item {{if eq .page "app"}}selected{{end}}"><a href="/label/app.html" title="下载{{$.maccms.site.site_name}}APP"><i class="icon-app pc"></i><span {{if ne .page "index"}}class="nav-menu-item-name"{{end}}>APP</span></a></li>
 				</ul>
 			</div>
 			
@@ -85,7 +85,7 @@
 									<li class="grid-item">
 										<a href="">
 											<i class="icon-home"></i>
-											<div class="grid-item-name" title="电影先生首页">首页</div>
+											<div class="grid-item-name" title="{{$.maccms.site.site_name}}首页">首页</div>
 										</a>
 									</li>
 									<li class="grid-item">
@@ -129,7 +129,7 @@
 										</a>
 									</li>
 									<li class="grid-item grid-more android">
-										<a class="grid-more-link" href="/label/app.html" title="下载电影先生APP">
+										<a class="grid-more-link" href="/label/app.html" title="下载{{$.maccms.site.site_name}}APP">
 											<div class="grid-item-name">下载客户端</div>
 										</a>
 									</li>
@@ -161,7 +161,7 @@
 	</div>
 	{{if eq .page "index"}}
 	<div id="search-content">
-		<div class="index-logo"><span class="logo-s"><img src="{{.__STATIC__}}/image/logo.png" title="电影先生"></span>
+		<div class="index-logo"><span class="logo-s"><img src="{{.__STATIC__}}/image/logo.png" title="{{$.maccms.site.site_name}}"></span>
 		</div>
 		<form action="/search.html">
 			<div class="search-main">
@@ -186,7 +186,7 @@
 							</div>
 						</div>
 					</div>
-					<a class="search-btn search-cupfox" href="top.html" id="search-cupfox" title="电影先生排行榜"><i
+					<a class="search-btn search-cupfox" href="top.html" id="search-cupfox" title="{{$.maccms.site.site_name}}排行榜"><i
 							class="icon-cupfox phb"></i><span>搜全网</span></a>
 					<button class="search-btn search-go" type="submit"><i class="icon-search"></i></button>
 					<button class="cancel-btn" type="button">取消</button>

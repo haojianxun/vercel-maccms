@@ -137,7 +137,7 @@
 				</div>
 				<div class="video-info-footer display">
 					<div class="video-info-share">
-						<button class="share-btn" data-clipboard-text="dianyi.ng/show.html 我正在电影先生观看《{{ .PageData.detail.VodName }}》，推荐给你一起看！">好影片，与好朋友一起分享<i class="icon-happy"></i>
+						<button class="share-btn" data-clipboard-text="dianyi.ng/show.html 我正在{{$.maccms.site.site_name}}观看《{{ .PageData.detail.VodName }}》，推荐给你一起看！">好影片，与好朋友一起分享<i class="icon-happy"></i>
 						</button>
 					</div>
 					<a class="btn-important btn-large shadow-drop" href="/play-{{ EncryptID $.PageData.detail.VodID }}-1-1.html" title="立刻播放{{ .PageData.detail.VodName }}"><i class="icon-play"></i><strong>立即播放</strong></a>
@@ -150,11 +150,11 @@
 		<div class="scroll-box scroll-domain-prompt">
 			<div class="scroll-content">
 				<div class="module-domain-prompt">
-					<div class="module-domain-title">电影先生 快捷域名</div>
+					<div class="module-domain-title">{{$.maccms.site.site_name}} 快捷域名</div>
 					<div class="module-domain-main">
 						<a href="index.html" target="_blank">DianYi<strong>.ng</strong></a><em>/</em>
 						<a href="https://dianying.xianshe.ng" target="_blank">XianShe<strong>.ng</strong></a><em>/</em>
-						<a href="https://xn--44qz85a01qpc.com" target="_blank">电影先生<strong>.com</strong></a>
+						<a href="https://xn--44qz85a01qpc.com" target="_blank">{{$.maccms.site.site_name}}<strong>.com</strong></a>
 					</div>
 				</div>
 				<div class="module-domain-prompt">
