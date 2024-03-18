@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"goapi/app/models"
+	"goapi/pkg/config"
 	"strings"
 )
 
@@ -19,7 +20,7 @@ func Site(c *gin.Context) gin.H {
 	PageData["__STATIC__"] = HttpStatic
 	PageData["__CSS__"] = fmt.Sprintf("%s%s", HttpStatic, "/css")
 	PageData["__JS__"] = fmt.Sprintf("%s%s", HttpStatic, "/js")
-
+	PageData["maccms"] = config.Get("maccms")
 	var NavMenus []models.MacType
 	ListMacType("NavMenus", 0, &NavMenus)
 	PageData["NavMenus"] = NavMenus

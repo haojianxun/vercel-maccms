@@ -73,15 +73,15 @@ func (l Logger) Trace(ctx context.Context, begin time.Time, fc func() (string, i
 	sql, rows := fc()
 	switch {
 	case err != nil && l.LogLevel >= gormlogger.Error && (!l.IgnoreRecordNotFoundError || !errors.Is(err, gorm.ErrRecordNotFound)):
-		if cast.ToBool(config.Env("LOG_MYSQL_ERROR", true)) {
+		if cast.ToBool(config.Env("log.mysql_error", true)) {
 			l.logger().Error("数据库操作", zap.String("RequestId", logger.RequestId), zap.Error(err), zap.Duration("elapsed", elapsed), zap.Int64("rows", rows), zap.String("sql", sql))
 		}
 	case l.SlowThreshold != 0 && elapsed > l.SlowThreshold && l.LogLevel >= gormlogger.Warn:
-		if cast.ToBool(config.Env("LOG_MYSQL_WARN", true)) {
+		if cast.ToBool(config.Env("log.mysql_warn", true)) {
 			l.logger().Warn("数据库操作", zap.String("RequestId", logger.RequestId), zap.Duration("elapsed", elapsed), zap.Int64("rows", rows), zap.String("sql", sql))
 		}
 	case l.LogLevel >= gormlogger.Info:
-		if cast.ToBool(config.Env("LOG_MYSQL_DEBUG", true)) {
+		if cast.ToBool(config.Env("log.mysql_debug", true)) {
 			l.logger().Debug("数据库操作", zap.String("RequestId", logger.RequestId), zap.Duration("elapsed", elapsed), zap.Int64("rows", rows), zap.String("sql", sql))
 		}
 	}

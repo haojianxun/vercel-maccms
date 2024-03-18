@@ -8,14 +8,14 @@ import (
 func init() {
 	config.Add("maccms", config.StrMap{
 		"site": config.StrMap{
-			"site_name":        config.Env("site.site_name", "电影先生 - dianyingxs.cc 在线 播放 观看"),
-			"site_url":         config.Env("site.site_url", "dianyingxs.cc"),
-			"site_wapurl":      config.Env("site.site_wapurl", "dianyingxs.cc"),
-			"site_keywords":    config.Env("site.site_keywords", "电影先生,在线播放,在线观看,百度网盘,免费视频,在线视频,预告片,dianyingxs.cc"),
-			"site_description": config.Env("site.site_description", "电影先生提供最新最快的视频分享数据-dianyingxs.cc"),
+			"site_name":        config.Env("site.site_name", "电影先生 - dyxs.site 在线 播放 观看"),
+			"site_url":         config.Env("site.site_url", "dyxs.site"),
+			"site_wapurl":      config.Env("site.site_wapurl", "dyxs.site"),
+			"site_keywords":    config.Env("site.site_keywords", "电影先生,在线播放,在线观看,百度网盘,免费视频,在线视频,预告片,dyxs.site"),
+			"site_description": config.Env("site.site_description", "电影先生提供最新最快的视频分享数据-dyxs.site"),
 			"site_icp":         config.Env("site.site_icp", ""),
 			"site_qq":          config.Env("site.site_qq", ""),
-			"site_email":       config.Env("site.site_email", "mail@dianyingxs.cc"),
+			"site_email":       config.Env("site.site_email", "mail@dyxs.site"),
 			"install_dir":      config.Env("site.install_dir", "/"),
 			"site_logo":        config.Env("site.site_logo", ""),
 			"site_waplogo":     config.Env("site.site_waplogo", ""),

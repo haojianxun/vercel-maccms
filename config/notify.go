@@ -7,6 +7,6 @@ import (
 // email 参数
 func init() {
 	config.Add("notify", config.StrMap{
-		"email": config.Env("NOTIFY_EMAIL", "mail@dyxs.site"),
+		"email": config.Env("maccms.site.site_email", "mail@dyxs.site"),
 	})
 }

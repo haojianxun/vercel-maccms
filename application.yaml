@@ -1,54 +1,45 @@
 # 项目基本配置
-
-## 应用名称
-APP_NAME: GoApi
-## 当前环境
-APP_ENV: dev
-## 用以生成链接
-APP_URL: http://127.0.0.1
-## 应用服务端口
-APP_PORT: 1234
-# pprof 分析 打开后可以分析堆栈调用，cpu占用
-APP_PPROF: true
+app:
+  ## 应用名称
+  app_name: GoApi
+  ## 当前环境
+  app_env: dev
+  ## 用以生成链接
+  app_url: http://127.0.0.1
+  ## 应用服务端口
+  app_port: 1234
+  # pprof 分析 打开后可以分析堆栈调用，cpu占用
+  app_pprof: true
 
 
 # 数据库连接信息
-DB_CONNECTION: mysql
-DB_HOST: 127.0.0.1
-# 端口
-DB_PORT: 3306
-# 表名
-DB_DATABASE: maccms
-# 用户名
-DB_USERNAME: root
-# 密码
-DB_PASSWORD: 123456
-# 数据表前缀
-DB_PREFIX: mac_
+database:
+  connection: mysql
+  host: 127.0.0.1
+  port: 3306
+  name: maccms
+  username: root
+  password: root
+  prefix: mac_
 
-
-# redis配置
-REDIS_HOST: 127.0.0.1
-# 没有密码，默认留空
-REDIS_PASSWORD:
-# 端口号
-REDIS_PORT: 6379
-# 默认用 0
-REDIS_DB: 0
-
-## 密码加密盐
-PW_SALT: xw2023-06-08
+# Redis 配置
+redis:
+  host: 127.0.0.1
+  # 没有密码，默认留空
+  password:
+  # 端口号
+  port: 6379
+  # 默认用 0
+  db: 0
 
 # log 日志控制
-## mysql日志
-## mysql debug 日志
-LOG_MYSQL_DEBUG: true
-## mysql warn 日志
-LOG_MYSQL_ERROR: true
-## mysql error 日志
-LOG_MYSQL_WARN: true
-# 通知邮箱
-NOTIFY_EMAIL: mail@dyxs.site
+log:
+  # mysql debug 日志
+  mysql_debug: true
+  # mysql error 日志
+  mysql_error: true
+  # mysql warn 日志
+  mysql_warn: true
 
 # maccms 配置
 maccms:
@@ -88,7 +79,7 @@ maccms:
 # seo相关配置参数
 seo:
   bing:
-    apikey: 61c162905ad447ddbe8df1cbd0ea138e
+    apikey: 1212121221212121212
   baidu:
     apikey:
   sogou:
