@@ -21,5 +21,9 @@
       "src": "/(.*)",
       "dest": "/api/client"
     }
-  ]
+  ],
+  "crons": [{
+    "path": "/api/cron",
+    "schedule": "* * * * *"
+  }]
 }
