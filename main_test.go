@@ -4,7 +4,10 @@ import (
 	"fmt"
 	"goapi/pkg/maccms"
 	"goapi/pkg/seoTools/bing"
+	"io/ioutil"
+	"net/http"
 	"net/url"
+	"regexp"
 	"testing"
 )
 
@@ -47,4 +50,40 @@ func TestReg(t *testing.T) {
 		fmt.Println("提交请求失败:", err)
 		return
 	}
+}
+
+func TestJump(t *testing.T) {
+	url := "https://www.baidu.com/link?url=noGxhGv9xu_hMEFjzNHkjYShs7RKLLeuGpwTo4lKYfN6w65OxqigdLePVUsCnTlo&wd=&eqid=abfdebd9000cee030000000665f93e1e"
+	refreshURL := getRedirectURL(url)
+	if refreshURL != "" {
+		fmt.Println("提取到的重定向URL:", refreshURL)
+	} else {
+		fmt.Println("未找到重定向URL")
+	}
+}
+
+func getRedirectURL(url string) string {
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println("请求失败:", err)
+		return ""
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		fmt.Println("读取响应失败:", err)
+		return ""
+	}
+
+	// 提取JavaScript中的重定向URL
+	htmlContent := string(body)
+
+	// 使用正则表达式提取重定向URL
+	re := regexp.MustCompile(`window\.location\.replace\("([^"]+)"\)`)
+	matches := re.FindStringSubmatch(htmlContent)
+	if len(matches) > 1 {
+		return matches[1]
+	}
+	return ""
 }
