@@ -13,6 +13,7 @@ import (
 	"goapi/pkg/seoTools/bing"
 	"log"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -22,6 +23,10 @@ type SeoController struct {
 
 // BingIndex 提交接口，每天提交 100 条数据
 func (h *SeoController) BingIndex(c *gin.Context) {
+	siteURL := "https://dianyingxs.cc"
+	if len(c.Query("site")) > 0 {
+		siteURL = c.Query("site")
+	}
 	startTime := time.Date(2024, 03, 12, 0, 0, 0, 0, time.FixedZone("CST", 8*3600))
 	timeDiff := time.Now().Unix() - startTime.Unix()
 	day := timeDiff / 86400
@@ -45,9 +50,13 @@ func (h *SeoController) BingIndex(c *gin.Context) {
 	// 调用 submitURLBatch 方法提交 URL 批处理请求
 	var urlList []string
 	for _, item := range listResult {
-		urlList = append(urlList, fmt.Sprintf("https://dianyingxs.cc/vod/detail/id/%v.html", item.VodID))
+		if strings.EqualFold(siteURL, "https://dianyingxs.cc") {
+			urlList = append(urlList, fmt.Sprintf("%v/vod/detail/id/%v.html", siteURL, item.VodID))
+		} else {
+			urlList = append(urlList, fmt.Sprintf("%v/show-%v.html", siteURL, maccms.EncryptID(item.VodID)))
+		}
 	}
-	err, res := bing.SubmitURLBatch("https://dianyingxs.cc", urlList)
+	err, res := bing.SubmitURLBatch(siteURL, urlList)
 	if err != nil {
 		echo.Error(c, "Failed", err.Error())
 		return
@@ -83,7 +92,11 @@ func (h *SeoController) BaiDu(c *gin.Context) {
 	// 调用 submitURLBatch 方法提交 URL 批处理请求
 	var urlList []string
 	for _, item := range listResult {
-		urlList = append(urlList, fmt.Sprintf("%v/show-%v.html", siteURL, maccms.EncryptID(item.VodID)))
+		if strings.EqualFold(siteURL, "https://dianyingxs.cc") {
+			urlList = append(urlList, fmt.Sprintf("%v/vod/detail/id/%v.html", siteURL, item.VodID))
+		} else {
+			urlList = append(urlList, fmt.Sprintf("%v/show-%v.html", siteURL, maccms.EncryptID(item.VodID)))
+		}
 	}
 	err, res := bing.SubmitURLBatch(siteURL, urlList)
 	if err != nil {

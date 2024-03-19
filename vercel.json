@@ -9,13 +9,6 @@
       }
     },
     {
-      "use": "@vercel/go",
-      "src": "api/cron.go",
-      "config": {
-        "zeroConfig": true
-      }
-    },
-    {
       "use": "@vercel/static",
       "src": "statics/**",
       "config": {
@@ -28,9 +21,5 @@
       "src": "/(.*)",
       "dest": "/api/client"
     }
-  ],
-  "crons": [{
-    "path": "/api/cron",
-    "schedule": "* * * * *"
-  }]
+  ]
 }
