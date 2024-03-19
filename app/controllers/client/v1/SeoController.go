@@ -7,6 +7,7 @@ import (
 	cmap "github.com/orcaman/concurrent-map"
 	"goapi/app/models"
 	"goapi/pkg/echo"
+	"goapi/pkg/maccms"
 	"goapi/pkg/mysql"
 	"goapi/pkg/page"
 	"goapi/pkg/seoTools/bing"
@@ -19,6 +20,7 @@ type SeoController struct {
 	BaseController
 }
 
+// BingIndex 提交接口，每天提交 100 条数据
 func (h *SeoController) BingIndex(c *gin.Context) {
 	startTime := time.Date(2024, 03, 12, 0, 0, 0, 0, time.FixedZone("CST", 8*3600))
 	timeDiff := time.Now().Unix() - startTime.Unix()
@@ -51,6 +53,44 @@ func (h *SeoController) BingIndex(c *gin.Context) {
 		return
 	}
 	echo.Success(c, gin.H{"res": res, "urlList": urlList, "day": day}, "")
+}
+
+// BaiDu 百度提交接口，每天提交10条数据
+func (h *SeoController) BaiDu(c *gin.Context) {
+	siteURL := "https://seo-baidu.dyxs.site"
+	if len(c.Query("site")) > 0 {
+		siteURL = c.Query("site")
+	}
+	startTime := time.Date(2024, 03, 18, 0, 0, 0, 0, time.FixedZone("CST", 8*3600))
+	timeDiff := time.Now().Unix() - startTime.Unix()
+	day := timeDiff / 86400
+	CurrentPage := day
+	// 获取视屏数据
+	var pageList page.PageList
+	where := cmap.New().Items()
+	where["vod_status"] = 1
+	models.MacVodMgr(mysql.DB).Where(where).Count(&pageList.Total)
+	pageList.CurrentPage = CurrentPage
+	pageList.PageSize = 10
+	page.InitPageList(&pageList)
+	var listResult []models.MacVod
+	models.MacVodMgr(mysql.DB).
+		Where(where).
+		Offset(int(pageList.Offset)).
+		Limit(int(pageList.PageSize)).
+		Order("vod_id asc").
+		Find(&listResult)
+	// 调用 submitURLBatch 方法提交 URL 批处理请求
+	var urlList []string
+	for _, item := range listResult {
+		urlList = append(urlList, fmt.Sprintf("%v/show-%v.html", siteURL, maccms.EncryptID(item.VodID)))
+	}
+	err, res := bing.SubmitURLBatch(siteURL, urlList)
+	if err != nil {
+		echo.Error(c, "Failed", err.Error())
+		return
+	}
+	echo.Success(c, gin.H{"res": res, "siteURL": siteURL, "urlList": urlList, "day": day}, "")
 }
 
 func (h *SeoController) GetGoogleIndex(c *gin.Context) {

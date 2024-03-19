@@ -50,6 +50,7 @@ func RegisterClientRoutes(router *gin.RouterGroup) {
 			{
 				seo.GET("/getGoogleIndex", clientV1Group.SeoController.GetGoogleIndex)
 				seo.GET("/bing", clientV1Group.SeoController.BingIndex)
+				seo.GET("/baidu", clientV1Group.SeoController.BaiDu)
 			}
 		}
 

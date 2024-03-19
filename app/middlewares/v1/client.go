@@ -27,6 +27,7 @@ func Client() gin.HandlerFunc {
 		switch path {
 		case "/app/v1/auth/login.json":
 		case "/app/v1/seo/bing":
+		case "/app/v1/seo/baidu":
 			// 继续往下面执行
 			c.Next()
 			break

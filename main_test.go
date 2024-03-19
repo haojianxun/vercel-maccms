@@ -3,7 +3,7 @@ package main_test
 import (
 	"fmt"
 	"goapi/pkg/maccms"
-	"goapi/pkg/seoTools/bing"
+	"goapi/pkg/seoTools/baidu"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -43,9 +43,9 @@ func TestReg(t *testing.T) {
 	// 调用 submitURLBatch 方法提交 URL 批处理请求
 	var urlList []string
 	for i := 1; i <= 88; i++ {
-		urlList = append(urlList, fmt.Sprintf("https://dianyingxs.cc/vod/detail/id/%v.html", i))
+		urlList = append(urlList, fmt.Sprintf("https://seo-baidu.dyxs.site/show-%v.html", maccms.EncryptID(i)))
 	}
-	err, _ := bing.SubmitURLBatch("https://dianyingxs.cc", urlList)
+	err, _ := baidu.SubmitURLBatch("https://seo-baidu.dyxs.site", urlList)
 	if err != nil {
 		fmt.Println("提交请求失败:", err)
 		return
