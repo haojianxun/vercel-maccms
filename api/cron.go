@@ -2,28 +2,10 @@ package handler
 
 import (
 	"fmt"
-	"goapi/bootstrap"
-	"goapi/config"
 	"goapi/pkg/logger"
 	"io/ioutil"
 	"net/http"
-	"time"
 )
-
-func init() {
-	var cstZone = time.FixedZone("CST", 8*3600) // 东八
-	time.Local = cstZone
-	// 初始化配置信息
-	config.Initialize()
-	// 定义日志目录
-	logger.Init()
-	// 初始化 SQL
-	logger.Info("初始化 SQL")
-	bootstrap.SetupDB()
-	// 初始化 Redis
-	logger.Info("初始化 Redis")
-	bootstrap.SetupRedis(0)
-}
 
 /**
 
@@ -39,7 +21,6 @@ func Timer(w http.ResponseWriter, r *http.Request) {
 	fetchGet("https://seo-baidu.dyxs.site/app/v1/seo/baidu")
 	logger.Info("Bing提交")
 	fetchGet("https://seo-baidu.dyxs.site/app/v1/seo/bing")
-
 }
 
 func fetchGet(url string) {
