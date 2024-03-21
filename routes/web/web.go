@@ -54,5 +54,11 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 			// 资讯
 			arttype.GET("/zixun.html", GroupV1.ArttypeController.Zixun)
 		}
+
+		rss := webV1.Group("/rss")
+		{
+			// bing
+			rss.GET("/bing.xml", GroupV1.SeoController.Bing)
+		}
 	}
 }

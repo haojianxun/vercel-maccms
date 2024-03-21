@@ -18,6 +18,7 @@ type GroupV1 struct {
 	IndexController
 	VideosController
 	ArttypeController
+	SeoController
 }
 
 func GetDATA(c *gin.Context) gin.H {
