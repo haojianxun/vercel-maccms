@@ -68,6 +68,18 @@ func (h *IndexController) Robots(c *gin.Context) {
 
 }
 
+func (h *IndexController) BingSiteAuth(c *gin.Context) {
+	data, err := fs.ReadFile(statics.Init, "statics/BingSiteAuth.xml")
+	if err != nil {
+		logger.Info(err)
+		NoPage(c)
+		return
+	}
+	contentType := http.DetectContentType(data)
+	c.Data(http.StatusOK, contentType, data)
+
+}
+
 func (h *IndexController) SouGou(c *gin.Context) {
 	data, err := fs.ReadFile(statics.Init, "statics/sogousiteverification.txt")
 	if err != nil {

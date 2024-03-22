@@ -13,6 +13,7 @@ func RegisterWebRoutes(router *gin.RouterGroup) {
 	webV1 := router.Group("/")
 	{
 		webV1.GET("/robots.txt", GroupV1.IndexController.Robots)
+		webV1.GET("/BingSiteAuth.xml", GroupV1.IndexController.BingSiteAuth)
 		webV1.GET("/baidu_verify_codeva-irCSP8JvXx.html", GroupV1.IndexController.Baidu)
 		webV1.GET("/sogousiteverification.txt", GroupV1.IndexController.SouGou)
 		// 首页入口
