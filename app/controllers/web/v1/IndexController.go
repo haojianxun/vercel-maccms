@@ -57,7 +57,7 @@ func (h *IndexController) App(c *gin.Context) {
 }
 
 func (h *IndexController) Robots(c *gin.Context) {
-	data, err := fs.ReadFile(statics.Init, "statics/robots.txt")
+	data, err := fs.ReadFile(statics.Init, "robots.txt")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
@@ -69,7 +69,7 @@ func (h *IndexController) Robots(c *gin.Context) {
 }
 
 func (h *IndexController) BingSiteAuth(c *gin.Context) {
-	data, err := fs.ReadFile(statics.Init, "statics/BingSiteAuth.xml")
+	data, err := fs.ReadFile(statics.Init, "BingSiteAuth.xml")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
@@ -81,7 +81,7 @@ func (h *IndexController) BingSiteAuth(c *gin.Context) {
 }
 
 func (h *IndexController) SouGou(c *gin.Context) {
-	data, err := fs.ReadFile(statics.Init, "statics/sogousiteverification.txt")
+	data, err := fs.ReadFile(statics.Init, "sogousiteverification.txt")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
@@ -93,7 +93,7 @@ func (h *IndexController) SouGou(c *gin.Context) {
 }
 
 func (h *IndexController) Baidu(c *gin.Context) {
-	data, err := fs.ReadFile(statics.Init, "statics/baidu_verify_codeva-irCSP8JvXx.html")
+	data, err := fs.ReadFile(statics.Init, "baidu_verify_codeva-irCSP8JvXx.html")
 	if err != nil {
 		logger.Info(err)
 		NoPage(c)
